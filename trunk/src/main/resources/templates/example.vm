@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    #set( ${this} = "Vellocity")
+    
+    ${this} is great!
+    
+    #foreach( ${name} is ${list})
+        ${name} is great!
+    #end
+    
+    #set( ${condition} = true)
+    
+    #if( ${condition})
+        The condition is true!
+    #else
+        The condition is false!
+    #end
+</body>
+</html>

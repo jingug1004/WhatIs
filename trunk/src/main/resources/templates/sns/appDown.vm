@@ -1,0 +1,201 @@
+#parse("/main/header.vm")
+
+<link rel="stylesheet" type="text/css" href="/css/mainCommon.css">
+
+<!-- //container -->
+<div id="container">
+  
+                <div class="quickmenu_right" id="quickmenu_right">
+
+        <div class="banner_first">
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=33">
+                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
+                </a>
+            </div>
+
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=34">
+                    <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
+                </a>
+            </div>
+            <div class="banner_first_page">
+                <button class="prev1" onclick="plusDivs(-1)">이전</button>
+                <button class="next1" onclick="plusDivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="banner_second">
+            <div class="banner_second_images">
+                <a href="/event?eid=30">
+                    <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
+                </a>
+            </div>
+
+            <div class="banner_second_images">
+                <a href="/event?eid=32">
+                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
+                </a>
+            </div>
+            <div class="banner_second_page">
+                <button class="prev2" onclick="plusdivs(-1)">이전</button>
+                <button class="next2" onclick="plusdivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="Topbutton">
+            <a href="#wrap" class="goTobtn"><img src="/img/right_side/topbutton.png"></a>
+        </div>
+    </div>
+    
+
+
+    <div class="download_APP">
+        <div id="bigimage_top">
+            <img src="/img/appdown/appDownload_image1.jpg">
+        </div>
+
+
+        <table class="insert_btn_formBox">
+            <tr>
+                <td class="firstBox_sms">
+                    <div id="inputForPhone">
+                        <span class="tit_fL">핸드폰번호</span>
+
+						## 해당 input 만 사용
+                        <span class="cellphonenumber_O">
+                            <input type="tel" id="phone" name="phone" class="Number_010" placeholder="010">
+                        </span>
+                        ## end
+                        
+                    </div>
+
+                    <div id="receiveSMS">
+                        <img src="/img/appdown/send_sms_btn.png" onclick="sendSms();">
+                    </div>
+                </td>
+                <td class="secondBox_app">
+                    <div id="linkToAppdown">
+                        <span class="btn_android">
+                            <a href="https://play.google.com/store/apps/details?id=sumcreative.com.beauty" target="_blank">
+                            <img src="/img/appdown/android_btn.png">
+                            </a>
+                        </span>
+                        <span class="btn_apple">
+                            <a href="https://itunes.apple.com/us/app/id1226870900" target="_blank">
+                            <img src="/img/appdown/ios_btn.png"></a>
+                        </span>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#phone').keypress(function (event) {
+			if (event.which && (event.which <= 47 || event.which >= 58) && event.which != 8) {
+				event.preventDefault();
+				alert("숫자만 입력하세요.");
+			}
+		});
+	});
+	function sendSms() {
+		$.ajax ({
+			type: "POST",
+			url: "/sendSms?phone="+$("#phone").val(),
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				alert("전송 되었습니다.");
+			},
+			error: function(request, status, error) { }
+		});	
+	}
+</script>
+
+
+
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("banner_first_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000); // Change image every 3 seconds
+}
+
+</script>
+
+<script>
+var slideIndex = 1;
+showdivs2(slideIndex);
+
+function plusdivs(n) {
+  showdivs2(slideIndex += n);
+}
+
+
+function showdivs2(n) {
+	  var i;
+	  var x = document.getElementsByClassName("banner_second_images");
+	  if (n > x.length) {slideIndex = 1}
+	  if (n < 1) {slideIndex = x.length}
+	  for (i = 0; i < x.length; i++) {
+	     x[i].style.display = "none";
+	  }
+	  x[slideIndex-1].style.display = "block";
+	}
+
+</script>
+
+
+<script>
+var myIndex = 0;
+carousel2();
+
+function carousel2() {
+    var i;
+    var x = document.getElementsByClassName("banner_second_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel2, 2000); // Change image every 2 seconds
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var defY = 19;
+	console.log($(document).scrollTop());
+	if($(document).scrollTop() > 0) {
+		defY = $(document).scrollTop() - 181	;
+	}
+ /* quick menu */
+ $(".quickmenu_right").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
+ $(window).scroll(function(){
+	 if ($(document).scrollTop() < 400) {
+  		$(".quickmenu_right").stop().animate( { "top": 19 +"px" }, 0 );
+	 } else {
+  		$(".quickmenu_right").stop().animate( { "top": $(document).scrollTop() + -181 + "px" }, 0 );
+	 }
+ });
+});
+
+</script>
+<!-- //container -->
+#parse("/main/footer.vm")

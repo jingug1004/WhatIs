@@ -1,0 +1,261 @@
+#parse ("/main/header.vm")
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>발그레</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<link type="text/css" href="/css/myPage/myPage.css" rel="stylesheet">
+<link type="text/css" href="/css/myPage/order.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/myPage/common.css">
+
+
+<div id="container" class="mA ">
+
+  <div class="myPageWrap">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <span><a href="/my/index">마이페이지</a></span>
+            <span>&gt;</span>
+            <span class="on">주문/배송 현황</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="myPageLeftMenu fL">
+                <h3 class="mA">
+                    <a href="/my/index" ga-event="마이페이지,마이페이지홈">
+                        <img src="/img/myPage/myP_leftside_title.gif">
+                    </a>
+                </h3>
+
+                <ul class="myPageSubMenu">
+
+                    <li class="">
+                        <a href="#none" class="menu1 on"><span class="Left_B">주문현황</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/order"
+                                   ga-event="마이페이지,마이페이지_주문배송">주문/배송현황</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu2 on"><span class="Left_B">쇼핑통장</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/coupon"
+                                   ga-event="마이페이지,마이페이지_발그레쿠폰">쿠폰</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/point?page=0"
+                                   ga-event="마이페이지,마이페이지_발그레포인트">포인트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu3 on"><span class="Left_B">관심상품</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/wishList?page=1"
+                                   ga-event="마이페이지,마이페이지_위시리스트">찜리스트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu4 on">
+                            <span class="Left_B" ">나의 리뷰</span>
+                        </a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/myReview"
+                                   ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu5 on"><span class="Left_B">1:1문의</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/qna"
+                                   ga-event="마이페이지,마이페이지_1:1문의">1:1문의하기</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/qnaList"
+                                   ga-event="마이페이지,마이페이지_1:1답변">1:1답변보기</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu6 on"><span class="Left_B">개인 정보</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/privacy"
+                                   ga-event="마이페이지,마이페이지_개인정보수정">개인 정보 수정</a>
+                            </li>
+                            <li class="">
+                                <a href="/member/leaveAgree"
+                                   ga-event="마이페이지,마이페이지_회원탈퇴">회원탈퇴</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="mypageRightContents fL">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub order"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+                <p class="orderTitle">
+                    <span class="orderPage fL"></span>
+                </p>
+
+                <ul class="myMainNotice">
+                    <li>자세한 정보는 상세정보를 클릭해주세요.</li>
+                    <li>최근 6개월 목록만 제공합니다.</li>
+                </ul>
+                <div class="order_purchaseList">
+                    <span class="titleImg tI fL">배송/주문 조회</span>
+                </div>
+
+                <div class="tabAll">
+                    <table class="orderTable mA" cellpadding="0" cellspacing="0"
+                           summary="구매정보">
+                        <caption>구매정보</caption>
+                        <colgroup>
+                            <col style="width: 86px;">
+                            <col>
+                            <col style="width: 85px;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>주문일</th>
+                                <th>상품명</th>
+                                <th class="last">상태</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--주문내역 리스트 0개 일때 -->
+                            #if($order.size() == 0)
+                            <tr>
+                                <td colspan="3" class="empty last fW">최근 주문 내역이 없습니다.</td>
+                            </tr>
+                            #end
+
+                            <!--주문내역 리스트 테이블 -->
+                            #if($order.size() > 0)
+                            #foreach($ord in $order)
+                            <tr>
+                                <td>
+                                    <span class="order_date">$date.format('yyyy-MM-dd', $!{ord.regDate})</span>
+                                </td>
+                                <td class="Buy_productName">
+                                    #foreach($pi in $ord.paymentItem)
+                                    #if($foreach.index == 0)
+                                    <h2>[$!{pi.itemId.product.brand.brandName}] $!{pi.prodName}</h2>
+                                    #elseif($!{pi.prodName} != $!{ord.paymentItem.get($math.sub($foreach.index,1)).prodName})
+                                    <h2>[$!{pi.itemId.product.brand.brandName}] $!{pi.prodName}</h2>
+                                    #end
+                                    <span class='ellipsis'>$!{pi.itemName}/$!{pi.orderCount}개</span>
+                                    #end
+                                </td>
+                                <td class="last">
+                                    <button class="goDetail_order" onclick="orderdetail('$!{ord.paymentId}')">주문내역<br>상세보기</button>
+                                </td>
+                            </tr>
+                            #end
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="deliveryTitle tI">배송상태 안내</p>
+
+                <div class="deliveryImg">
+                    <ul>
+                        <li>
+                            <span class="img i1"></span>
+                            <dl>
+                                <dt>주문완료</dt>
+                                <dd>주문이<br>완료되었습니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i2"></span>
+                            <dl>
+                                <dt>결제완료<span class="fw">(입금완료)</span></dt>
+                                <dd>결제확인이<br>완료되었습니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i3"></span>
+                            <dl>
+                                <dt>배송준비중</dt>
+                                <dd>상품이 준비중이며<br>곧 발송될 예정입니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i4"></span>
+                            <dl>
+                                <dt>배송중</dt>
+                                <dd>주문하신 상품이<br>배송중입니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i5"></span>
+                            <dl>
+                                <dt>배송완료</dt>
+                                <dd>상품이 고객님께<br>도착했습니다.</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--rightContents-->
+        </div>
+    </div>
+    <!--myPageWrap-->
+
+
+</div>
+<!-- //container -->
+
+<script>
+ 	backgroundheight();
+	function orderdetail(id,i){
+		window.open('/my/order_detail?payment_id='+id, 'orderPopup', 'left=580, top=270, width=700, height=700, scrollbars=no, toolbar=no, location=no');
+	}
+	function backgroundheight(){
+		var maskHeight = $(document).height();
+		$('#backgroundheight').css('min-height',maskHeight);
+	}
+</script>
+
+
+
+<script>
+/* function wait() {
+	window.open('/goWait', 'waitPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+} */
+</script>
+
+#parse("/main/footer.vm")

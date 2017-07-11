@@ -1,0 +1,742 @@
+.mypageRightContents .tabMenu {
+	margin-bottom:15px
+}
+
+.order_purchaseList .titleImg{
+	background: url(/img/myPage/tit_mypage.png) -150px -230px;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+table.orderTable {
+	width:817px;
+	border-top:1px solid #999;
+	color:#323232
+}
+table.orderTable th {
+	height:38px;
+	font-weight:bold;
+	background:#f7f7f7;
+	padding: 3px 0;	
+}
+table.orderTable td {
+	height:66px;
+	padding:10px 0;
+	letter-spacing:0
+}
+
+
+
+.order_date{
+	font-size: 12px;
+}
+
+.Buy_productName h2{
+	font-weight: bold;
+}
+
+.Buy_productName .ellipsis{
+	color: #555;
+	margin-right: 10px;
+	font-size:12px;
+}
+
+table.orderTable th,table.orderTable td {
+	text-align:center;
+	border-bottom:1px solid #e4e4e4;
+	border-right:1px solid #e4e4e4;
+	font-size:13px;
+	padding: 3px 0;
+}
+table.orderTable th.last,table.orderTable td.last {
+	border-right:none
+}
+table.orderTable td.empty {
+	height:187px
+}
+table.orderTable p {
+	margin-left:5px;
+	text-align:left
+}
+table.orderTable .box {
+	display:block
+}
+table.orderTable .detail {
+	display:block;
+	margin-top:5px;
+	color:#ff5073;
+	text-decoration:underline;
+	font-size:11px
+}
+table.orderTable .amount {
+	font-weight:bold
+}
+table.orderTable .btn {
+	display:block;
+	width:80px;
+	height:16px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	letter-spacing:-2px;
+	line-height:17px
+}
+
+.goDetail_order{
+	border-radius: 0;
+    border: 1px solid #ff7391;
+    background-color: #fff;
+    padding: 5px;
+    width: 70px;
+    font-size: 12px;
+    letter-spacing: -1px;
+    line-height: 20px;
+}
+
+.goDetail_order:hover{
+	background-color:#ff7391;
+	color: #fff;
+	font-weight: bold;
+}
+
+
+table.orderTable .deliveryCheck {
+	margin-top:5px;
+	border:1px solid #666;
+	background:#666;
+	color:#fff
+}
+table.orderTable .refund90Btn {
+	margin-top:5px;
+	background:#fff;
+	color:#656565;
+	border:1px solid #656565;
+	letter-spacing:-1px
+}
+table.orderTable .postscript {
+	border:1px solid #ff5073;
+	color:#ff5073
+}
+table.orderTable .view {
+	border:1px solid #ff5073;
+	background:#ff5073;
+	color:#fff
+}
+table.orderTable .decide {
+	border:1px solid #ff5073;
+	background:#ff5073;
+	color:#fff
+}
+table.orderTable .decide2 {
+	color:#ff5073
+}
+table.orderTable .survey {
+	margin-top:5px;
+	border:1px solid #666;
+	color:#666;
+	background:none
+}
+table.orderTable .minus {
+	color:#ff5073;
+	font-size:11px
+}
+table.refund90Table td {
+	letter-spacing:-1px
+}
+table.detailView {
+	border-top:1px solid #000
+}
+p.deliveryTitle {
+	margin:50px 0 14px 0;
+	width:92px;
+	height:17px;
+	background: url(/img/myPage/tit_mypage.png) -280px -230px;
+}
+div.deliveryImg {
+	width:817px;
+	height:202px;
+	padding:30px 0 0 15px;
+	border-top:1px solid #999;
+	border-bottom:1px solid #999;
+}
+div.deliveryImg li {
+	float:left;
+	text-align:center
+}
+div.deliveryImg .img {
+	display:block;
+	width:102px;
+	height:102px;
+	margin-bottom:17px;
+	background:url("/img/myPage/tit_mypage.png")
+}
+div.deliveryImg .i1 {
+	background-position:-676px -100px;
+}
+div.deliveryImg .i2 {
+	background-position:-790px -100px
+}
+div.deliveryImg .i3 {
+	background-position:-900px -100px
+}
+div.deliveryImg .i4 {
+	background-position:-1010px -100px
+}
+div.deliveryImg .i5 {
+	background-position:-1120px -100px
+}
+div.deliveryImg .bar {
+	display:block;
+	float:left;
+	width:14px;
+	height:27px;
+	margin:37px 30px;
+	background:url("/img/myPage/tit_mypage.png") -28px 0;
+}
+div.deliveryImg dl,div.deliveryImg dt,div.deliveryImg dd {
+	font-size:13px;
+	text-align:center
+}
+div.deliveryImg dt {
+	font-weight:bold
+}
+div.deliveryImg dd {
+	font-size:12px;
+	color:#767676
+}
+div.subscriptionInfo {
+	width:778px;
+	height:71px;
+	margin-top:50px;
+	border:1px solid #eaeaea;
+	background:#f9f9f9;
+	color:#676767;
+	letter-spacing:0
+}
+div.subscriptionInfo p {
+	margin:20px
+}
+div.subscriptionInfo a {
+	color:#ff5073
+}
+div.cancelInfo {
+	width:778px;
+	height:136px;
+	margin:20px 0 50px 0;
+	border:1px solid #eaeaea;
+	background:#f9f9f9;
+	color:#676767;
+	letter-spacing:0
+}
+div.cancelInfo dt {
+	margin:20px 0 0 20px;
+	font-weight:bold
+}
+div.cancelInfo dd {
+	margin-left:20px
+}
+div.cancelInfo a {
+	color:#ff5073
+}
+div.infoWrap {
+	overflow:hidden;
+	padding-bottom:5px
+}
+div.infoWrap .receiveBox,div.infoWrap .paymentBox {
+	width:370px
+}
+div.infoWrap .receiveBox {
+	margin-right:40px
+}
+div.infoWrap .floatWrap {
+	overflow:hidden;
+	margin-bottom:10px
+}
+div.infoWrap .title {
+	display:block;
+	height:17px;
+	background:url("/web/images/myPage/myPage20160303.png")
+}
+div.infoWrap .receive {
+	width:92px;
+	background-position:-150px -240px
+}
+div.infoWrap .payment {
+	width:59px;
+	background-position:-250px -240px
+}
+div.infoWrap .btn {
+	display:block;
+	height:20px;
+	border:1px solid #c6c4c5;
+	float:right;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	text-align:center;
+	line-height:22px;
+	font-size:12px
+}
+div.infoWrap .modify {
+	width:61px
+}
+div.infoWrap .receipt {
+	width:104px
+}
+div.infoWrap table {
+	width:370px;
+	border-top:1px solid #000;
+	font-size:13px
+}
+div.infoWrap table .recipientAddress {
+	min-height:87px
+}
+div.infoWrap table .tel {
+	font-size:14px
+}
+div.infoWrap table .memo {
+	min-height:58px
+}
+div.infoWrap table textarea.memoBox {
+	width:97%;
+	height:61px;
+	border:1px solid #aeaeae
+}
+div.infoWrap table th {
+	width:106px;
+	background:#f7f7f7;
+	border-right:1px solid #e4e4e4;
+	font-weight:bold
+}
+div.infoWrap table th,div.infoWrap table td {
+	border-bottom:1px solid #e4e4e4;
+	padding:15px 20px
+}
+div.infoWrap table .sum {
+	color:#ff5073;
+	font-size:14px
+}
+div.infoWrap table .sum span {
+	color:#757575;
+	font-size:11px
+}
+div.infoWrap table.formModify th,div.infoWrap table.formModify td {
+	padding:10px 20px
+}
+div.infoWrap .paymentBox table td {
+	text-align:right
+}
+div.infoWrap .paymentBox table td p.couponName {
+	width:150px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis
+}
+div.infoWrap input {
+	height:19px;
+	border:1px solid #aeaeae
+}
+div.infoWrap input.recipient {
+	width:96%
+}
+div.infoWrap input.postCode {
+	width:63px
+}
+div.infoWrap .bar {
+	margin:0 3px
+}
+div.infoWrap a.postCodeFind {
+	display:block;
+	width:80px;
+	height:22px;
+	margin-left:5px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	background:#676767;
+	color:#fff;
+	font-size:12px;
+	text-align:center;
+	line-height:23px;
+	*line-height:20px
+}
+div.infoWrap input.address {
+	width:96%;
+	margin-top:7px
+}
+div.infoWrap input.tel {
+	width:42px
+}
+div.infoWrap .cashReceiptContents .radioReceipt {
+	display:block;
+	padding:0 15px 0 0
+}
+div.infoWrap .cashReceiptContents .cashReceiptRadio {
+	vertical-align:middle
+}
+div.infoWrap .cashReceiptContents .radioLabel {
+	padding-left:2px;
+	vertical-align:-2px
+}
+div.infoWrap .receiptWapper {
+	position:relative;
+	width:180px;
+	margin-top:10px;
+	text-align:left;
+	overflow:hidden
+}
+div.infoWrap .receiptWapper .receiptTit {
+	display:block;
+	padding-bottom:5px
+}
+div.infoWrap .receiptWapper .numberRequest,div.infoWrap .receiptWapper .issueNumber {
+	display:block
+}
+div.infoWrap .receiptWapper .numberRequest {
+	width:100%;
+	font-size:12px
+}
+div.infoWrap .receiptWapper .issueNumber {
+	width:168px;
+	height:18px;
+	margin:5px 4px 0 0;
+	padding:2px 5px 0 5px;
+	border:1px solid #c6c4c5;
+	color:#555;
+	font-size:12px;
+	line-height:18px
+}
+div.infoWrap .receiptWapper .btn {
+	height:22px;
+	margin:5px 0 0 0;
+	padding:0 10px;
+	background-color:#fff
+}
+a.back {
+	clear:both;
+	width:161px;
+	height:32px;
+	padding-top:14px;
+	display:block;
+	margin:50px auto;
+	background:#383838;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px
+}
+a.back span {
+	display:block;
+	width:96px;
+	height:17px;
+	margin:auto;
+	background:url("/web/images/myPage/myPage20160303.png") -420px -240px;
+	text-indent:-9999px
+}
+a.subscription span {
+	width:91px;
+	height:17px;
+	background:url("/web/images/myPage/myPage20160303.png") -320px -240px
+}
+p.subscriptionTitle {
+	width:58px;
+	height:17px;
+	margin:50px 0 15px 0;
+	background:url("/web/images/myPage/myPage20160303.png") -80px -240px
+}
+div.subscriptionList {
+	width:778px;
+	margin-bottom:50px;
+	max-height:170px;
+	overflow:auto;
+	overflow-x:hidden;
+	border:1px solid #c4c4c4
+}
+div.subscriptionList table {
+	width:778px
+}
+div.subscriptionList table th,div.subscriptionList table td {
+	height:56px;
+	padding:0 20px;
+	border-right:1px solid #e4e4e4;
+	border-bottom:1px solid #e4e4e4;
+	font-size:13px
+}
+div.subscriptionList table td[right] {
+	padding:0;
+	text-align:center;
+	border-right:none
+}
+div.subscriptionList .btn {
+	display:block;
+	width:52px;
+	height:16px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	letter-spacing:-2px;
+	line-height:17px;
+	cursor:pointer
+}
+div.subscriptionList .deliveryCheck {
+	border:1px solid #666;
+	margin-top:5px;
+	background:#666;
+	color:#fff
+}
+p.cancelTitle {
+	margin-bottom:10px;
+	font-size:17px
+}
+dl.cancelCheck {
+	width:730px;
+	margin:20px 0 50px 0;
+	padding:20px 24px;
+	background:#f9f9f9;
+	border:1px solid #e9e9e9;
+	color:#555
+}
+dl.cancelCheck dt {
+	margin-bottom:5px
+}
+p.refundTitle {
+	width:58px;
+	height:17px;
+	margin-bottom:10px;
+	background:url("/web/images/myPage/myPage20160303.png") -120px -260px
+}
+table.refundTable {
+	width:780px;
+	margin-bottom:50px;
+	border-top:1px solid #000;
+	border-bottom:1px solid #e3e3e3;
+	font-size:13px;
+	letter-spacing:0
+}
+table.refundTable th {
+	background:#f7f7f7;
+	border-right:1px solid #e3e3e3;
+	font-weight:bold;
+	text-align:center
+}
+table.refundTable td {
+	padding:18px 10px 18px 20px
+}
+table.refundTable .dotted {
+	padding-bottom:10px;
+	margin-bottom:15px;
+	border-bottom:2px dotted #b6b6b6
+}
+table.refundTable .refund {
+	float:right;
+	font-size:14px
+}
+table.refundTable .refund span {
+	color:#ff5073
+}
+p.refundInfoTitle {
+	width:442px;
+	height:17px;
+	margin-bottom:10px;
+	background:url("/web/images/myPage/myPage20160303.png") -190px -260px
+}
+table.accountTable {
+	letter-spacing:-1px
+}
+table.accountTable th {
+	padding:18px 0 18px 18px;
+	text-align:left
+}
+table.accountTable td {
+	padding-left:15px
+}
+table.accountTable .account {
+	border-left:1px solid #e3e3e3
+}
+table.accountTable .border th,table.accountTable .border td {
+	border-bottom:1px solid #e3e3e3
+}
+table.accountTable .name,table.accountTable .accountNumber {
+	width:231px;
+	height:20px;
+	border:1px solid #aeaeae
+}
+table.accountTable select {
+	width:239px;
+	border:1px solid #aeaeae
+}
+.btnCancel,.btnBack {
+	display:block;
+	width:159px;
+	height:44px;
+	border:1px solid #666;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px
+}
+.btnCancel {
+	margin-left:219px;
+	background:#fff
+}
+.btnCancel span {
+	display:block;
+	width:91px;
+	height:17px;
+	background:url("/web/images/myPage/myPage20160303.png") -640px -260px
+}
+.btnBack {
+	margin-left:10px;
+	background:#383838
+}
+.btnBack span {
+	display:block;
+	width:120px;
+	height:17px;
+	background:url("/web/images/myPage/myPage20160303.png") -810px -260px
+}
+div.addressModify {
+	top:238px;
+	left:300px;
+	width:513px;
+	height:405px;
+	padding:20px 20px;
+	background:#fff
+}
+div.addressModify div.title {
+	overflow:hidden
+}
+div.addressModify h4 {
+	font-weight:bold;
+	font-size:16px
+}
+div.addressModify .close {
+	display:block;
+	width:20px;
+	height:19px;
+	background:url("/web/images/myPage/myPage20160303.png") -250px 0;
+	border:0
+}
+div.addressModify table {
+	float:left;
+	width:513px;
+	margin:15px 0 30px 0;
+	border-top:1px solid #e4e4e4
+}
+div.addressModify th {
+	background:#f7f7f7;
+	text-align:center;
+	border-right:1px solid #e4e4e4;
+	font-weight:bold;
+	padding:18px 0
+}
+div.addressModify th,div.addressModify td {
+	border-bottom:1px solid #e4e4e4
+}
+div.addressModify td {
+	padding:10px 0 10px 10px
+}
+div.addressModify input,div.addressModify textarea {
+	width:400px;
+	height:24px;
+	border:1px solid #d8d8d8
+}
+div.addressModify textarea {
+	height:40px;
+	vertical-align:middle;
+	max-height:40px;
+	max-width:400px
+}
+div.addressModify input.postCode {
+	width:40px
+}
+div.addressModify input.tel {
+	width:45px
+}
+div.addressModify select {
+	width:65px;
+	height:24px;
+	border:1px solid #d8d8d8
+}
+div.addressModify button {
+	display:inline-block;
+	border-radius:2px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	font-weight:bold;
+	letter-spacing:-1px
+}
+div.addressModify .postBtn {
+	width:80px;
+	height:22px;
+	margin-left:10px;
+	border:0;
+	background:#686868;
+	color:#fff;
+	font-size:12px
+}
+div.addressModify td.address p {
+	margin-top:7px
+}
+div.addressModify .modify {
+	display:block;
+	width:139px;
+	height:33px;
+	background:#fff;
+	border:1px solid #666
+}
+div.accountView {
+	width:553px;
+	height:380px;
+	background:#fff
+}
+div.accountView .modalTitle {
+	padding:10px 25px;
+	background:#3d3d3d;
+	overflow:hidden;
+	color:#fff;
+	font-weight:bold
+}
+div.accountView h3 {
+	font-size:16px
+}
+div.accountView .close {
+	display:block;
+	width:18px;
+	height:17px;
+	background:url("/web/images/myPage/myPage20160303.png") -280px 0;
+	border:0
+}
+div.accountView .modalBody {
+	padding:25px
+}
+div.accountView div.accountInfo {
+	padding:35px 0 35px 100px;
+	background:#f4f4f4
+}
+div.accountView li {
+	list-style:disc;
+	font-size:14px;
+	margin-bottom:5px
+}
+div.accountView li.guideText {
+	list-style:none;
+	margin-top:-5px;
+	color:#e00;
+	font-size:11px
+}
+div.accountView .okBtn {
+	display:block;
+	width:89px;
+	height:33px;
+	margin:40px auto;
+	background:#fff;
+	border:1px solid #666
+}
+.promotion-freeGift-expression {
+	display:block;
+	color:#03acae;
+	font-style:normal;
+	font-size:11px;
+	font-family:'�굹�닎怨좊뵓',NanumGothic,'�룍��',Dotum,AppleSDGothic,AppleGothic,'援대┝',Gulim,sans-serif;
+	letter-spacing:-1px;
+	line-height:16px
+}

@@ -1,0 +1,329 @@
+#parse("/main/header.vm")
+
+<link type="text/css" href="/css/product/productCommon.css" rel="stylesheet" />
+
+<div class="layout-structure-content">
+
+    ##    $!{showBestProduct.productList}
+    <!-- S: 상품 목록 -->    
+    
+
+    <div class="quickmenu_right" id="quickmenu_right">
+
+        <div class="banner_first">
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=33">
+                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
+                </a>
+            </div>
+
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=34">
+                    <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
+                </a>
+            </div>
+            <div class="banner_first_page">
+                <button class="prev1" onclick="plusDivs(-1)">이전</button>
+                <button class="next1" onclick="plusDivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="banner_second">
+            <div class="banner_second_images">
+                <a href="/event?eid=30">
+                    <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
+                </a>
+            </div>
+
+            <div class="banner_second_images">
+                <a href="/event?eid=32">
+                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
+                </a>
+            </div>
+            
+            <div class="banner_second_images">
+                <a href="/sns/appDown">
+                    <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
+                </a>
+            </div>
+            
+            <div class="banner_second_page">
+                <button class="prev2" onclick="plusdivs(-1)">이전</button>
+                <button class="next2" onclick="plusdivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="Topbutton">
+            <a href="#wrap" class="goTobtn"><img src="/img/right_side/topbutton.png"></a>
+        </div>
+    </div>
+
+
+    <div class="exhibit best-moreover">
+        <ul class="balgeurebox-deal-list balgeurebox-deal-list-line-amount-3">
+            #foreach($item in $Res)
+            #if($!item.product.stopSelling == 0 && $!item.product.timeSale == 0)
+            #set($toDate = $date.getSystemTime())
+            #if(($!{item.timeType} == 0 && $conversion.toNumber($!item.endDate) > $toDate) || ($!{item.timeType} == 1 && $!{item.rnCount} > 0))
+            <li class="balgeurebox-deal-wrapper segment_product_item">
+                <div class="balgeurebox-deal deal_type_vertical_square_amount_col_3">
+                    <div class="balgeurebox-deal-info">
+                        <a href="/detail?product_id=${item.product.productId}&sort=1">
+                            <div class="balgeurebox-deal-image-wrap">
+                                <img class="balgeurebox-deal-image" src="//sumcrimage.cafe24.com/$!{item.product.thumbUrl}" alt="$!{item.product.prodName}" />
+                            </div>
+                            <div class="dealBody">
+                                <div class="dealhead">
+                                    <div class="small_title_thum_TimeSale">
+                                        <div class="dEach">
+                                            #if($!{item.timeType} == 0)
+                                            #set($endTime = $math.sub($item.endDate, $item.regDate))
+                                            <input type="hidden" class="endTimer" value="$item.endDate">
+                                            <span class="balgeurebox-deal-time-count" id="complete" name="complete"></span>
+                                            #elseif($!{item.timeType} == 1)
+                                            <span class="balgeurebox-deal-delivery-type">남은 수량 : ${item.rnCount}</span>
+                                            #end
+                                        </div>
+                                    </div>
+                                    <span class="balgeurebox-deal-name-main">
+                                        $!{item.product.brand.brandName} / $!{item.product.prodName}
+                                    </span>
+                                </div>
+
+                                <div class="dealPrice">
+                                    <div class="balgeurebox-deal-price-wrap">
+                                        #if(${item.product.price} != ${item.product.salePrice})
+                                        <div class="percent">
+                                            $!{item.product.sale}
+                                        </div>
+                                        <div class="balgeurebox-deal-price-unit">%</div>
+                                        #end
+                                    </div>
+
+                                    <div class="product_Ori_Price">
+                                        #if(${item.product.price} != ${item.product.salePrice})
+                                        <del class="fL">
+                                            $number.format($!{item.product.price})
+                                            <span class="balgeurebox-deal-price-unit">원</span>
+                                        </del>
+                                        #end
+
+                                        <p class="balgeurebox-deal-price-result">
+                                            <span class="price_value">$number.format($!{item.product.salePrice})</span>
+                                            <span class="unit">원</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                #if($item.product.reviewCount == 0)
+                                <span class="balgeurebox-deal-review-count-value"></span>
+                                #else
+                                <span class="balgeurebox-deal-review-count-value">$!{item.product.reviewStar}점</span>
+                                #end
+                            </div>
+                        </a>
+                        <div class="dealFoot">
+                            <div class="delivery_option_show">
+                                #if($item.product.productDelivery.freeDelivery == -1)
+                                <span class="balgeurebox-deal-delivery-shipping">
+                                    배송 $number.format($item.product.productDelivery.deliveryPrice)
+                                    원
+                                </span>
+                                #elseif($item.product.productDelivery.freeDelivery == 0)
+                                <span class="balgeurebox-deal-delivery-free">무료 배송</span>
+                                #elseif($item.product.productDelivery.freeDelivery > 3000)
+                                <span class="balgeurebox-deal-delivery-limitfree">
+                                    조건부 무료배송
+                                </span>
+                                #end
+                            </div>
+
+                            #set($flag = false)
+                            <!-- flag변수의 기본 값은 false -->
+                            #foreach($wish in $Wish.wishList)
+                            #if($item.product.productId == $wish.product.productId)
+                            <!-- 현재 뿌려진 상품의 id와 wish list에 있는 상품 id가 같을 때 -->
+                            <!-- 변수 flag의 값은 true로 바뀌고 foreach break -->
+                            #set($flag = true)
+                            <!-- flag변수 true -->
+                            #break
+                            #end
+                            #end
+                            <div class="zzim_wishlist">
+                                #if($flag)
+                                <div class="go_to_wishlist_ZZim">
+                                    <span class="zzimCheck2" name="product_id" value="${item.product.productId}" title="찜하기" onclick="wishOverlap();"></span>
+                                </div>
+                                #else
+                                <div class="go_to_wishlist_ZZim">
+                                    <span class="zzimCheck" name="product_id" value="${item.product.productId}" title="찜하기" onclick="wish(this, '${item.product.productId}');">찜</span>
+                                </div>
+                                #end
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li><!-- e: balgeurebox-deal-wrapper -->
+            #end
+            #end
+            #end
+        </ul>
+    </div><!-- end: exhibit-moreover -->
+    <!-- E: 상품목록 -->
+</div><!-- end: layout-structure-content-->
+<!-- //container -->
+
+<script>
+        $('.endTimer').each(function() {
+        	var endTimer = Math.floor($(this).val());
+        // CountDownTimer(월/일/년 시간 (오전/오후),뿌려줄 아이디 이름);
+            CountDownTimer(endTimer, $(this).next()) //18년 1월 1일까지 남은 시간
+        });
+
+        function CountDownTimer(dt, id){
+            //dt는 끝나는 날짜
+            var end = new Date(dt),
+            //시간 계산 할때 편하게 하기위한 변수
+            _second = 1000,
+            _minute = _second * 60,
+            _hour = _minute * 60,
+            _day = _hour * 24,
+            //종료 날짜가 현제 날짜 보다 작으면 안되게 하기 위해 임의로 준 변수
+            timer;
+            //실제 계산을 하는 함수 시작
+            function showRemaining() {
+                //현제 날짜,시간 데이터 세팅
+                var now = new Date(),
+                //종료날짜에서 시작날짜를 빼기
+                distance = end - now;
+                //종료날짜에서 시작 날짜를 뺏을때 0보다 작으면
+                if (distance < 0) {
+                    //카운터 세는걸 중지
+                    clearInterval(timer);
+                    id.html('마감');
+                    return;
+                }
+                // 날짜 계산
+                var days = Math.floor(distance / _day),
+                    hours = Math.floor((distance % _day) / _hour),
+                    minutes = Math.floor((distance % _hour) / _minute),
+                    seconds = Math.floor((distance % _minute) / _second);
+                //뿌려주기
+                id.html(days+'일 '+hours+'시간 '+minutes+'분 '+seconds+'초');
+                id.css('fontcolor','red');
+            }
+            //카운터를 1초마다 계산 실행 하게함
+            timer = setInterval(showRemaining, 1000);
+        }
+</script>
+
+<script>
+function wish(frm, p_id) {
+
+	$.ajax ({
+		type: "POST",
+		url: "/wish/add?product_id="+p_id,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if (data.resultCode == "200") {
+				alert("해당 상품이 찜 목록에 추가 되었습니다.");
+				$(frm).css('background','url("/img/balgeure_icons.png") -144px -6px');
+				getHeaderInfo();
+			} else {
+				alert("찜하기는 로그인 후 사용 가능합니다.");
+			}
+		},
+		error: function(request, status, error) {
+			alert("관리자에게 문의 하시기 바랍니다.");
+		}
+	});
+}
+
+function wishOverlap() {
+	alert('이미 찜한 상품입니다.');
+}
+</script>
+
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("banner_first_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000); // Change image every 3 seconds
+}
+
+</script>
+
+<script>
+var slideIndex = 1;
+showdivs2(slideIndex);
+
+function plusdivs(n) {
+  showdivs2(slideIndex += n);
+}
+
+
+function showdivs2(n) {
+	  var i;
+	  var x = document.getElementsByClassName("banner_second_images");
+	  if (n > x.length) {slideIndex = 1}
+	  if (n < 1) {slideIndex = x.length}
+	  for (i = 0; i < x.length; i++) {
+	     x[i].style.display = "none";
+	  }
+	  x[slideIndex-1].style.display = "block";
+	}
+
+</script>
+
+
+<script>
+var myIndex = 0;
+carousel2();
+
+function carousel2() {
+    var i;
+    var x = document.getElementsByClassName("banner_second_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel2, 2000); // Change image every 2 seconds
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var defY = 18;
+	console.log($(document).scrollTop());
+	if($(document).scrollTop() > 0) {
+		defY = $(document).scrollTop() - 201	;
+	}
+ /* quick menu */
+ $(".quickmenu_right").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
+ $(window).scroll(function(){
+	 if ($(document).scrollTop() < 400) {
+  		$(".quickmenu_right").stop().animate( { "top": 18 +"px" }, 0 );
+	 } else {
+  		$(".quickmenu_right").stop().animate( { "top": $(document).scrollTop() + -201 + "px" }, 0 );
+	 }
+ });
+});
+
+</script>
+
+
+#parse("/main/footer.vm")

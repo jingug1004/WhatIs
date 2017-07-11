@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <table>
+      <tr>
+         <td>$User.name</td>
+      </tr>
+      <tr>
+         <td>$User.email</td>
+      </tr>
+      <tr>
+         <td>$User.userId</td>
+      </tr>
+      <tr>
+         <td>$User.phone</td>
+      </tr>
+   </table>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>발그레 : 시스템 점검 중</title>
+
+<style>
+    .body{
+        margin:0;
+        padding:0;
+    }
+
+    .layout_contents{
+        width:1080px;
+        margin:0 auto;
+        padding-top:100px;
+    }
+
+    .balgeure_logo{
+        margin: 30px 0;
+    }
+
+    .balgeure_logo h1 img{
+        width:100%;
+        margin: 0 auto;
+    }
+
+    .error_message{
+        padding-top:20px;
+    }
+
+    .error_message p{
+        font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+        color: #222222;
+        line-height: 52px;
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .error_message .restart_msg{
+        color:#6f6f6f;
+    }
+
+    .error_message .Thankyou{
+        font-size: 40px;
+    }
+</style>
+
+</head>
+<body>
+
+    <div class="layout_contents">
+        <div class="balgeure_logo">
+            <h1>
+                <img src="/img/header/balgeure_logo_BIG.png" />
+            </h1>
+        </div>
+        <div class="error_message">
+            <p>안녕하십니까? 발그레 입니다.</p>
+            <p>발그레는 보다 안정된 서비스를 제공하고자, 현재 잠시 시스템 점검이 진행 됨을 알려드립니다.</p>
+            <p>홈페이지 이용에 불편을 드린 점 깊이 사과드리며,</p>
+            <p>보다 안정적인 서비스를 제공해 드리기 위해 더욱 노력하겠습니다.</p>
+
+            <p class="restart_msg">새로고침 (F5 키)을 누르시거나, 잠시 후에 이용해 주십시요.</p>
+            <p class="Thankyou">감사합니다</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

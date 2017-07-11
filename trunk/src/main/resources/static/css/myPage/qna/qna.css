@@ -1,0 +1,147 @@
+body * {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+.qna {
+	width: 838px;
+	border: 1px solid #9e9e9;
+	margin: 50px auto;
+}
+
+.qna_haed {
+	background-color: #fcfcfc;
+}
+
+.qna_list:last-child {
+	border: none;
+}
+
+.qna_haed, .qna_list_title, .qna_content, .answer_title {
+	overflow: hidden;
+}
+
+.qna_haed p, .qna_list_title p, .qna_list_title p:nth-child(3) {
+	float: left;
+	text-align: center;
+	line-height: 25px;
+	font-size: 13px;
+}
+
+.qna_haed{
+	height: 35px;
+    padding: 5px 0;
+        border-top: 1px solid #e9e9e9;
+            border-bottom: 1px solid #e9e9e9;
+}
+
+.qna_haed p {
+	color: #383b48;
+    padding: 5px 0;
+    font-weight: 600;
+}
+
+.answerList{
+	width: 838px;
+}
+
+.qna_haed p:nth-child(1), .qna_list_title p:nth-child(1) {
+	width: 60px;
+}
+
+.qna_haed p:nth-child(2), .qna_list_title p:nth-child(2) {
+	width: 150px;
+}
+
+.qna_haed p:nth-child(3), .qna_list_title p:nth-child(3) {
+	width: 310px;
+}
+
+.qna_haed p:nth-child(4), .qna_list_title p:nth-child(4) {
+	width: 190px;
+}
+
+.qna_haed p:nth-child(5), .qna_list_title p:nth-child(5) {
+	width: 100px;
+}
+
+.qna_list_title {
+	overflow: hidden;
+	padding: 10px 0;
+	border-bottom: 1px solid #e9e9e9;
+}
+
+.qna_list_title .answerslist_tits{
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.qna_list_title .DateAnswer{
+	font-size: 12px;
+}
+
+.qna_content, .answer_title {
+	display: none;
+}
+
+.qna_list{
+	margin-left: 15px;
+    width: 820px;
+}
+
+.qna_list_title a:hover {
+	text-decoration: underline;
+}
+
+.qna_list_title+div>div, .qna_content+div>div {
+	border-top: 1px solid #999;
+	padding: 25px;
+	font-size: 13px;
+	color: #333;
+	background: #f0f0f0;
+}
+
+.askList div{
+	margin-top: -10px;
+    padding: 0 0 0 10px;
+}
+
+.from_admin div{
+	padding: 15px 10px;
+	font-size: 14px;
+    color: #000;
+}
+
+.qna_content+div>div>div {
+	padding-left: 10px;
+	font-size: 14px;
+    color: #000;
+}
+
+.qnaDeleteBtn {
+	position: relative;
+	left: 600px;
+	bottom: 25px;
+}
+
+.qnaDeleteBtn {
+	background-color: #fff;
+    border: 2px solid #ff7391;
+    display: inline-block;
+    cursor: pointer;
+    color: #2a2a2a;
+    font-size: 12px;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-family: '³ª´®°íµñ',NanumGothic,'¸¼Àº°íµñ',Malgun Gothic,'µ¸¿ò',Dotum,Helvetica,'Apple SD Gothic Neo',Sans-serif;
+}
+
+.qnaDeleteBtn:hover {
+	background-color:#ff7391;
+	color: #fff;
+}

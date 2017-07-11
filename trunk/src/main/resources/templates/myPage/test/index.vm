@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script>
+   $(function() {
+	   $("#listButton").click(function() {
+		   var qnaList = ('.')
+		   $.ajax({
+			   type:'post',                      // 전송 타입
+			   url:'/detail',                      // controller /list 매핑 리턴 페이지
+			   dataType:'html',                  // 데이터 형식 html
+			   success:function(data) {
+				   $("#listDiv").html(data);     // 성공 시 div태그에 html 데이터를 뿌린다.
+			   }
+		   });
+	   });
+   });
+</script>
+<body>
+   <input type="button" id="listButton" value="리스트출력" />
+   <br/>
+   <div id="listDiv"></div>
+</body>
+</html>

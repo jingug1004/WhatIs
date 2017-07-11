@@ -1,0 +1,98 @@
+﻿
+﻿#parse ("/main/header.vm")
+<meta charset="UTF-8">
+
+
+<link type="text/css" href="/css/contactUs_css.css" rel="stylesheet" />
+
+
+
+<div class="layout_structure">
+
+    <form id="mailForm" name="mailForm" method="post">
+        <div class="container">
+            <div class="title">
+                <h2 class="title_p">입점문의</h2>
+            </div>
+            <table class="contactUS_box">
+                <tr>
+                    <th class="mail_title">회사명</th>
+                    <td class="insert_box"><input type="text" name="cName" id="cName" /></td>
+                    <th class="mail_title">사업자 등록번호</th>
+                    <td class="insert_box"><input type="text" name="cNumber" id="cNumber" /></td>
+                </tr>
+                <tr>
+                    <th class="mail_title">대표자명</th>
+                    <td class="insert_box"><input type="text" name="cCEOName" id="cCEOName" /></td>
+                    <th class="mail_title">이메일</th>
+                    <td class="insert_box"><input type="text" name="mail" id="mail" /></td>
+                    
+                </tr>
+                <tr>
+                    <th class="mail_title">담당자명</th>
+                    <td class="insert_box"><input type="text" name="mName" id="mName" /></td>
+                    <th class="mail_title">연락처</th>
+                    <td class="insert_box"><input type="text" name="phone" id="phone" /></td>
+                </tr>
+                <tr>
+                    <th class="mail_title">제목</th>
+                    <td colspan="3" class="insert_box"><input type="text" name="subject" id="subject" /></td>
+                </tr>
+                <tr>
+                    <th class="mail_title">문의 내용</th>
+                    <td colspan="3" class="insert_box"><textarea rows="8" name="content" id="content"></textarea></td>
+                </tr>
+            </table>
+            <div>
+                <div class="btn_submit">
+                    <input type="button" class="submit" value="메일 보내기" onclick="sendMail();" /><a href="#" class="cancel">취소</a>
+                </div>
+            </div>
+         </div>
+    </form>
+
+</div>
+
+<script src="//code.jquery.com/jquery-3.1.1.js"></script>
+<script>
+		function sendMail() {
+    		var mail = $("#mail").val();
+    		var subject = $("#subject").val();
+    		var cName = $("#cName").val();
+    		var mName = $("#mName").val();
+    		var cNumber = $("#cNumber").val();
+    		var cCEOName = $("#cCEOName").val();
+    		var phone = $("#phone").val();
+    		var content = $("#content").val();
+
+    		var formData = new FormData();
+
+    		formData.append("mail", mail);
+    		formData.append("subject", subject);
+    		formData.append("cName", cName);
+    		formData.append("mName", mName);
+    		formData.append("phone", phone);
+    		formData.append("cCEOName", cCEOName);
+    		formData.append("cNumber", cNumber);
+    		formData.append("content", content);
+
+    		$.ajax({
+    			type: "POST",
+    			url: "/mail/sender",
+    			data: formData,
+    		    dataType: "text",
+    		    contentType: false,
+    		    processData: false,
+    		    success: function(formData) {
+    		    	alert("메일이 정상적으로 전송 되었습니다.");
+    		    	location.replace("/main");
+    		    },
+    		    error:function(request,status,error) {
+    		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		    },
+    		});
+		}
+</script>
+
+
+#parse("/main/footer.vm")

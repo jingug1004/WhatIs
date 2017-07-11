@@ -1,0 +1,1646 @@
+@font-face {
+    font-family: 'NanumGothic';
+    font-style: normal;
+    font-weight: 400;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    letter-spacing: -1px
+}
+
+body, input, textarea, select, button, table {
+    font-family: '챘혧�뮨р�뷜궗', Dotum, AppleSDGothic, AppleGothic, '챗쨉쨈챘짝쩌', Gulim, sans-serif;
+    font-size: 14px;
+    color: #222
+}
+
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, form, fieldset, input, table, tr, th, td {
+    margin: 0;
+    padding: 0
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%
+}
+
+ul, ol {
+    list-style: none
+}
+
+fieldset, img {
+    border: 0;
+    vertical-align: top
+}
+
+address {
+    font-style: normal
+}
+
+p, i, dd, td {
+    line-height: 1.5em;
+    font-size: 1em;
+    text-align: justify
+}
+
+:focus {
+    outline: 0
+}
+
+body {
+    line-height: 20px;
+    background: white
+}
+
+input, select, button {
+    vertical-align: middle
+}
+
+input {
+    padding-left: 6px
+}
+
+table {
+    table-layout: fixed;
+    border-spacing: 0
+}
+
+caption, th, td {
+    font-weight: normal;
+    text-align: left
+}
+
+caption {
+    display: none
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: ""
+}
+
+blockquote, q {
+    quotes: "" ""
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px
+}
+
+a {
+    text-decoration: none;
+    color: #222
+}
+
+legend, caption {
+    display: none
+}
+
+input[disabled], button[disabled] {
+    cursor: not-allowed;
+    background-color: #eee
+}
+
+a[disabled] {
+    cursor: not-allowed
+}
+
+#wrap {
+    min-width: 1100px
+}
+
+#container {
+    width: 1048px;
+    position: relative
+}
+
+#container:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.dP {
+    display: block
+}
+
+.mA {
+    margin: auto
+}
+
+.fL {
+    float: left
+}
+
+.fR {
+    float: right
+}
+
+.cB {
+    clear: both
+}
+
+.fW {
+    font-weight: bold
+}
+
+.tI {
+    text-indent: -9999px
+}
+
+.oF {
+    overflow: hidden
+}
+
+.clearfix {
+    *zoom: 1
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.hidden {
+    display: none
+}
+
+.pText {
+    color: #ff5073
+}
+
+.blackBtn {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(.05, #4a4a4a), color-stop(1, #2c2c2c));
+    background: -moz-linear-gradient(top, #4a4a4a 5%, #2c2c2c 100%);
+    background: -webkit-linear-gradient(top, #4a4a4a 5%, #2c2c2c 100%);
+    background: -o-linear-gradient(top, #4a4a4a 5%, #2c2c2c 100%);
+    background: -ms-linear-gradient(top, #4a4a4a 5%, #2c2c2c 100%);
+    background: linear-gradient(to bottom, #4a4a4a 5%, #2c2c2c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4a4a4a', endColorstr='#2c2c2c', GradientType=0);
+    background-color: #4a4a4a;
+    -webkit-box-shadow: inset 0 1px 0 0 #6b6b6b;
+    -moz-box-shadow: inset 0 1px 0 0 #6b6b6b;
+    box-shadow: inset 0 1px 0 0 #6b6b6b;
+    border: 1px solid #2b2b2b;
+    color: #fff;
+    font-weight: bold
+}
+
+.pinkBtn {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(.05, #ff579a), color-stop(1, #fc4b92));
+    background: -moz-linear-gradient(top, #ff579a 5%, #fc4b92 100%);
+    background: -webkit-linear-gradient(top, #ff579a 5%, #fc4b92 100%);
+    background: -o-linear-gradient(top, #ff579a 5%, #fc4b92 100%);
+    background: -ms-linear-gradient(top, #ff579a 5%, #fc4b92 100%);
+    background: linear-gradient(to bottom, #ff579a 5%, #fc4b92 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff579a', endColorstr='#fc4b92', GradientType=0);
+    background-color: #ff579a;
+    -webkit-box-shadow: inset 0 1px 0 0 #ff7db1;
+    -moz-box-shadow: inset 0 1px 0 0 #ff7db1;
+    box-shadow: inset 0 1px 0 0 #ff7db1;
+    border: 1px solid #fd2c80;
+    color: #fff;
+    font-weight: bold
+}
+
+.grayBtn {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(.05, #fcfcfc), color-stop(1, #e7e7e7));
+    background: -moz-linear-gradient(top, #fcfcfc 5%, #e7e7e7 100%);
+    background: -webkit-linear-gradient(top, #fcfcfc 5%, #e7e7e7 100%);
+    background: -o-linear-gradient(top, #fcfcfc 5%, #e7e7e7 100%);
+    background: -ms-linear-gradient(top, #fcfcfc 5%, #e7e7e7 100%);
+    background: linear-gradient(to bottom, #fcfcfc 5%, #e7e7e7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#e7e7e7', GradientType=0);
+    background-color: #fcfcfc;
+    -webkit-box-shadow: inset 0 1px 0 0 #fff;
+    -moz-box-shadow: inset 0 1px 0 0 #fff;
+    box-shadow: inset 0 1px 0 0 #fff;
+    border: 1px solid #ccc;
+    color: #000;
+    font-weight: bold
+}
+
+div.mainVisual {
+    position: relative;
+    width: 1048px;
+    height: 477px;
+    margin: 0 auto 50px;
+    overflow: hidden
+}
+
+div.mainVisual img {
+    width: 1048px
+}
+
+div.mainVisual .arrow {
+    position: absolute;
+    top: 231px;
+    display: block;
+    width: 51px;
+    height: 62px
+}
+
+div.mainVisual .pre {
+    left: 0;
+    background: url("/web/images/home/homeSprite20160811.png") -290px -30px
+}
+
+div.mainVisual .pre:hover {
+    background: url("/web/images/home/homeSprite20160811.png") -410px -30px
+}
+
+div.mainVisual .next {
+    right: 0;
+    background: url("/web/images/home/homeSprite20160811.png") -350px -30px
+}
+
+div.mainVisual .next:hover {
+    background: url("/web/images/home/homeSprite20160811.png") -470px -30px
+}
+
+div.mainVisual .circleWrap {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center
+}
+
+div.mainVisual .circle {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center;
+    margin: 0
+}
+
+div.mainVisual li {
+    width: 12px;
+    height: 12px;
+    float: left;
+    margin: 0 10px 3px 5px;
+    cursor: pointer;
+    list-style: none;
+    background: url("/web/images/home/homeSprite20160811.png") -230px -40px
+}
+
+div.mainVisual li:hover, div.mainVisual .on {
+    background: url("/web/images/home/homeSprite20160811.png") -250px -40px
+}
+
+div.sideBannerL {
+    position: absolute;
+    top: 0;
+    left: -123px
+}
+
+div.sideBannerL li {
+    margin-top: 10px
+}
+
+div.sideBannerR {
+    position: absolute;
+    top: 0;
+    right: -141px;
+    z-index: 3
+}
+
+div.sideBannerR li {
+    margin-bottom: 10px
+}
+
+#container.brand .sideBannerL {
+    top: 123px
+}
+
+#container.brand .sideBannerR {
+    top: 123px
+}
+
+div.topDownWrap {
+    width: 102px
+}
+
+div.topDownBtn {
+    background: url("/web/images/header/headerSprite20160921.png") -20px -70px
+}
+
+div.topDownBtn .top {
+    display: block;
+    width: 71px;
+    height: 32px;
+    text-indent: -9999px;
+    cursor: pointer
+}
+
+div.topDownBtn .down {
+    display: block;
+    width: 71px;
+    height: 33px;
+    text-indent: -9999px;
+    cursor: pointer
+}
+
+div.myView {
+    width: 110px;
+    height: 357px;
+    background: #fff
+}
+
+div.myView .viewCart, div.myView .view {
+    display: block;
+    padding: 4px 10px 0 10px;
+    color: #eee;
+    font-size: 11px;
+    overflow: hidden;
+    background: #262525
+}
+
+div.myView .viewCart {
+    height: 22px;
+    border: 1px solid #060606;
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0
+}
+
+div.myView .viewCart .arrow {
+    display: block;
+    width: 5px;
+    height: 8px;
+    margin: 6px;
+    background: url("/web/images/home/homeSprite20160811.png") -280px -20px
+}
+
+div.myView .view {
+    height: 23px;
+    cursor: text;
+    border-top: 1px solid #4b4b4b;
+    border-left: 1px solid #060606;
+    border-right: 1px solid #060606
+}
+
+div.myView strong {
+    float: left
+}
+
+div.myView .amount {
+    display: block;
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ff5073
+}
+
+div.myView .viewList {
+    position: relative;
+    width: 74px;
+    height: 283px;
+    padding: 17px 17px 0 17px;
+    border: 1px solid #cfcfcf;
+    border-top: none;
+    -webkit-border-radius: 0 0 2px 2px;
+    -moz-border-radius: 0 0 2px 2px;
+    border-radius: 0 0 2px 2px
+}
+
+div.myView .viewList .empty {
+    margin-top: 110px;
+    color: #b1b1b1;
+    text-align: center;
+    font-size: 12px
+}
+
+div.myView .viewList li {
+    float: none;
+    position: relative
+}
+
+div.myView .viewList li:hover .overImg {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: #fff
+}
+
+div.myView div.paging {
+    position: absolute;
+    width: 74px;
+    bottom: 5px;
+    overflow: hidden;
+    font-size: 12px
+}
+
+div.myView span.fL {
+    width: 33px
+}
+
+div.myView .on {
+    color: #ff5073
+}
+
+div.myView .pre, div.myView .next {
+    display: block;
+    width: 13px;
+    height: 13px;
+    background: url("/web/images/home/homeSprite20160811.png");
+    margin-top: 3px
+}
+
+div.myView .pre {
+    background-position: -300px 0;
+    margin-left: 12px
+}
+
+div.myView .pre:hover {
+    background-position: -260px 0
+}
+
+div.myView .next {
+    background-position: -320px 0
+}
+
+div.myView .next:hover {
+    background-position: -280px 0
+}
+
+div.myView .overImg {
+    position: relative;
+    width: 225px;
+    height: 74px;
+    border: 2px solid #404040
+}
+
+div.myView .textBox {
+    width: 141px;
+    height: 52px;
+    padding: 18px 0 0 10px
+}
+
+div.myView .title {
+    width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    font-weight: bold
+}
+
+div.myView .price {
+    color: #ff5073;
+    font-weight: bold
+}
+
+div.myView .overClose {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 15px;
+    height: 15px;
+    background: url("/web/images/home/homeSprite20160811.png") -260px -20px;
+    cursor: pointer
+}
+
+.fancybox-opened .fancybox-skin {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent
+}
+
+iframe[name='google_conversion_frame'] {
+    height: 0 !important;
+    width: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    margin-top: -13px;
+    float: left
+}
+
+div.topBanner {
+    position: relative
+}
+
+div.topBanner a img {
+    width: 1048px;
+    margin: auto;
+    display: block
+}
+
+div.topBanner .closeButton {
+    position: absolute;
+    top: 26%;
+    right: 50px;
+    cursor: pointer
+}
+
+div.lnb {
+    padding: 13px 0 20px 0;
+    *padding-bottom: 43px;
+    font-size: 13px;
+    color: #888;
+    z-index: 3
+}
+
+div.lnb .lnbBoxWrap:after {
+    clear: both;
+    display: block;
+    content: ""
+}
+
+div.lnb .homeLink {
+    position: relative;
+    padding-left: 20px;
+    white-space: nowrap;
+    line-height: 12px
+}
+
+div.lnb .homeIcon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 15px;
+    height: 14px;
+    margin: -6px 5px 0 0;
+    vertical-align: middle
+}
+
+div.lnb .menu_navi {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding-top: 6px;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 12px
+}
+
+div.lnb div.select {
+    position: relative;
+    cursor: pointer;
+    height: 18px;
+    font-size: 11px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    *z-index: 2
+}
+
+div.lnb div.select p {
+    padding: 1px 19px 0 10px
+}
+
+div.lnb div.select a {
+    color: #555
+}
+
+div.lnb div.select:hover .option {
+    display: block
+}
+
+div.lnb .option {
+    position: absolute;
+    display: none;
+    top: 18px;
+    left: -1px;
+    padding: 7px 0;
+    max-height: 338px;
+    overflow: auto;
+    z-index: 3
+}
+
+div.lnb .option li {
+    margin-top: 3px
+}
+
+div.lnb .option li.fir {
+    margin-top: 0
+}
+
+div.lnb .option li:hover, div.lnb .option li.on {
+    background: #ffedf1
+}
+
+div.lnb .option a {
+    display: block;
+    padding: 3px 10px 1px 10px;
+    line-height: 12px
+}
+
+div.lnb .select, div.lnb .option {
+    width: 150px;
+    border: 1px solid #ccc;
+    background: #fff
+}
+
+div.lnb .grayArrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    width: 13px;
+    height: 9px;
+    margin-top: -4px;
+}
+
+div.lnb .subdivide {
+    width: 6px;
+    height: 9px;
+    margin: 6px 10px 0 10px;
+}
+
+div.lnb .lnbTextBox {
+    *clear: both;
+    margin-top: 18px;
+    padding: 15px 0 4px 0;
+    overflow: hidden;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    background: #fafafa
+}
+
+div.lnb .lnbTextBox li {
+    width: 19.9%;
+    margin-bottom: 11px;
+    float: left;
+    font-size: 12px;
+    text-indent: 15px
+}
+
+div.lnb .lnbTextBox a:hover, div.lnb .lnbTextBox .on {
+    color: #ff5073
+}
+
+div.lnb .relatedResult {
+    padding-top: 10px;
+    color: #333;
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif;
+    font-size: 13px
+}
+
+div.lnb .relatedResult span, div.lnb .relatedResult a {
+    margin-right: 18px
+}
+
+div.lnb .relatedResult .keywordTitle {
+    font-weight: bold
+}
+
+div.lnb .relatedResult .relatedKeyword {
+    font-weight: normal
+}
+
+div.noDepth {
+    padding-bottom: 18px
+}
+
+div.lnb:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+div#header_v2 {
+    position: relative;
+    margin-bottom: 7px;
+    z-index: 5
+}
+
+div#header_v2 h1, div#header_v2 h3, div#header_v2 h4 {
+    display: inline
+}
+
+div#header_v2 h4 {
+    font-size: .9em;
+    font-weight: normal
+}
+
+div#header_v2 ul li {
+    float: left
+}
+
+div#header_v2 div.gnbTop {
+    margin: 4px 0 10px 0;
+    width: 100%;
+    background: #fff;
+    color: #555;
+    font-size: 12px;
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif
+}
+
+div#header_v2 div.gnbTopInner {
+    width: 1048px;
+    height: 36px
+}
+
+div#header_v2 div.gnbTopInner .count .pText {
+    margin: 1px 5px 0 0;
+    font-family: 'Tahoma';
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #ff5073
+}
+
+div#header_v2 div.gnbTopInner .count .text {
+    margin-top: 1px
+}
+
+div#header_v2 div.gnbTopInner .appText {
+    margin: 1px 0 0 5px;
+    display: block;
+    font-size: 12px
+}
+
+div#header_v2 div.gnbTopInner .link {
+    display: block;
+    cursor: pointer;
+    float: left
+}
+
+div#header_v2 div.gnbTopInner .bar {
+    display: block;
+    margin: 1px 10px 0 10px;
+    color: #e1e1e1;
+    float: left;
+    font-size: 15px
+}
+
+div#header_v2 div.gnbTopInner .bar_half {
+    display: block;
+    margin: 3px 5px 0 5px;
+    color: #e1e1e1;
+    float: left
+}
+
+div#header_v2 div.gnbTopInner .appDownIcon {
+    margin-top: 3px;
+    display: block;
+    width: 13px;
+    height: 16px;
+}
+
+div#header_v2 div.gnbTopInner ul.gnbTopRight .li {
+    position: absolute;
+    font-size: 11px;
+    z-index: 5
+}
+
+div#header_v2 div.gnbTopInner ul.gnbTopRight .navi {
+    margin-top: 1px;
+    display: block;
+    height: 27px;
+    color: #555;
+    float: left
+}
+
+div#header_v2 div.gnbTopInner ul.gnbTopRight .arrow {
+    display: block;
+    width: 6px;
+    height: 3px;
+    margin: 9px 0 0 3px;
+}
+
+div#header_v2 div.gnbTopInner ul.gnbTopRight .gnbTopRight_bar {
+    display: block;
+    margin: 1px 10px 0;
+    color: #e1e1e1;
+    float: left;
+    font-size: 15px
+}
+
+div#header_v2 div.gnbTopInner ul.gnbTopRight .top_cartIcon {
+    margin: 3px 2px 0 0;
+    width: 17px;
+    height: 14px;
+}
+
+div#header_v2 div.gnbTopInner ul.gnbTopRight .cart_count {
+    padding: 0 6px;
+    margin: 1px 0 0 4px;
+    display: inline-block;
+    zoom: 1;
+    height: 18px;
+    background: #ff5073;
+    color: #fff;
+    text-align: center;
+    border-radius: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    line-height: 18px
+}
+
+div#header_v2 div.gnbTopInner ul.gnbTopRight .loginBtn {
+    margin: 1px 10px 0 0;
+    width: 56px;
+    height: 19px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px
+}
+
+div#header_v2 div.gnbTopInner .hover:hover {
+    position: relative
+}
+
+div#header_v2 div.gnbTopInner .hover {
+    position: relative
+}
+
+div#header_v2 div.gnbTopInner .topMenu_over {
+    display: none;
+    position: absolute;
+    width: 105px;
+    top: 24px;
+    left: -9px;
+    z-index: 5
+}
+
+div#header_v2 div.gnbTopInner .topMenu_over .topMenu_over_inner {
+    width: 100px;
+    background: #fff;
+    border: 1px solid #f9f9fa
+}
+
+div#header_v2 div.gnbTopInner .topMenu_over ul {
+    display: block;
+    padding: 12px 10px
+}
+
+div#header_v2 div.gnbTopInner .topMenu_over li {
+    float: none;
+    margin-bottom: 8px
+}
+
+div#header_v2 div.gnbTopInner .topMenu_over a {
+    color: #555
+}
+
+div#header_v2 div.gnbTopInner .topMenu_over a:hover {
+    color: #ff5073
+}
+
+div#header_v2 div.gnbTopInner div.cs {
+    width: 96px
+}
+
+div#header_v2 div.gnbTopInner div.cs .topMenu_over_inner {
+    width: 91px
+}
+
+div#header_v2 div.gnbTopInner .hover:hover .topMenu_over {
+    display: block
+}
+
+div#header_v2 div.gnbLogoOuter {
+    width: 100%;
+}
+
+div#header_v2 div.gnbLogoOuter.fix {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    height: 90px
+}
+
+div#header_v2 div.gnbLogo {
+    position: relative;
+    width: 1048px;
+    height: 72px;
+    z-index: 4
+}
+
+div#header_v2 div.gnbLogo .topRollingBannerWrap .topRollingArrow {
+    position: absolute;
+    top: 9px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer
+}
+
+div#header_v2 div.gnbLogo .topRollingBannerWrap .pre {
+    right: 17px;
+}
+
+div#header_v2 div.gnbLogo .topRollingBannerWrap .next {
+    right: 0;
+}
+
+div#header_v2 div.gnbLogo .topRollingBanner {
+    width: 240px;
+    height: 50px
+}
+
+div#header_v2 div.gnbLogo .topRollingBanner img {
+    width: 240px;
+    height: 50px
+}
+
+div#header_v2 div.gnbLogo .dot {
+    display: block;
+    width: 4px;
+    height: 4px;
+    margin: 8px 12px;
+}
+
+div#header_v2 div.gnbLogo .point_icon {
+    position: absolute;
+    top: -16px;
+    right: 28px;
+    display: block;
+    width: 50px;
+    height: 13px;
+}
+
+div#header_v2 div.gnbLogo .newIcon {
+    position: absolute;
+    top: -9px;
+    display: block;
+    width: 31px;
+    height: 9px;
+}
+
+div#header_v2 div.gnbLogo .text3 {
+    left: 3px
+}
+
+div#header_v2 div.gnbLogo .text5 {
+    left: 14px
+}
+
+div#header_v2 div.gnbOuter {
+    z-index: 3;
+    width: 100%;
+    height: 42px;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    font-family: '�굹�닎怨좊뵓蹂쇰뱶', NanumGothicBold, '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif
+}
+
+div#header_v2 div.newGnb {
+    position: relative;
+    width: 1048px
+}
+
+div#header_v2 div.newGnb .gnbUl {
+    padding-left: 14px
+}
+
+div#header_v2 div.newGnb .newGnbTab {
+    position: relative;
+    float: left
+}
+
+div#header_v2 .arrow {
+    display: block;
+    width: 7px;
+    height: 4px;
+    margin: 9px 0 0 5px;
+}
+
+div#header_v2 .mainMenu {
+    position: relative;
+    display: block;
+    padding: 11px 15px 0;
+    height: 31px;
+    color: #000;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif
+}
+
+div#header_v2 .mainMenu .newIcon {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    display: block;
+    width: 15px;
+    height: 15px;
+}
+
+div#header_v2 .mainMenu .newIcon_circle2 {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: block;
+    width: 15px;
+    height: 15px;
+}
+
+div#header_v2 .brand.over .lnbOver {
+    display: block
+}
+
+div#header_v2 .category {
+    position: relative;
+    display: block;
+    width: 174px;
+    height: 42px;
+    background: #f9f9fa;
+    color: #000;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif;
+    cursor: pointer
+}
+
+div#header_v2 .categoryText {
+    margin-top: 10px
+}
+
+div#header_v2 .categoryIcon_01 {
+    margin: 13px 7px 0 15px;
+    width: 20px;
+    height: 15px;
+}
+
+div#header_v2 .categoryIcon_02 {
+    margin: 13px 15px 0 0;
+    width: 15px;
+    height: 15px;
+}
+
+div#header_v2 .categoryWrap {
+    position: relative
+}
+
+div#header_v2 .mainMenu.on, div#header_v2 .mainMenu:hover {
+    color: #ff5073
+}
+
+div#header_v2 .fixCategory {
+    position: absolute;
+    top: 42px;
+    padding: 15px 0 20px 15px;
+    width: 159px;
+    height: 444px;
+    border-top: 1px solid #8b8b8b;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0
+}
+
+div#header_v2 .fixCategory a {
+    display: block;
+    padding-left: 8px
+}
+
+div#header_v2 .fixCategory h3 {
+    display: block;
+    margin-top: 17px
+}
+
+div#header_v2 .fixCategory h3, div#header_v2 .fixCategory a {
+    color: #fff
+}
+
+div#header_v2 .fixCategory li {
+    padding-top: 11px;
+    float: none
+}
+
+div#header_v2 .fixCategory .bar {
+    width: 144px;
+    margin: 17px 0 6px;
+    border-top: 1px solid #b7b7b7
+}
+
+div#header_v2 .fixCategory:hover {
+    border-top: 1px solid #e0e0e0;
+    background: #f9f9f9
+}
+
+div#header_v2 .fixCategory:hover a, div#header_v2 .fixCategory:hover h3 {
+    color: #555
+}
+
+div#header_v2 .fixCategory:hover .bar {
+    border-top-color: #e0e0e0
+}
+
+div#header_v2 .fixCategory:hover a:hover {
+    color: #ff5073
+}
+
+div#header_v2 .fixCategory_side {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 174px;
+    width: 205px;
+    font-size: 12px
+}
+
+div#header_v2 .fixCategory_side a {
+    color: #555;
+    padding-left: 0
+}
+
+div#header_v2 .fixCategory_side li {
+    padding-top: 6px
+}
+
+div#header_v2 .fixCategory_side_inner {
+    padding: 30px 0 0 30px;
+    width: 170px;
+    height: 450px;
+    background: #fff
+}
+
+div#header_v2 .fix_li:hover .fixCategory_side {
+    display: block
+}
+
+div#header_v2 .lnbOver {
+    display: none;
+    position: absolute;
+    top: 42px;
+    width: 1046px;
+    border: 1px solid #e1e1e1;
+    font-size: 13px
+}
+
+div#header_v2 .lnbOver .theme {
+    height: 480px
+}
+
+div#header_v2 .lnbOver .theme td {
+    height: 100%
+}
+
+div#header_v2 .lnbOver .bg {
+    background: #fff
+}
+
+div#header_v2 .lnbOver a {
+    display: block
+}
+
+div#header_v2 .lnbOver .newIcon_circle {
+    display: block;
+    margin: 3px 0 0 10px;
+    width: 15px;
+    height: 15px;
+}
+
+div#header_v2 .lnbOver.all .shadowBox {
+    right: -5px
+}
+
+div#header_v2 .shadowBox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: #000;
+    opacity: .03;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=3);
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=3)
+}
+
+div#header_v2 .categoryTitle {
+    padding: 7px 0 0 20px;
+    background: #f9f9fa;
+    height: 26px;
+    border-top: 1px solid #f9f9f9;
+    border-bottom: 1px solid #f2f2f2;
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif;
+    font-size: 14px;
+    font-weight: bold
+}
+
+div#header_v2 .hr_right {
+    border-right: 1px solid #e7e7e7
+}
+
+div#header_v2 .newGnbTab:hover {
+    display: block
+}
+
+div#header_v2 .overBox {
+    padding: 11px 0
+}
+
+div#header_v2 .depth_3_box {
+    height: 224px
+}
+
+div#header_v2 .depth_3_box {
+    display: none;
+    position: absolute;
+    top: -1px;
+    left: 180px;
+    width: 296px;
+    background: #fff;
+    border: 1px solid #ff5073;
+    border-left: 1px solid #dbdbdb;
+    font-size: 13px;
+    overflow: hidden
+}
+
+div#header_v2 .depth_2_li:hover .depth_2, div#header_v2 .depth_3_li:hover .depth_3 {
+    background: #ff5073;
+    color: #fff
+}
+
+div#header_v2 .depth_2_li:hover .depth_3_box, div#header_v2 .depth_3_li:hover {
+    display: block
+}
+
+div#header_v2 .splitBox {
+    width: 148px;
+    float: left
+}
+
+div#header_v2 div.brandList {
+    width: 215px;
+    height: 480px;
+    left: 0
+}
+
+div#header_v2 div.brandList .tableWrap {
+    padding: 15px 0 0 25px;
+    width: 185px;
+    height: 455px;
+    overflow: auto;
+    border-bottom: 10px solid #fff
+}
+
+div#header_v2 div.brandList .brandTable {
+    width: 160px
+}
+
+div#header_v2 div.brandList li {
+    margin-bottom: 12px
+}
+
+div#header_v2 .categoryTable th {
+    width: 136px;
+    height: 39px;
+    background: #f9f9fa;
+    font-size: 13px;
+    font-family: '�굹�닎怨좊뵓蹂쇰뱶', NanumGothicBold, '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif
+}
+
+div#header_v2 .categoryTable th.h3 {
+    padding-left: 12px;
+    width: 77px;
+    border-left: 0
+}
+
+div#header_v2 .categoryTable th, div#header_v2 .categoryTable td {
+    border-left: 1px solid #f9f9fa
+}
+
+div#header_v2 .categoryTable td {
+    padding: 15px 0 20px 0;
+    height: 171px;
+    font-size: 12px;
+    vertical-align: top
+}
+
+div#header_v2 .categoryTable li {
+    margin-bottom: 1px
+}
+
+div#header_v2 .categoryTable a {
+    padding-left: 12px
+}
+
+div#header_v2 .categoryTable a:hover {
+    color: #ff5073
+}
+
+div#header_v2 .categoryTable, div#header_v2 .brandTable {
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif
+}
+
+div#header_v2 .categoryTable li, div#header_v2 .brandTable li {
+    float: none
+}
+
+div#header_v2 .categoryTable a, div#header_v2 .brandTable a {
+    color: #555
+}
+
+div#header_v2 .categoryTable .nIcon, div#header_v2 .brandTable .nIcon {
+    display: block;
+    float: left;
+    margin: 12px 0 0 5px;
+    width: 7px;
+    height: 7px;
+}
+
+div#header_v2 table.categoryTable_life td {
+    height: 161px
+}
+
+div#header_v2 .brandTable th {
+    padding: 0;
+    width: 25px;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 14px
+}
+
+div#header_v2 .brandTable td {
+    padding-top: 2px;
+    font-size: 13px
+}
+
+div#header_v2 .brandTable a:hover {
+    color: #ff5073
+}
+
+div#header_v2 .category-block .top, div#header_v2 .category-block-content .top {
+    height: 265px
+}
+
+div#header_v2 .category-block .bottom, div#header_v2 .category-block-content .bottom {
+    height: 215px
+}
+
+div#header_v2 .category-block {
+    position: relative;
+    padding-right: 174px;
+    overflow: hidden;
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif
+}
+
+div#header_v2 .category-block a {
+    color: #333
+}
+
+div#header_v2 .category-block a:hover {
+    color: #ff5073
+}
+
+div#header_v2 .category-block-content {
+    float: left;
+    position: relative;
+    display: block;
+    width: 20%
+}
+
+div#header_v2 .category-content-tit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 39px;
+    overflow: hidden;
+    padding: 0;
+    background: #f9f9fa;
+    font-size: 13px;
+    font-family: '�굹�닎怨좊뵓蹂쇰뱶', NanumGothicBold, '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif;
+    font-weight: bold;
+    line-height: 1
+}
+
+div#header_v2 .category-tit-item {
+    display: block;
+    padding: 13px 25px
+}
+
+div#header_v2 .category-content-desc {
+    height: 100%;
+    padding: 49px 0 0 0;
+    border-right: 1px solid #f9f9fa
+}
+
+div#header_v2 .category-content-desc.top {
+    height: 216px
+}
+
+div#header_v2 .category-content-desc.bottom {
+    height: 165px
+}
+
+div#header_v2 .category-list-block {
+    float: none
+}
+
+div#header_v2 .category-list-item {
+    display: block;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.68
+}
+
+div#header_v2 .category-block.additional {
+    position: absolute;
+    width: 173px;
+    height: 100%;
+    padding-right: 0;
+    right: 0;
+    top: 0;
+    border-left: 1px solid #e1e1e1;
+    background: #fff
+}
+
+div#header_v2 .category-block.additional .category-block-content {
+    width: 100%
+}
+
+div#header_v2 .category-block.additional .category-content-desc {
+    border-right: 0
+}
+
+div#header_v2 .lnbClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 29px;
+    height: 29px;
+    cursor: pointer
+}
+
+div#header_v2 .brand-all {
+    position: absolute;
+    left: 0;
+    top: 42px;
+    width: 180px;
+    height: 480px;
+    padding: 0 5px 0 56px;
+    overflow: hidden;
+    background: #fff;
+    line-height: 1.25
+}
+
+div#header_v2 .brand-all-container {
+    position: relative;
+    height: 480px;
+    overflow: auto
+}
+
+div#header_v2 .brand-all-inner {
+    position: relative;
+    padding: 0 0 14px 0
+}
+
+div#header_v2 .brand-all-nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 100%;
+    background: #f9f9fa
+}
+
+div#header_v2 .brand-all-nav_block {
+    padding: 9px 0 0 0
+}
+
+div#header_v2 .brand-all-nav_list {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+div#header_v2 .brand-all-nav_list, div#header_v2 .brand-all-nav_list-block {
+    margin: 0;
+    padding: 0
+}
+
+div#header_v2 .brand-all-nav_list-block.focus a.brand-all-nav_list-item {
+    color: #ff5073
+}
+
+div#header_v2 span.brand-all-nav_list-item, div#header_v2 a.brand-all-nav_list-item {
+    display: block;
+    margin: 1px 0 0 0;
+    padding: 3px 0;
+    color: #555;
+    font-size: 16px;
+    font-family: '�굹�닎怨좊뵓蹂쇰뱶', NanumGothicBold, '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center
+}
+
+div#header_v2 a.brand-all-nav_list-item:hover {
+    color: #ff5073
+}
+
+div#header_v2 a.brand-all-nav_list-item.disabled {
+    color: #e0e0e0;
+    cursor: default
+}
+
+div#header_v2 a.brand-all-nav_list-item.morpheme {
+    margin-top: 2px;
+    padding: 5px 0;
+    font-size: 12px;
+    line-height: 1.67
+}
+
+div#header_v2 .brand-all-block {
+    position: relative;
+    padding: 14px 0 3px 0;
+    font-family: '�굹�닎怨좊뵓', NanumGothic, '留묒�怨좊뵓', Malgun Gothic, '�룍��', Dotum, Helvetica, 'Apple SD Gothic Neo', Sans-serif
+}
+
+div#header_v2 .brand-all-head {
+    display: none
+}
+
+div#header_v2 .brand-list {
+    list-style: none
+}
+
+div#header_v2 .brand-list, div#header_v2 .brand-list-block {
+    margin: 0;
+    padding: 0
+}
+
+div#header_v2 a.brand-list-item {
+    display: block;
+    padding: 6px 20px 5px 20px;
+    color: #333;
+    font-size: 12px;
+    text-decoration: none
+}
+
+div#header_v2 a.brand-list-item:hover, div#header_v2 a.brand-list-item:active {
+    color: #ff5073;
+    text-decoration: none
+}
+
+div#header_v2 li.brand-all-nav_list, div#header_v2 li.brand-all-nav_list-block {
+    float: none
+}
+
+div#header_v2 li.brand-list-block {
+    float: none
+}
+
+.navigation-list-newSticker {
+    position: absolute;
+    top: 13px;
+    right: 1px;
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+}
+
+.lnbOver .navigation-list-newSticker {
+    position: relative;
+    top: -1px;
+    margin-left: 4px;
+    vertical-align: middle
+}
+
+.newSearchWrap {
+    position: absolute;
+    top: 9px;
+    left: 260px;
+    width: 460px;
+    z-index: 1
+}
+
+
+/** Go to Top button CSS  **/
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  background: url('/img/balgeure_icons.png') no-repeat -1px -1px;
+  width:71px;
+  height:35px;
+  cursor: pointer;
+  text-indent: -9999em;
+}
+
+#myBtn:hover {
+  background: url('/img/balgeure_icons.png') no-repeat -1px -1px;
+}

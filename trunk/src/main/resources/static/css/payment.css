@@ -1,0 +1,707 @@
+article, aside, figure, figure img,
+figcaption, hgroup, footer, header, 
+nav, section, video, object {display:block;}
+html, body {
+	margin: 0px;
+	padding: 0px;
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+	font-size: 12px;
+	line-height: 18px;
+	background: #fff;
+	max-width: 100%;
+}
+
+p{
+	color:#555555;
+    margin:0;
+    line-height:130%;
+}
+a {
+	color: #575757;
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover, a:focus {
+	color: #7d7d7d;
+	text-decoration: none;
+	outline: none;
+}
+
+.final_All_Price .main_color_btn{
+	color: #fff;
+    height:48px;
+	background: #ff7391;
+	border: 0px;
+	text-align: center;
+    width:100%;
+    line-height:48px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    font-size:14px;
+    cursor: pointer;
+}
+
+    .page-header{
+        background:#ffffff;
+        position:relative;
+    }
+    .page-header h1{
+        height:40px;
+        line-height:40px;
+        background:#ffffff;
+        color:#555;
+        font-size:14px;
+        margin:0px 0 0 0;
+        font-weight: normal;
+        padding: 0px 15px;
+    }
+    .page-header p{
+        line-height:40px;
+        position: absolute;
+        top: 0;
+        right:0;
+        color: #555;
+        font-size:14px;
+        margin:0px;
+        font-weight: normal;
+        padding: 0px 15px;
+    }
+    .col-xs-2{
+        width:20%;
+    }
+    .col-xs-10{
+        width:80%;
+    }
+   table {
+    width: 100%;
+    border-collapse: collapse;
+    background:#ffffff;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+  }
+    th, td {
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 5px 15px;
+    }
+    tr{
+       height: 40px;
+    }
+    td{
+        background:#fff;
+        font-size:14px;
+    }
+    .lable{
+        width: 100px;
+    }
+    .form-control{
+      width:100%;
+        border:0px;
+        padding:5px 0;
+        font-size:10px;
+        ime-mode:active;
+    }
+    span{
+        font-size:12px;
+    }
+    .bordertop{
+        border-top:#ddd solid 3px;
+    }
+    .color_red{
+        color:red;
+        font-size:14px;
+    }
+input {
+	border: 1px solid #e9e9e9;	
+	ime-mode:active;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+input.form-control {ime-mode:active;}
+
+ul.tabs {
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 40px;
+    width: 100%;
+    font-size:12px;
+border-top: 1px solid #ff7391;
+}
+ul.tabs li {
+    float: left;
+    text-align:center;
+    cursor: pointer;
+    width:50%;
+    height: 40px;
+    line-height: 40px;
+    border-left: none;
+    font-weight: bold;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+    border-bottom:1px solid #f0f0f0;
+    
+}
+ul.tabs li span{
+    font-size:12px;
+}
+ul.tabs li p{
+    height: 20px;
+    line-height: 20px;
+    margin: 10px 0;
+    text-align: center;
+}
+ul.tabs li.active {
+    border-bottom: 1px solid #f0f0f0;
+}
+.tab_container {
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 100%;
+    background: #FFFFFF;
+}
+.tab_content {
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    font-size: 12px;
+    display: none;
+}
+.tab_container .tab_content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab_container .tab_content ul li {
+    height: 40px;
+    line-height: 40px;
+    margin:0 15px;
+    list-style:none;  
+}
+
+
+ #container {
+    width: 100%;
+    margin: 0 auto;
+}
+select{
+    background:#ffffff;
+    font-size: 12px;
+    border: 1px solid #e9e9e9;
+}
+.addstyle p{
+    font-size:10px;
+ 
+    float:left;
+    line-height:11px;
+
+}
+.addtable{
+    border-top: 1px solid #f0f0f0;
+    padding : 5px;
+}
+.addstyletr{
+    height:11px;
+}
+.addstyle{
+    padding:0px 15px;
+    height: 11px;
+    border:0;
+}
+.active p{
+   color:#fff;
+}
+
+/*���� ��ư ��Ÿ��*/
+div label input {
+   margin-right:100px;
+}
+div label input {
+   margin-right:100px;
+}
+#ck-button {
+    border-radius:4px;
+    float:left;
+}
+#ck-button label {
+    position:relative;
+    float:left;
+    width:4.0em;
+	margin: 0px;
+}
+#agree-ck-button label span {
+    text-align:center;
+    padding:2px 0px;
+	width: 50px;
+    display: block;
+	background: #f0f0f0;
+	color:gray;
+	border: 2px solid gray;
+	border-radius: 4px;
+	cursor: pointer;
+}
+#ck-button label input {
+    position:absolute;
+    top:-20px;
+}
+#agree-ck-button input:checked + span {
+    border: 2px solid #ff7391;
+    color:#ff7391;
+}
+
+input[type=checkbox]
+{
+display:none;
+}
+.form-group{
+    display: inline-block;
+    width: 100%;
+    padding:0 15px;
+}
+
+
+.container_order{
+	width: 1080px;
+	margin: 0 auto;
+	margin-bottom: 100px;
+}
+
+.order_page_header{
+	margin: 40px 0 45px;
+}
+
+.bigtitle_order_page{
+	font-size: 30px;
+    font-weight: 600;
+    line-height: 30px;
+    padding: 10px 0;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.under_header_txt{
+	font-size: 14px;
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+	
+}
+
+.orderpage_info{
+	padding: 8px 0;
+}
+
+.orderpage_info span{
+	font-size: 13px;
+}
+
+#Leftside_orderpage{
+    width: 648px;
+    float: left;
+}
+
+.will_buying_product_list{
+	width: 615px;
+}
+
+.buying_list_detail_txt{
+	margin: 0px 0 20px;
+	padding-left: 15px;
+}
+
+.buying_list_detail_txt h2{
+	font-weight: 600;
+	font-size: 19px;
+	color: #555;
+	line-height: 25px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+
+.delivery_product_lits{
+    border-top: #ff7391 1px solid;
+    border-bottom: 1px solid #ff7391;
+    margin: 15px 0;
+    overflow-x: hidden;
+    height: 300px;
+}
+
+.delivery_product_lits .table{
+	font-size: 12px;
+	table-layout: auto;
+}
+
+.delivery_product_lits .table .table_header{
+	text-align:center;
+	font-size: 13px;
+	font-weight: 600;
+	background-color: #f9f9f9;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+	
+}
+
+.delivery_product_lits .table td{
+	font-size: 12px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.orderProduct_detail {
+	color: #999;
+}
+
+
+.orderProduct_detail #product_name{
+	font-weight: bold;
+	color: #000;
+}
+
+.orderProduct_detail #product_option_name{
+	padding-left: 0px;
+}
+
+.orderProduct_detail .no_many{
+	padding-left: 10px;
+}
+
+.delivery_product_lits .Qty_Product{
+	text-align: center;
+}
+
+.delivery_product_lits .Product_Price_td{
+    text-align: right;
+    padding-right: 24px;
+}
+
+.delivery_product_lits .Delivery_price_td{
+    text-align: right;
+    padding-right: 21px;
+}
+
+
+.Rightside_orderpage{
+    width: 430px;
+    float: right;
+    background: #fff;
+    left: 57.2%;
+    position: absolute;
+    top: 250px;
+}
+
+.count_product{
+	margin-left:5px;
+	font-size: 11px;
+	color: #fb4850;
+}
+
+
+.Rightside_orderpage .finalPay_box{
+	border: 5px solid #ff7391;
+}
+
+.Rightside_orderpage .finalPay_box .option_and_payment{
+	padding: 10px;
+	border-bottom: none;
+	background: #ff7391;
+}
+
+.finalPay_box .option_and_payment h1{
+	font-size: 19px;
+    font-weight: 600;
+    line-height: 40px;
+    background: #ff7391;
+    color: #fff;
+    margin: 0px;
+    padding: 0px 15px;    
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+
+#Coupon_Point_selectBox .select_coupon_and_point{
+    padding: 20px 20px 0 20px;
+}
+
+.select_coupon_and_point #select_doublecoupon{
+	 width: 100%;
+	 height: 40px;
+	 border: 0;
+	 font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.tab_container #tab2 #select_coupon{
+    width: 350px;
+    height: 35px;
+    border: none;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.field_adress{
+    background: #f9f9fa;
+	padding:15px;
+}
+
+#write_msg{
+    padding: 15px;
+    background: #f2f2f2;
+}
+
+.finalPay_box #choiceOFpayment{
+	padding: 0 20px 20px 20px;
+}
+
+.finalPay_box #choiceOFpayment .final_All_Price{
+	border-top: 1px solid #ff7391;
+}
+
+#choiceOFpayment .main_color_text{
+	font-size: 15px;
+    font-weight: 600;
+    padding: 9px;
+    color: #fb4580;
+}
+
+.final_result-price{
+	font-size: 14px;
+    font-weight: 600;
+}
+
+.insert_address_formBox{
+	width: 615px;
+}
+
+.insert_address_formBox #container .tab_container{
+    margin-bottom: 11px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+#formgroup{
+	margin-top: 40px;
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.delivery_personal_info{
+	margin: 50px 0 10px;
+}
+
+.delivery_personal_info h1{
+	font-size: 19px;
+	font-weight: 600;
+}
+
+#formgroup #container{
+	border-bottom: #ff7391 1px solid;
+	margin-bottom: 45px;
+}
+
+.basicInfo #head_txt{
+	width: 17%;
+	background: #f9f9fa;
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.basicInfo td{
+    background: #f9f9fa;
+	border:none;
+}
+
+.basicInfo #deliName, .basicInfo #deliPhone, .basicInfo #deliAddr1, .basicInfo #deliAddr2{
+	width: 461px;
+	height: 25px;
+	font-size: 12px;
+	color: #2a2a2a;
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.basicInfo #deliAddr1{
+	margin-bottom:4px;
+}
+
+.basicInfo #deliZip{
+	height: 25px;
+	font-size: 12px;
+	color: #2a2a2a;
+	width: 155px;	
+}
+
+.basicInfo #postcode_btn{
+	margin-left: 15px;
+    width: 128px;
+    text-align: center;
+    color: #FFF !important;
+    background: #ff7391;
+    height: 25px;
+    border: none;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: -1px;
+   	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.basicInfo .input_Address_box{
+	margin-bottom:4px;
+}
+
+.deliresquest-msg-option{
+	margin-top:8px;
+}
+
+#select-msg-about-deli{
+	float: left;
+    margin-right: 15px;
+}
+
+.delivery_msg{
+    width: 585px;
+    height: 35px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    background: #ffffff;
+    color: #555555;
+    padding-left: 7px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.delivery_msg_rest{
+    width: 573px;
+    height: 33px;
+    font-size: 12px;
+    padding-left: 10px;
+    color: #555555;
+}
+
+.notice{
+	color:#fb4580;
+	margin-top: 11px;
+    border-top: 1px solid #e1e1e1;
+    padding-top: 13px;
+}
+
+.coupon_and_pay{
+	border-top: #ff7391 1px solid;
+}
+
+.coupon_and_point, .HowMuchPaying{
+	padding-top: 15px;
+	border-top: 1px solid #ff7391 !important;
+}
+
+.coupon_and_point{
+	width: 60%;
+}
+
+.select_coupon_and_point h1, .HowMuchPaying h1{
+    color: #383d41;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 15px 5px 15px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.able_to_use_point #usepoint{
+    float: right;
+    height: 20px;
+    margin: 8px 0;
+    font-size: 12px;
+    text-align: right;
+    width: 45px;
+}
+
+.able_to_use_point .unit{
+    float: right;
+    margin-left: 2px;
+}
+
+
+.use-doubleCoupon{
+	border-bottom:1px solid #f0f0f0;
+    margin-top: 2px;
+    border-top: 1px solid #ff7391;
+}
+
+.use-doubleCoupon h1{
+	padding-left: 15px;
+	padding-bottom: 0;
+}
+
+.HowMuchPaying{
+	vertical-align: top;
+}
+
+
+#SelectPayment{
+    padding: 17px 20px;
+}
+
+.HowToPay{
+	padding:0;
+}
+
+.HowToPay #pay_type{
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.delivery_account_info{
+	border-top:#ff7391 1px solid;
+}
+
+.delivery_account_info h1{
+    color: #383d41;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 15px 5px 15px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.select_bank_info{
+	margin-top: 8px;
+}
+
+#option-of-bank-name{
+    border: 1px solid #999;
+    position: relative;
+    width: 363px;
+    margin-bottom: 4px;
+}
+
+#vbank_cancel{
+	border:0;
+	width:100%;
+	height:35px;
+    line-height:40px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+#typing-of-account-number{
+	width: 360px;
+    position: relative;
+}
+
+#refund_holder{
+	font-size:12px;
+	width:100%;
+	height: 35px;
+    padding-left:3px;
+    border: 1px solid #999;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+
+.final_All_Price .finalPay_agree{
+	height: 40px;
+    background: #f0f0f0;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+}
+
+.final_All_Price .finalPay_agree #description{
+	font-size: 12px;
+    float: left;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.final_All_Price .finalPay_agree #agree-ck-button{
+    float: right;
+    margin-top: 6px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.autoPrice {
+	color: red;
+	font-size: 14px;
+}

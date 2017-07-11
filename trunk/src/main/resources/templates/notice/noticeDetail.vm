@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+
+<link type="text/css" href="/css/faq/faq.css" rel="stylesheet" />
+
+<style>
+    .wrap {
+        width: 1050px;
+        height: auto;
+        border: 1px solid;
+    }
+    .header {
+        width: 1050px;
+        height: 100px;
+        border-bottom: 1px solid;
+    }
+    .contents {
+        width: 1050px;
+        height: 99px;
+        border-bottom: 1px solid;
+    }
+    .footer {
+        width: 1050px;
+        height: 100px;
+        border-top: 1px solid;
+    }
+    .content {
+        float: left;
+        margin-bottom: 30px;
+    }
+    .content_title {
+        width: 100px;
+        float: left;
+    }
+    .subject_body {
+        width: 950px;
+    }
+    .id_body {
+        width: 950px;
+    }
+    .regDate_body {
+        width: 950px;
+    }
+    .subject, .id, .regDate, .subject_body, .id_body, .regDate_body {
+        margin-bottom: 10px;
+    }
+    .this_content_body {
+        width: auto;
+        height: 500px;
+        padding: 50px;
+    }
+</style>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+
+        </div>
+        <div class="contents">
+            <table class="notice_detail">
+                <tr>
+                    <th id="sub_detail">제목</th>
+                    <td id="detail_txt">$noticeD.subject</td>
+                </tr>
+                <tr>
+                    <th id="sub_detail">작성자</th>
+                    <td id="detail_txt">운영자</td>
+                </tr>
+                <tr>
+                    <th id="sub_detail">작성일</th>
+                    <td id="detail_txt">$date.format('yyyy-MM-dd', $noticeD.regDate)</td>
+                </tr>
+                <tr>
+                    <th id="sub_detail">조회수</th>
+                    <td id="detail_txt">$noticeD.viewcount</td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="detail_textarea">
+                        <div id="txt_area">$noticeD.content</div>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

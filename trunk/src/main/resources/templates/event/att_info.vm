@@ -1,0 +1,123 @@
+#parse("/main/header.vm")
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/webjars/moment/2.18.1/min/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/attendance.css">
+<script>
+	#if(!${login})
+		alert("로그인 후 이용가능합니다.");
+		location.replace("/main");
+	#end
+</script>
+
+<body>
+	<div>
+		<img src="$!{imgHost}$!{attInfo.thumbUrl}" width="100%"/>
+	</div>
+	<p class="att_title" style="background:$!{attInfo.colorCode}"><span id="mon"></span>월 스탬프 <span id="stamp">$!{attendance.stamp}</span>개</p>
+	<table class="cal_calendar"></table>
+	<div>
+		$!{attInfo.detailUrl}
+	</div>
+</body>
+
+<script>
+	var m_oMonth = new Date();
+	$(document).ready(function () {
+		$("#mon").text((m_oMonth.getMonth() + 1));
+		
+		calandar();
+		
+		$(".stamp").bind("click", function() {
+			var stamp = $(this).attr('class');
+			var st_id = stamp.split(" "); 
+		 	$.ajax({
+                type: "post",
+                url: "/event/stamp?st_id="+st_id[1],
+                success: function (data) {
+                	if(data.resultCode == '200') {
+                		alert("응모 되었습니다.");
+                		$("#stamp").text(data.stamp);
+                	} else {
+                		alert("스탬프가 부족합니다.");
+                	}
+                },
+                error: function (e) {
+                    alert("전송에 실패했습니다.");
+                }
+            });
+		});
+		
+		$(".cal_today").bind("click", function() {
+			console.log("today");
+			// 출석체크
+			$.ajax({
+                type: "post",
+                url: "/event/attendance",
+                success: function (data) {
+                	if(data.resultCode == '200') {
+                		alert("출석체크가 완료되었습니다.");
+                		location.reload();
+                	} else {
+                		alert("이미 출석체크가 완료되었습니다.");
+                	}
+                	
+                },
+                error: function (e) {
+                	alert("이미 출석체크가 완료되었습니다.");
+                }
+            });
+		});
+	});
+	
+	function calandar() {
+		var arrTable = "";
+		var today = moment();
+		m_oMonth.setDate(1);
+		arrTable += '<table class="cal_calendar"><tbody id="cal_body">';
+		arrTable += '<th>SUN</th><th>MON</th><th>TUS</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr><tr>';
+		
+		var oStartDt = new Date(m_oMonth.getTime());
+		oStartDt.setDate(oStartDt.getDate() - oStartDt.getDay());
+		for(var i=0; i<100; i++) {
+			if(i % 7 == 0) {
+				arrTable += '<tr>';
+			}
+			
+			var sClass = "cal_number";
+			sClass = m_oMonth.getMonth() != oStartDt.getMonth() ? 'cal_days_bef_aft cal_number':'cal_number';
+			if(today.format('DD') == oStartDt.getDate() && m_oMonth.getMonth() == oStartDt.getMonth()) {
+				arrTable += '<td style="z-index:999;" class="cal_today"><p class="' + sClass + '">' + oStartDt.getDate() + '</p>';
+			} else {
+				arrTable += '<td><p class="' + sClass + '">' + oStartDt.getDate() + '</p>';
+			}
+		
+			if(m_oMonth.getMonth() == oStartDt.getMonth()) {
+				#foreach($atten in $attendance.attendanceList) 
+					var attDay = "$atten.attendDay";
+					if(attDay == oStartDt.getDate()) {
+						if(today.format('DD') == oStartDt.getDate()) {
+							arrTable += '<div><p class="cal_check_off"><img src="/img/check_img.png" class="cal_today" width="35px" height="35px"/></p></div>';
+						} else {
+							arrTable += '<div><p class="cal_check_off"><img src="/img/check_img.png" width="35px" height="35px"/></p></div>';
+						}
+					}
+				#end
+			}
+			arrTable += '</td>';
+			oStartDt.setDate(oStartDt.getDate()+1);
+			
+			if(i%7 == 6) {
+				arrTable += '</tr>';
+				if(m_oMonth.getMonth() != oStartDt.getMonth()) {
+					break;
+				}
+			}
+		}
+		
+		
+		arrTable += '</tbody></table>';
+		$(".cal_calendar").html(arrTable);
+	}
+</script>
+</html>

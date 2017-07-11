@@ -1,0 +1,215 @@
+#parse("/main/header.vm")
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link type="text/css" href="/css/event_list_page.css" rel="stylesheet" />
+	    
+	    
+	    
+<!-- container -->
+<div id="container" class="balgeure_eventPage">
+
+  
+
+    <div class="quickmenu_right" id="quickmenu_right">
+
+        <div class="banner_first">
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=33">
+                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
+                </a>
+            </div>
+
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=34">
+                    <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
+                </a>
+            </div>
+            <div class="banner_first_page">
+                <button class="prev1" onclick="plusDivs(-1)">이전</button>
+                <button class="next1" onclick="plusDivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="banner_second">
+            <div class="banner_second_images">
+                <a href="/event?eid=30">
+                    <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
+                </a>
+            </div>
+
+            <div class="banner_second_images">
+                <a href="/event?eid=32">
+                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
+                </a>
+            </div>
+            
+            <div class="banner_second_images">
+                <a href="/sns/appDown">
+                    <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
+                </a>
+            </div>
+            
+            <div class="banner_second_page">
+                <button class="prev2" onclick="plusdivs(-1)">이전</button>
+                <button class="next2" onclick="plusdivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="Topbutton">
+            <a href="#wrap" class="goTobtn"><img src="/img/right_side/topbutton.png"></a>
+        </div>
+    </div>
+
+    
+		
+		<div id="wrapper_1">
+			<div id="scroller">
+			<div class="eventPage_tit">
+			<h3 class="title-promotion">발그레 이벤트 / 쿠폰</h3>
+			</div>
+			<div class="filter-category">
+							</div>
+				<ul id="thelist">
+				#foreach($ev in $event)
+				<li class="event_banners">
+					<div class="imageOFbanner">
+						<section onclick="goEvent('$!{ev.etype}', '$!{ev.tid}', '$!{ev.eid}');">
+							<img src="${imgHost}$!{ev.thumbnail}">
+						</section>
+					</div>
+				</li>
+				#end
+				</ul>
+
+			</div>
+		</div>
+</div>
+
+<!-- container e -->
+
+
+	<script>
+		function goEvent(etype, tid, eid) {
+			if(etype == 0) {
+				location.href = "/event/att_info";			
+			} else if(etype == 1) {
+			} else if(etype == 2) {
+				location.href = "/detail?product_id=" + tid;
+			} else if(etype == 3) {
+				location.href = "/plan/detail?pid=" + tid;
+			} else {
+				location.href = "/event?eid=" + eid;
+			}
+				
+		}
+	</script>
+	
+	
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("banner_first_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000); // Change image every 3 seconds
+}
+
+</script>
+
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("banner_first_images");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+
+</script>
+
+
+
+<script>
+var slideIndex = 1;
+showdivs2(slideIndex);
+
+function plusdivs(n) {
+  showdivs2(slideIndex += n);
+}
+
+
+function showdivs2(n) {
+	  var i;
+	  var x = document.getElementsByClassName("banner_second_images");
+	  if (n > x.length) {slideIndex = 1}
+	  if (n < 1) {slideIndex = x.length}
+	  for (i = 0; i < x.length; i++) {
+	     x[i].style.display = "none";
+	  }
+	  x[slideIndex-1].style.display = "block";
+	}
+
+</script>
+
+
+<script>
+var myIndex = 0;
+carousel2();
+
+function carousel2() {
+    var i;
+    var x = document.getElementsByClassName("banner_second_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel2, 2000); // Change image every 2 seconds
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var defY = -1;
+	console.log($(document).scrollTop());
+	if($(document).scrollTop() > 0) {
+		defY = $(document).scrollTop() - 201	;
+	}
+ /* quick menu */
+ $(".quickmenu_right").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
+ $(window).scroll(function(){
+	 if ($(document).scrollTop() < 400) {
+  		$(".quickmenu_right").stop().animate( { "top": -1 +"px" }, 0 );
+	 } else {
+  		$(".quickmenu_right").stop().animate( { "top": $(document).scrollTop() + -201 + "px" }, 0 );
+	 }
+ });
+});
+
+</script>
+
+
+
+
+		#parse("/main/footer.vm")

@@ -1,0 +1,107 @@
+html, body{
+ margin:0px;
+ padding:0px;
+}
+body{
+        border:1px solid #ddd;
+}
+    a {
+	color: #575757;
+	text-decoration: none;
+	outline: none;
+    }
+
+    a:hover, a:focus {
+        color: #7d7d7d;
+        text-decoration: none;
+        outline: none;
+    }
+table{
+        border-collapse:collapse;
+}
+table.cal_calendar{width:100%;padding:0px;margin:0 auto;}
+table.cal_calendar th{
+        border:1px solid #ddd;
+        background-color:#ff8fa7;
+        width:14.2%;
+        font-size:14px;
+        padding:3px;
+        color:#ffffff;
+}
+table.cal_calendar td{
+        position: relative;
+        padding:0;
+        margin:0;
+        border:1px solid #e0e0e0;
+        background-color:#ffffff;
+        text-align:left;
+        width:20px;
+        font-size:20px;
+        font-weight:bold;
+        vertical-align:top;
+        height:50px;
+      
+}
+table.cal_calendar td p{
+        padding:0;
+        margin:0;
+        text-align:left;
+        width:20px;
+        height:25px;
+        font-size:10px;
+        font-weight:bold;
+        color:#ff8fa7;
+}
+table.cal_calendar td p.cal_days_bef_aft{color:#5a779e;}
+table.cal_calendar p.cal_number{
+        position: absolute;
+        margin:0px;
+        left:3px;
+        top:0px;    
+}
+table.cal_calendar div{
+
+}
+
+table.cal_calendar p.cal_check_off{
+    font-size: 30px;
+    margin: 0;
+    width: 100%;
+    height:40px;
+    text-align: center;
+    padding:10px 0 0 0;
+}
+table.cal_calendar p.cercle{
+
+    top: 0px;
+    margin: 0;
+    width: 40px;
+    height:40px;
+    top: 1px;
+    border: 6px solid;
+    border-radius: 49px;
+    left:18px
+}
+
+.att_title{
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        background:#b8deff;
+        margin:0px;
+        text-align:center;
+        font-weight:bold;
+        color:#ffffff;
+        font-size:18px;
+        height: 40px;
+        line-height: 40px;
+}
+.event span{
+        font-size:14px;
+        float:left;
+         padding:21px 20px;
+}
+.event img{
+        float:right;
+        padding:15px 20px 15px 0;
+}

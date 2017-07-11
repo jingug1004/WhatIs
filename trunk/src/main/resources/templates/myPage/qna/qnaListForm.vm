@@ -1,0 +1,237 @@
+#parse("/main/header.vm")
+
+<meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css" href="/css/myPage/common.css">
+<link type="text/css" href="/css/myPage/myPage.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/myPage/qna/qna.css">
+
+<div id="container" class="mA ">
+
+    <div class="myPageWrap">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">1:1 답변보기</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="myPageLeftMenu fL">
+                <h3 class="mA">
+                    <a href="/my/index" ga-event="마이페이지,마이페이지홈">
+                        <img src="/img/myPage/myP_leftside_title.gif">
+                    </a>
+                </h3>
+
+                <ul class="myPageSubMenu">
+
+                    <li class="">
+                        <a href="#none" class="menu1 on"><span class="Left_B">주문현황</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/order"
+                                   ga-event="마이페이지,마이페이지_주문배송">주문/배송현황</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu2 on"><span class="Left_B">쇼핑통장</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/coupon"
+                                   ga-event="마이페이지,마이페이지_발그레쿠폰">쿠폰</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/point?page=0"
+                                   ga-event="마이페이지,마이페이지_발그레포인트">포인트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu3 on"><span class="Left_B">관심상품</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/wishList?page=1"
+                                   ga-event="마이페이지,마이페이지_위시리스트">찜리스트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu4 on">
+                            <span class="Left_B" ">나의 리뷰</span>
+                        </a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/myReview"
+                                   ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu5 on"><span class="Left_B">1:1문의</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/qna"
+                                   ga-event="마이페이지,마이페이지_1:1문의">1:1문의하기</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/qnaList"
+                                   ga-event="마이페이지,마이페이지_1:1답변">1:1답변보기</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu6 on"><span class="Left_B">개인 정보</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/privacy"
+                                   ga-event="마이페이지,마이페이지_개인정보수정">개인 정보 수정</a>
+                            </li>
+                            <li class="">
+                                <a href="/member/leaveAgree"
+                                   ga-event="마이페이지,마이페이지_회원탈퇴">회원탈퇴</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="mypageRightContents fL">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub answerQ"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+
+                <p class="answerTitle">
+                    <span class="titleImg tI fL">답변</span>
+                </p>
+
+                #set($__HD_CRM_PAGE_COUNT = 9)
+                #set($__HD_CRM_PAGE_SIZE = 15)
+
+
+
+                <div class="answerList">
+
+                    <div class="qna_haed">
+                        <p>번호</p>
+                        <p>문의 유형</p>
+                        <p>문의 제목</p>
+                        <p>날 짜</p>
+                        <p>문의 상태</p>
+                    </div>
+                    <div class="qna_container">
+                        #foreach($QnaList in $qnaList)
+                        <div class="qna_list">
+                            <form method="post" action="/qna/delete" onSubmit="return form_submit()">
+                                <input type="hidden" name="id" id="id" value="$qnaList.id">
+                                <div class="qna_list_title">
+                                    <p>$foreach.count</p>
+                                    #if($!QnaList.qnaClass1 == 1)
+                                    <p>없음</p>
+                                    #elseif($!QnaList.qnaClass1 == 2)
+                                    <p>주문</p>
+                                    #elseif($!QnaList.qnaClass1 == 3)
+                                    <p>배송</p>
+                                    #elseif($!QnaList.qnaClass1 == 4)
+                                    <p>반품/교환</p>
+                                    #elseif($!QnaList.qnaClass1 == 5)
+                                    <p>취소/환불</p>
+                                    #elseif($!QnaList.qnaClass1 == 6)
+                                    <p>이벤트/쿠폰/포인트</p>
+                                    #elseif($!QnaList.qnaClass1 == 7)
+                                    <p>회원서비스</p>
+                                    #elseif($!QnaList.qnaClass1 == 8)
+                                    <p>고객의견</p>
+                                    #elseif($!QnaList.qnaClass1 == 9)
+                                    <p>광고/제휴/입점문의</p>
+                                    #end
+                                    <p calss="answerslist_tits">
+                                        <a class="subjectA" href="#">$QnaList.subject</a>
+                                    </p>
+                                    <p class="DateAnswer">$QnaList.regDate</p>
+                                    #set($reply = "Y")
+                                    #if($!reply == $!QnaList.replyYn)
+                                    <p>답변완료</p>
+                                    #else
+                                    <p>답변대기</p>
+                                    #end
+                                </div>
+                                <div class="qna_content">
+                                    <div class="askList">
+                                        <p>[문의 내용]</p>
+                                        <input type="submit" class="qnaDeleteBtn" id="qnaDeleteBtn" value="문의 삭제">
+                                        <div>
+                                            $QnaList.content
+                                        </div>
+                                    </div>
+                                    <div class="from_admin">
+                                        <p>아직 작성된 답변이 없습니다.</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        #end
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--rightContents -->
+        </div>
+    </div>
+    <!--myPageWrap-->
+
+
+</div>
+<!-- //container -->
+<script>
+		$(function() {
+			/* $('.qna_list').each(
+					function() {
+						var idx = $(this).index() + 1;
+						$(this).children('.qna_list_title').find('p').first()
+								.text(idx);
+					}); */
+			$('.qna_list_title a').on('click',function(e) {
+						e.preventDefault();
+						var text = $(this).parents('.qna_list_title').siblings('div');
+						if (text.is(':visible')) {
+							text.slideUp();
+						} else {
+							text.slideDown();
+							$(this).parents('.qna_list').siblings().find('.qna_list_title').siblings('div').slideUp();
+						}
+					})
+
+		});
+
+		function form_submit() {
+			var check_submit = confirm("삭제 하시겠습니까?");
+
+			return check_submit;
+		}
+</script>
+
+
+
+<script>
+/* function wait() {
+	window.open('/goWait', 'waitPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+} */
+</script>
+
+#parse("/main/footer.vm")

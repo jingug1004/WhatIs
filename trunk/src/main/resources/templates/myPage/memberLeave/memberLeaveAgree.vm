@@ -1,0 +1,189 @@
+#parse ("/main/header.vm")
+
+<meta charset="utf-8">
+
+<link type="text/css" href="/css/myPage/myPage.css" rel="stylesheet">
+<link type="text/css" href="/css/myPage/order.css" rel="stylesheet">
+
+
+<!-- container -->
+<div id="container" class="mA ">
+
+    <div class="myPageWrap">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">회원탈퇴</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="myPageLeftMenu fL">
+                <h3 class="mA">
+                    <a href="/my/index" ga-event="마이페이지,마이페이지홈">
+                        <img src="/img/myPage/myP_leftside_title.gif">
+                    </a>
+                </h3>
+
+                <ul class="myPageSubMenu">
+
+                    <li class="">
+                        <a href="#none" class="menu1 on"><span class="Left_B">주문현황</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/order"
+                                   ga-event="마이페이지,마이페이지_주문배송">주문/배송현황</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu2 on"><span class="Left_B">쇼핑통장</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/coupon"
+                                   ga-event="마이페이지,마이페이지_발그레쿠폰">쿠폰</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/point?page=0"
+                                   ga-event="마이페이지,마이페이지_발그레포인트">포인트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu3 on"><span class="Left_B">관심상품</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/wishList?page=1"
+                                   ga-event="마이페이지,마이페이지_위시리스트">찜리스트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu4 on">
+                            <span class="Left_B" ">나의 리뷰</span>
+                        </a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/myReview"
+                                   ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu5 on"><span class="Left_B">1:1문의</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/qna"
+                                   ga-event="마이페이지,마이페이지_1:1문의">1:1문의하기</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/qnaList"
+                                   ga-event="마이페이지,마이페이지_1:1답변">1:1답변보기</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu6 on"><span class="Left_B">개인 정보</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/privacy"
+                                   ga-event="마이페이지,마이페이지_개인정보수정">개인 정보 수정</a>
+                            </li>
+                            <li class="">
+                                <a href="/member/leaveAgree"
+                                   ga-event="마이페이지,마이페이지_회원탈퇴">회원탈퇴</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="mypageRightContents fL">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub leaveMEM"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+                <p class="userTitle">탈퇴 전 유의사항을 확인해주세요.</p>
+                <form action="/member/leave" name="agreeForm" method="post" onsubmit="return checkAgreement();">
+                    <div class="Notice_leave">
+                        <ul>
+                            <li class="notice_read">
+                                <p class="title">회원탈퇴 시 안내</p>
+                                <p class="text_read">
+                                    회원탈퇴 시 모든 정보와 주문내역이 삭제됩니다.(2번 참조)<br>
+                                    잔여 발그레 포인트는 탈퇴 시 소멸되며 환불되지 않습니다. 연락처는 중복가입을 방지하기 위해 시스템상 암호화 처리되어 사용됩니다.
+                                    단, 상법 및 전자상거래 등에서의 소비자보호에 관한 법률 등 관련 법령에 의해 거래관련 권리 의무 관계의 확인등을 이유로 일정기간 보유하여야
+                                    할 필요가 있을 경우에는 정해진 기간동안 보유 후 파기합니다.
+                                </p>
+                            </li>
+                            <li class="notice_read">
+                                <p class="title">주문 관련 안내</p>
+                                <p class="text_read">
+                                    진행중인 주문건이 남아있는 경우에는 탈퇴처리가 불가합니다. 배송이 완료된 후 탈퇴하실 수 있습니다.
+                                    회원탈퇴 시 구매기록이 모두 삭제됩니다.
+                                </p>
+                            </li>
+
+                            <li class="notice_read">
+                                <p class="title">회원탈퇴 시 안내</p>
+                                <p class="text_read">
+                                    회원탈퇴 처리가 완료되면 동일한 회원 정보로는 6개월 이후에 재가입이 가능함을 유의바랍니다.
+                                </p>
+                            </li>
+                        </ul>
+
+                        <div class="Last_agree">
+                            <p class="txt">* 위 모든 사항을 확인하였으며, 동의합니다.&nbsp;&nbsp;<input type="checkbox" id="check" /></p>
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="write_reason">
+                        <textarea rows="12" cols="122" id="reason" name="reason" placeholder=" 지금까지 발그레를 이용해주셔서 감사합니다. 탈퇴하시는 사유를 적어주시면 운영에 참고하도록 하겠습니다."></textarea>
+                    </div>
+
+                    <div class="ASK_question">
+                        <p class="footerPhone">고객센터: <span>070.7703.0859</span></p>
+                        <p class="footerMail">메일문의: <span>sumcreative@naver.com</span></p>
+                    </div>
+
+                    <div class="button">
+                        <input type="submit" class="myButton" value="탈퇴하기">
+                    </div>
+                </form>
+            </div>
+            <!--rightContents-->
+        </div>
+    </div>
+    <!--myPageWrap-->
+
+
+</div>
+<!-- //container -->
+
+
+<script type="text/javascript" src="/js/common/jquery-3.1.1.min.js"></script>
+<script>
+        $(function(){
+            $('.btn').on('click',function(){
+                var check = $('#check').prop('checked');
+                if(!check){
+                    alert('탈퇴 약관에 동의 해주세요.');
+                }
+            });
+        });
+</script>
+
+
+#parse("/main/footer.vm")

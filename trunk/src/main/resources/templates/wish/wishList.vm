@@ -1,0 +1,359 @@
+#parse("/main/header.vm")
+
+<meta charset="UTF-8">
+<!-- <link rel="stylesheet" type="text/css" src="/css/wish/wishList.css">
+    <link rel="stylesheet" type="text/css" src="/css/wish/productCommon.css"> -->
+
+<link type="text/css" href="/css/myPage/myPage.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/myPage/common.css">
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<style> 
+    .image {
+        width: 100px;
+        height: 90px;
+    }
+
+    .red {
+        color: red;
+        font-weight: bold;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .wishTitle {
+        font-size: 20px;
+    }
+
+    .wishTitle2 {
+        font-size: 15px;
+    }
+
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="/js/paging/paging.min.js" charset="utf-8" ></script>
+<!-- container -->
+<div id="container" class="mA ">
+
+
+    <div class="myPageWrap">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <span><a href="/my/index">마이페이지</a></span>
+            <span>&gt;</span>
+            <span class="on">찜리스트</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="myPageLeftMenu fL">
+                <h3 class="mA">
+                    <a href="/my/index" ga-event="마이페이지,마이페이지홈">
+                        <img src="/img/myPage/myP_leftside_title.gif">
+                    </a>
+                </h3>
+
+                <ul class="myPageSubMenu">
+
+                    <li class="">
+                        <a href="#none" class="menu1 on"><span class="Left_B">주문현황</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/order"
+                                   ga-event="마이페이지,마이페이지_주문배송">주문/배송현황</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu2 on"><span class="Left_B">쇼핑통장</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/coupon"
+                                   ga-event="마이페이지,마이페이지_발그레쿠폰">쿠폰</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/point?page=0"
+                                   ga-event="마이페이지,마이페이지_발그레포인트">포인트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu3 on"><span class="Left_B">관심상품</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/wishList?page=1"
+                                   ga-event="마이페이지,마이페이지_위시리스트">찜리스트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu4 on">
+                            <span class="Left_B" ">나의 리뷰</span>
+                        </a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/myReview"
+                                   ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu5 on"><span class="Left_B">1:1문의</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/qna"
+                                   ga-event="마이페이지,마이페이지_1:1문의">1:1문의하기</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/qnaList"
+                                   ga-event="마이페이지,마이페이지_1:1답변">1:1답변보기</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu6 on"><span class="Left_B">개인 정보</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/privacy"
+                                   ga-event="마이페이지,마이페이지_개인정보수정">개인 정보 수정</a>
+                            </li>
+                            <li class="">
+                                <a href="/member/leaveAgree"
+                                   ga-event="마이페이지,마이페이지_회원탈퇴">회원탈퇴</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="mypageRightContents fL">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub wishlist"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+                <p class="mywishTitle">
+                    <span class="title_txt"></span>
+                    <input type="hidden" id="totalCnt" value="$totalCnt">
+                </p>
+                
+                <div class="wish_tabAll">
+                    <table class="wishTable mA" cellpadding="0" cellspacing="0"
+                           summary="찜리스트">
+                        <caption>찜리스트</caption>
+                        <colgroup>
+                            <col style="width: 62px;">
+                            <col>
+                            <col style="width: 110px;">
+                            <col style="width: 140px;">
+                            <col style="width: 85px;">
+                        </colgroup>
+                        <!-- <input type="button" class="checkDelete" value="선택삭제"> -->
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="allCheck"><span>ALL</span></th>
+                                <th>상품명</th>
+                                <th>상품금액</th>
+                                <th>배송비</th>
+                                <th class="last">관리</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            #foreach($wishList in $WishList)
+                            <form method="post" action="/my/wishDelete" onSubmit="return form_submit()">
+                                <tr>
+                                    <td class="checkbox_opt"><input type="checkbox"/><input type="hidden" value="$wishList.product.productId"</td>
+                                    <td class="product_img">
+                                        <div class="image_Product">
+                                            <a href="/detail?product_id=${wishList.product.productId}&sort=1">
+                                                <img class="image" src="//sumcrimage.cafe24.com/$!{wishList.product.thumbUrl}" alt="상품 이미지">
+                                            </a>
+                                        </div>
+                                        <div class="Name_Brand">
+                                            <span class="NP">
+                                                <a href="/detail?product_id=${wishList.product.productId}&sort=1">
+                                                $wishList.product.prodName
+                                                </a>
+                                            </span>
+                                        </div>                                        
+                                    </td>
+                                    <td class="price"><b class="price2">$number.format($wishList.product.price)</b></td>
+                                    <td class="deliveryprice">
+                                        #if($!wishList.product.productDelivery.freeDelivery == 0)
+                                        <p class="d_Text">무료배송</p>
+                                        #elseif($!wishList.product.productDelivery.freeDelivery == -1)
+                                        <p class="d_Text">배송비 $number.format($wishList.product.productDelivery.deliveryPrice)원</p>
+                                        #elseif($!wishList.product.productDelivery.freeDelivery >= 1)
+                                        $number.format($wishList.product.productDelivery.freeDelivery)원이상<br>무료배송
+                                        #end
+                                    </td>
+                                    <td class="last">
+                                        <input type="hidden" name="wish_id" id="wish_id" value="${wishList.wishId}">
+                                        <input type="submit" class="delBtn removePiece" name="removePiece" value="삭제하기">
+                                    </td>
+                                </tr>
+                            </form>
+                            #end
+                        </tbody>
+                    </table>                
+                    
+                    
+                                <div id="paging"></div>    
+                </div>
+            </div>
+            
+
+            
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1.12.0/jquery.min.js"></script>
+			<script type="text/javascript" src="/js/paging/jquery.paging.js"></script>
+			<script type="text/javascript">
+            	var totalCount = $totalCnt;
+            	// 글 개수
+            	var pageCount = totalCount/10;
+            	// 페이지 개수(페이지당 10개의 글 출력)
+            	if (totalCount/10 > 0) {
+              	  pageCount++;
+            	}
+            	var block = pageCount/10;
+            	// 한 화면에 출력 될 페이지(링크)의 개수
+            	if (pageCount%10 != 0) {
+                	block++;
+            	}
+            
+				$('#paging').paging({
+					current:1,max:pageCount,
+					onclick:function(e,page){
+					}
+				});
+			</script>
+            
+            <!--rightContents-->
+        </div>
+    </div>
+    <!--myPageWrap-->
+
+
+</div>
+<!-- //container -->
+
+
+<script type="text/javascript">
+    $(function() {
+    	var totalCnt = $totalCnt
+    	var page_viewList = paging(totalCnt, 10, 5, 1);
+    });
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    //$('#example').DataTable();
+
+});
+</script>
+
+<script>
+function form_submit() {
+	var check_submit = confirm("삭제 하시겠습니까?");
+
+	return check_submit;
+}
+
+    //전체 선택
+    $('#allCheck').on('click',function(){
+       var check = $(this).prop('checked');
+       if(check){
+           $('input[type="checkbox"]').prop('checked',true);
+       }else{
+           $('input[type="checkbox"]').prop('checked',false);
+       }
+    });
+
+    //개별 선택
+    $('.reviewList tbody input[type="checkbox"]').on('click',function(){
+        var checkBox_len = $('.reviewList tbody input[type="checkbox"]').length,
+            checked_len = $('.reviewList tbody input[type="checkbox"]:checked').length;
+        if(checked_len == checkBox_len){
+            $('#allCheck').prop('checked',true);
+        }else{
+            $('#allCheck').prop('checked',false);
+        }
+    });
+
+    
+    //개별 삭제
+      $('.checkDelete').on('click', function() {
+               var conFi = confirm('해당 항목을 삭제 하시겠습니까?');
+               if (conFi) {
+                  var checkBox_len = new Array;
+                  $('.reviewList tbody input[type="checkbox"]:checked').each(function() {
+                  	checkBox_len.push($(this).val());
+                  	console.log(checkBox_len+'돌리는 중');
+                  });
+               } else {
+                  alert('취소를 누르셨습니다.');
+               }
+            });    
+    /* //개별 삭제
+    $('.delBtn').on('click',function(){
+       var val = $(this).parents('tr').find('input:checkbox').val(),
+           i = confirm('해당 상품을 찜 목록에서 삭제 하시겠습니까?');
+       if(i){
+           $(this).parents('tr').remove();
+       }
+    });
+
+    //선택한 상품들 삭제 하기 및 삭제한 상품을 정보를 배열로 저장 했다가 다시 초기화
+    var del_list = new Array();
+    $('.removeAll').on('click',function(){
+        $('.reviewList tbody input:checkbox').each(function(){
+           var val = $(this).val(),
+               check = $(this).prop('checked');
+            if(check){
+                $(this).parents('tr').remove();
+                del_list.push(val)
+            }
+        });
+        alert('삭제된 상품 정보 / '+del_list)
+        del_list = new Array();
+        alert('초기화'+del_list)
+    }); */
+    
+     
+    
+</script>
+
+
+<script>
+    
+</script>
+
+<script>
+/* function wait() {
+	window.open('/goWait', 'waitPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+} */
+</script>
+
+
+
+
+
+
+#parse("/main/footer.vm")

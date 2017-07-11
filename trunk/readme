@@ -1,0 +1,19 @@
+1. Development Environment(Server * Client, H/W * S/W) by Jin-gug Kim
+        Processor : Intel Core™ i5
+        RAM : 16GB
+        TCP/IP Network : LocalHost port:8088
+        Web Programming Language : Java 8(JDK1.8) 
+        Markup Language : HTML5, CSS, XML, JSON
+        Scripting Language : JavaScript, JQuery, Ajax
+        Structured Query Language : 
+        Framework : Spring Boot, Maven, MyBatis
+        OS : MS Window 10
+        IDE : IntelliJ, SublimeText3, Eclipse
+        Web Server : Apache Tomcat 8.0.0.M17 WAS, Spring Boot App
+        VCS : SVN
+        Client GUI Tool : 
+        Test Browser : Chrome, IE
+        CI : 
+        Online Web Service : cafe24
+        Accesible DNS : 
+        FTP S/W : 

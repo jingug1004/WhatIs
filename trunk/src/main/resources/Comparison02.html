@@ -1,0 +1,25 @@
+if (checkDupl(itemId)) {
+
+var orderHtml2 = productText + '<input type="hidden" name="items[]" value="' + itemId + '"/> / ';
+
+orderHtml2 += '
+<div class="number"> ';
+
+    orderHtml2 += '<input type="button" onclick="decreaseQuantity(' + itemId + ',' + productPrice + ');" ';
+    orderHtml2 += 'class="decreaseQuantity" value="' + itemId + '">수량 내림</input> ';
+
+    orderHtml2 += '<input class="upDown2' + itemId + '" type="hidden" name="upDown[' + itemId + '].cnt" ';
+    orderHtml2 += 'value="1"><span id="numberUpDown2' + itemId + '" value="1">1</span></input> ';
+
+    orderHtml2 += '<input type="button" ';
+    orderHtml2 += 'onclick="increaseQuantity(' + itemId + ',' + maxItemCnt + ',' + productPrice + ');" ';
+    orderHtml2 += 'class="increaseQuantity" value="' + itemId + '">수량 올림</input> ';
+
+    orderHtml2 += productPrice + '원 //';
+
+    orderHtml2 += '<input type="hidden" name="items[' + itemId + '].price" value="' + productPrice + '"/> ';
+
+    orderHtml2 += '부분합<span name="getSum" id="sum2' + itemId + '">' + multiplePrice + '</span> 원 //';
+
+    orderHtml2 += '<input type="button" class="orderRemoveButton" value="취소"/></div> ';
+}

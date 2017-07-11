@@ -1,0 +1,280 @@
+#parse("/main/header.vm")
+
+<link type="text/css" href="/css/myPage/myPage.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/myPage/common.css">
+
+<div id="container" class="mA ">
+
+    <div class="myPageWrap">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">발그레 쿠폰</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="myPageLeftMenu fL">
+                <h3 class="mA">
+                    <a href="/my/index" ga-event="마이페이지,마이페이지홈">
+                        <img src="/img/myPage/myP_leftside_title.gif">
+                    </a>
+                </h3>
+
+                <ul class="myPageSubMenu">
+
+                    <li class="">
+                        <a href="#none" class="menu1 on"><span class="Left_B">주문현황</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/order"
+                                   ga-event="마이페이지,마이페이지_주문배송">주문/배송현황</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu2 on"><span class="Left_B">쇼핑통장</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/coupon"
+                                   ga-event="마이페이지,마이페이지_발그레쿠폰">쿠폰</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/point?page=0"
+                                   ga-event="마이페이지,마이페이지_발그레포인트">포인트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu3 on"><span class="Left_B">관심상품</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/wishList?page=1"
+                                   ga-event="마이페이지,마이페이지_위시리스트">찜리스트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu4 on">
+                            <span class="Left_B" ">나의 리뷰</span>
+                        </a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/myReview"
+                                   ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu5 on"><span class="Left_B">1:1문의</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/qna"
+                                   ga-event="마이페이지,마이페이지_1:1문의">1:1문의하기</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/qnaList"
+                                   ga-event="마이페이지,마이페이지_1:1답변">1:1답변보기</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu6 on"><span class="Left_B">개인 정보</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/privacy"
+                                   ga-event="마이페이지,마이페이지_개인정보수정">개인 정보 수정</a>
+                            </li>
+                            <li class="">
+                                <a href="/member/leaveAgree"
+                                   ga-event="마이페이지,마이페이지_회원탈퇴">회원탈퇴</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="mypageRightContents fL">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub coupon"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+
+                <p class="couponTitle">
+                    <span class="titleImg tI fL">쿠폰등록</span>
+                </p>
+
+                <div class="myCoupon">
+                    <div class="couponInsertForm">
+                        <form action="/my/couponInsert" name="/my/couponInsert" method="post">
+                            <p><strong>쿠폰등록</strong> 발급받은 쿠폰번호는 등록 후에 결제에 적용이 됩니다.</p>
+                            <input type="text" size="42" id="c_id" name="c_id" placeholder="쿠폰번호를 입력한 후 쿠폰등록 버튼을 눌러주세요.">
+                            <input type="submit" class="couponInsertBtn" id="couponInsertBtn" value="쿠폰등록" />
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="myCouponList">
+                    <span class="titleImg tI fL">보유내역</span>
+                </div>
+
+
+
+                <div class="couponList">
+
+                    <table class="couponTable mA" cellpadding="0" cellspacing="0"
+                           summary="보유쿠폰 내역">
+                        <caption>보유쿠폰 상세내역</caption>
+                        <colgroup>
+                            <col style="width: 170px;">
+                            <col>
+                            <col style="width: 110px;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>사용기간</th>
+                                <th>쿠폰 내용</th>
+                                <th class="last">사용여부</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            #foreach($couponUser in $CouponUser)
+                            <tr>
+                                <td class="useDate">
+                                    <input type="hidden" class="regDate" value="$couponUser.regDate">
+                                    <input type="hidden" class="endDate" value="$couponUser.endDate">
+                                    <p><span class="reg"></span> ~ <span class="end2"></span></p>
+                                </td>
+
+                                <td class="couponNote">
+                                    <p class="NameCoupon">$couponUser.coupon.cpName</p>
+
+                                    #if($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 0)
+                                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price% 할인</p>
+
+                                    #elseif($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 0)
+                                    <p>전제품 사용 / couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price% 할인</p>
+
+                                    #elseif($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 1)
+                                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price원 할인</p>
+
+                                    #elseif($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 1)
+                                    <p>전제품 사용 / couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price원 할인</p>
+
+                                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 0)
+                                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price% 할인</p>
+
+                                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 0)
+                                    <p>전제품 사용 / couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price% 할인</p>
+
+                                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 1)
+                                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price원 할인</p>
+
+                                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 1)
+                                    <p>전제품 사용 / $couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price원 할인</p>
+                                    #end
+
+                                    <p class="tillDate">발급일로부터 $couponUser.coupon.endAfter일간 사용가능</p>
+                                    #set($useYn = "N")
+                                </td>
+
+                                <td class="ableTouse">
+
+                                    #if($!useYn == $!couponUser.useYn)
+                                    <p>사용가능</p>
+                                    #else
+                                    <p>사용불가능</p>
+                                    #end
+                                </td>
+                            </tr>
+                            #end
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <div class="coupon_borderTop">
+                    <p class="coupon_infoTitle">
+                        <span class="titleImg tI fL">쿠폰안내</span>
+                    </p>
+
+                    <ul class="myMainNotice">
+                        <li>쿠폰에 따라 사용조건 및 사용기한이 다르오니 유의 바랍니다.</li>
+                        <li>일반쿠폰은 일반쿠폰과 중복 사용이 불가능 합니다.</li>
+                        <li>중복쿠폰은 일반쿠폰과 중복 사용이 가능하며, 중복쿠폰과는 중복이 불가능 합니다.</li>
+                        <li>쿠폰 적용은 배송비가 포함되지 않은 제품 총 금액에서 적용됩니다.</li>
+                        <li>사용 및 기간이 만료된 쿠폰은 7일간 보관 후 안내없이 임의로 삭제됩니다.</li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--rightContents-->
+        </div>
+    </div>
+    <!--myPageWrap-->
+
+
+</div>
+<!-- //container -->
+
+<script type="text/javascript" src="/js/common/jquery-1.10.2.min.js"></script>
+<script>
+        /* $(function(){
+            data_set('.regDate','.reg');
+            data_set('.endDate','.end2');
+            function data_set(class_name,date_class){
+                $(class_name).each(function(){
+                   var date = new Date(Number($(this).val())),
+                       y = date.getFullYear(),
+                       m = date.getMonth()+1,
+                       d = date.getDay();
+                   $(this).siblings('p').find(date_class).text(y+'-'+m+'-'+d);
+                });
+            }
+        }); */
+
+        $(function(){
+            $('.regDate').each(function() {
+               var regDate = new Date(Number($(this).val())),
+               year = regDate.getFullYear(),
+               month = regDate.getMonth()+1,
+               day = regDate.getDate();
+               console.log(year);
+
+               $(this).siblings('p').children('.reg').text(year+'-'+month+'-'+day);
+            });
+        });
+        $(function(){
+            $('.endDate').each(function() {
+               var endDate = new Date(Number($(this).val())),
+               year2 = endDate.getFullYear(),
+               month2 = endDate.getMonth()+1,
+               day2 = endDate.getDate();
+
+               $(this).siblings('p').children('.reg').siblings('.end2').text(year2+'-'+month2+'-'+day2);
+            });
+        });
+</script>
+
+
+
+<script>
+/* function wait() {
+	window.open('/goWait', 'waitPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+} */
+</script>
+
+#parse("/main/footer.vm")

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:fb="//ogp.me/ns/fb#">
+<head>
+    <meta charset="UTF-8">
+    <meta content="*" http-equiv="Access-Control-Allow-Origin">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="text/javascript" http-equiv="Content-Script-Type">
+    <meta content="text/css" http-equiv="Content-Style-Type">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <title>로그인 : 발그레</title>
+
+    <link href="/css/loginCommon.css" rel="stylesheet" type="text/css">
+
+
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery-validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="//connect.facebook.net/ko_KR/all.js"></script>
+	<script>
+		window.fbAsyncInit = function() {
+		  		FB.init({ 
+			  		appId : '774053909386228', // 앱 ID
+			  		status : true,         // 로그인 상태를 확인
+			  		cookie : true,          // 쿠키허용
+			  		xfbml : true          // parse XFBML
+		  		}); 
+		  		
+			FB.Event.subscribe('auth.login', function(response) {
+				if (response.status === 'connected') {
+		        	FB.api('/me', function(user) {
+		            	if (user) {
+		            		$("#login").val(user.id);
+							$("#type").val("F");
+							$("#snslogin").submit();
+		            	}
+		        	});
+		    	}
+	  		});
+		
+			FB.Event.subscribe('auth.logout', function(response) {
+				FB.login();    		
+	  		});
+		}
+	</script>
+</head>
+
+<div class="layout-structure-content">
+    <h1 class="header-main-content-logo-center">
+    <a class="back-home" href="/"><img src="/img/login/rebbit.png" width="100px" height="100px"></a>
+    </h1>
+    <p class="text_under_header">발그레에서 싸게 쇼핑하자</p>
+    <div class="login-title-image">
+        <span class="login-bigtitle-img"><img src="/img/login/login_title.png" height="35"></span>
+    </div>
+    <div class="login_form_onpage">
+                <form id="sky-form1" class="log-reg-block sky-form"  method="post">
+                    <section>
+                        <label class="login-input-text">
+                            <div class="input-group-id">
+                                <input type="text" placeholder="이메일 (아이디)" id="username" name="username" class="form-control_email">
+
+                            </div>
+                        </label>
+                    </section>
+
+                    <section>
+                        <label class="login-input-text-pw">
+                            <div class="input-group-pw">
+                                <input type="password" placeholder="비밀번호" id="password" name="password"
+                                       class="form-control_pw">
+
+                            </div>
+                        </label>
+                    </section>
+
+                    <div class="row margin-bottom-5">
+                        <div class="col-xs-6">
+                            <label class="checkbox_on_loginform">
+                                <input type="checkbox" name="useCookie" class="login_form_checkbox">
+                                자동 로그인
+                            </label>
+                        </div>
+                    </div>
+                    <div class="login-submit-button">
+                    <button class="balgeure_login_submit-Btn" type="submit" value="login">로그인</button>
+                    </div>
+
+                </form>
+           
+           <div class="search_id_and_pw_register">
+                <p class="text-center">
+                    <a href="javascript:findId();" class="search-email-and-password find_balgeure_email">이메일(아이디) 찾기</a>  |   
+                    <a href="javascript:findPw();" class="search-email-and-password find_balgeure_password">비밀번호 찾기</a>  |   
+                    <a href="/regist" class="search-email-and-password join_balgeure_register">회원가입</a></p>
+           </div>
+           
+                <div class="simple-sns-login-method">
+                    <ul class="simple-login-SNS">
+            <li class="simple-login-SNS-list" id="naverLogin" style="cursor:pointer;" onclick="snsLogin('N', 'I');">
+                <span class="member-SNS-login-icon member-SNS-login-icon-naver">naver</span></a>
+            </li>
+            <li class="simple-login-SNS-list" id="facebookLogin" style="cursor:pointer;" onclick="snsLogin('F', 'I');">
+                <span class="member-SNS-login-icon member-SNS-login-icon-facebook">facebook</span>
+            </li>
+            <li class="simple-login-SNS-list" id="kakaoLogin" style="cursor:pointer;" onclick="snsLogin('K', 'I');">
+                <span class="member-SNS-login-icon member-SNS-login-icon-kakao">kakao</span>
+            </li>
+        </ul>
+                </div>           
+            </div>
+   
+</div>
+    <script>
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/ko_KR/all.js";
+        ref.parentNode.insertBefore(js, ref);
+      }(document));
+    
+     $(document).ready(function () {
+     	Kakao.init('71fb3c875e19ee24c57124b06f983a1a');
+     	$("#sky-form1").validate({ 
+    		rules: {
+    			username : {
+    				required : true 
+    			}, 
+    			password : { 
+    				required : true 
+    			}
+    		}, 
+    		messages: {
+    			username: { required: "아이디를 입력하세요" }, 
+    			password: { required: "비밀번호를 입력하세요" } 
+    		}, submitHandler: function(form) {
+    			var returnValue = {
+    				id: $("#username").val(),
+    				type: $("#password").val()
+    			};
+    			window.opener.getReturnValue(returnValue);
+    			window.close();
+            }
+    	});
+     });
+     
+    function findId() {
+    	window.open('/goFindId', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+    }
+    function findPw() {
+    	window.open('/goFindPw', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+    }
+</script>
+
+<script>
+	function snsLogin(type) {
+		if(type == 'N') {
+			naver_logout();
+		} else if(type == 'F') {
+			FB.getLoginStatus(function(response) {
+				if(response.status == 'connected' || response.status == 'not_authorized') {
+					FB.logout();
+				} else {
+					FB.login();
+				}
+			});
+			//FB.logout();
+		} else if(type == 'K') {
+			Kakao.Auth.logout(
+                function(obj) {
+                	openNewWindow("/kakao/login");
+            	}
+            );
+			
+		}
+	}
+	function openNewWindow(url) {
+	  var name = '_blank';
+	  var specs = 'menubar=no,status=no,toolbar=no, width=500, height=500';
+	  var newWindow = window.open(url, name, specs);
+	  newWindow.focus();
+	}
+	
+	function getReturnValue(returnValue) {
+		if(returnValue.id) {
+			var returnValue = {
+   				id: returnValue.id,
+   				type: returnValue.type
+   			};
+   			window.opener.getReturnValue(returnValue);
+   			window.close();
+		}
+	}
+	
+	function naver_logout() {
+		$("body").append("<iframe id='logoutframe' style='display: none;'></iframe>");
+		$("#logoutframe").attr("src", "http://nid.naver.com/nidlogin.logout");
+		setTimeout(function() {
+			openNewWindow("/naver/login");
+		}, 2000); // 2000ms(2초)가 경과하면 이 함수가 실행됩니다.
+	}
+</script>
+
+
+
+</body>
+</html>

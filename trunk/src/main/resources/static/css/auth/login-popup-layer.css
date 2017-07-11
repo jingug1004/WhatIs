@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.pop-layer .pop-container {
+  padding: 0;
+}
+
+.pop-layer p.ctxt {
+  color: #666;
+  line-height: 25px;
+}
+
+.pop-layer .btn-close {
+  width: 100%;
+  margin: 10px 0 0;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.pop-layer {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+    width: 409px;
+    height: 404px;
+  background-color: #fff;
+    border: 3px solid #ff8fa7;
+  z-index: 10;
+}
+
+.dim-layer {
+  display: none;
+  position: fixed;
+  _position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.dim-layer .dimBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+
+.dim-layer .pop-layer {
+  display: block;
+}
+
+a.btn-layerClose {
+  display: inline-block;
+  height: 25px;
+  padding: 0 14px 0;
+  border: none;
+  background-color: #ff8fa7;
+  font-size: 13px;
+  color: #fff;
+  line-height: 25px;
+}
+
+a.btn-layerClose:hover {
+  border: 1px solid #ff8fa7;
+  background-color: #fff;
+  color: #2a2a2a;
+}
+
+
+.layout-structure-content_Popup{
+	background-color: #fff;
+    padding-bottom: 200px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+.auto_login_snsBtn{
+	width:400px;
+	text-align:left;
+	margin: 0 auto;
+}
+
+.auto_login_snsBtn .auto_login_check{
+	position: relative;
+	float:left;
+}
+
+.auto_login_snsBtn .popup-login-SNS-list{
+	position: relative;
+    float: right !important;
+    width: 18px;
+	height: 18px;
+	margin-left: 3px;
+	margin-top: 1px;
+}
+
+.balgeure-SNS-login-icon img{
+	width: 18px;
+	height: auto;
+}
+
+
+.search_id_and_pw_register_onPopup{
+  width: 100%;
+  margin: 10px 0 20px;
+  padding-top: 10px;
+  border-top: 1px solid #DDD;
+}

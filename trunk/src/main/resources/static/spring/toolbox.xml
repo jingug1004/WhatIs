@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<toolbox>
+    <tool>
+        <key>date</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.DateTool</class>
+    </tool>
+    <tool>
+        <key>math</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.MathTool</class>
+    </tool>
+    <tool>
+        <key>number</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.NumberTool</class>
+        <parameter name="format" value=",###" />
+        <!--<parameter name="won" value="#0,000" />-->
+        <!--<parameter name="won" value="#,###" />-->
+        <!--<parameter name="curren" value="#,###" />-->
+    </tool>
+    <tool>
+        <key>render</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.RenderTool</class>
+    </tool>
+    <!-- string number(int)로 형 변환시 필요 -->
+     <tool>
+     	<key>conversion</key>
+     	<scope>application</scope>
+     	<class>org.apache.velocity.tools.generic.ConversionTool</class>
+	 </tool>
+	 <tool>
+	    <key>list</key>
+	    <scope>application</scope>
+	    <class>org.apache.velocity.tools.generic.ListTool</class>
+	</tool>
+</toolbox>
+
+
+

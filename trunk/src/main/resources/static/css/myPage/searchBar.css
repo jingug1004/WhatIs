@@ -1,0 +1,115 @@
+
+/* ################################################## searchBar begin */
+body .searchBar-wrap {
+    line-height: normal;
+    background: inherit; }
+
+.searchBar-wrap p,
+.searchBar-wrap i,
+.searchBar-wrap dd,
+.searchBar-wrap td {
+    line-height: normal;
+    font-size: inherit;
+    text-align: inherit; }
+
+div#header_v2 .searchBar-wrap h1,
+div#header_v2 .searchBar-wrap h3,
+div#header_v2 .searchBar-wrap h4 {
+    display: inherit; }
+
+div#header_v2 .searchBar-wrap h4 {
+    font-size: inherit;
+    font-weight: normal; }
+
+div#header_v2 .searchBar-wrap ul li {
+    float: inherit; }
+
+.searchBar-inputBox {
+    position: relative;
+    width: 483px;
+    height: 32px;
+    border-bottom: 4px solid #ff7391;
+}
+
+.searchBar-inputBox-text {
+    display: none; }
+
+.searchBar-inputBox-label{
+    width: 100% !important;
+}
+
+
+.searchBar-inputBox-input {
+    margin: 1px 0 0 5px;
+    display: block;
+    width: 450px;
+    height: 31px;
+    padding-left: 0;
+    border: none !important;
+    line-height: 28px;
+    font-family: "나눔고딕", NanumGothicBold, NanumGothic, "돋움", Dotum, AppleSDGothic, AppleGothic, "굴림", Gulim, sans-serif;
+    color: #1a1a1a;
+    outline: none; }
+
+input::-webkit-input-placeholder {
+    color: #1a1a1a; }
+
+input:-ms-input-placeholder {
+    color: #1a1a1a; }
+
+input::-moz-input-placeholder {
+    color: #1a1a1a; }
+
+input[type="text"]::-ms-clear {
+    display: none; }
+
+
+.searchBar-inputBox-submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 40px;
+    height: 28px;
+    text-indent: -99999px;
+    background: url(/img/header/header_icons.png) no-repeat -193px -32px;
+    border: none;
+    cursor: pointer; }
+
+.searchBar-relatedBox {
+    display: none;
+    padding-top: 10px;
+    color: #222;
+    font-size: 13px; }
+
+.searchBar-relatedBox-title {
+    font-family: "\B098\B214\ACE0\B515\BCFC\B4DC", NanumGothicBold, "\B098\B214\ACE0\B515", NanumGothic, "\B3CB\C6C0", Dotum, AppleSDGothic, AppleGothic, "\AD74\B9BC", Gulim, sans-serif; }
+
+.searchBar-relatedBox-keyword {
+    display: inline-block;
+    margin-left: 18px;
+    font-family: "\B098\B214\ACE0\B515", NanumGothic, "\B9D1\C740\ACE0\B515", Malgun Gothic, "\B3CB\C6C0", Dotum, Helvetica, "Apple SD Gothic Neo", Sans-serif;
+    font-weight: normal; }
+
+.searchBar-result-recommendation-wrap {
+    width: 42%;
+    height: 295px;
+    float: right;
+    background: #fafafa;
+    color: #565656;
+    font-family: "\B098\B214\ACE0\B515", NanumGothic, "\B9D1\C740\ACE0\B515", Malgun Gothic, "\B3CB\C6C0", Dotum, Helvetica, "Apple SD Gothic Neo", Sans-serif;
+    text-align: center; }
+
+.searchBar-result-recommendation-title {
+    display: block;
+    padding-top: 18px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center; }
+
+.searchBar-keyword-wrap .keyword-ranking-realTime-list {
+    float: left;
+    width: 58%; }
+
+/* ################################################## searchBar end */
+

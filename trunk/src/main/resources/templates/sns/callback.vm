@@ -1,0 +1,9 @@
+<script>
+	  var returnValue = {
+	    id: "$!{sns_id}",
+	   	type: "$!{type}"
+	  };
+	  window.opener.getReturnValue(returnValue);
+	  window.close();
+
+</script>

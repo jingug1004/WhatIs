@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<link type="text/css" href="/css/faq/faq.css" rel="stylesheet" />
+
+
+<style>
+    .wrap {
+        width: 1050px;
+        height: auto;
+        border: 1px solid;
+    }
+    .header {
+        width: 1050px;
+        height: 200px;
+        border-bottom: 1px solid;
+    }
+    .contents {
+        width: 1050px;
+        height: 700px;
+    }
+    .content {
+        width: 1050px;
+        height: 500px;
+        border-bottom: 1px solid;
+    }
+    .content_title {
+        width: 1050px;
+        height: 25px;
+        border-bottom: 1px solid;
+        
+    }
+    .content_subject {
+        width: 1050px;
+        height: 25px;
+        border-bottom: 1px solid;
+    }
+    .footer {
+        width: 1050px;
+        height: 200px;
+    }
+    .no {
+        float: left;
+        text-align: center;
+        width: 99px;
+        height: 25px;
+        border-right: 1px solid;
+    }
+    .no_body {
+        float: left;
+        text-align: center;
+        width: 99px;
+        height: 25px;
+        border-right: 1px solid;
+    }
+    .subject {
+        float: left;
+        text-align: center;
+        width: 549px;
+        height: 25px;
+        border-right: 1px solid;
+    }
+    .subject_body {
+        float: left;
+        text-align: center;
+        width: 549px;
+        height: 25px;
+        border-right: 1px solid;
+    }
+    .id {
+        float: left;
+        text-align: center;
+        width: 249px;
+        height: 25px;
+        border-right: 1px solid;
+    }
+    .id_body {
+        float: left;
+        text-align: center;
+        width: 249px;
+        height: 25px;
+        border-right: 1px solid;
+    }
+    .regDate {
+        float: left;
+        text-align: center;
+        width: 150px;
+        height: 25px;
+    }
+    .regDate_body {
+        float: left;
+        text-align: center;
+        width: 150px;
+        height: 25px;
+    }
+</style>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+
+        </div>
+        <div class="contents">
+            <table class="notice_list">
+                <tr>
+                    <th class="notice_sub no">번호</th>
+                    <th class="notice_sub subject">제목</th>
+                    <th class="notice_sub id">작성자</th>
+                    <th class="notice_sub regDate">작성일</th>
+                    <th class="notice_sub viewct">조회수</th>
+                </tr>
+                #foreach($noticeTop in $notice.topList)
+                <tr>
+                    <td class="fixed_list no_body">$foreach.count</td>
+                    <td class="fixed_list subject_body">
+                        <a href="/noticeDetail?notice_id=$noticeTop.id">
+                            <span>$noticeTop.subject</span>
+                        </a>
+                    </td>
+                    <td class="fixed_list id_body">관리자</td>
+                    <td class="fixed_list regDate_body">$date.format('yyyy-MM-dd', $!{noticeTop.regDate})</td>
+                    <td class="fixed_list viewct_fx">$noticeTop.viewcount</td>
+                </tr>
+                #end
+                #foreach($Notice in $notice)
+                <tr>
+                    <td class="no_body">$foreach.count</td>
+                    <td class="subject_body">
+                        <a href="/noticeDetail?notice_id=$Notice.noticeList.id">
+                            <span>$Notice.noticeList.subject</span>
+                        </a>
+                    </td>
+                    <td class="id_body">관리자</td>
+                    <td class="regDate_body">$date.format('yyyy-MM-dd', $!{Notice.noticeList.regDate})</td>
+                    <td class="viewct_">$Notice.noticeList.viewcount</td>
+                </tr>
+                #end
+            </table>
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

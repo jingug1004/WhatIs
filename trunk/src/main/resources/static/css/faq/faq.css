@@ -1,0 +1,310 @@
+/** FAQ page CSS s  **/
+
+.FAQ_contents{
+	width: 1080px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#css_tabs {
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+/* �꺆 �꽑�깮 �떆 �몴�떆�븷 �슂�냼(div) �젙�쓽(1踰� �꺆 �꽑�깮 �떆 泥� 踰덉㎏ div �슂�냼 �몴�떆) */
+#css_tabs input:nth-of-type(1), #css_tabs input:nth-of-type(1) ~ div:nth-of-type(1), #css_tabs input:nth-of-type(2), #css_tabs input:nth-of-type(2) ~ div:nth-of-type(2), #css_tabs input:nth-of-type(3), #css_tabs input:nth-of-type(3) ~ div:nth-of-type(3), #css_tabs input:nth-of-type(4), #css_tabs input:nth-of-type(4) ~ div:nth-of-type(4), #css_tabs input:nth-of-type(5), #css_tabs input:nth-of-type(5) ~ div:nth-of-type(5), #css_tabs input:nth-of-type(6), #css_tabs input:nth-of-type(6) ~ div:nth-of-type(6) {
+    display:none;
+}
+#css_tabs input:nth-of-type(1):checked ~ div:nth-of-type(1), #css_tabs input:nth-of-type(2):checked ~ div:nth-of-type(2), #css_tabs input:nth-of-type(3):checked ~ div:nth-of-type(3),
+#css_tabs input:nth-of-type(4):checked ~ div:nth-of-type(4), #css_tabs input:nth-of-type(5):checked ~ div:nth-of-type(5), #css_tabs input:nth-of-type(6):checked ~ div:nth-of-type(6){
+    display:block;
+    width:1080px;
+    margin:0 auto;
+}
+/* �씪踰� 湲곕낯 �뒪���씪 吏��젙 */
+#css_tabs > label {
+    display:inline-block;
+    font-variant:small-caps;
+    font-size:.9em;
+    padding:5px;
+    text-align:center;
+    width:11%;
+    line-height:1.8em;
+    font-weight:700;
+    border-radius:3px 3px 0 0;
+    background:#000000;
+    color:#FFFFFF;
+    border:1px solid #ccc;
+    border-width:1px 1px 0;
+    margin:0 auto;
+}
+#css_tabs {
+	text-align:center;
+	width: 1080px;
+	margin: 0 auto;
+}
+#css_tabs > label:hover {
+    cursor:pointer
+}
+#css_tabs label[for=tab1] {
+}
+/* �꽑�깮�맂 �씪踰�, 而ㅼ꽌瑜� �삱由� �씪踰� �뒪���씪 吏��젙 */
+#css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
+    background:#ff7391;
+    color:#fff
+}
+#css_tabs input:nth-of-type(2):checked ~ label:nth-of-type(2), #css_tabs > label[for=tab2]:hover {
+    background:#ff7391;
+    color:#fff
+}
+#css_tabs input:nth-of-type(3):checked ~ label:nth-of-type(3), #css_tabs > label[for=tab3]:hover {
+    background:#ff7391;
+    color:#fff
+}
+#css_tabs input:nth-of-type(4):checked ~ label:nth-of-type(4), #css_tabs > label[for=tab4]:hover {
+    background:#ff7391;
+    color:#fff
+}
+#css_tabs input:nth-of-type(5):checked ~ label:nth-of-type(5), #css_tabs > label[for=tab5]:hover {
+    background:#ff7391;
+    color:#fff
+}
+#css_tabs input:nth-of-type(6):checked ~ label:nth-of-type(6), #css_tabs > label[for=tab6]:hover {
+    background:#ff7391;
+    color:#fff
+}
+/* �떎�젣 �궡�슜�씠 �떞湲� div �슂�냼 �뒪���씪 吏��젙 */
+#css_tabs .tab1_content, #css_tabs .tab2_content, #css_tabs .tab3_content, 
+#css_tabs .tab4_content, #css_tabs .tab5_content, #css_tabs .tab6_content {
+    padding:2em;
+    border:1px solid #ddd;
+    width:70%;
+    height:100%;
+}
+body *{padding:0;margin:0;}
+
+.qna {
+    width:600px;
+    border:1px solid #ededed;
+    margin:50px auto;
+    box-shadow:2px 2px 5px rgba(0,0,0,.3)
+}
+.qna_haed {
+    background-color:#ff7391;
+}
+.qna_list {
+    border-bottom: 1px solid #ccc;
+    color: #222;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px 0 0 15px;
+    padding-top: 10px;
+}
+.qna_list:last-child {
+    border:none;
+}
+.qna_haed,
+.qna_list_title {
+    overflow:hidden;
+    height: 35px;
+}
+.qna_haed p{
+	text-align:center;
+    line-height:30px;
+    font-size:17px;
+    color:#fff;
+    font-size: 20px;
+    line-height: 38px;
+}
+
+.qna_list_title p {
+    text-align: left;
+    line-height:30px;
+    font-size:13px;
+}
+
+.qna_list_title {
+    overflow:hidden;
+}
+.qna_list_title+div {
+    display:none;
+}
+.qna_list_title a:hover {
+    text-decoration:underline;
+}
+.qna_list_title p:nth-child(2) {
+    text-align:inherit;
+    text-indent:20px;
+}
+.qna_list_title+div>div {
+    border-top:1px solid #ccc;
+    padding:10px;
+    font-size:15px;
+    color:#333;
+    background:#f0f0f0;
+    width: 551px;
+    margin-bottom: 10px;
+}
+.qna_list_title+div>div>div {
+    padding-left:5px;
+}
+p {
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    font-weight:500;
+}
+
+
+
+/** FAQ page CSS e  **/
+
+
+/** 고객센터 page CSS s  **/
+
+.cs_contents{
+	width: 1080px;
+	margin: 0 auto;
+	padding: 0;
+	margin-top: 26px;
+	font-family: '나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+.csPage_Header h1{
+	height: 35px;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.csPage_Header .search_area{
+	border: 6px solid #e0e0e0;
+	height: 120px;
+}
+
+.csPage_Header .search_area .search_formBox{
+	float: left;
+    padding: 30px;
+    border-right: 1px solid #f2f2f2;
+    margin-right: 30px;
+    width: 40%;
+}
+
+.cs_contents .tit{
+	font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.search_formBox input{
+	width: 310px;
+    font-family: '나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    height: 33px;
+    padding-left: 9px;
+    border: 1px solid #c0c0c0;
+}
+
+.search_formBox .btn_search button{
+	height: 35px;
+    margin-left: -3px;
+    border: 1px solid #ff7391;
+    background: #ff7391;
+    font-family: '나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    width: 50px;
+    color: #fff;
+}
+
+.csPage_Header .search_area .one_qna{
+	padding: 30px 0;
+}
+.search_area .one_qna p{
+	font-size: 13px;
+}
+
+.search_area .one_qna .btns_qna{
+	float: right;
+    margin-top: -19px;
+    margin-right: 50px;
+}
+
+.search_area .one_qna .btn_blu{
+	cursor: pointer;
+    border: 1px solid #ff7391;
+    padding: 7px 20px;
+    background-color: #ff7391;
+    margin-right: 15px;
+    color: #fff;
+}
+
+.search_area .one_qna .btn_wht{
+	cursor: pointer;
+    border: 1px solid #ff7391;
+    padding: 7px 20px;
+}
+
+.search_area .one_qna .btn_blu_b{
+	cursor: pointer;
+    border: 1px solid #ff7391;
+    padding: 7px 20px;
+    background-color: #ff7391;
+    margin-right: 15px;
+    color: #fff;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.search_area .one_qna .btn_wht_b{
+	cursor: pointer;
+    border: 1px solid #ff7391;
+    padding: 7px 20px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+.cs_contents .notice_area{
+	margin: 40px 0;
+}
+
+.cs_contents .callcenter_area{
+	border: 6px solid #e0e0e0;
+    padding: 30px;
+    height: 62px;
+}
+
+.cs_contents .callcenter_area .mailtosum{
+	float: left;
+    width: 49%;
+    margin-right: 30px;
+    height: 61px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.callcenter_area .mailtosum .stit{
+	font-size: 14px;
+    font-weight: 600;
+}
+
+.callcenter_area .mailtosum .mailicon{
+	float: right;
+    margin-top: -32px;
+    margin-right: 30px;
+}
+
+.cs_contents .callcenter_area .cs_number .stit{
+	font-size: 14px;
+    font-weight: 600;
+}
+
+.cs_contents .callcenter_area .cs_number .no_phone{
+	padding-left: 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.callcenter_area .cs_number .callicon{
+	float: right;
+    margin-top: -35px;
+}
+
+/** 고객센터 page CSS e  **/
+
+
+/** 공지사항   page CSS s  **/
+
+
+
+
+/** 공지사항   page CSS e  **/

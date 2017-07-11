@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>발그레 - 비밀번호 찾기</title>
+
+
+    <link href="/css/find/find_id_pw.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+    <div class="container_findPw">
+
+        <div class="top">
+
+            <div class="title">
+                <h3>비밀번호 찾기</h3>
+            </div>
+
+
+            <input id="select1" name="sex" type="radio" checked>
+            <label for="select1" class="men">이메일로 찾기</label>
+            <input id="select2" name="sex" type="radio">
+            <label for="select2" class="women">휴대폰번호로 찾기</label>
+
+
+            <div class="page1">
+                <div class="content">
+                    <div class="contents_inner">
+
+                        <span class="small-title">이메일로 찾기</span>
+
+                        <form type="submit" action="/privacy/findPw" method="post">
+
+
+                            <table id="search_balgeure_pw">
+                                <tr>
+                                    <th><span class="findBox_txt">이  름 : </span></th>
+                                    <td><input type="text" placeholder="이름을 입력해 주세요." name="name" id="name" class="name_input"></td>
+                                </tr>
+                                <tr>
+                                    <th><span class="findBox_txt">이메일(아이디) : </span></th>
+                                    <td><input type="email" placeholder="아이디를 입력해 주세요." name="email" id="email" class="email_input"></td>
+                                </tr>
+                            </table>
+
+                            <p class="find_popUp_txt">
+                                비밀번호 찾기가 어려운 경우 고객센터로 연락해 주세요.
+                            </p>
+
+                            <div class="btn_div">
+                                <input type="submit" class="findPw_SubmitBtn" id="okBtn" value="확인">
+                                <input type="button" href="javascript:void(0);" class="findPw_CancelBtn" id="cancelBtn" onclick="window.close()" value="취소">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="page2">
+
+                <div class="content">
+                    <div class="contents_inner">
+
+                        <span class="small-title">휴대폰번호로 찾기</span>
+                        <form type="submit" action="/privacy/findPw2" method="post">
+
+                            <table id="search_balgeure_pw">
+                                <tr>
+                                    <th><span class="findBox_txt">이메일(아이디) : </span></th>
+                                    <td><input type="text" placeholder="아이디를 입력해 주세요." name="email" id="email" class="email_input"></td>
+                                </tr>
+                                <tr>
+                                    <th><span class="findBox_txt">휴대폰 번호 : </span></th>
+                                    <td><input type="text" placeholder="휴대폰번호(-제외)" name="phone" id="phone" class="phone_input"></td>
+                                </tr>
+                            </table>
+
+                            <p class="find_popUp_txt">
+                                비밀번호 찾기가 어려운 경우 고객센터로 연락해 주세요.
+                            </p>
+
+                            <div class="btn_div">
+                                <input type="submit" class="findPw2_SubmitBtn" id="okBtn" value="확인">
+                                <input type="button" href="javascript:void(0);" class="findPw2_CancelBtn" id="cancelBtn" onclick="window.close()" value="취소">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(".findPw_CancelBtn").on('click',function() {
+        	window.open(”,’_self’);
+        	window.close();
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>발그레 : 싸게샀다 발그레에서 ~</title>
+</head>
+<body style="background:#f0f0f0;">
+
+    <link href="/css/member_css.css" rel="stylesheet" type="text/css">
+    
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="/webjars/jquery-validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="//connect.facebook.net/ko_KR/all.js"></script>
+	<script>
+		window.fbAsyncInit = function() {
+		  		FB.init({ 
+			  		appId : '232664117179969', // 앱 ID
+			  		status : true,         // 로그인 상태를 확인
+			  		cookie : true,          // 쿠키허용
+			  		xfbml : true          // parse XFBML
+		  		}); 
+		  		
+			FB.Event.subscribe('auth.login', function(response) {
+				if (response.status === 'connected') {
+		        	FB.api('/me', function(user) {
+		            	if (user) {
+		            		if($("#act").val() == "I") {
+			            		$("#login").val(user.id);
+								$("#type").val("F");
+								$("#snslogin").submit();	
+		            		} else {
+		            			snsCallback(user.id, 'F');
+		            		}
+		            	}
+		        	});
+		    	}
+	  		});
+		
+			FB.Event.subscribe('auth.logout', function(response) {
+				FB.login();    		
+	  		});
+		}
+		</script>
+
+    <body ondragstart="return false">
+    <input type="hidden" id="act" value="I"/>
+
+    <div class="container_join">
+        <div class="layout-content">
+                <div id="joinUs_title">
+                    <div class="balgeure_logo">
+                        <h2 class="logoimage">
+                            <a href="/main">
+                                <img src="/img/login/balgeure_logo.png">
+                            </a>
+                        </h2>
+                    </div>
+                    <div class="balgeure_join_location">
+                        <div class="location_page">
+                            <ul class="join-step-navi">
+                                <li class="location_tit current_page">
+                                    <span>회원가입</span>                                    
+                                </li>
+                                <li class="location_tit">
+                                    <span class="rightside_bar">></span>
+                                    <span>약관동의</span>
+                                </li>
+                                <li class="location_tit">
+                                    <span class="rightside_bar">></span>
+                                    <span>정보입력</span>
+                                </li>
+                                <li class="location_tit">
+                                    <span class="rightside_bar">></span>
+                                    <span>가입완료</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="choose_join_balgeure">
+                <div class="welcome_msg_balgeure">
+                    <span>이메일 주소 혹은 SNS 계정으로 간편하게 회원가입 가능합니다.</span>
+                </div>
+
+                <ul class="joinUS_byChannel">
+
+                    <li class="joinUS_byChannel-list">
+                        <a class="optionOFemail" href="/mailJoinAgree">
+                            <span class="eamil_icon  JoinBySNS">
+                                <img src="/img/login/email_icon.png">
+                            </span>
+                            <span class="JoinUs-text">
+                                이메일 계정으로 회원가입
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="joinUS_byChannel-list">
+                        <a class="optionOFnaver" href="#" onclick="snsLogin('N', 'I');">
+                            <span class="naver_icon  JoinBySNS">
+                                <img src="/img/login/naver_icon.png">
+                            </span>
+                            <span class="JoinUs-text">
+                                네이버 계정으로 회원가입
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="joinUS_byChannel-list">
+                        <a class="optionOFfacebook" href="#" onclick="snsLogin('F', 'I');">
+                            <span class="facebook_icon JoinBySNS">
+                                <img src="/img/login/fb_icon.png">
+                            </span>
+                            <span class="JoinUs-text">
+                                페이스북 계정으로 회원가입
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li class="joinUS_byChannel-list">
+                        <a class="optionOFkakaotalk" href="#" onclick="snsLogin('K', 'I');">
+                            <span class="kakaotalk_icon  JoinBySNS">
+                                <img src="/img/login/kakaotalk_icon.png">
+                            </span>
+                            <span class="JoinUs-text">
+                                카카오 계정으로 회원가입
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    
+<script>
+	function snsLogin(type, action) {
+			$("#act").val(action);
+			if(type == 'N') {
+				naver_logout();
+			} else if(type == 'F') {
+				FB.getLoginStatus(function(response) {
+					if(response.status == 'connected' || response.status == 'not_authorized') {
+						FB.logout();
+					} else {
+						FB.login();
+					}
+				});
+				//FB.logout();
+			} else if(type == 'K') {
+				Kakao.Auth.logout(
+	                function(obj) {
+	                	openNewWindow("/kakao/login");
+	            	}
+	            );
+				
+			}
+		}
+	function openNewWindow(url) {
+		  var name = '_blank';
+		  var specs = 'menubar=no,status=no,toolbar=no, width=409, height=433';
+		  var newWindow = window.open(url, name, specs);
+		  newWindow.focus();
+		}
+		
+		function getReturnValue(returnValue) {
+			if(returnValue.id) {
+				if($("#act").val() == "I") {
+					$("#login").val(returnValue.id);
+					$("#type").val(returnValue.type);
+					$("#snslogin").submit();
+				} else {
+					snsCallback(returnValue.id, returnValue.type);
+				}
+			}
+		}
+		
+		function naver_logout() {
+			$("body").append("<iframe id='logoutframe' style='display: none;'></iframe>");
+			$("#logoutframe").attr("src", "http://nid.naver.com/nidlogin.logout");
+			setTimeout(function() {
+				openNewWindow("/naver/login");
+			}, 2000); // 2000ms(2초)가 경과하면 이 함수가 실행됩니다.
+		}
+</script>
+</body>
+</html>

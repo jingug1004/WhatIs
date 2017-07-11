@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns:fb="//ogp.me/ns/fb#">
+<head>
+    <meta charset="UTF-8">
+    <meta content="*" http-equiv="Access-Control-Allow-Origin">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="text/javascript" http-equiv="Content-Script-Type">
+    <meta content="text/css" http-equiv="Content-Style-Type">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <title>로그인 : 발그레</title>
+
+    <link href="/css/loginCommon.css" rel="stylesheet" type="text/css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/placeholders.jquery.js"></script>
+
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="/webjars/jquery-validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="//connect.facebook.net/ko_KR/all.js"></script>
+    <script>
+		window.fbAsyncInit = function() {
+		  		FB.init({
+			  		appId : '1918524211727467',
+			  		status : true,         // 로그인 상태를 확인
+			  		cookie : true,          // 쿠키허용
+			  		xfbml : true          // parse XFBML
+		  		});
+//pphxuudgke_1498718335@tfbnw.net
+//sumcr2016
+			FB.Event.subscribe('auth.login', function(response) {
+				if (response.status === 'connected') {
+		        	FB.api('/me', function(user) {
+		            	if (user) {
+		            		alert(user);
+		            		console.log(user);
+		            		/* $("#login").val(user.id);
+							$("#type").val("F");
+							$("#snslogin").submit(); */
+							
+		            	}
+		        	});
+		    	}
+	  		});
+
+			FB.Event.subscribe('auth.logout', function(response) {
+				FB.login();
+	  		});
+		}
+    </script>
+
+
+</head>
+
+<body style="background-color:#f0f0f0;">
+    <div class="layout-structure-content" id="layout-structure-content">
+        <div class="login_window_inner">
+            <div class="login_window_box">
+
+                <p class="text_under_header">
+                    <a href="/main"><img src="/img/login/balgeure_logo.png"></a>
+                </p>
+                <div class="login-title-txt">
+                    <span>화장품은 발그레에서</span>
+                </div>
+
+                <div class="login_form_onPage">
+                    <form id="Login_balgeure_form" class="Login_balgeure_form" method="post">
+
+                        <span id="msg_loginFail"></span>
+                        <div class="login-insert-Box">
+                            <div id="typingBox_id">
+                                <label for="username" class="loginform_username_input">
+                                    <span class="loginform_username_tit">이메일 (아이디)</span>
+                                    <input type="text" placeholder="이메일 (아이디)" id="username" name="username" class="balgeure_ID">
+                                </label>
+                            </div>
+                            <div id="typingBox_pw">
+                                <label for="password" class="loginform_password_input">
+                                    <span class="loginform_password_tit">비밀번호</span>
+                                    <input type="password" placeholder="비밀번호" id="password" name="password" class="balgeure_PW">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="typingBox_submitBTN">
+                            <div id="checkBox_login">
+                                <label class="checkbox_on_loginform" for="userCookie">
+                                    <input type="checkbox" name="useCookie" class="login_auto_checkbox">
+                                    <span class="autologintxt">자동 로그인</span>
+                                </label>
+                            </div>
+                            <div id="button_login">
+                                <button class="loginBtn" type="submit" value="login">로그인</button>
+                            </div>
+                        </div>
+
+                        
+                        <!-- <div class="label_info_txt">
+                            <label id="errormsg_ID" class="error" for="username" style="color:#fb4580;"></label>
+                            <label id="errormsg_PW" class="error" for="password" style="color:#fb4580;"></label>
+                            <span id="msg_loginFail"></span>
+                        </div> -->
+                    </form>
+                    <div class="Find_id_and_pw_register">
+                        <div class="btntxt_links">
+                            <a href="javascript:findId();" class="search-email-and-password find_balgeure_email">
+                                <span class="lookingForTxt finding-id">아이디 찾기</span>
+                            </a>
+                            <span class="right-side-bar">|</span>
+                            <a href="javascript:findPw();" class="search-email-and-password find_balgeure_password">
+                                <span class="lookingForTxt finding-pw">비밀번호 찾기</span>
+                            </a>
+                            <span class="right-side-bar">|</span>
+                            <a href="/mailJoinAgree" class="search-email-and-password join_balgeure_register">
+                                <span class="lookingForTxt joining-site">회원가입</span>
+                            </a>
+                        </div>
+
+                    </div>
+                    
+                            <div class="snslogin_buttons">
+                            
+                            <div class="text_of_snslogin">
+                            <p class="text_snslogin_tit">SNS 계정으로 간편하게 로그인하세요.</p>
+                            </div>
+                            
+
+                            <div class="simple-sns-login-method">
+                                <ul class="simple-login-SNS">
+                                    <li class="simple-login-SNS-list" id="naverLogin" style="cursor:pointer;" onclick="snsLogin('N');">
+                                        <img src="/img/login/naver_65.png"></a>
+                                    </li>
+
+                                    <li class="simple-login-SNS-list" id="facebookLogin" style="cursor:pointer;" onclick="snsLogin('F');">
+                                        <img src="/img/login/facebook_65.png"></span>
+                                    </li>
+                                    
+                                    <li class="simple-login-SNS-list" id="kakaoLogin" style="cursor:pointer;" onclick="snsLogin('K');">
+                                        <img src="/img/login/kakao_65.png"></span>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <script>
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/ko_KR/all.js";
+        ref.parentNode.insertBefore(js, ref);
+      }(document));
+
+     $(document).ready(function () {
+     	Kakao.init('71fb3c875e19ee24c57124b06f983a1a');
+     	$("#Login_balgeure_form").validate({
+    		rules: {
+    			username : {
+    				required : true
+    			},
+    			password : {
+    				required : true
+    			}
+    		},
+    		messages: {
+    			username: { required: "아이디를 입력하세요" },
+    			password: { required: "비밀번호를 입력하세요" }
+
+    		}, submitHandler: function(form) {
+    				login();
+    			   return false;
+    		}
+    	});
+     });
+	function login() {
+
+		 	       var login = $("#username").val();
+			       var type = $("#password").val();
+
+			       var formData = new FormData();
+
+			       formData.append("login", login);
+			       formData.append("type", type);
+
+			          $.ajax({
+			    	      type: "post",
+			    	      url: "/sns/login",
+			    	      data: formData,
+			    	      contentType: false,
+			    		  processData: false,
+			    		  success: function(data) {
+			    			   if (data == 'success') {
+			    		           location.href="/main";
+			    			   } else {
+			    				   $("#msg_loginFail").text("아이디 또는 비밀번호를 확인해 주세요.").show();
+			    			   }
+			    		   },
+			    		   error: function(request,status,error) {
+			    		       alert('아이디 또는 비밀번호를 확인해 주세요.');
+			    		   },
+			       });
+
+}
+    function findId() {
+    	window.open('/goFindId', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+    }
+    function findPw() {
+    	window.open('/goFindPw', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+    }
+    function pageChange() {
+    	window.opener.location.href="/regist";
+    	window.close();
+    }
+        </script>
+
+        <script>
+	function snsLogin(type) {
+		if(type == 'N') {
+			naver_logout();
+			// 파라미터로 N을 받으면 naver logut을 호출해서 로그인을 초기화 시킨다.
+		} else if(type == 'F') {
+			FB.getLoginStatus(function(response) {
+				if(response.status == 'connected' || response.status == 'not_authorized') {
+					FB.logout();
+				} else {
+					FB.login();
+				}
+			});
+			//FB.logout();
+		} else if(type == 'K') {
+			Kakao.Auth.logout(
+                function(obj) {
+                	openNewWindow("/kakao/login");
+            	}
+            );
+
+		}
+	}
+	function openNewWindow(url) {
+	  var name = '_blank';
+	  var specs = 'menubar=no,status=no,toolbar=no, width=500, height=500';
+	  var newWindow = window.open(url, name, specs);
+	  newWindow.focus();
+	}
+
+	function getReturnValue(returnValue) {
+		if(returnValue.id) {
+   			console.log(returnValue);
+			var Id = returnValue.id;
+			var Type = returnValue.type;
+			var NickName = returnValue.nickname;
+			var Email = returnValue.email;
+			var status = returnValue.status;
+			if(returnValue.status == '200') {
+				alert("반갑습니다." + NickName+"님");
+				location.href="/main";
+			} else {
+				location.href="/snsJoinAgree?Type="+Type+"&NickName="+NickName+"&Email="+Email+"&sns_id="+Id;
+			}
+		}
+	}
+	
+
+	function naver_logout() {
+		$("body").append("<iframe id='logoutframe' style='display: none;'></iframe>");
+		$("#logoutframe").attr("src", "http://nid.naver.com/nidlogin.logout");
+		setTimeout(function() {
+			openNewWindow("/naver/login");
+		}, 2000); // 2000ms(2초)가 경과하면 이 함수가 실행됩니다.
+	}
+        </script>
+
+
+
+
+</body>
+</html>

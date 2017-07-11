@@ -1,0 +1,99 @@
+#parse("/main/header.vm")
+<meta charset="UTF-8">
+<div class="layout-structure-content_POPUP">
+    <div class="Popup_login_window_inner">
+        <p class="text_under_header_POPUP">로그인</p>
+        <div class="login-popup-title-txt">
+        <span>화장품은 발그레에서</span>
+        </div>
+
+        <div class="login_form_onPopup">
+                 <form id="sky-form1" class="log-reg-block sky-form" method="post" action="loginPost">
+                <table class="login-insert-Box">
+                    <tr>
+                        <td id="typingBox_id">
+                                <div class="input-group-id">
+                                    <input type="text" placeholder="이메일 (아이디)" id="username" name="username" class="balgeure_ID">
+                                </div>
+                        </td>
+                        <td rowspan="2" id="Btn_login_submit">
+                            <div class="poplogin-submit-button">
+                                <button class="Pop_loginBtn" type="submit" value="login">로그인</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="typingBox_pw">
+                                <div class="Loginput-pw">
+                                    <input type="password" placeholder="비밀번호" id="password" name="password"
+                                           class="balgeure_PW">
+                                </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row margin-bottom-5">
+                    <div id="checkBox_poplogin">
+                        <label class="checkbox_on_loginform">
+                            <input type="checkbox" name="useCookie" class="login_auto_checkbox">
+                            <span class="autologintxt">자동 로그인</span>
+                        </label>
+                    </div>                     
+                    <div class="simple-sns-poplogin-method">
+                        <ul class="simple-poplogin-SNS">
+                        <li class="simple-poplogin-SNS-list" id="naverLogin" style="cursor:pointer;" onclick="snsLogin('N', 'I');">
+                                <img src="/img/login/naver_icon_sq.png" width="18"></a>
+                            </li>
+                            
+                            <li class="simple-poplogin-SNS-list" id="facebookLogin" style="cursor:pointer;" onclick="snsLogin('F', 'I');">
+                                <img src="/img/login/facebook_icon_sq.png" width="18"></span>
+                            </li> 
+                            <li class="simple-poplogin-SNS-list" id="kakaoLogin" style="cursor:pointer;" onclick="snsLogin('K', 'I');">
+                                <img src="/img/login/kakao_icon_sq.png" width="18"></span>
+                            </li>                           
+                            
+                        </ul>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="Find_id_and_pw_register">
+                <div class="btntxt_links">
+                    <a href="javascript:findId();" class="search-email-and-password find_balgeure_email"><span class="lookingForTxt finding-id">이메일(아이디) 찾기</span></a>
+                    <a href="javascript:findPw();" class="search-email-and-password find_balgeure_password"><span class="lookingForTxt finding-pw">비밀번호 찾기</span></a>
+                    <a href="/regist" class="search-email-and-password join_balgeure_register"><span class="lookingForTxt joining-site">회원가입</span></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    #parse("/main/footer.vm")
+</div>
+<script>
+     $(document).ready(function () {
+     	$("#sky-form1").validate({
+    		rules: {
+    			username : {
+    				required : true
+    			},
+    			password : {
+    				required : true
+    			}
+    		},
+    		messages: {
+    			username: { required: "아이디를 입력하세요" },
+    			password: { required: "비밀번호를 입력하세요" }
+    		}
+    	});
+     });
+
+    function findId() {
+    	window.open('/goFindId', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+    }
+    function findPw() {
+    	window.open('/goFindPw', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+    }
+</script>
+</body>
+</html>

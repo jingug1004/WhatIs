@@ -1,0 +1,57 @@
+#parse ("/main/header.vm")
+<meta charset="utf-8">
+
+<link type="text/css" href="/css/faq/faq.css" rel="stylesheet" />
+
+
+<div class="cs_contents">
+    <div class="csPage_Header">
+        <h1>발그레 고객센터</h1>
+        <div class="search_area">
+            <div class="search_formBox">
+                <h3 class="tit">자주묻는 질문 검색</h3>
+                <input type="text" name="searchFAQ" placeholder="검색어를 입력하세요." />
+                <i class="btn_search"><button type="submit">검색</button></i>
+            </div>
+            <div class="one_qna">
+                <h3 class="tit">1:1 문의</h3>
+                <p>궁금하신 사항은 언제든지 문의주세요.</p>
+                <div class="btns_qna">
+                    #if($login)
+                    <a href="/my/qna" class="btn_blu">문의하기</a>
+                    <a href="/my/qnaList" target="_blank" class="btn_wht">내역조회</a>
+                    #else
+                    <a href="javascript:openLogin();">
+                        <input type="button" href="/my/qna" class="btn_blu_b" value="문의하기">
+                        <input type="button" href="/my/qnaList" target="_blank" class="btn_wht_b" value="내역조회">
+                    </a>
+                    #end
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notice_area">
+        <h3 class="tit">공지사항</h3>
+    </div>
+    <div class="callcenter_area">
+        <ul>
+            <li class="mailtosum">
+                <a href="/contactUs">
+                    <span class="stit">입점.제휴문의</span><br />
+                    <span>발그레 입점/제휴문의 메일을 통해 문의하시면<br />빠른 시일내에 답변해 드리겠습니다.</span><span class="mailicon"><img src="/img/mail_sum.gif" /></span>
+                </a>
+            </li>
+            <li class="cs_number">
+                <span class="stit">발그레 고객센터</span>
+                <span class="no_phone">070-7703-0859</span><br />
+                <span>평일 (월 ~ 금) 오전 9:00 ~ 18:00<br />주말&amp;공휴일 휴무</span>
+                <span class="callicon"><img src="/img/call_sum.gif" /></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="/js/common/jquery-3.1.1.min.js"></script>
+
+
+#parse("/main/footer.vm")

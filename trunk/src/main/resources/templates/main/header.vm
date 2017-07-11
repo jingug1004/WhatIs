@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>싸게샀다, 발그레 ~</title>
+
+    <meta name="application-name" content="발그레" />
+    <meta name="msapplication-tooltip" content="싸게샀다 발그레에서 ~" />
+    <meta name="msapplication-starturl" content="http://www.naver.com/" />
+    <meta name="msapplication-task" content="name=베스트 상품;ac브랜드tion-uri=/shop/best;icon-uri=/img/favicon.ico" />
+    <meta name="msapplication-task" content="name=신규등록 상품;action-uri=/shop/new;icon-uri=/img/favicon.ico" />
+    <meta name="msapplication-task" content="name=한정특가 상품;action-uri=/shop/1121;icon-uri=/img/favicon.ico" />
+    <meta name="msapplication-task" content="name=기획전;action-uri=/promotion;icon-uri=/img/favicon.ico" />
+    <meta name="msapplication-task" content="name=브랜드관;action-uri=/shop/brands;icon-uri=/img/favicon.ico" />
+    <meta name="msapplication-task" content="name=스킨케어;action-uri=/shop/skincare;icon-uri=/img/favicon.ico" />
+    <meta name="description" content="화장품을 착하게 구매하는 방법 뷰티커머스 발그레에서 ~">
+    <link rel="canonical" href="http://www.발그레.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="발그레">
+    <meta property="og:description" content="화장품을 착하게 구매하는 방법 뷰티커머스 발그레에서 ~">
+    <meta property="og:image" content="http://www.발그레.com/img/main/mainBanner01.png">
+    <meta property="og:url" content="http://www.발그레.com">
+
+    <meta name="naver-site-verification" content="2df5fc0398783724ea39deb4b659f28db34df0f8" />
+
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/mainCommon.css">
+
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+    <!-- login dim-layer css start -->
+    <link rel="stylesheet" type="text/css" href="/css/auth/login-popup-layer.css">
+    <!-- login dim-layer css end -->
+    <!-- brand css start-->
+    <link rel="stylesheet" type="text/css" href="/css/header/brand.css">
+    <!-- brand css end -->
+    <style>
+        .bx-wrapper .bx-viewport {
+            border: 0px;
+            bb;
+            /*left: -5px;*/
+        }
+    </style>
+    <link type="text/css" href="/css/myPage/searchBar.css" rel="stylesheet" />
+    ##    productDetail CSS
+    <link type="text/css" href="/css/product/shop.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/deal_add.css">
+    <link type="text/css" href="/css/product/home.css" rel="stylesheet" />
+    <link type="text/css" href="/css/product/review.css" rel="stylesheet" />
+    <link type="text/css" href="/css/product/lightbox.css" rel="stylesheet" />
+    <link type="text/css" href="/css/product/bootstrap.carousel.css" rel="stylesheet" />
+    ## productDetail Modal popup
+
+    <link rel="stylesheet" type="text/css" href="/css/mainCommon.css">
+
+    ## 메인 메뉴의 메인 배너 효과
+    <link rel="stylesheet" href="/css/main/accordly.css">
+    <link rel="stylesheet" href="/css/main/slidy.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/header/index.css" />
+
+    <link href="/css/loginCommon.css" rel="stylesheet" type="text/css">
+
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery-validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="//connect.facebook.net/ko_KR/all.js"></script>
+    <script>
+		window.fbAsyncInit = function() {
+		  		FB.init({
+			  		appId : '1918524211727467', // 앱 ID
+			  		status : true,         // 로그인 상태를 확인
+			  		cookie : true,          // 쿠키허용
+			  		xfbml : true          // parse XFBML
+		  		});
+
+			FB.Event.subscribe('auth.login', function(response) {
+				if (response.status === 'connected') {
+		        	FB.api('/me', function(user) {
+		            	if (user) {
+		            		if($("#act").val() == "I") {
+			            		$("#login").val(user.id);
+								$("#type").val("F");
+								$("#snslogin").submit();
+		            		} else {
+		            			snsCallback(user.id, 'F');
+		            		}
+		            	}
+		        	});
+		    	}
+	  		});
+
+
+			FB.Event.subscribe('auth.logout', function(response) {
+				FB.login();
+	  		});
+		}
+        $(function() {
+            if('$!request.getRequestURI()' == '/main' || '$!request.getRequestURI()' == '/' || '$!request.getRequestURI()' == '') {
+                $('.fixCategory').css('display','block');
+            }
+        });
+    </script>
+    
+    <script>
+    $(function(){
+        $('.b_nav ul li a').on('click',function(e){
+            e.preventDefault();
+            var idx = $(this).index();
+            $(this).eq(idx).children().addClass('on').parent().siblings().children().removeClass('on');
+           var top = $(this.hash).position().top;
+           $('.b_content').animate({
+               scrollTop:top
+           },600)
+        });
+        $('.b_content').scroll(function(){
+            var scroll_t = $(this).scrollTop();
+            /*console.log(scroll_t);*/
+            $('.b_last>div').each(function(){
+                var top = $(this).position().top;
+                var elem = $('.b_content');
+                if(scroll_t >= top){
+                    var idx = $(this).index();
+                    $('.b_nav ul li').eq(idx).children().addClass('on').parent().siblings().children().removeClass('on');
+                } else if(elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+                    /*$('.last').addClass('on');*/
+                    $(this).parent().parent().siblings('.b_nav').children().children('.last').children().addClass('on').parent().siblings().children().removeClass('on');
+                }
+            });
+        });
+    })
+    </script>
+
+</head>
+
+<body ondragstart="return false">
+    <input type="hidden" id="act" value="I" />
+    #set($category = $!request.getSession().getAttribute("categoryList"))
+
+    ## 메인 최상단 배너
+    <div id="wrap">
+        <div class="Topbanner_Top">
+            <div class="row">
+                <div class="image_one" onclick="goTopDetail(1);" style="cursor:pointer;">
+                    <img src="/img/header/topbanner_img.png">
+                </div>
+            </div>
+
+        </div>
+        <div class="btn_close" style="display:none;">
+            <input type="checkbox" id="top_check" />
+            <label for="top_check">1일간 열지 않음</label>
+
+        </div>
+    </div>
+    <div id="wrap">
+
+        <!-- u_skip -->
+        <div id="u_skip">
+        </div>
+        <!-- //u_skip -->
+
+        <div id="balgeure_header">
+            <div id="header_v2">
+                <div class="gnbTop">
+                    <ul>
+                        <li class="ask_to_enter_balgeure">
+                            <a class="link oF" href="/contactUs">
+                                <span class="email_to_sumIcon fL"></span>
+                                <span class="email_sum_txt fL">입점문의</span>
+                            </a>
+                        </li>
+                        <li>
+                            <span class="bar">|</span>
+                        </li>
+                        <li class="appDown">
+                            <a class="link oF" href="/sns/appDown">
+                                <span class="appDownIcon fL"></span>
+                                <span class="appText fL">APP 다운로드</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="link_text_onRightside_top">
+                        <ul class="gnbTopRight fR">
+                            <li class="go_to_loginpage">
+                                #if($login)
+                                <a class="navi logoutBtn" href="/logout">
+                                    <span class="dP fL">로그아웃</span>
+                                </a>
+                                #else
+                                <a href="/login" class="navi loginpage">
+                                    <span class="dP fL">로그인</span>
+                                </a>
+                                #end
+                            </li>
+                            <li class="balgeure_join_page">
+                                <span class="gnbTopRight_bar">|</span>
+                                #if($login)
+                                <span class="navi logintxt">$!request.getSession().getAttribute("user").name님!</span>
+                                #else
+                                <a href="/howToJoin" class="navi joinUS">
+                                    <span class="dP fL">회원가입</span>
+                                </a>
+                                #end
+                            </li>
+                            <li class="balgeure_mypage">
+                                <span class="gnbTopRight_bar">|</span>
+                                <a href="/my/index" class="navi balgeuremypage">
+                                    <span class="dP fL">마이페이지</span>
+                                </a>
+                            </li>
+                            <li class="balgeure_mypage">
+                                <span class="gnbTopRight_bar">|</span>
+                                <a href="/notice?page=0" class="navi balgeuremypage">
+                                    <span class="dP fL">공지사항</span>
+                                </a>
+                            </li>
+                            <li class="hover2">
+                                <span class="gnbTopRight_bar">|</span>
+                                <a class="navi CScenter_page" href="/cs/faq">
+                                    <span class="fL">고객센터</span>
+                                </a>
+                            </li>
+                            <li class="hover2">
+                                <span class="gnbTopRight_bar">|</span>
+                                <a class="navi CScenter_page" href="/basketList">
+                                    <span class="fL">장바구니</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div><!--myMenu-->
+
+                <div class="gnbLogoOuter">
+                    <div class="gnbLogo mA">
+                        <a class="balgeureLogo fL" href="/main">
+                            <img src="/img/login/balgeure_logo.png">
+
+                            <!-- <h1>발그레</h1>
+                            -->
+                        </a>
+                        <div class="newSearchWrap" id="searchInputBox">
+                            <div class="searchBar-wrap">
+                                <div class="searchBar-inputBox-wrap">
+                                    <form id="searchForm" class="searchBar-inputBox" method="get" action="/product/search">
+                                        <label class="searchBar-inputBox-label">
+                                            <span class="searchBar-inputBox-text">search bar</span>
+                                            <input id="search" class="searchBox ui-autocomplete-input searchBar-inputBox-input"
+                                                   type="text" name="search" placeholder="" value="$!{search}">
+                                            <span class="searchBar-inputBox-reset" id="sb-q-rm" style="display: block;"></span>
+                                        </label>
+                                        <input type="submit" class="iconSearch searchBar-inputBox-submit" id="searchBtn" value="검색">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="rightside_banner_searchbar">
+                        <div class="minibanner_rightside">
+                        <img src="/img/header/rightside_img01.png">
+                        </div>
+                        </div> -->
+                        
+                        <!--  <div class="topRollingBannerWrap fR" data-components-data="2">
+                              <ul class="right_side_gnb_menu">
+                                  #if($login)
+                                  <li class="my_cart_page">
+                                      <div id="MyCart_icon_header">
+                                          <a href="/basketList">
+                                              <span class="quantity-txt" id="basket_count">0</span>
+                                              <span class="dP fL Right_txt">장바구니</span>
+                                          </a>
+                                      </div>
+                                  </li>
+                                  #else
+                                  <li class="my_cart_page">
+                                      <div id="MyCart_icon_header">
+                                          <a href="/login">
+                                              <span class="quantity-txt" id="basket_count">0</span>
+                                              <span class="dP fL Right_txt">장바구니</span>
+                                          </a>
+                                      </div>
+                                  </li>
+                                  #end
+                                  #if($login)
+                                  <li class="my_wishlist_page">
+                                      <div id="MyWishlist_icon_header">
+                                          <a href="/my/wishList">
+                                              <span class="quantity-txt" id="wish_count">0</span>
+                                              <span class="dP fL Right_txt">찜리스트</span>
+                                          </a>
+                                      </div>
+                                  </li>
+                                  #else
+                                  <li class="my_wishlist_page">
+                                      <div id="MyWishlist_icon_header">
+                                          <a href="/login">
+                                              <span class="quantity-txt" id="wish_count">0</span>
+                                              <span class="dP fL Right_txt">찜리스트</span>
+                                          </a>
+                                      </div>
+                                  </li>
+                                  #end
+                                  #if($login)
+                                  <li class="memberlogin_icons">
+                                      <div id="balgeure_member_login_btn">
+                                          <div class="Bal_member_info">
+                                              <span class="logintxt">$!request.getSession().getAttribute("user").name님!</span>
+                                              <a class="navi mypageBtn" href="/logout">
+                                                  <span class="mypagetxt">로그아웃</span>
+                                              </a>
+                                          </div>
+                                      </div>
+                                  </li>
+                                  #else
+                                  <li class="memberlogin_icons">
+                                      <div id="balgeure_member_login_btn">
+                                          <div class="Bal_member_info">
+                                              <a href="/login" class="btn-example">로그인</a>
+                                              <a class="navi mypageBtn" href="/howToJoin">
+                                                  <span class="mypagetxt">회원가입</span>
+                                              </a>
+                                          </div>
+                                      </div>
+
+                                  </li>
+                                  #end
+                              </ul>
+                          </div>  -->
+                    </div>
+                </div>
+
+                <!-- S : NEW GNB -->
+                <div class="gnbOuter">
+                    <div class="newGnb mA">
+                        <h2 class="hidden">글로벌 네비게이션 영역</h2>
+                        <h3 class="categoryWrap dP fL">
+                            <a class="category" ga-event="menu,menu_total">
+                                <span class="categoryText dp fL">전체 카테고리</span>
+                                <span class="categoryIcon_02 dp fR" id="categoryIcon"></span>
+                            </a>
+
+
+                            <!--고정 카테고리-->
+
+                            <div class="fixCategory" style="display:none;">
+                                #foreach($Category in $category)
+                                #set($dd2 = $Category.lv2_id)
+                                <ul>
+                                    #if($dd != $Category.lv2_id)
+                                    <li class="fix_li">
+
+                                        <a href="/categoryDetail?parent=0&menu_id=$Category.lv2_id&sort=1" ga-event="menu_total,menu_메이크업" segment-event="Nav Clicked"
+                                           data-nav-type="Global Navigation">$Category.lv2</a>
+                                        #end
+                                        <!--마우스 오버 펼쳐짐-->
+                                        <div class="fixCategory_side">
+                                            <div class="fixCategory_side_inner">
+                                                <ul>
+                                                    #foreach($Category in $category)
+                                                    #if($dd2 == $Category.lv2_id)
+                                                    <li>
+                                                        <a href="/categoryDetail?parent=0&menu_id=$Category.lv3_id&sort=1" ga-event="menu_total,menu_페이스"
+                                                           segment-event="Nav Clicked" data-nav-type="Global Navigation">
+                                                            $Category.lv3
+                                                        </a>
+                                                    </li>
+                                                    #end
+                                                    #end
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                                #set($dd = $Category.lv2_id)
+                                #end
+                                <div class="bar"></div>
+                            </div>
+
+                            <!--end fixCategory------------------------------------>
+                            <!--전체카테고리 클릭하면 펼침-->
+
+                            <div class="lnbOver all" id="lnbOver">
+                                <div class="bg">
+                                    <div class="category-block">
+                                        #foreach($Category in $category)
+                                        #set($dd2 = $Category.lv2_id)
+                                        #if($dd != $Category.lv2_id)
+                                        <div class="category-block-content">
+                                            <strong class="category-content-tit">
+                                                <a href="/categoryDetail?parent=0&menu_id=$Category.lv2_id&sort=1" class="category-tit-item" ga-event="menu_total,menu_메이크업" segment-event="Nav Clicked" data-nav-type="Global Navigation">
+                                                    $Category.lv2
+                                                </a>
+                                            </strong>
+                                            <div class="category-content-desc top">
+                                                <ul class="category-desc-list">
+                                                    #foreach($Category in $category)
+                                                    #if($dd2 == $Category.lv2_id)
+                                                    <li class="category-list-block">
+                                                        <a href="/categoryDetail?parent=0&menu_id=$Category.lv3_id&sort=1" class="category-list-item" ga-event="menu_total,menu_페이스" segment-event="Nav Clicked" data-nav-type="Global Navigation">
+                                                            <span class="category-list-text">$Category.lv3</span>
+                                                        </a>
+                                                    </li>
+                                                    #end
+                                                    #end
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        #end
+                                        #set($dd = $Category.lv2_id)
+                                        #end
+
+                                    </div>
+                                </div>
+                                <span class="lnbClose"></span>
+                            </div>
+
+
+
+
+                        </h3>
+                        <ul class="gnbUl dP fL">
+
+                            <li class="newGnbTab">
+                                <h3>
+                                    <a class="mainMenu" href="/bg/timeSale">
+                                        우주최저가
+                                    </a>
+                                </h3>
+                            </li>
+
+                            <li class="newGnbTab">
+                                <h3>
+                                    <a class="mainMenu" href="/bestProduct">
+                                        베스트
+                                    </a>
+                                </h3>
+                            </li>
+
+                            <li class="newGnbTab">
+                                <h3>
+                                    <a class="mainMenu" href="/plan">
+                                        기획전
+                                    </a>
+                                </h3>
+                            </li>
+
+                            <!--    <li class="newGnbTab">
+                                        <h3>
+                                            <a class="mainMenu" segment-event="Nav Clicked" segment-event-ex="Main Tab Clicked"
+                                               href="/bg/box" ga-event="menu,menu_special"
+                                               data-nav-type="Global Navigation">
+                                                발그레박스
+                                            </a>
+                                        </h3>
+                                    </li>     -->
+
+                            <li class="newGnbTab">
+                                <h3>
+                                    <a class="mainMenu" segment-event="Nav Clicked" segment-event-ex="Main Tab Clicked"
+                                       href="/bg/new" ga-event="menu,menu_new" data-nav-type="Global Navigation">
+                                        NEW
+                                    </a>
+                                </h3>
+                            </li>
+
+                            <li class="newGnbTab">
+                                <h3>
+                                    <a class="mainMenu" segment-event="Nav Clicked" segment-event-ex="Main Tab Clicked"
+                                       href="/broadCast" ga-event="menu,menu_new" data-nav-type="Global Navigation">
+                                        홈쇼핑
+                                    </a>
+                                </h3>
+                            </li>
+
+                            <li class="newGnbTab">
+                                <h3>
+                                    <a class="mainMenu" segment-event="Nav Clicked" segment-event-ex="Main Tab Clicked"
+                                       href="/event/list" ga-event="menu,menu_new" data-nav-type="Global Navigation">
+                                        이벤트/쿠폰
+                                    </a>
+                                </h3>
+                            </li>
+                            
+                            
+                            <li class="newGnbTab">
+                                <h3>
+                                    <a class="mainMenu" segment-event="Nav Clicked" segment-event-ex="Main Tab Clicked"
+                                       href="/categoryDetail?parent=0&menu_id=105&sort=1" ga-event="menu,menu_new" data-nav-type="Global Navigation">
+                                        사은품 증정
+                                    </a>
+                                </h3>
+                            </li>
+
+                            <!-- <li class="newGnbTab hover">
+                                <a class="mainMenu" href="/event/brand">브랜드관</a>
+
+                                <div class="brand">
+                                    <div class="b_nav">
+                                        <ul>
+                                            <li class="nav_list_head">
+                                                <a href="#b_0" class="on">ㄱ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_1">ㄴ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_2">ㄷ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_3">ㄹ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_4">ㅁ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_5">ㅂ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_6">ㅅ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_7">ㅇ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_8">ㅈ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_9">ㅊ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_10">ㅋ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_11">ㅌ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_12">ㅍ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_13">ㅎ</a>
+                                            </li>
+                                            <li class="nav_list_head">
+                                                <a href="#b_14">A-Z</a>
+                                            </li>
+                                            <li class="nav_list_head last">
+                                                <a href="#b_15">기타</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="b_content">
+                                        <div class="b_last">
+                                            <div id="b_0" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">가</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_1" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">나우비</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_2" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">드보세르</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">디바인 보떼</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">디오넬</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">땡큐파머</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_3" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">럭시멈</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">렛헐메이크오버</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">루벨리</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_4" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">말마</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">멀블리스</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">메인코</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">몬스토리</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">미애수</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_5" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">뷰솔</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_6" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">셀킨</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">숲에서온</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">신데렐라JP</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_7" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">아라샵</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">아발론</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">위첼</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">이너프</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_8" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">자</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_9" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">차</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_10" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">캐비올</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">키엘리</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_11" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">트루노트</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_12" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">포고니아</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">퐁당</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">퓨어덤</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">퓨어젠</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">프라이빗21</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">프레티</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">프린시크</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">플라리아</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_13" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">한스오가닉</a>
+                                                    </li>
+                                                    <li class="company_name_list">
+                                                        <a href="#">해리나</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_14" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">SKINATURE</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div id="b_15" class="brand_alphabet">
+                                                <ul>
+                                                    <li class="company_name_list">
+                                                        <a href="#">㈜숨크리에이티브</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li> -->
+
+                            <!-- 브랜드관 영역 종료 -->
+
+
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <form id="snslogin" method="post" action="/sns/login">
+            <input type="hidden" name="login" id="login" />
+            <input type="hidden" name="type" id="type" />
+        </form>
+        <!-- find id jquery start -->
+        <script>
+        $(function() {
+        	$("#findId").on('click', function() {
+        		window.open('/goFindId', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
+        	});
+        });
+        </script>
+
+        <script>
+(function () {
+    $('.category').click(function () {
+        $('#lnbOver').toggle();
+        var categoryStatus = $('#lnbOver').css('display');
+        if (categoryStatus === 'block') {
+            $('#categoryIcon').attr('class', 'categoryIcon_02 wide dp fR');
+            return false;
+        }
+        $('#categoryIcon').attr('class', 'categoryIcon_02 dp fR');
+    });
+
+    $('.lnbClose').click(function () {
+        $('#lnbOver').toggle();
+        $('#categoryIcon').attr('class', 'categoryIcon_02 dp fR');
+    });
+
+    $(".sub_balgeure_member_login").hide();
+    $(".memberlogin_icons, .Bal_member_info, .sub_balgeure_member_login").mousemove(function () {
+        $(".sub_balgeure_member_login").css("display","block");
+    });
+    $(".sub_balgeure_member_login").mouseout(function () {
+        $(".sub_balgeure_member_login").css("display","none");
+    });;
+
+})();
+        </script>
+
+
+        <script>
+        // Load the SDK Asynchronously
+        (function(d){
+           var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/ko_KR/all.js";
+           ref.parentNode.insertBefore(js, ref);
+         }(document));
+        $(document).ready(function () {
+
+        	Kakao.init('71fb3c875e19ee24c57124b06f983a1a');
+        });
+
+/*        $(window).bind("pageshow", function (event) {
+        	getHeaderInfo();
+        });*/
+
+        function getHeaderInfo() {
+        	#if($login)
+        		$.ajax({
+    		    	url: "/header_info",
+    				contentType: "application/json",
+    		    	type: 'GET',
+    		    	success: function(result){
+    		    		$("#wish_count").text(result.wishlist.wishList.length);
+    		    		var cnt = 0;
+    		    		$.each( result.basketList.basketList, function( index, value ){
+    		    			$.each(value, function(idx, val) {
+    		    				cnt += val.length;
+    		    			});
+
+    		    		});
+    		    		$("#basket_count").text(cnt);
+    		    	},
+    	    		error: function(e){
+    	    			$("#wish_count").text(0);
+    	    			$("#basket_count").text(0);
+    	    		}
+    	    	});
+        	#else
+        		$("#wish_count").text(0);
+				$("#basket_count").text(0);
+			#end
+        }
+        </script>
+
+        <script>
+		/* function openLogin() {
+			window.open('/loginPop', 'idPopup', 'left=500, top=100, width=409, height=433, scrollbars=0, toolbar=0, location=no');
+		} */
+
+		function snsLogin(type, action) {
+			$("#act").val(action);
+			if(type == 'N') {
+				naver_logout();
+			} else if(type == 'F') {
+				FB.getLoginStatus(function(response) {
+					if(response.status == 'connected' || response.status == 'not_authorized') {
+						FB.logout();
+					} else {
+						FB.login();
+					}
+				});
+				//FB.logout();
+			} else if(type == 'K') {
+				Kakao.Auth.logout(
+	                function(obj) {
+	                	openNewWindow("/kakao/login");
+	            	}
+	            );
+
+			}
+		}
+		function openNewWindow(url) {
+		  var name = '_blank';
+		  var specs = 'menubar=no,status=no,toolbar=no, width=409, height=433';
+		  var newWindow = window.open(url, name, specs);
+		  newWindow.focus();
+		}
+
+		function getReturnValue(returnValue) {
+			if(returnValue.id) {
+				if($("#act").val() == "I") {
+
+				} else {
+					snsCallback(returnValue.id, returnValue.type);
+				}
+			}
+		}
+
+		function naver_logout() {
+			$("body").append("<iframe id='logoutframe' style='display: none;'></iframe>");
+			$("#logoutframe").attr("src", "http://nid.naver.com/nidlogin.logout");
+			setTimeout(function() {
+				openNewWindow("/naver/login");
+			}, 2000); // 2000ms(2초)가 경과하면 이 함수가 실행됩니다.
+		}
+
+		function videoOpen() {
+			window.open('/video/svideo', 'idPopup', 'left=500, top=100, width=660, height=380,resizable=no, scrollbars=0, toolbar=0, location=no');
+		}
+
+		function goTopDetail(pos) {
+			if(pos == 1) {
+				location.href="";
+			} else if(pos == 2) {
+				location.href="/detail?product_id=124";
+			} else if(pos == 3) {
+				location.href="/detail?product_id=231";
+			}
+		}
+
+        </script>

@@ -1,0 +1,142 @@
+form input,form button,form textarea,form div.selectOrder,form div.orderList{border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px}
+
+.mypageRightContents input[type="text"]{
+	line-height:3;
+}
+
+
+
+div.FormBox{
+	width:838px;
+	margin-top:30px;
+}
+
+div.FormBox p.title{
+	padding-bottom:5px;
+	font-weight:600;
+	border-bottom:1px solid #000;
+	font-size:15px;
+	letter-spacing:-1px;	
+	}
+div.FormBox p.title .faqBtn{position:absolute;top:0;right:0;display:block;width:90px;height:22px;background:url("/web/images/myPage/myPage20160303.png") -70px -740px}
+
+div.FormBox table{
+	width:838px;
+}
+
+div.FormBox table th,div.FormBox table td{
+	padding:10px 0;
+	border-bottom:1px solid #e9e9e9;
+	font-size:13px;
+}
+
+div.FormBox table th{
+	background:#fcfcfc;
+	border-right:1px solid #e9e9e9;
+	font-weight: 500;
+	text-align:center;}
+div.FormBox table td{padding-left:14px}
+
+div.FormBox input,div.FormBox select{
+	height:35px;
+	border:1px solid #e9e9e9;
+	font-size:12px;
+}
+
+div.inquiryUser input{width:300px}
+div.inquiryUser input.tel{width:41px}
+
+
+div.inquiryCategory select{width:300px}
+
+
+div.inquiryContents input,div.inquiryContents textarea{width:678px}
+div.inquiryContents .contentsGuide{padding:7px 0 18px 7px}
+div.inquiryContents textarea{padding:6px 0 0 6px;height:230px;border:1px solid #d8d8d8}
+button.inquiryBtn{display:block;width:161px;height:46px;background:#383838;color:#fff;font-weight:normal;border:0;margin:50px auto;font-size:15px}
+button.x{width:8px;height:7px;background:url("/web/images/myPage/myPage20160303.png") -240px -10px;border:0;margin-left:5px;margin-right:5px}
+div.listHead{width:780px;overflow:hidden}
+div.listHead strong{font-size:15px}
+div.listHead div.period{width:285px}
+div.listHead a.last{margin-right:0}
+table.viewTable{width:780px;border-top:1px solid #000}
+table.viewTable th,table.viewTable td{padding:16px 0;text-align:center;border-bottom:1px solid #e4e4e4;font-size:13px}
+table.viewTable th{background:#f7f7f7;font-weight:bold}
+table.viewTable td{border-right:1px solid #e4e4e4}
+table.viewTable td.noInquiry{height:187px;text-align:center}
+table.viewTable td.last{border-right:0;font-weight:bold}
+table.viewTable td.type{font-weight:bold}
+table.viewTable .title{padding-left:15px;padding-right:15px;text-align:left}
+table.viewTable .title p{width:370px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+div.aViewWrap{width:730px;height:670px}
+div.aViewWrap p.title{width:706px;height:40px;padding:13px 0 0 24px;background:#3d3d3d;color:#fff;font-size:18px;position:relative}
+div.aViewWrap button.close{
+	position:absolute;top:14px;right:8px;width:26px;height:23px;
+	padding-top:2px;color:#fff;background:transparent;border:0;font-size:20px;
+	font-family:sans-serif
+}
+div.aViewWrap .inquiryViewCancel{
+	float:right;display:inline-block;height:20px;*display:inline;*zoom:1;padding:0 7px;
+	background:#fff;border:0;border:1px solid #bebebe;-webkit-border-radius:2px;
+	-moz-border-radius:2px;border-radius:2px;-moz-background-clip:padding;
+	-webkit-background-clip:padding-box;background-clip:padding-box;
+	font-size:13px;line-height:20px
+}
+div.aViewWrap table td.last,div.aViewWrap table th.last{border-right:0}
+div.aViewWrap div.contentsWrap{width:662px;padding:34px}
+div.aViewWrap th,div.aViewWrap td{padding:12px}
+div.aViewWrap .qTable{width:662px;border-top:1px solid #e4e4e4}
+div.aViewWrap .qTable th{background:#f7f7f7}
+div.aViewWrap .qTable th,div.aViewWrap .qTable td{border-bottom:1px solid #e4e4e4;border-right:1px solid #e4e4e4}
+div.aViewWrap .qTable .question{height:76px}
+div.aViewWrap .qTable div.textBox{max-height:76px;overflow:auto;overflow-x:hidden}
+div.aViewWrap .aTable{width:662px;margin-top:30px}
+div.aViewWrap .aTable th{background:#333;color:#fff}
+div.aViewWrap .aTable th span{color:#ff5073}
+div.aViewWrap .aTable td{border-bottom:1px solid #e4e4e4;border-right:1px solid #e4e4e4}
+div.aViewWrap .aTable .answer{height:110px}
+div.aViewWrap .aTable div.textBox{white-space:pre-wrap;max-height:110px;overflow:auto;overflow-x:hidden}
+div.aViewWrap button.ok{
+	display:block;width:89px;height:33px;
+	margin:30px auto;border-radius:2px;-webkit-border-radius:2px;
+	-moz-border-radius:2px;border:1px solid #666;background:#fff;font-weight:bold;font-size:15px
+}
+
+
+.SendEmailBtn{
+	float: right;
+    margin-top: 20px;
+    color: #fb4580;
+    padding: 8px 20px;
+    border: 2px solid #ff7391;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.SendEmailBtn:hover{
+    background-color: #fb4580;
+    border: 2px solid #fb4580;
+    color:#fff;
+    font-weight: 500;
+}
+
+#qnaClass1{
+	width: 687px;
+}
+
+textarea::-webkit-input-placeholder { /* WebKit browsers */
+    color:#555;
+    font-size: 12px;
+}
+textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#555;
+    font-size: 12px;
+}
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#555;
+    font-size: 12px;
+}
+textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:#555;
+    font-size: 12px;
+}

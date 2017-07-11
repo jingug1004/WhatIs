@@ -1,0 +1,100 @@
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+.hover {
+	position: relative;
+}
+
+.hover:hover .brand {
+	display: block;
+}
+/*.hover:hover>a{color:fuchsia;}*/
+.hover>a {
+	display: block;
+}
+
+.brand {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 230px;
+	overflow: hidden;
+	border: 1px solid #e1e1e1;
+	display: none;
+	height: 509px;
+	background-color: #fff;
+}
+
+.brand>div {
+	float: left;
+}
+
+.b_nav {
+	width: 39px;
+	border-right: 1px solid #e1e1e1;
+	height: 509px;	
+    background: #f5f5f5;
+}
+
+.b_nav .nav_list_head{
+	float: none !important;
+}
+
+.b_nav li{
+	list-type:none;
+}
+
+.b_nav li a {
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	color: #aaa;
+}
+
+.b_nav li a:hover {
+	color: #ff7391 !important;
+}
+
+.b_nav li a.on {
+	color: #ff7391 !important;
+}
+
+.b_content {
+	width: 190px;
+    height: 509px;
+	overflow: auto;
+}
+
+.b_last {
+	position: relative;
+	padding: 5px;
+}
+
+.b_last li{
+	float: none !important;
+}
+
+.brand_alphabet {
+	position: relative;
+	margin-bottom: 5px;
+	padding: 14px 0 3px;
+}
+
+.company_name_list a {
+	display: block;
+	font-size: 12px;
+	line-height: 24px;
+    padding: 6px 20px 5px;
+    text-decoration: none;
+	
+	
+}
+
+.b_last>div ul li a:hover {
+	color: #ff7391 !important;
+}

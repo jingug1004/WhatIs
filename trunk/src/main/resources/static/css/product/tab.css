@@ -1,0 +1,121 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+}
+
+.list-wrap li {
+	display: list-item;
+}
+
+.slide-v {
+	overflow: hidden;
+    height: 246px;
+    padding: 0 16px 0 29px;
+    margin: 36px 0 50px;
+    border: 7px solid #ececec;
+}
+
+.slide-v:after {
+	clear: both;
+	display: block;
+	content: ""
+}
+
+.slide-v .tab {
+	float: left;
+}
+
+.slide-v .tab .changeTitle{
+	padding-top:0;
+}
+
+.slide-v .tab li a {
+	color: #333;
+	text-decoration: none;
+	padding: 7px 20px 8px 20px;
+	margin: 2px 0;
+	display: block;
+    width: 187px;
+    height: 30px;
+    font-weight: 600;
+
+}
+
+.slide-v .tab li a span{
+	font-family: '³ª´®°íµñ', NanumGothicBold, NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+    font-size: 15px;
+    padding-top: 5px;
+    display: inline-block;
+}
+
+
+.slide-v .tab li.is-selected a {
+	color: #333;
+	font-weight: 600;
+	width: 130px;
+}
+
+.slide-v .tab li.is-selected a .selectedIcon{
+    background: url(/img/balgeure_icons.png) no-repeat -499px -337px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+    left: 150px;
+}
+
+.slide-v .tab li:nth-child(1) a {
+	margin-top: 8px;
+}
+
+.slide-v .view-box {
+	margin-top:8px;
+	position: relative;
+    overflow: hidden;
+    float: right;
+    margin-top: 8px;
+    width: 775px;
+    height: 230px;
+}
+
+.slide-v .list-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.slide-v .list-wrap.is-selected {
+	display: block;
+}
+
+.slide-v .list-wrap li {
+    float: left;
+    width: 181px;
+    height: 273px;
+    text-align: center;
+    margin-left: 10px;
+    position: relative;
+}
+
+.slide-v .list-wrap li:first-child {
+	margin-left: 0;
+}
+
+.slide-v .list-wrap li>a {
+	display: table-cell;
+	width: 226px;
+	height: 117px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 18px;
+}
+
+.slide-v .list-wrap li.on>a {
+	display: none;
+}

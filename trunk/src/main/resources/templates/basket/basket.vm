@@ -1,0 +1,640 @@
+#parse("/main/header.vm")
+    <meta charset="utf-8"/>
+
+    <script src="/js/jquery.number.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/css/mainCommon.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/cart/cartCommon.css" media="screen"/>
+    
+
+
+<div class="cartPage">
+
+
+
+    <div class="quickmenu_right" id="quickmenu_right">
+
+        <div class="banner_first">
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=33">
+                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
+                </a>
+            </div>
+
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=34">
+                    <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
+                </a>
+            </div>
+            <div class="banner_first_page">
+                <button class="prev1" onclick="plusDivs(-1)">이전</button>
+                <button class="next1" onclick="plusDivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="banner_second">
+            <div class="banner_second_images">
+                <a href="/event?eid=30">
+                    <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
+                </a>
+            </div>
+
+            <div class="banner_second_images">
+                <a href="/event?eid=32">
+                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
+                </a>
+            </div>
+            
+            <div class="banner_second_images">
+                <a href="/sns/appDown">
+                    <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
+                </a>
+            </div>
+            
+            <div class="banner_second_page">
+                <button class="prev2" onclick="plusdivs(-1)">이전</button>
+                <button class="next2" onclick="plusdivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="Topbutton">
+            <a href="#wrap" class="goTobtn"><img src="/img/right_side/topbutton.png"></a>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="cartWrap">
+    <div class="CartPage_tit"><span class="BIG">장바구니</span> <span class="keepText">장바구니에 담긴 상품은 최대 30일까지 보관됩니다.</span></div>
+        <div class="cartItemList">
+            <table class="cartListHeader">
+                <caption>장바구니 상품 머릿말</caption>
+                <colgroup>
+                    <col style="width:5%;">
+                    <col style="width:20%;">
+                    <col>
+                    <col style="width:30%;">
+                    <col style="width:30%;">
+                </colgroup>
+                <thead>
+                <tr class="cartHeaderRow">
+                    <th class="col1">
+                        <input type="checkbox" id="allCheck" checked="checked">
+                    </th>
+                    <th class="leftAlign col2">전체선택</th>
+                    <th class="col3">상품정보</th>
+                    <th class="col4">상품금액</th>
+                    <th class="col5 last">배송비</th>
+                </tr>
+                </thead>
+            </table>
+
+
+            <!-- ko with: bundleVM -->
+            <!-- ko if: Bundles().length  -->
+
+            <form method="post" id="ReadingBasketSelectForm">
+				<div id="dataProd" style="display:none;">
+				</div>
+                <table class="cartList bundles" cellspacing="0" cellpadding="0" summary="장바구니 목록">
+                <caption>발그레배송 장바구니 상품 리스트</caption>
+                <colgroup>
+                    <col style="width:40px;">
+                    <col>
+                    <col style="width:173px;">
+                    <col style="width:174px;">
+                </colgroup>
+
+                <tbody class="wrap">
+                <!-- ko foreach: Bundles() -->
+
+                    #set($total3 = 0)
+                    #set($totalDlv3 = 0)
+
+					#set($tPrice = 0)
+					#set($tDelivery = 0)
+                <!-- ko foreach: products() -->
+	              #foreach($key in $basketListGET.basketList.keySet())
+	              	 #set($deli=-1) ##배송조건
+	              	 #set($brandTotal =0) ##브랜드 총금액
+	              	 #set($delivery=0) ##브랜드배송비
+	              	 #set($tmpDel=0)
+	              	 #foreach($key2 in $basketListGET.basketList.get($key).keySet())
+	              	 	
+	              	 	#foreach($item in $basketListGET.basketList.get($key).get($key2))
+	              	 		#set($brandTotal = $math.add($brandTotal, $math.mul($number.format(${item.price}), $number.format(${item.itemCount}))))
+	              	 		#if($math.toInteger($item.productDelivery.freeDelivery) == 0)
+	              	 			#set($deli=0)
+	              	 		#elseif($math.toInteger($item.productDelivery.freeDelivery) == -1)
+	              	 			#if(0 >= $deli)
+	              	 				#set($deli=-1)
+	              	 				#set($tmpDel = $math.toInteger($item.productDelivery.deliveryPrice))
+	              	 			#end
+	              	 		#else
+	              	 			#if($deli != 0)
+	              	 				#set($deli=$math.toInteger($item.productDelivery.freeDelivery))
+	              	 				#set($tmpDel = $math.toInteger($item.productDelivery.deliveryPrice))
+	              	 			#end
+	              	 		#end
+	              	 	#end
+	              	 #end
+	              	#if($deli == 0)
+             	 		#set($delivery = 0)
+             	 	#elseif($deli == -1)
+             	 			#set($delivery = $tmpDel)
+             	 	#else
+             	 		#if($deli > $brandTotal)
+             	 			#set($delivery = $tmpDel)
+             	 		#end
+             	 	#end
+	              	  #set($tDelivery = $math.add($tDelivery, $delivery))
+	              	  #set($tPrice = $math.add($tPrice, $brandTotal))
+	              #end
+	              
+                    #foreach($item in $basketListGET.basketList)
+                        #foreach($item2 in $item)
+                            #set($total = 0)
+                        <tr>
+                            <td class="check">
+                                <input type="checkbox" name="basketChk" value="$math.toInteger(${item2.get(0).productId})" checked="checked" onchange="basketChecked();"/>
+                            </td>
+                            <td class="itemInfo">
+                                <div>
+                                    <a href="/detail?product_id=$math.toInteger(${item2.get(0).productId})&sort=1">
+                                        <img src="//sumcrimage.cafe24.com/${item2.get(0).thumbUrl}">
+                                    </a>
+                                </div>
+                                <div>
+                                    <p class="productName fW">
+                                        <a data-bind="attr:{href: productUrl}"><!--ko text: productTitle-->
+                                            [${item2.get(0).brand.brandName}] ${item2.get(0).prodName}
+                                            <!--/ko--></a>
+                                    </p>
+                                    <div>
+                                        <table class="OPT_Product" cellpadding="0" cellspacing="0">
+                                            <colgroup>
+                                                <col>
+                                                <col style="width:78px;">
+                                                <col style="width:70px;">
+                                                <col style="width:79px;">
+                                                <col style="width:35px;">
+                                            </colgroup>
+
+                                            #foreach($item3 in $item2)
+											<tbody id="tbody">
+                                                <tr>
+                                                <input type="hidden" name="chk$math.toInteger($!{item3.productId})" value="$math.toInteger($!{item3.basketId})"/>
+                                                <input type="hidden" name="chkItems$math.toInteger($!{item3.productId})" value="$math.toInteger($item3.itemId)"/>
+                                                <input type="hidden" name="items[$math.toInteger($item3.itemId)].price" value="$math.toInteger($item3.price)"/>
+                                                <input type="hidden" id="upDown$math.toInteger($item3.itemId)" name="upDown[$math.toInteger($item3.itemId)].cnt" value="$math.toInteger($item3.itemCount)"/>
+                                                    <th class="optionTitle">
+                                                        <span class="mark_O">+</span>
+                                                        <span class="name_opt">${item3.itemName}</span>
+                                                        <strong class="deal-item-type-title"></strong>
+                                                        <input type="hidden" id="basket_id" value="${item3.basketId}">
+                                                    </th>
+                                                    <td class="selectPrice each">
+                                                        <span>$number.format(${item3.price})</span> 원
+                                                    </td>
+                                                    <td class="option_cnt"
+                                                        data-bind="visible: ui.itemCountSelect.visible()">
+                                                        <input type="hidden" data-bind="value: originalItemCount()">
+                                                        <select class="basketItemCnt" name="upDown[$math.toInteger($item3.itemId)].cnt" id="count$math.toInteger($!{item3.basketId})" onchange="basketUpdte(this);">
+                                                            #foreach($i in [1..10])
+                                                                <option class="basketItemCntChoice"
+                                                                        value="$math.toInteger(${item3.basketId})|$i|$math.toInteger(${item3.productId})|$math.toInteger(${item3.itemId})"
+                                                                    #if($i == $number.format(${item3.itemCount}))
+                                                                        selected="selected" #end>$i</option>
+                                                            #end
+                                                        </select>
+                                                    </td>
+
+                                                    <td class="select_PPrice">
+                                                    <input type="hidden" id="price$math.toInteger($!{item3.basketId})" value="$math.toInteger($!{item3.price})"/>
+                                                    <input type="hidden" id="total$math.toInteger($!{item3.basketId})" name="total$math.toInteger($!{item3.productId})" value="$math.mul($number.format(${item3.price}), $number.format(${item3.itemCount}))"/>
+                                                    <span id="numUpDown01$math.toInteger($!{item3.basketId})">$number.format($math.mul($number.format(${item3.price}), $number.format(${item3.itemCount})))
+                                                    #set($total = $math.add($total, $math.mul($number.format(${item3.price}), $number.format(${item3.itemCount}))))</span> 원
+                                                    </td>
+                                                    <td class="delete">
+                                                        <a href="javascript:deleteBasket('${item3.basketId}')" type="button" id="removeBtn">
+                                                            	삭제
+                                                        </a>
+                                                    </td>
+                                                </tr>
+
+                                                <!-- /ko -->
+                                                </tbody>
+                                            #end
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="price">
+                            <input type="hidden" id="totalprod$math.toInteger(${item2.get(0).productId})" value="$total"/>
+                            <span class="unit" id="numUpDown02$math.toInteger(${item2.get(0).productId})">
+                                $number.format($total)
+                            </span>원
+                                #set($total3 = $math.add($total3, $total))
+                            </td>
+                            <td class="deliveryFee last">
+                            #if(${item2.get(0).productDelivery.freeDelivery} == 0)
+                                <span class="free_delivery">무료배송</span>
+                                <input type="hidden" id="delivery$math.toInteger(${item2.get(0).productId})" value="0"/>
+                                <input type="hidden" id="free$math.toInteger(${item2.get(0).productId})" value="0"/>
+                                <input type="hidden" id="totalDel$math.toInteger(${item2.get(0).productId})" value="0"/>
+                            #elseif(${item2.get(0).productDelivery.freeDelivery} == -1)
+                            	<span class="pay_delivery">유료배송</span><br/>
+                                <span class="unit">$number.format(${item2.get(0).productDelivery.deliveryPrice})원</span>
+                                <input type="hidden" id="free$math.toInteger(${item2.get(0).productId})" value="-1"/>
+                                <input type="hidden" id="delivery$math.toInteger(${item2.get(0).productId})" value="$math.toInteger(${item2.get(0).productDelivery.deliveryPrice})"/>
+                                <input type="hidden" id="totalDel$math.toInteger(${item2.get(0).productId})" value="$math.toInteger(${item2.get(0).productDelivery.deliveryPrice})"/>
+                                #set($totalDlv3 = $math.add($totalDlv3, ${item2.get(0).productDelivery.deliveryPrice}))
+                            #else
+                            	#if(${item2.get(0).productDelivery.freeDelivery} < $total)
+                            		<div id="delDiv$math.toInteger(${item2.get(0).productId})">
+	                                	<span class="free_delivery">무료배송</span>
+                                	</div>
+                                	<input type="hidden" id="totalDel$math.toInteger(${item2.get(0).productId})" value="0"/>
+                                #else
+                                	<div id="delDiv$math.toInteger(${item2.get(0).productId})">
+	                                	<span class="limit_delivery">$number.format(${item2.get(0).productDelivery.freeDelivery})원 이상<br> 무료배송</span><br>
+	                                	<span class="unit">$number.format(${item2.get(0).productDelivery.deliveryPrice})원</span>
+	                                </div>
+	                                <input type="hidden" id="totalDel$math.toInteger(${item2.get(0).productId})" value="$math.toInteger(${item2.get(0).productDelivery.deliveryPrice})"/>
+                                	#set($totalDlv3 = $math.add($totalDlv3, ${item2.get(0).productDelivery.deliveryPrice}))
+                                #end
+                                <input type="hidden" id="free$math.toInteger(${item2.get(0).productId})" value="$math.toInteger(${item2.get(0).productDelivery.freeDelivery})"/>
+	                            <input type="hidden" id="delivery$math.toInteger(${item2.get(0).productId})" value="$math.toInteger(${item2.get(0).productDelivery.deliveryPrice})"/>
+                            #end
+                            </td>
+                        </tr>
+                        #end
+                    #end
+                <!-- /ko -->
+
+                </tbody>
+
+                </table>
+
+            </form>
+
+            <p class="choice fL">
+            <a href="javascript:selectDelete()">
+            <button class="delBtn bottom fL" type="button">선택삭제</button>
+            </a>            
+        </div>
+    </div>
+
+    <div class="cB">
+        <div class="priceWrap v1 fL">
+            <table class="paymentTotalTable" cellspacing="0" cellpadding="0" summary="결제예정금액">
+                <caption>총 결제 금액</caption>
+                <colgroup>
+                    <col style="width:350px;">
+                    <col style="width:350px;">
+                    <col style="width:350px;">
+                </colgroup>
+                <tbody>
+                <tr> 
+                    <td class="Total_P_price">
+                    	<span class="priceText">총 상품금액</span>
+                        <span id="total_prod" class="unit">$number.format($tPrice)</span> 원
+                    </td>
+                    <td class="Total_deliveryCharge">
+                    	<span class="priceText">배송비</span>
+                    	<span id="total_delivery" class="unit">$number.format($tDelivery)</span></td>
+                    <td class="totalPrice last">
+                    	<span class="priceText">결제 예정금액</span>
+                        <span class="unit" id="total_price">$number.format($math.add($tPrice, $tDelivery))</span> 원
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <span class="plusBig"></span>
+            <span class="equalBig"></span>
+        </div>
+    </div>
+
+    <div class="btnWrap mA cB">
+        <button type="button" id="prevBasket">쇼핑 계속하기</button>
+        <button type="button" id="directBasket">결제하기</button>
+    </div>
+
+</div>
+
+<script>
+	$(document).ready(function () {
+		//basketChecked();
+	});
+	function basketChecked() {
+		var items = [];
+		var total = 0;
+		var totalDelivery = 0;
+		$('input:checkbox[name="basketChk"]:checked').each(function() {
+			$('input[name=total' + this.value + ']').each(function() {
+				total += parseInt(this.value);
+			});
+			
+			$('input[name=chkItems' + this.value + ']').each(function() {
+				items.push(this.value);
+			});
+			
+			totalDelivery += parseInt($("#totalDel"+this.value).val());
+	   	});
+		var str = "";
+		
+		for(i=0; i<items.length; i++) {
+			str += '<input type="hidden" name="items[]" value="' + items[i] + '"/>'; 
+		}
+		$("#dataProd").html(str);
+		$("#total_prod").text($.number(total));
+		$("#total_delivery").text($.number(totalDelivery) + " 원");
+		$("#total_price").text($.number(total+totalDelivery));
+	}
+	
+    ## 장바구니 상품 옵션 제거
+    function deleteBasket(basketId) {
+        var data = "basketId=" + basketId;
+        $.ajax({
+            type: 'post',
+            url: '/basketDelete?' + data,
+            contentType: false,
+            processData: false,
+            data: null,
+            success: function (result) {
+                alert("브랜드 상품 모두를 삭제하였습니다.")
+                window.location.reload();
+            },
+            error: function (result) {
+                alert("에러! " + result);
+            }
+        })
+    };
+
+    ## 장바구니 상품(브랜드) 제거
+    function selectDelete() {
+		var basketIds = [];    	
+    	 $('input:checkbox[name="basketChk"]:checked').each(function() {
+			$('input[name=chk' + this.value + ']').each(function() {
+				basketIds.push(this.value);
+			});
+    	 });
+    	 if(basketIds.length > 0) {
+    		 $.ajax({
+                 type: 'post',
+                 url: '/deleteBsk?basketId='+basketIds,
+                 contentType: false,
+                 processData: false,
+                 data: null,
+                 success: function (result) {
+                     alert("선택한 상품을 삭제하였습니다.")
+                     window.location.reload();
+                 },
+                 error: function (result) {
+                     alert("에러! " + result);
+                 }
+             });
+    	 }
+    }
+
+
+
+    ## 장바구니 옵션 수량 수정
+    function basketUpdte(basket) {
+
+    	var total = 0;
+        var formData = new FormData();
+		var basketId = basket.value.split("|")[0];
+		var itemCount = basket.value.split("|")[1];
+		var prodId = basket.value.split("|")[2];
+		var itemId = basket.value.split("|")[3];
+		
+        formData.append("basketId", basketId);
+        formData.append("itemCount", itemCount);
+
+        
+        var price = $("#price"+ basketId).val();
+        
+        total = price*itemCount;
+        
+        $.ajax({
+            type: 'post',
+            url: '/basketUpdate',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                $("#total"+ basketId).val(total);
+                basketSum01(basketId, total);
+                basketSum02(prodId);
+                deliverySum(prodId);
+                $("#upDown" + itemId).val(itemCount);
+                basketChecked();
+                window.location.reload();
+            }, error: function (data) {
+                alert("오류!" + data);
+                console.log("실패" + formData + data);
+            }
+        });
+    }
+
+    ## 옵션별 총 가격
+    function basketSum01(basketId, total) {
+        $('#numUpDown01' + basketId).text($.number(total));
+    }
+
+    ## 상품 별 총 가격 
+    function basketSum02(productId) {
+    	var total = 0;
+    	$('input[name=total' + productId + ']').each(function() {
+			total += parseInt(this.value);
+		});
+    	$('#totalprod'+productId).val(total);
+        $('#numUpDown02'+productId).text($.number(total));
+    }
+
+    ## 배송비 계산
+    function deliverySum(productId) {
+    	var totalProd = parseInt($('#totalprod'+productId).val());
+    	var free = parseInt($('#free'+productId).val());
+    	var delivery = parseInt($('#delivery'+productId).val());
+    
+    	if(free == 0) {
+    	} else if(free == -1) {
+    	} else {
+    		if(totalProd >= parseInt(free)) {
+    			$("#totalDel"+productId).val(0);
+    			$("#delDiv"+productId).html('<span>무료배송</span>');
+    		} else {
+    			var str = '<span>' + $.number(free) + ' 원 이상<br> 무료배송</span><br>';
+            	str += '<span class="unit">' + $.number(delivery) + ' 원</span>';
+    			$("#totalDel"+productId).val(delivery);
+    			$("#delDiv"+productId).html(str);
+    		}
+    	}
+    }
+    
+
+    ## ------ 상품 상세 페이지에서 마지막 결제하기 시작 -----
+    $("#directBasket").on("click", function (event) {
+        var formData = $("#ReadingBasketSelectForm").serialize();
+        if($('input:checkbox[name="basketChk"]:checked').length > 0) {
+        	$.ajax({
+                type: 'post',
+                url: '/payment/order',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    if (data) {
+                        window.location.href = "/payment/order?q=" + data;
+                    }
+                },
+                error: function (data, textStatus, errorThrown) {
+                    alert("로그인 하신 후 옵션을 선택해주세요.");
+                }
+            });
+        } else {
+			alert("구매 상품을 체크 해 주세요.");        	
+        }
+    });
+    ## ------ 상품 상세 페이지에서 마지막 결제하기 끝 -----
+
+    ## ------ 상품 상세 페이지에서 쇼핑하기 시작 -----
+    $("#prevBasket").on("click", function (event) {
+        history.back();
+//        history.go(-1);
+//        history.forward();
+    });
+    ## ------ 상품 상세 페이지에서 쇼핑하기 끝 -----
+
+</script>
+
+
+
+## 장바구니 체크박스 전체 클릭
+<script>
+    $(function () {
+        //전체선택 체크박스 클릭
+        $("#allCheck").click(function () {
+            //만약 전체 선택 체크박스가 체크된상태일경우
+            if ($("#allCheck").prop("checked")) {
+                //해당화면에 전체 checkbox들을 체크해준다
+                $("input[type=checkbox]").prop("checked", true);
+                // 전체선택 체크박스가 해제된 경우
+            } else {
+                //해당화면에 모든 checkbox들의 체크를해제시킨다.
+                $("input[type=checkbox]").prop("checked", false);
+            }
+            basketChecked();
+        })
+    })
+</script>
+
+
+
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("banner_first_images");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+
+</script>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("banner_first_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000); // Change image every 3 seconds
+}
+
+</script>
+
+<script>
+var slideIndex = 1;
+showdivs2(slideIndex);
+
+function plusdivs(n) {
+  showdivs2(slideIndex += n);
+}
+
+
+function showdivs2(n) {
+	  var i;
+	  var x = document.getElementsByClassName("banner_second_images");
+	  if (n > x.length) {slideIndex = 1}
+	  if (n < 1) {slideIndex = x.length}
+	  for (i = 0; i < x.length; i++) {
+	     x[i].style.display = "none";
+	  }
+	  x[slideIndex-1].style.display = "block";
+	}
+
+</script>
+
+
+<script>
+var myIndex = 0;
+carousel2();
+
+function carousel2() {
+    var i;
+    var x = document.getElementsByClassName("banner_second_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel2, 2000); // Change image every 2 seconds
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var defY = 257;
+	if($(document).scrollTop() > 0) {
+		defY = $(document).scrollTop() + 57	;
+	}
+ /* quick menu */
+ $(".quickmenu_right").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
+ $(window).scroll(function(){
+	 if ($(document).scrollTop() < 400) {
+  		$(".quickmenu_right").stop().animate( { "top": 257 +"px" }, 0 );
+	 } else {
+  		$(".quickmenu_right").stop().animate( { "top": $(document).scrollTop() + 57 + "px" }, 0 );
+	 }
+ });
+});
+
+</script>
+
+
+    #parse("/main/footer.vm")
+

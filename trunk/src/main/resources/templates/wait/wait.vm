@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/css/find/find_id_pw.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <h3 style="text-align:center;margin-top:150px;">현재 준비중에 있습니다.</h3>
+    
+    <div class="btn_div">
+        <input type="button" href="javascript:void(0);" class="CancelBtn" id="cancelBtn" onclick="window.close()" value="닫기">
+    </div>
+    
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(".CancelBtn").on('click',function() {
+        	window.open(”,’_self’);
+        	window.close();
+        });
+    });
+    </script>
+</body>
+</html>

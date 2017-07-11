@@ -1,0 +1,104 @@
+/* 이용약관 , 개인정보 페이지 css */
+
+.container{
+	width: 1080px;
+    margin: 0 auto;
+    font-family: '나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    padding: 0;
+}
+
+.policy_title{
+	position: relative;
+    margin: 0;
+    padding: 60px 0;
+    border: 1px solid #e1e1e1;
+    border-width: 1px 0;
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    text-align: center;
+    margin-top: 40px;
+    line-height: 25px;
+}
+
+.contents_policy{
+	margin: 5px 0 0 0;
+}
+
+.contents_area{
+	position: relative;
+    margin-top: 28px;
+    overflow: hidden;
+}
+
+.contents_area #heading{
+	margin: 0;
+    padding: 7px 0;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 35px;
+    letter-spacing: -1px;
+}
+
+.contents_area #heading span{
+	line-height: 17.5px;
+    display: block;
+    color: #888;
+    font-size: 14px;
+    letter-spacing: 0;
+}
+
+.contents_area #text_area{
+	margin: 7px 0 0 0;
+    padding: 0 0 3.5px 0;
+    font-size: 14px;
+    line-height: 21px;
+    list-style-position: inside;
+    list-style-type: decimal;
+    font-weight:600;
+    text-align: justify;
+}
+
+.contents_area p#text_area{
+	font-weight: 400;
+}
+
+.contents_area #text_area li{
+    padding-bottom: 3.5px;
+    text-indent: -1em;
+    padding-left: 20px;
+    list-style-type: decimal;
+}
+
+.contents_area #text_area .text_area_list{
+	
+}
+
+.contents_area #text_area span{
+	font-weight: 400;
+	letter-spacing: normal;
+}
+
+#text_area .alpha{
+	list-style-position: inside;
+    list-style-type: upper-alpha;
+    padding-bottom: 3.5px;
+    padding-left: 17px;
+}
+
+#text_area .alpha_list{
+	padding-bottom: 3.5px;
+	list-style-type: upper-alpha !important;
+}
+
+#text_area .alpha .alpha_list .square_type{
+    list-style-type: square;
+    padding-left: 20px;
+    font-size: 13px;
+}
+
+.square_type li{
+	text-indent: 0 !important;
+    padding-left: 8px !important;
+    list-style-type: square !important;
+}

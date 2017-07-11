@@ -1,0 +1,931 @@
+
+article, aside, figure, figure img,
+figcaption, hgroup, footer, header, 
+nav, section, video, object {display:block;}
+html, body, li {
+	margin: 0px;
+	padding: 0px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	max-width: 100%;
+	color: #383d41;
+}
+p{
+	color: #383d41;
+    margin:0;
+    line-height:130%;
+}
+a {
+	color: #575757;
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover, a:focus {
+	color: #7d7d7d;
+	text-decoration: none;
+	outline: none;
+}
+.main_color_btn {
+    font-size: 14px;
+    width: 165px;
+    height: 50px;
+    margin: 1px auto;
+    color: #Fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #ff7391;
+    background-color: #ff7391;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+
+.main_color_text{
+	font-size: 19px;
+    font-weight: 600;
+    color:#fb4580;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+
+
+.register_part_one, .register_part_two, .register_part_three{
+    float: none;
+}
+
+.F_box, .S1_box, .S2_box{
+    padding: 10px 0;
+}
+
+.register_part_one .table-condensed th, .register_part_two .table-condensed th, .register_part_three .table-condensed th{
+	background: #fcfcfc;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 25px;
+    padding: 15px;
+    border-top: 1px solid #e9e9e9;
+    border-right: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    width: 128px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+.register_part_one .table-condensed td, .register_part_two .table-condensed td, .register_part_three .table-condensed td{
+	color: #383d41;
+	padding-left: 25px;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+
+
+
+.register_txt_ex{
+	margin-top: 20px;
+}
+
+.register_txt_ex .Notice_MARK{
+	padding-left: 0;
+}
+
+.register_txt_ex .Notice_MARK .list_ex{
+    font-size: 12px;
+    list-style: none;
+}
+
+.contents_intro{
+	padding:15px;
+	line-height: 18px;
+	font-size:12px;
+	font-weight: 400;
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+
+.last_intro_txt{
+	display:block;
+    margin: 40px 0 20px;
+}
+
+.last_intro_txt p{
+	font-size:12px;
+    text-align:center;
+}
+
+    .col-xs-2{
+        width:20%;
+    }
+    .col-xs-10{
+        width:80%;
+    }
+   table {
+    width: 100%;
+    background:#ffffff;
+    overflow: hidden;
+  }
+
+    .lable{
+        width: 80px;
+    }
+    .form-control{
+    width: 372px;
+    border: 0px;
+    font-size: 12px;
+    height: 33px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+        font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    }
+    
+    .textarea-control {
+        width: 100%;
+        border: 0px solid #ccc;
+        font-size: 12px;
+        height: 150px;
+        line-height: 40px;
+        overflow-y: hidden;
+        resize: none;
+    }
+    
+#phone_check_btn{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 2px;
+    text-decoration: none;
+    width: 103px;
+    border: none;
+    height: 35px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    vertical-align: -1px;
+    background-color: #ff7391;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+#phone_checkOK_btn{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 2px;
+    text-decoration: none;
+    width: 103px;
+    text-align: center;
+    border: none;
+    height: 35px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    vertical-align: -1px;
+    background-color: #ff7391;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+
+.rightpadding{
+	text-align: center;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.agreeNsubmit{
+	padding: 15px 0;
+}    
+
+
+
+
+/******/
+
+.form-horizontal input[type=text]{
+	line-height:3;
+	height: 33px;
+}
+
+.form-horizontal input[type=password]{
+	line-height:3;
+	height: 33px;
+}
+
+
+input[type=checkbox]
+{
+    -webkit-appearance: checkbox;
+}
+
+.checkbox.ab {
+	display: inline-block;
+    border: none;
+}
+
+input [type=checkbox], input[type=radio] {
+	box-sizing:border-box;
+	padding: 0;
+}
+
+label.input-label { 
+  display: inline-block;
+  cursor: pointer;
+}
+
+input[type=checkbox]:before {
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin: -2px 0 0 -2px;
+    background: url(/img/login/checkbox_img.png) no-repeat 0px 0px;
+}
+
+input[type=checkbox]:checked:before {
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin: -2px 0 0 -2px;
+    background: url(/img/login/checkbox_img.png) no-repeat 0px -30px;
+}
+
+
+/******/
+
+
+.select_day select{
+    width: 25%;
+}
+.sub_content1 select{
+    border: 0px;
+    height: 40px;
+    line-height: 40px;
+    background:#ffffff;
+    color:#555;
+}
+select.birth_style{
+    border: 0px;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    background:#ffffff;
+    color:#555;
+}
+select:hover, select:action{
+    border:1px solid #ccc;
+    box-shadow:none;
+}
+
+.register_form_on_balgeure{
+	margin:0 auto;
+	padding: 0;
+	width: 1080px;
+}
+
+.register_form_on_balgeure .register_tit{
+	margin: 23px 0;
+}
+
+.register_form_on_balgeure .register_tit .register_icon{
+	width: 30px;
+    height: 33px;
+    margin-right: 9px;
+    float: left;
+    background: url(/img/balgeure_icons.png) no-repeat -572px -546px;
+}
+
+.register_form_on_balgeure .register_tit h3{
+	font-size: 19px;
+    font-weight: 600;
+    padding-top: 11px;
+    font-size: 23px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+.notice_td{
+	padding: 0 !important;
+}
+
+.Notice_MARK2{
+	padding: 0px;
+}
+
+
+
+.register_txt_ex .Notice_MARK2 .lastNotice{
+	color:#ff7391;
+	font-weight:bold;
+	font-size: 14px;
+}
+
+    input {
+        font-family: "Nanum Gothic", sans-serif;
+        overflow: visible;
+    }
+
+    input:active, input:hover, input:focus {
+        border: 1px solid #ccc;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    #birth_month, #birth_year, #birth_day {
+        border: 0px;
+        -webkit-appearance: none;
+        height: 40px;
+        text-align: right;
+        background: #fff;
+    }
+
+    select:active, select:hover, select:focus {
+        border: 1px solid #ccc;
+        box-shadow: none;
+        outline: none; /*선택되었을때 선 없애기*/
+    }
+
+    .rightpadding img {
+        margin-right: 13px;
+        padding: 18px 0 0 0;
+        vertical-align: top;
+    }
+
+    select {
+        font-size: 12px;
+        color: #555555;
+        font-family: NanumGothic,'나눔고딕',ng,sans-serif;
+        border: 1px solid #ccc;
+    }
+
+
+
+.right-border{
+    border-right:#f0f0f0 solid 1px;
+    height: 20px;
+    line-height: 20px;
+    margin-right:15px;
+}
+.tel_btn{
+    width:50%; float:left;
+}
+.tel_btn button{
+    border-radius: 1px;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    background: #ff7391;
+    font-size: 12px;
+    color: #ffffff;
+    margin: 10px 0;
+    float: right;
+    text-align: center;
+    border:0;
+}
+.tel_btn p{
+    border-radius: 1px;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    background: #ff7391;
+    font-size: 12px;
+    color: #ffffff;
+    margin: 10px 0;
+    float: right;
+    text-align: center;
+}
+select{
+    font-size:12px;
+}
+
+
+.sidebar-menu ul.sidebar-submenu{
+display:none; background:#f0f0f0;
+padding:0px 15px;
+}
+.sidebar-menu ul.sidebar-submenu li{
+	list-style-type: none;
+}
+  .sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  }
+
+  .sidebar-menu > li {
+    background: #ffffff;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+    .sidebar-menu > li > a {
+      background: #f0f0f0;
+      display: block;
+      border-left: 3px solid transparent;
+      color: #222; 
+      border-bottom: #ddd 1px solid;
+      border-top: #ddd 1px solid;
+      padding: 10px 7px 5px 7px;
+}
+
+    .sidebar-menu > li:hover > a, .sidebar-menu > li.active > a {
+
+      color: #222;
+      border-left-color: #3c8dbc; }
+    .sidebar-menu > li .label{
+      margin-top: 3px;
+      margin-right: 5px; }
+  .sidebar-menu li.sidebar-header {
+    padding: 10px 25px 10px 15px;
+    font-size: 12px;
+    color: #4b646f;
+    background: #1a2226; }
+  .sidebar-menu li > a > .fa-angle-left {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin-left: 10px;
+    margin-top: -3px; 
+    font-size: 15px;
+    color: #949494;}
+  .sidebar-menu li.active > a > .fa-angle-left {
+    transform: rotate(-90deg); }
+  .sidebar-menu a {
+    color: #222;
+    text-decoration: none; }
+  .sidebar-menu .sidebar-submenu {
+    display:inline-block;
+    list-style: none;
+    width: 100%;
+    padding: 10px;
+    margin: 0 0 -5px 0;
+    background: #ffffff; }
+    .sidebar-menu .sidebar-submenu .sidebar-submenu {
+      padding-left: 20px; }
+    .sidebar-menu .sidebar-submenu > li{
+      display: block;
+      font-size: 12px;
+      color: #222; }
+      .sidebar-menu .sidebar-submenu > li > a > .fa {
+        width: 20px; }
+      .sidebar-menu .sidebar-submenu > li > a > .fa-angle-left,
+      .sidebar-menu .sidebar-submenu > li > a > .fa-angle-down {
+        width: auto; }
+    .sidebar-menu .sidebar-submenu > li.active > a, .sidebar-menu .sidebar-submenu > li > a:hover {
+      color: #f0f0f0; }
+
+i.fa-angle-left:before {
+    content: "\f105";
+}
+.sidebar-menu .sidebar-submenu li {
+  float:left;
+  width: 100%;
+  font-size:32px;
+}
+.qna_nav{
+  width:100%;
+  display: inline-block;
+  padding:20px;
+}
+.qna_nav > div{
+  border:1px solid #ddd;
+  padding:0;
+  width:100%;
+  display: inline-block;
+}
+.qna_nav div.btn{
+  font-size:30px;
+  width:33.3%;
+  float: left;
+  text-align:center;
+  padding:20px 0 ;
+  border:1px solid #ddd;
+}
+div.page-header {
+
+	position: relative;
+
+}
+
+div.page-header h1.cs {
+	background:#ffffff;	
+}
+div.page-header img.csimg{
+	background:#ffffff;
+	width:8px;
+	transform: rotate(45deg);
+	position: absolute;
+    top: 16px;
+    right: 15px;
+}
+
+
+
+/**  회원가입 페이지 가입방법 css s  **/
+
+.container_join {
+    margin:0;
+    padding:0;
+    padding-bottom: 100px;
+}
+
+.container_join .layout-content{
+    width: 395px;
+    background: #fff;
+    margin: 0 auto;
+    padding: 30px;
+    margin-top: 120px;
+}
+
+.container_join .layout-content  .balgeure_logo {
+
+    position: relative;
+}
+
+.layout-content .balgeure_logo .logoimage{
+	text-align:center;
+}
+
+.layout-content .balgeure_logo .logoimage a{
+	color:#fff !important;
+}
+
+.layout-content .balgeure_logo .logoimage img{
+    margin: 0 auto;
+    border: none !important;
+}
+
+.container_join .layout-content .balgeure_join_location {
+    text-align: center;
+    margin: 0 auto;
+    width: 410px;
+    position: relative;
+}
+
+.layout-content .balgeure_join_location .join-step-navi{
+	list-style: none;
+}
+
+.layout-content .balgeure_join_location .location_tit{
+	float:left;
+	font-size: 15px;
+    font-weight: 500;
+    color: #999;
+}
+
+.layout-content .balgeure_join_location .current_page span{
+	font-weight: 600px;
+	color: #fb4580;
+}
+
+.layout-content .balgeure_join_location .rightside_bar{
+	display:block;
+	margin: 1px 10px 0;
+	float:left;
+	color: #ddd !important;
+}
+
+.choose_join_balgeure .welcome_msg_balgeure{
+    text-align: center;
+    margin-top:40px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 30px 0;
+    letter-spacing:-1px;
+}
+
+
+.choose_join_balgeure .joinUS_byChannel{
+    list-style-type:none;
+    margin: 0 auto;
+    width: 470px;
+    padding: 0;
+}
+
+.choose_join_balgeure .joinUS_byChannel .joinUS_byChannel-list{
+    padding-bottom: 13px;
+}
+
+.joinUS_byChannel .joinUS_byChannel-list a{
+padding: 8px 60px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: #fff;
+    position: relative;
+    display: block;
+    border-radius: 3px;
+    text-decoration: none;
+    width: 274px;
+}
+
+.joinUS_byChannel .joinUS_byChannel-list .optionOFemail{
+    background-color: #ff7391;
+}
+
+.joinUS_byChannel .joinUS_byChannel-list .optionOFnaver{
+    background-color: #00c63c;
+}
+
+.joinUS_byChannel .joinUS_byChannel-list .optionOFfacebook{
+    background-color: #3b5998;
+}
+
+.joinUS_byChannel .joinUS_byChannel-list .optionOFkakaotalk{
+    background-color: #ffde00;
+}
+
+.joinUS_byChannel-list .JoinBySNS{
+	margin-right: 50px;
+}
+
+.joinUS_byChannel-list .JoinBySNS img{
+	width: 25px;
+    padding-top: 2px;
+}
+
+.joinUS_byChannel-list .JoinUs-text{
+	vertical-align: 6px;
+}
+
+/**  회원가입 페이지 가입방법 css e  **/
+
+
+/**  회원가입 페이지 약관동의 css s  **/
+
+.layout-content #joinUs_title{
+
+}
+
+
+
+.table .contents_intro{
+padding: 10px !important;
+}
+
+
+.layout-content .check_agree_balgeure{
+    margin: 0 auto;
+    margin-top: 55px;
+}
+
+.check_agree_balgeure .checkboxFORall{
+	padding: 10px 0;
+	font-size: 14px;
+}
+
+.check_agree_balgeure .formbox_tit{
+	font-size: 15px;
+    font-weight: 600;
+}
+
+.checkboxFORall span{
+	margin-left: 12px;
+}
+
+.check_agree_balgeure .option_check{
+	padding: 30px 0;
+}
+
+.marketingCheck{
+	border: 1px solid #ccc;
+    padding: 10px 12px;
+    font-size: 13px;
+    color:#777;
+}
+
+.balgeure_policy .okay_checkbox_area{
+	font-size: 14px;
+    padding: 5px 0;
+}
+
+.check_agree_balgeure .Mustcheckbox{	
+	padding: 10px 0;    
+}
+
+.table #rule_hidden1, .table #rule_hidden2, .table #rule_hidden3{
+	padding: 0px;
+    height: 10px;
+}
+
+.table .scroll_reading{
+	overflow-y: scroll;
+    height: 150px;
+    padding: 8px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+}
+
+.balgeure_policy .table{
+	border: 1px solid #ccc;
+	    color: #777;
+}
+
+.Mustcheckbox .table td{
+	padding: 10px 10px 10px 0;
+	font-size: 13px;
+}
+
+.Mustcheckbox .table .mustCheckbox{
+	width:10%;
+	padding:10px;
+}
+
+.Mustcheckbox .table .rightpadding{
+	width:20%;
+}
+
+.marketingCheck .marketingCheck_tit{
+	float: left;
+    margin-right: 35px;
+    padding-left: 15px;
+}
+
+.marketingCheck .SMSyesORno{
+	padding: 0px 0 10px;
+}
+
+.marketingCheck span{
+	margin-left: 12px;
+}
+
+.marketingCheck .EMAILyesORno{
+    padding-top: 10px;
+}
+
+.Mustcheckbox .register_txt_ex{
+	margin-top: 0px;
+}
+
+.register_txt_ex .Notice_MARK2 .list_ex{
+    font-size: 12px;
+    letter-spacing: -1px;
+    list-style: none;
+}
+
+
+.agreeNsubmit .main_color_btn {
+    font-size: 14px;
+    margin:0;
+        width: 394px;
+    height: 50px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #ff7391;
+    background-color: #ff7391;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+.check_agree_balgeure .agreeNsubmit{
+	padding: 0px;
+}
+
+/**  회원가입 페이지 약관동의 css e  **/
+
+
+/**  회원가입 페이지 sns 약관동의 css s  **/
+
+.SNSaccount_info{
+	background: #f5f5f5;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+}
+
+.sns_account{
+	font-size: 13px;
+}
+
+.sns_account .user_name{
+	font-weight: 700;
+}
+
+.sns_account .sns_color{
+	font-weight: 600;
+}
+
+
+/**  회원가입 페이지 sns 약관동의 css e  **/
+
+
+
+/**  회원가입 페이지 정보입력 css s  **/
+
+.layout-content #input_form{
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.AgreeFormBox .formbox_tit{
+	font-size: 15px;
+    font-weight: 600;
+    color: #383d41;
+}
+
+.joinFormlabel-name, .joinFormlabel-email, .joinFormlabel-password1, .joinFormlabel-password2,
+.joinFormlabel-phone, .joinFormlabel-phonecheck, .joinFormlabel-myCode{
+	display: block;
+    font-size: 13px;
+}
+
+.joinForm_input_name_tit, .joinForm_input_email_tit, .joinForm_input_password1_tit, .joinForm_input_password2_tit,
+.joinForm_input_phone_tit, .joinForm_input_phonecheck_tit, .joinForm_input_myCode_tit{
+	display: none;
+}
+
+.register_part_one .form-control, .recommend_friendCODE .form-control{
+	display: block;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+}
+
+.register_part_one .basic_inputForm{
+	margin: 8px 0;
+	position: relative;
+}
+
+.register_part_one .username input{
+	width: 373px;
+}
+
+.register_part_one .useremail{
+	height: 35px;
+    margin-top: -2px;
+    margin-bottom: 12px;
+}
+
+.register_part_one .useremail #user_email{
+	width: 402px;
+    margin-left: -3px;
+}
+
+.useremail #typingEmail input{
+	width: 215px;
+}
+
+#select_whichEmail #email_add{
+	width:150px;
+	padding:8.5px 0;
+	border: 1px solid #ccc;
+}
+
+.register_part_one .userbirth{
+	border: 1px solid #ccc;
+    width: 392px;
+    height: 35px;
+}
+
+.userbirth #birth_month, .userbirth #birth_year, .userbirth #birth_day{
+	padding: 0 40px 0 12px;
+	height: 35px;
+}
+
+.joinFormlabel-phone, .joinFormlabel-phonecheck{
+	width: 286px;
+}
+
+.usercellphone input{
+	width: 264px;
+}
+
+.form-horizontal .S1_box{
+	padding: 0px 0 10px;
+	margin-top: 30px;
+}
+
+
+/**
+
+.select_typeSKIN #select_tit{
+	font-size: 13px;
+}
+
+.select_typeSKIN #optionOFskin{
+	    margin-left: 10px;
+    padding: 8px 0;
+}	
+
+**/  
+
+.recommend_friendCODE{
+	margin-top: 15px;
+}
+
+.recommend_friendCODE .inputBOX_code{
+	padding: 8px 0;
+}
+
+.recommend_friendCODE .inputBOX_code input{
+	width: 371px;
+    padding-left: 10px;
+}
+
+
+
+
+/**  회원가입 페이지 정보입력 css e  **/
+
+

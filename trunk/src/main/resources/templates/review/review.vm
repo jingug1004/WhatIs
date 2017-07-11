@@ -1,0 +1,173 @@
+#parse("/main/header.vm")
+
+<link type="text/css" href="/css/myPage/myPage.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/myPage/common.css">
+
+<div id="container" class="mA ">
+
+    <div class="myPageWrap">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">나의 리뷰등록 / 관리</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="myPageLeftMenu fL">
+                <h3 class="mA">
+                    <a href="/my/index" ga-event="마이페이지,마이페이지홈">
+                        <img src="/img/myPage/myP_leftside_title.gif">
+                    </a>
+                </h3>
+
+                <ul class="myPageSubMenu">
+
+                    <li class="">
+                        <a href="#none" class="menu1 on"><span class="Left_B">주문현황</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/order"
+                                   ga-event="마이페이지,마이페이지_주문배송">주문/배송현황</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu2 on"><span class="Left_B">쇼핑통장</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/coupon"
+                                   ga-event="마이페이지,마이페이지_발그레쿠폰">쿠폰</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/point?page=0"
+                                   ga-event="마이페이지,마이페이지_발그레포인트">포인트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu3 on"><span class="Left_B">관심상품</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/wishList?page=1"
+                                   ga-event="마이페이지,마이페이지_위시리스트">찜리스트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#none" class="menu4 on">
+                            <span class="Left_B" ">나의 리뷰</span>
+                        </a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/myReview"
+                                   ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu5 on"><span class="Left_B">1:1문의</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/qna"
+                                   ga-event="마이페이지,마이페이지_1:1문의">1:1문의하기</a>
+                            </li>
+                            <li class="">
+                                <a href="/my/qnaList"
+                                   ga-event="마이페이지,마이페이지_1:1답변">1:1답변보기</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#none" class="menu6 on"><span class="Left_B">개인 정보</span></a>
+                        <ul class="depth">
+                            <li class="">
+                                <a href="/my/privacy"
+                                   ga-event="마이페이지,마이페이지_개인정보수정">개인 정보 수정</a>
+                            </li>
+                            <li class="">
+                                <a href="/member/leaveAgree"
+                                   ga-event="마이페이지,마이페이지_회원탈퇴">회원탈퇴</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="mypageRightContents fL">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub myreview"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+
+                <p class="myreviewTitle">
+                    <span class="titleImg tI fL">작성 가능한 리뷰</span>
+                </p>
+
+                <div class="myReview">
+                    <div class="able_wrt_review">
+                        #if($res2.size == 0)
+                        <div>
+                            <p class="list_none;">작성 가능한 리뷰가 없습니다.</p>
+                        </div>
+                        #else
+
+                                #foreach($pReview in $res2)
+                                #foreach($pReview2 in $pReview.reviewWaitItem)
+                        <table class="able_review_list">
+                            <thead>
+                                <tr>
+                                    <th width="143"></th>
+                                    <th>목록</th>
+                                    <th width="110"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="product_img">
+                                        <img src="http://sumcrimage.cafe24.com/$pReview.product.thumbUrl" alt="$pReview.product.prodName" />
+                                    </td>
+                                    <td class="product_info">
+                                        <p class="P_name">[$pReview.product.brand.brandName] $pReview.product.prodName</p>
+                                        <p class="P_option">$pReview2.paymentItem.itemName</p>
+                                        <p class="P_date">$date.format("yyyy-MM-dd", $math.add($pReview.payDate, $math.mul($date.month, 6)))</p>
+                                    </td>
+                                    <td class="wrt_btn">
+                                        <input type="button" value="리뷰쓰기" class="write_btn">
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                                #end
+                                #end
+                        #end
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--rightContents-->
+        </div>
+    </div>
+    <!--myPageWrap-->
+
+
+</div>
+<!-- //container -->
+
+
+
+#parse("/main/footer.vm")

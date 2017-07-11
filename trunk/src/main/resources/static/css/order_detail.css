@@ -1,0 +1,128 @@
+@-moz-document url-prefix() {
+	fieldset { display: table-cell; }
+	}
+		* {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		
+		html {
+			-ms-touch-action: none;
+		}
+		html, body {
+			margin: 0px;
+			padding: 0px;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+			font-size: 12px;
+			line-height: 18px;
+			background: #ffffff;
+			max-width: 100%;
+		}		
+	
+		body,ul,li {
+			padding:0;
+			margin:0;
+			border:0;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+		}
+
+		body {
+			background:#fff;
+			font-size:12px;
+			-webkit-user-select:none;
+			-webkit-text-size-adjust:none;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;			
+		}
+		p{
+			color:#555555;
+			margin:0;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+		}
+		h2{
+			padding-top:5px;
+		}
+		h4{
+			margin:0px 0 0 0;
+		}
+		a {
+			color: #575757;
+			text-decoration: none;
+			outline: none;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+		}
+		a:hover, a:focus {
+			color: #7d7d7d;
+			text-decoration: none;
+			outline: none;
+		}
+
+		/*»ó´Ü ¸ÞÀÎ ¾È³»»çÇ×*/
+		.main_title{
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+			display: inline-block;
+			width:100%;
+			background:#fff;
+			border-top: 1px solid #f0f0f0;
+		}
+		.main_title h1{
+			font-size:14px;
+			border-bottom:1px solid #f0f0f0;
+			margin:0px;
+			padding:10px 15px;
+		}
+		.main_title p{
+			padding:0 15px;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+		}
+		.sub_title{
+			margin: 8px 0 0 0;
+		}
+		.sub_title h1{
+		font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+			margin: 8px 0 0 0;
+			font-size:14px;
+			color:#555;
+			background:#fff;
+			margin:0px;
+			padding: 0 15px;
+			height:36px;
+			line-height:36px;
+		}
+
+		/*±¸¸Å Á¤º¸*/
+		.white_contents{
+			width:100%;
+			padding:8px 15px 8px 15px;
+			background:#ffffff;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+			
+		}
+		.white_contents h2{
+			font-size:14px;
+			
+			margin:0px;
+		}
+		.right{
+			text-align:right;
+		}
+		td{
+			padding:0px 15px;
+		}
+		.delivery_btn{
+			color:#fff;
+			text-align:center;
+			background:#ff7391;
+			height:30px;
+			line-height:30px;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+		}
+		.contents_body{
+			background:#fff;
+			border-top:1px solid #f0f0f0;
+			padding: 0px 0 10px 0;
+			font-family: '³ª´®°íµñ', NanumGothic, 'µ¸¿ò', Dotum, AppleSDGothic, AppleGothic, '±¼¸²', Gulim, sans-serif;
+		}
+		.ellipsis{
+			overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal
+		}		

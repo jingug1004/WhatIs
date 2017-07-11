@@ -1,0 +1,588 @@
+@charset "UTF-8";
+
+
+
+
+
+/* 로그인  CSS s*/
+
+
+#layout-structure-content {
+    background-color: #f0f0f0;
+    padding-bottom: 200px;
+    margin:0 auto;
+    padding:0;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+.login_window_inner{
+    width: 395px;
+    background: #fff;
+    margin: 0 auto;
+    padding: 30px;
+    margin-top: 150px;
+}
+
+.login_window_inner .text_under_header{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.login-title-txt{
+	margin-top: 10px;
+	text-align: center;
+}
+
+.login-title-txt span{
+    font-size: 19px;
+    font-weight: 600;
+    text-indent: -9999em;
+    display: inline-block;
+}
+
+.login_form_onPage{
+	margin: 0 auto;
+    margin-top: 50px;
+    width: 400px;
+}
+
+.login-insert-Box{
+	margin-bottom: 15px;
+}
+
+.login-insert-Box #typingBox_id{
+	margin-bottom: 6px;
+}
+
+.balgeure_ID, .balgeure_PW{
+    width: 383px;
+    height: 44px;
+    line-height: 27px;
+    color: #888;
+    font-size: 15px;
+    padding-left: 15px;
+    border: solid 1px #ccc;
+}
+
+.Loginput-pw{
+	margin-top: 6px;
+}
+
+.login-submit-button{
+	margin-left:4px;
+}
+
+
+#typingBox_submitBTN #checkBox_login{
+	text-align: left;
+	position: relative;
+	float: left;
+	margin-bottom: 16px;
+}
+
+.autologintxt{
+    font-size: 15px;
+}
+
+#typingBox_submitBTN #button_login .loginBtn{
+	display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 0;
+    width: 400px;
+    color: #fff;
+    background-color: #ff7391;
+    border:none;
+    letter-spacing: -1px;
+
+}
+
+.snslogin_buttons{
+	text-align: center;
+	border-top:1px solid #ccc;
+}
+
+.text_of_snslogin{
+	padding-top: 20px;
+}
+
+.text_snslogin_tit{
+	text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+
+.label_info_txt{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.login-insert-Box .error{
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+	font-size: 12px;
+    color: #ff7391;
+    padding-left: 10px;
+}
+ 
+#msg_loginFail{
+	color:#fb4580;
+	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+	font-size: 12px;
+}
+
+.Find_id_and_pw_register{
+    margin: 15px 0;
+    text-align: center;
+}
+
+.btntxt_links a{
+	background: #fff;
+    display: inline-block;
+    line-height: 23px !important;
+    height: 24px;
+    padding: 5px 15px;
+    font-size: 12px;
+    letter-spacing: -1px;
+}
+
+.btntxt_links .right-side-bar{
+	color: #ccc;
+	font-weight: 400;
+}
+
+.btntxt_links .lookingForTxt{
+	display: inline-block;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 1px;
+}
+
+.error_msg{
+	margin-bottom:20px;
+	background-color:#fcfcfc;
+	height: 50px;
+	width: 300px;
+}
+
+.form-control_email, .form-control_pw{
+	height: 35px;
+    width: 400px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.checkbox_on_loginform{
+	font-weight: 500;
+    font-size: 13px;
+}
+
+.login_form_checkbox{
+	margin: 0 0 0 7px !important;
+    position: relative !important;
+}
+
+.login-submit-button{
+	text-align: center;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.balgeure_login_submit-Btn{
+	height: 35px;
+    color: #fff;
+    background-color: #ff7391;
+    border: none;
+    margin: 3px 0 15px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.search_id_and_pw_register{
+	font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.search-email-and-password:hover {
+	text-decoration:none;
+	color: #383d41;
+}
+
+.login-form fieldset {
+    padding: 0;
+    margin: 0;
+    border: none
+}
+
+.login-form legend {
+    display: none
+}
+
+.login-form input[type="text"], .login-form input[type="password"] {
+    line-height: 3;
+    padding: 0;
+    height: 42px
+}
+
+.login-form label {
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    color: #555
+}
+
+.validate-message {
+    display: none;
+    margin: 8px 0 0 0;
+    color: #ff5073;
+    font-size: 13px
+}
+
+.login-form-required {
+    margin-top: 30px
+}
+
+.login-form-required-title {
+    display: block;
+    color: #555
+}
+
+.login-form-required-ul {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0
+}
+
+.login-form-required-li {
+    padding: 0;
+    margin: 10px 0 0
+}
+
+.inputGroups-email-wrap, .inputGroups-password-wrap {
+    position: relative
+}
+
+.inputGroups-email-label, .inputGroups-password-label {
+    display: block;
+    font-size: 15px
+}
+
+.inputGroups-email-text, .inputGroups-password-text {
+    display: none
+}
+
+.inputGroups-email-input, .inputGroups-password-input {
+    display: block;
+    border: 1px solid #ddd;
+    width: 100%;
+    text-indent: 10px
+}
+
+.inputGroups-email-host-select {
+    display: none
+}
+
+.login-auto-wrap {
+    margin-top: 20px
+}
+
+.login-auto-label {
+    position: relative;
+    display: block;
+    padding-left: 0
+}
+
+.login-auto-text {
+    font-size: 15px;
+    color: #333;
+    padding-left: 10px
+}
+
+.login-auto-checkbox {
+    vertical-align: top
+}
+
+.member-SNS_Login {
+    position: relative;
+    height: 36px;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+.member-SNS-facebook-login {
+    color: #32599d
+}
+
+.member-SNS-naver-login {
+    color: #01a301
+}
+
+.member-SNS-kakao-login {
+    color: #e6ad00
+}
+
+.member-SNS-login-text {
+    display: none
+}
+
+.member-SNS-login-icon {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    text-indent: -99999px;
+    margin-left: -15px;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.member-SNS-login-icon-naver {
+    background-color: #1ec800;
+    background: url("/img/balgeure_icons.png") no-repeat -1px -113px;
+}
+
+.member-SNS-login-icon-facebook {
+    background-color: #405d9a;
+    background: url("/img/balgeure_icons.png") no-repeat -74px -113px;
+}
+
+.member-SNS-login-icon-kakao {
+    background-color: #ffd400;
+    background: url("/img/balgeure_icons.png") no-repeat -146px -113px;
+}
+
+
+.member-method {
+    width: 400px;
+    margin: 35px auto 0;
+    text-align: center;
+    font-size: 0
+}
+
+.member-method a {
+    font-size: 13px;
+    text-align: center;
+    color: #8a8a8a;
+    text-decoration: none;
+    margin-left: 15px;
+    padding-left: 15px;
+    border-left: 1px solid #ababab
+}
+
+.member-method a:first-child {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none
+}
+
+.inputGroups-name-input::-webkit-input-placeholder, .inputGroups-email-input::-webkit-input-placeholder, .inputGroups-password-input::-webkit-input-placeholder, .inputGroups-confirm-input::-webkit-input-placeholder, .inputGroups-cellphone-input::-webkit-input-placeholder, .verification-cellphone-input::-webkit-input-placeholder, .inputGroups-recommendUser-input::-webkit-input-placeholder {
+    font-size: inherit
+}
+
+.simple-login-SNS {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.simple-login-SNS-list {
+    display: inline-block;
+    font-size: 13px;
+    text-align: center;
+    color: #8a8a8a;
+    text-decoration: none;
+    padding-left: 15px
+}
+
+.simple-login-SNS-list:first-child {
+    margin-left: 0;
+    padding-left: 0px;
+}
+
+.login-captcha {
+    display: none;
+    margin-top: 10px;
+    padding: 0 10px 15px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0
+}
+
+.inputGroups-captcha-wrap.notValidate .inputGroups-captcha-input {
+    position: relative;
+    border-bottom: 1px solid #ff5073
+}
+
+@font-face {
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    letter-spacing: -1px
+}
+
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, form, fieldset, input, table, tr, th, td {
+    margin: 0;
+    padding: 0
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%
+}
+
+ul, ol {
+    list-style: none
+}
+
+fieldset, img {
+    border: 0;
+    vertical-align: top
+}
+
+p, i, dd, td {
+    line-height: 1.5em;
+    font-size: 1em;
+    text-align: justify
+}
+
+:focus {
+    outline: 0
+}
+
+body {
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #383d41;
+}
+
+input, select, button {
+    vertical-align: middle
+}
+
+input {
+    padding-left: 6px;
+    background-color:#fff;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
+}
+
+table {
+    table-layout: fixed;
+    border-spacing: 0
+}
+
+caption, th, td {
+    font-weight: normal;
+    text-align: left
+}
+
+caption {
+    display: none
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: ""
+}
+
+blockquote, q {
+    quotes: "" ""
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+legend, caption {
+    display: none
+}
+
+input[disabled], button[disabled] {
+    cursor: not-allowed;
+    background-color: #eee
+}
+
+a[disabled] {
+    cursor: not-allowed
+}
+
+#wrap {
+    min-width: 1100px
+}
+
+#container {
+    width: 1080px;
+    position: relative
+}
+
+#container:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.clearfix {
+    *zoom: 1
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.hidden {
+    display: none
+}
+
+.fancybox-opened .fancybox-skin {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent
+}
+
+
+
+.Login_balgeure_form input[type=text]{
+	line-height:3;
+	height: 44px;
+}
+
+.Login_balgeure_form input[type=password]{
+	line-height:3;
+	height: 44px;
+}
+
+
+.loginform_username_input, .loginform_password_input{
+	display: block;
+    font-size: 13px;
+}
+
+.loginform_username_tit, .loginform_password_tit{
+	display: none;
+}
+
+.Login_balgeure_form .balgeure_ID, .Login_balgeure_form .balgeure_PW{
+	display: block;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+}
+

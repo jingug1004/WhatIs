@@ -1,0 +1,96 @@
+﻿<div id="footer" class="mA">
+    <div class="footerTop">
+        <div class="footerTopInner">
+            <div class="LinkToOthers">
+                <ul class="oF">
+                    <li class="company_intro">
+                        <a href="http://sumcreative.co.kr/?page_id=6485" target="_blank">인재채용</a>
+                    </li>
+                    <li class="ContactUs">
+                        <a href="/contactUs" ga-event="푸터,푸터_이용약관">입점 / 제휴문의</a>
+                    </li>
+                    <li class="AgreeForm">
+                        <a href="/policy/service" ga-event="푸터,푸터_이용약관">이용약관</a>
+                    </li>
+                    <li class="privacy_form">
+                        <a href="/policy/privacy" ga-event="푸터,푸터_개인정처리급방침">개인 정보 처리 방침</a>
+                    </li>
+                    <li class="cs_Center">
+                        <a href="/cs/faq">고객센터</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="LinkToSNS">
+                <ul>
+                    <li class="FB_icon"><a href="https://www.facebook.com/balgeure/" target="_blank">Facebook</a></li>
+                    <li class="IS_icon"><a href="https://www.instagram.com/balgeure_beauty/" target="_blank">Instagram</a></li>
+                    <li class="NT_icon"><a href="http://tv.naver.com/balgeure" target="_blank">Naver TV</a></li>
+                    <li class="YT_icon"><a href="https://www.youtube.com/channel/UC-2FyUoGDL_cx4o3aHMbEkw" target="_blank">Youtube</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footerBottom">
+        <div class="footerBottomInner">
+            <a class="footerLogo fL" href="/"></a>
+            <div class="textBox fL">
+                <address>
+                    주식회사 숨크리에이티브 | 대표자 : 채경민 <br/> 서울시 금천구 가산디지털1로 149, 802<br />사업자등록번호 484-88-00453<br>통신판매 신고번호 : 2016-서울금천-1048<br />
+                    <a href="http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=4848800453" target="_blank" ga-event="푸터,푸터_사업자정보확인">사업자 정보 확인 ></a>
+                </address>
+               
+            </div>
+            <div class="CustomerCenter">
+                <div id="first_row">
+                    <strong class="tit">고객센터</strong><br>
+                    <p class="phoneNum">070-7703-0859</p>
+                </div>
+                <div id="second_row">
+                    <span>평일 (월 ~ 금) 오전 9:00 ~ 18:00</span><br><span>주말/공휴일 휴무</span>
+                </div>
+                <div id="third_row">
+                    <span class="contact-fax">Fax : 02-334-7976 | email : sumcreative@naver.com</span>
+                </div>
+
+
+            </div>
+            <div class="cols_4th">
+    <strong>KB은행 구매 안전 서비스</strong><br>
+    <span>고객님의 안전거래를 위해 현금 등으로 결제 시, 저희 사이트에서 가입한 구매안전 서비스를 이용하실 수 있습니다.</span><br />
+    <a href="https://okbfex.kbstar.com/quics?page=C021590&cc=b034066:b046116&QSL=F" target="_blank" onclick="javascript:onPopKBAuthMark();return false;">서비스 가입 확인 ></a>
+
+            </div>
+        </div>
+    </div>
+    <div class="footerLastrow">
+                               <div id="logo_mark">
+                                   <div id="copyright">
+    <span class="e_text">Copyright ﻿ⓒ 발그레-주식회사 숨크리에이티브 2017. All rights reserved.</span>
+    </div>
+                    <div class="KBBank">
+
+                        <!-- KB에스크로 이체 인증마크 적용 시작 -->
+                      
+                        <form name="KB_AUTHMARK_FORM" method="get">
+                            <input type="hidden" name="page" value="C021590" />
+                            <input type="hidden" name="cc" value="b034066:b035526" />
+                            <input type="hidden" name="mHValue" value='724fff1314e090e6b797bfd963605696201703151335660' />
+                        </form>
+                        <a href="https://okbfex.kbstar.com/quics?page=C021590&cc=b034066:b046116&QSL=F" target="_blank" onclick="javascript:onPopKBAuthMark();return false;">
+                            <img src="/img/kbbank_35x35_gray.png" border="0" />
+                        </a>
+                        <!-- KB에스크로이체 인증마크 적용 종료 -->
+                    </div>
+                    <div class="Inicis">
+                    <a href="https://mark.inicis.com/mark/escrow_popup.php?mid=MOIsumcrea"  target="_blank">
+                        <img src='/img/inipay_35x35_gray.png' border="0" alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+                        </a>
+                    </div>
+                </div>
+    
+    </div>
+
+</div>
+
+
+<!-- 배송정보 -->

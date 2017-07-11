@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>발그레 - 아이디 찾기</title>
+
+<link href="/css/find/find_id_pw.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container_findId">
+        <div class="top">
+            <div class="title">
+                <h3>아이디 찾기</h3>
+            </div>
+            <div class="content">
+                <div class="insert_form_Box">
+                    <input type="hidden" class="R_email" id="R_email" name="R_email" value="$user.email">
+                    <table id="search_balgeure_id">
+                        <tr>
+                            <th><span class="findBox_txt">이  름 : </span></th>
+                            <td><input type="text" class="name" name="name" id="name" placeholder="이름"></td>
+                        </tr>
+                        <tr>
+                            <th><span class="findBox_txt">핸드폰 번호 : </span></th>
+                            <td><input type="text" class="phone" name="phone" id="phone" placeholder="- 제외"></td>
+                        </tr>
+                    </table>
+                    
+                    <p class="find_popUp_txt">
+                아이디 (이메일) 찾기가 어려운 경우 고객센터로 연락해 주세요. 
+                </p>
+                
+                <div class="footer">
+                  <div class="footer_id" style="display:none;">
+                    <p class="findBox_txt">이메일(아이디) :</p>
+                    <input type="text" class="email_id" id="email_id" name="email_id" value="" readonly>
+                  </div>
+                <div class="btn-submit-OK">
+                    <button type="button" class="okBtn" id="findId" name="findId">확인</button>
+                </div>
+            </div>
+                    
+                    
+                </div>
+
+            </div>
+            <div class="btn-close">
+                    <a href="javascript:void(0);" class="btn-layerClose" onclick="window.close()">Close</a>
+                </div>
+            
+        </div>
+    </div>
+</body>
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+$(function() {
+    	$('#findId').on('click', function(e) {
+    		e.preventDefault;
+    		var name = $("#name").val();
+    		var phone = $("#phone").val();
+    		
+    		var formData = new FormData();
+    		
+    		formData.append("name", name);
+    		formData.append("phone", phone);
+    		
+    		$.ajax({
+    			type: "POST",
+    			url: "/privacy/findId",
+    			data: formData,
+    		    dataType: "text",
+    		    contentType: false,
+    		    processData: false,
+    		    success: function(formData) {
+    		    	console.log(formData);
+    		    	$("#email_id").val(formData);
+    		    	$(".footer_id").css('display','block');
+    		    },
+    		    error:function(request,status,error) {
+    		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		    },
+    		});
+    	});
+    });
+</script>
+</html>

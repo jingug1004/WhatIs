@@ -1,0 +1,177 @@
+div.mypageRightContents div.tabMenu {
+    margin: 25px 0
+}
+
+div.mypageRightContents div.tabMenu a {
+    color: #c8c8c8
+}
+
+div.mypageRightContents .reviewDel {
+    display: block;
+    margin-bottom: 20px;
+    background: #fff;
+    width: 44px;
+    height: 20px;
+    border: 1px solid #bebebe;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    color: #464646
+}
+
+table.reviewList {
+    clear: both;
+    width: 780px;
+    border-top: 1px solid #999
+}
+
+table.reviewList th {
+    padding: 10px 0;
+    background: #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+    font-weight: bold;
+    color: #363636
+}
+
+table.reviewList th, table.reviewList td {
+    text-align: center;
+    font-size: 13px
+}
+
+table.reviewList td {
+    padding: 20px 5px;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4
+}
+
+table.reviewList td.grade {
+    text-align: left
+}
+
+table.reviewList .last {
+    border-right: 0
+}
+
+table.reviewList .empty {
+    height: 187px
+}
+
+.star {
+    width: 63px;
+    margin-left: 3px
+}
+
+.star, .star em {
+    display: inline-block;
+    overflow: hidden;
+    height: 12px;
+    /*background: url("/web/images/myPage/star_small_v2.png") no-repeat 0 -13px;*/
+    vertical-align: middle
+}
+
+.star em {
+    background-position: 0 0;
+    line-height: 0;
+    font-size: 0;
+    vertical-align: top
+}
+
+.star em.half {
+    width: 6px
+}
+
+.star em.one {
+    width: 19px
+}
+
+.star em.oneHalf {
+    width: 18px
+}
+
+.star em.two {
+    width: 25px
+}
+
+.star em.twoHalf {
+    width: 32px
+}
+
+.star em.three {
+    width: 38px
+}
+
+.star em.threeHalf {
+    width: 45px
+}
+
+.star em.four {
+    width: 51px
+}
+
+.star em.fourHalf {
+    width: 58px
+}
+
+.star em.five {
+    width: 63px
+}
+
+.starBig {
+    width: 83px;
+    margin-left: 3px
+}
+
+.starBig, .starBig em {
+    display: inline-block;
+    overflow: hidden;
+    height: 17px;
+    /*background: url("/web/images/myPage/star_v2.png") no-repeat 0 -16px;*/
+    vertical-align: middle
+}
+
+.starBig em {
+    background-position: 0 0;
+    line-height: 0;
+    font-size: 0;
+    vertical-align: top
+}
+
+.starBig em.half {
+    width: 8px
+}
+
+.starBig em.one {
+    width: 17px
+}
+
+.starBig em.oneHalf {
+    width: 25px
+}
+
+.starBig em.two {
+    width: 34px
+}
+
+.starBig em.twoHalf {
+    width: 42px
+}
+
+.starBig em.three {
+    width: 51px
+}
+
+.starBig em.threeHalf {
+    width: 59px
+}
+
+.starBig em.four {
+    width: 68px
+}
+
+.starBig em.fourHalf {
+    width: 76px
+}
+
+.starBig em.five {
+    width: 83px
+}
