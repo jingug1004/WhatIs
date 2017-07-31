@@ -1,0 +1,230 @@
+@media only screen and (max-width: 767px) {
+
+/**  Main css  Start  **/
+
+    #container{
+        width: 100% !important;
+        background: #f0f0f0;
+        margin-top: 8px !important;
+    }
+
+    #container .quickmenu_right{
+        display: none !important;
+    }
+
+    #container .BannerOfEvent{
+        display: none !important;
+    }
+
+    #container .Fullwidth_banner_middle{
+        display: none;
+    }
+
+    /**  Prodcut list css  Start  **/
+
+    #container #realtime_bestItem_List{
+        width: 100%;
+    }
+
+    #container #realtime_bestItem_List .dealList li{
+        margin: 0 0 8px 0;
+    }
+
+    #container #realtime_bestItem_List .list_title_{
+        background: #ff7391;
+        color: #fff;
+        height: 32px;
+        padding: 0 13px;
+        margin-bottom: 8px;
+    }
+
+    #container #realtime_bestItem_List .list_title_ .moreView{
+        color: #fff;
+        font-size: 11px;
+        margin-top: 8px;
+        margin-right: 0 !important;
+    }
+
+    #realtime_bestItem_List .list_title_ .main_product_list{
+        font-size: 12px;
+        line-height: 32px !important;
+    }
+    
+    #realtime_bestItem_List .newDealContents .segment_product_item{
+        width: 100%;
+        height: 232px;
+        background: #fff;
+        border: none;
+    }
+
+    #realtime_bestItem_List .segment_product_item .dealThumb{
+        text-align: center;
+    }
+
+    #realtime_bestItem_List .segment_product_item .dealThumb img{
+        width:160px;
+    }
+        
+    #realtime_bestItem_List .segment_product_item .dealBody {
+        height: 48px;
+    }
+
+    #realtime_bestItem_List .dealBody .dealhead {
+        height: 22px;
+    }
+
+    #realtime_bestItem_List .dealhead .title{
+        font-size: 12px;
+        letter-spacing: 1px;
+        width: 100%;
+    }
+
+    #realtime_bestItem_List .dealBody .dealhead .small_title_thum_TimeSale{
+        display:none;
+    }
+
+    #realtime_bestItem_List .dealBody .dealPrice{
+        margin-top: -9px;
+    }
+
+    #realtime_bestItem_List .dealBody .discount{
+        margin: 0px;
+        letter-spacing: 1px;
+    }
+
+    #realtime_bestItem_List .dealBody .discount .percent {
+        font-size: 17px;
+    }
+
+    #realtime_bestItem_List .dealBody .discount .unit {
+        font-size: 17px;
+    }
+
+    #realtime_bestItem_List .dealBody .dealPrice .dealPrice{
+        margin: 14px 0 0 0;
+    }
+
+    #realtime_bestItem_List .dealBody .dealPrice del{
+        margin: 0;
+        float: left;
+        padding-right: 10px;
+        margin-top: 1px;
+    }
+
+    #realtime_bestItem_List .dealBody .dealPrice .price.fL{
+        margin: 0;
+        font-size: 17px;
+        line-height: 11px;
+        letter-spacing: 0.03em;
+    }
+    
+    #realtime_bestItem_List .dealBody .dealPrice .price .unit {
+        font-size: 17px;
+    }
+
+    #realtime_bestItem_List .segment_product_item .dealFoot {
+        height: 24px;
+        background: #fff !important;
+        border-left: none;
+        border-right: none;
+    }
+    
+    #realtime_bestItem_List .dealFoot .delivery_option_show {
+        margin-top: 3px;
+    }
+
+    #realtime_bestItem_List .segment_product_item .dealFoot span {
+        height: 16px;
+        margin: 0 0 0 0;
+        line-height: 14px;
+    }
+    
+    #realtime_bestItem_List .dealFoot .zzim_wishlist{
+        display:none;
+    }
+
+    #realtime_bestItem_List .dealFoot .go_to_wishlist_ZZim{
+        padding-top: 2px;
+    }
+    
+    /**  Prodcut list css   End   **/
+
+
+    /**  Rest Prodcut list css  Start  **/
+
+    #container .realtimeBestItemWrap.popluaritem{
+        margin-top: 968px !important;
+    }
+
+    #container .realtimeBestItemWrap.otherlistitem{
+        margin-top: 1928px !important;
+    }
+
+    .realtimeBestItemWrap.popluaritem .segment_product_item .small_title_thum{
+        display:none;
+    }
+
+    .realtimeBestItemWrap.otherlistitem .segment_product_item .small_title_thum{
+        display:none;
+    }
+
+    .realtimeBestItemWrap.popluaritem .segment_product_item .dealPrice div {
+        margin: 0px;
+    }
+
+    .realtimeBestItemWrap.popluaritem .segment_product_item .dealPrice .dealPrice div {
+        padding-right: 10px;
+    }
+
+    .realtimeBestItemWrap.otherlistitem .segment_product_item .dealPrice div {
+        margin: 0px;
+    }
+    
+    .realtimeBestItemWrap.otherlistitem .segment_product_item .dealPrice .dealPrice div {
+        padding-right: 10px;
+    }
+                    
+
+/**  Main css  End  **/
+    
+    
+    
+    /**  Footer css  Start  **/
+    
+    #mobile_ver.footer{
+        border-top: 3px solid #e0e0e0;
+        text-align: center;
+        font-size: 11px;
+        margin: -20px 0 20px;
+        color: #999;
+    }
+    
+    .LinkPage{
+        padding: 10px 0;
+    }
+    
+    .LinkPage .Linkto_{
+        color: #999;
+        cursor: pointer;
+    }
+    
+    .LinkPage .Linkto_.bal_service, .LinkPage .Linkto_.bal_privacy {
+        padding: 0 3px 0 0;
+    }
+    
+    .LinkPage .Linkto_.bal_chkbusiness, .LinkPage .Linkto_.bal_privacy {
+        padding: 0 0 0 3px;
+    }
+    
+    .MfooterContents p{
+        text-align: center;    
+    }
+    
+    .MfooterContents .copyright_m{
+        text-align: center;
+        padding-top: 5px;
+    }
+    
+    /**  Footer css  End  **/
+
+}

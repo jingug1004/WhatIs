@@ -1,19 +1,60 @@
 #parse("/main/header.vm")
 
 <link type="text/css" href="/css/product/productCommon.css?v=1747Fr" rel="stylesheet" />
+
+<script src="/js/jquery.bxslider2.js"></script>
+<link href="/css/jquery.bxslider2.css" rel="stylesheet" />
+
+<style>
+	.bxslider {
+		display: none;
+	}
+</style>
+
+
+<script>
+	$(document).ready(function() {
+		$(".bxslider").show().bxSlider ({
+			auto: true,
+			autoControls: true
+		});
+	});
+
+	/* $(function() {
+		$('.bxslider').bxSlider ({
+  			auto: true,
+  			autoControls: true
+		});
+	}); */
+</script>
+
+
+
 <div class="layout-structure-content">
 
+<div id="pc_Ver" class="BestProductList_TopBanner">
+	<ul class="bxslider">
+    	#foreach($item in $showBestProduct.firstBanner)
+    	<li class="BestProductList_TopBanner_img">
+        	<a href="/detail?product_id=305&sort=1" style="width: 1080px;"><img src="//sumcrimage.cafe24.com/$!{item.thumbnail}"></a>
+    	</li>
+    	#end
+	</ul>
+</div>
+
+<div id="mobile_ver">
+	<ul class="bxslider productPageTop">
+    	#foreach($item in $showBestProduct.firstBanner)
+    	<li class="BestProductList_TopBanner_img">
+        	<a href="/detail?product_id=305&sort=1" style="width: 1080px;"><img src="//sumcrimage.cafe24.com/$!{item.thumbnail}"></a>
+    	</li>
+    	#end
+	</ul>
+</div>
 
 
-    <div class="quickmenu_right" id="quickmenu_right">
-
-        <div class="banner_first">
-            <div class="banner_first_images mySlides">
-                <a href="/event?eid=33">
-                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
-                </a>
-            </div>
-
+<div class="quickmenu_right" id="quickmenu_right">
+ <div class="banner_first">
             <div class="banner_first_images mySlides">
                 <a href="/event?eid=34">
                     <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
@@ -28,12 +69,6 @@
             <div class="banner_second_images">
                 <a href="/event?eid=30">
                     <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
-                </a>
-            </div>
-
-            <div class="banner_second_images">
-                <a href="/event?eid=32">
-                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
                 </a>
             </div>
 
@@ -53,22 +88,19 @@
         </div>
     </div>
 
-
-
-    <!-- S: 상품 목록 -->
-    #foreach($item in $showBestProduct.firstBanner)
-    <div class="BestProductList_TopBanner_img">
-        <img src="//sumcrimage.cafe24.com/$!{item.thumbnail}" width="1080">
-    </div>
-    #end
-
-    <div class="exhibit best-moreover">
+    <div class="exhibit best-moreover" id="best_Salelist">
         <ul class="balgeurebox-deal-list balgeurebox-deal-list-line-amount-3">
             #foreach($item in $showBestProduct.productList)
             <li class="balgeurebox-deal-wrapper segment_product_item">
                 <div class="balgeurebox-deal deal_type_vertical_square_amount_col_3">
                         <a href="/detail?product_id=${item.productId}&sort=1">
                             <div class="balgeurebox-deal-image-wrap">
+                            	#if($item.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$item.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                             	#else
+                                #end
                                 <img class="balgeurebox-deal-image"
                                      src="//sumcrimage.cafe24.com/$!{item.thumbUrl}"
                                      alt="$!{item.prodName}" />
@@ -147,6 +179,7 @@
                                 #break
                                 #end
                                 #end
+                                </a>
                                 <div class="zzim_wishlist">
                                     #if($flag)
                                     <div class="go_to_wishlist_ZZim">
@@ -160,7 +193,6 @@
                                 </div>
 
                             </div>
-                            </a>
 
                 </div>
 
@@ -172,7 +204,6 @@
 </div><!-- end: layout-structure-content-->
 <!-- //container -->
 	#parse("/main/footer.vm")
-<script src="//code.jquery.com/jquery-3.1.1.js"></script>
 
 <script>
 function wish(frm, p_id) {
@@ -189,6 +220,9 @@ function wish(frm, p_id) {
 				getHeaderInfo();
 			} else {
 				alert("찜하기는 로그인 후 사용 가능합니다.");
+				
+				window.location.href="/login";
+    			return;
 			}
 		},
 		error: function(request, status, error) {
@@ -283,6 +317,5 @@ $(document).ready(function() {
 });
 
 </script>
-
 
 

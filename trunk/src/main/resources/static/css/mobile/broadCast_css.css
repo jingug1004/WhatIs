@@ -1,0 +1,67 @@
+@media only screen and (max-width: 767px) {
+	
+
+
+    #pc_video{
+        display:none;
+    }
+
+
+
+    .brodcast_contanier{
+        width: 100% !important;
+        margin-bottom: 30px !important;
+    }
+
+    .brodcast_contanier .videoplay_area{
+        width: 100% !important;
+        margin-top: 0 !important;
+    }
+
+    .videoplay_area .videoplayBox{
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    .videoplay_area .videoplayBox .livetit{
+        padding: 15px 0 0 12px;
+    }
+
+    .videoplay_area .videoplayBox .livetit span{
+        font-size: 13px !important;
+        font-weight: 600;
+    }
+
+    .videoplay_area .videoplayBox #m1_video.player_area{
+        width: 100% !important;
+        height: auto !important;
+        float:none !important;
+        background: none !important;
+        text-align: center;
+        padding-bottom: 12px;
+    }
+
+    .videoplay_area .videoplayBox .playing_product{
+        float:none !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .videoplay_area .otherProgram{
+        margin-top: 20px !important;
+    }
+
+    .videoplay_area .otherProgram .otherVideo_tit{
+        padding: 15px 0 0 12px;
+    }
+
+    .videoplay_area .otherProgram .otherVideo_tit span{
+        font-size: 13px !important;
+        font-weight: 600;
+    }
+
+
+
+}

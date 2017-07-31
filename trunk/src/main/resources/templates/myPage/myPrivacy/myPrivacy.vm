@@ -1,26 +1,38 @@
 #parse("/main/header.vm")
 <link rel="stylesheet" type="text/css" href="/css/mainCommon.css">
-
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
-function logout(type) {
 
+
+function logout(type) {
+	
+	var joinType = '$User.joinType';
+	
     $.ajax ({
 		type: "POST",
 		url: "/my/privacy/snsDisCon?sns_type="+type,
 		contentType: false,
 		processData: false,
 		success: function(data) {
-		    alert("해제 완료!");
-		    window.location.reload();
-		    if (type == 'K') {
+		    if (type == 'K' && type != joinType) {
+		    	alert("Kakao 계정이 연동 해제 되었습니다.");
+		    	window.location.reload();
 		    	$('#kLogout').hide();
 		    	$('#kLogin').show();
-		    } else if (type == 'F') {
+		    } else if (type == 'F' && type != joinType) {
+		    	alert("Facebook 계정이 연동 해제 되었습니다.");
+		    	window.location.reload();
 		    	$('#fLogout').hide();
 		    	$('#fLogin').show();
-		    } else if (type == 'N') {
+		    } else if (type == 'N' && type != joinType) {
+		    	alert("Naver 계정이 연동 해제 되었습니다.");
+		    	window.location.reload();
 		    	$('#nLogout').hide();
 		    	$('#nLogin').show();
+		    } else if(type == joinType) {
+		    	alert('회원가입 시 사용한 SNS 계정은 해제하실 수 없습니다.');
 		    }
 		},
 		    error:function(request,status,error) {
@@ -37,7 +49,7 @@ function logout(type) {
 <!-- container -->
 <div id="container" class="mA ">
 
-    <div class="myPageWrap">
+    <div class="myPageWrap"  id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -187,17 +199,17 @@ function logout(type) {
                                         <div class="insertBox">
                                             <input type="text" class="zipcode" id="zipc" name="zipcode" value="$Shipping.zipcode" readonly>
                                             <div class="submitBtn">
-                                                <a href="javascript:address()" class="myButton">우편번호 찾기</a>
+                                                <a onclick="execDaumPostcode()" class="myButton" id="postcode_btn">우편번호 찾기</a>
                                             </div>
                                             <input type="text" class="address1" id="addr1" name="address1" value="$Shipping.address1" readonly>
-                                            <input type="text" class="address2" id="addr2" name="address2" value="$Shipping.address2" readonly>
+                                            <input type="text" class="address2" id="addr2" name="address2" value="$Shipping.address2" >
                                         </div>
 
                                     </td>
                                     <!-- 우편번호 팝업 확인 -->
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
                                     <th class="tableTitle">피부타입</th>
                                     <td class="SkinType">
                                         #if($User.skinType == 0)
@@ -270,7 +282,8 @@ function logout(type) {
                                         </div>
                                         #end
                                     </td>
-                                </tr>
+                                </tr> -->
+                                <input type="hidden" name="skin" value="0">
 
                                 <tr>
                                     <th class="tableTitle">마케팅 수신동의</th>
@@ -284,58 +297,55 @@ function logout(type) {
                                         <input type="checkbox" class="checkbox" name="emailaaree" id="marketing2" value="$!{User.emailAgree}" #if($User.emailAgree == 'Y') checked #end>
                                         <label for="marketing2" class="input-label radio">이메일</label>
                                        </div>
-
-
                                     </td>
                                 </tr>
 
-              <!--                  <tr>
+                                <tr>
                                     <th class="tableTitle">SNS 계정연결</th>
                                     <td class="connectsns">
                                     <div class="SNS_logins">
                                         <div class="naver_connect_wBal">
-                                        #if(!$User.naver)
-                                            <a href="#" id="nLogin" onclick="snsLogin('N', 'U');">
-                                            <span class="sprite naver2 nLogin"></span>
-                                            </a>
-                                        #else
+                                        #if($User.naver || $User.joinType == 'N')
                                             <a href="#" id="nLogout" onclick="logout('N');">
                                             <span class="logout_naver nLogout"></span>
                                             </a>
+                                        #elseif(!$User.naver)
+                                            <a href="#" id="nLogin" onclick="snsLogin('N', 'U');">
+                                            <span class="sprite naver2 nLogin"></span>
+                                            </a>
                                         #end
-                                        </div>                    
-                                        
+                                        </div>
                                         <div class="fb_connect_wBal">
-                                        #if(!$User.facebook)
+                                        #if($User.facebook || $User.joinType == 'F')
+                                            <a href="#" id="fLogout" onclick="logout('F');">
+                                            <span class="logout_facebook fLogout" ></span>
+                                            </a>
+                                        #elseif(!$User.facebook)
                                             <a href="#" id="fLogin" onclick="snsLogin('F', 'U');">
                                             <span class="sprite facebook2 fLogin" ></span>
-                                            </a>
-                                        #else
-                                           <a href="#" id="fLogout" onclick="logout('F');">
-                                            <span class="logout_facebook fLogout" ></span>
                                             </a>
                                         #end
                                          </div>
                                          
                                         <div class="ka_connect_wBal">
-                                        #if(!$User.kakao)
+                                        #if($User.kakao || $User.joinType == 'K')
+                                            <a href="#" id="kLogout" onclick="logout('K');">
+                                            <span class="logout_kakao kLogout" ></span>
+                                            </a>
+                                        #elseif(!$User.kakao)
                                             <a href="#" id="kLogin" onclick="snsLogin('K', 'U');">
                                             <span class="sprite kakaotalk2 kLogin" ></span>
                                             </a>
-                                        #else
-                                            <a href="#" id="kLogout" onclick="logout('K');">
-                                            <span class="logout_kakao kLogout" ></span></a>
                                         #end
                                         </div>
                                                                           
                                     </div>
                                     </td>
-                                </tr> 
-
+                                </tr>
                                 <tr>
                                     <th class="tableTitle">회원탈퇴</th>
                                     <td class="signOff_B"><input type="button" name="leave" id="leave" value="탈퇴하기" onclick="location.href='/member/leaveAgree'"></td>
-                                </tr>-->
+                                </tr>
 
                                 <tr>
                                     <td colspan="2" class="Done_btn">
@@ -360,15 +370,17 @@ function logout(type) {
                     <input type="hidden" name="login" id="login">
                     <input type="hidden" name="type" id="type">
                 </form>
-
-                <script>
+	  
+      <!-- <script>
       window.fbAsyncInit = function() {
-    	  FB.init({
-    		  appId : '774053909386228', // 앱 ID
+          //SDK loaded, initialize it
+      	  FB.init({
+    		  appId : /* '232664117179969' */'1918524211727467', // 앱 ID
     		  status : true,         // 로그인 상태를 확인
     		  cookie : true,          // 쿠키허용
     		  xfbml : true          // parse XFBML
     	  });
+          
     	  FB.Event.subscribe('auth.login', function(response) {
 				if (response.status === 'connected') {
 		        	FB.api('/me', function(user) {
@@ -376,7 +388,7 @@ function logout(type) {
 		            		if($("#act").val() == "U") {
 			            		$("#login").val(user.id);
 								$("#type").val("F");
-								$("#snslogin").submit();	
+								$("#snslogin").submit();
 		            		} else {
 		            			snsCallback(user.id, 'F');
 		            		}
@@ -389,8 +401,8 @@ function logout(type) {
 
             FB.login();
         });
-    }
-    </script>
+    } 
+    </script> -->
 
                 
 
@@ -400,15 +412,293 @@ function logout(type) {
     </div>
     <!--myPageWrap-->
     <input type="hidden" id="act" value="U">
+    
+    
+    
+   <div class="myPageWrap"  id="mobile_Ver">
 
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <span><a href="/my/index">마이페이지</a></span>
+            <span>&gt;</span>
+            <span class="on">개인정보 수정</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+        
+            <div class="mypageRightContents_m">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub privacy"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+                <div class="tabAll" id="changeMyInfo">
+                    <form method="post" action="/my/privacy/update" name="privacyFrm" onSubmit="formChk();return false">
+                        <table class="privacyTable mA" cellpadding="0" cellspacing="0" summary="개인정보 수정">
+                            <caption>개인정보 수정</caption>
+                            <tbody>
+                                <tr>
+                                    <th class="tableTitle">개인정보</th>
+                                    <td class="NameCode">
+                                        <span class="UserName">이름<span>$User.name</span></span><br />
+                                        <span class="UserID">아이디(이메일)<span>$User.email</span></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="tableTitle">휴대폰번호</th>
+                                    <td class="myPhoneNum">$User.phone</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="tableTitle">새 비밀번호</th>
+                                    <td class="password_box">
+                                        <input type="password" name="password" id="ps_1" maxlength="15" placeholder="비밀번호">
+                                        <span id="ps1"></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="tableTitle">새 비밀번호 확인</th>
+                                    <td class="password_box">
+                                        <input type="password" id="ps_2" maxlength="15" placeholder="비밀번호 확인">
+                                        <span id="ps2"></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="tableTitle">주 소</th>
+                                    <td class="MyAdress">
+                                        <div class="insertBox">
+                                            <input type="text" class="zipcode" id="zipc" name="zipcode" value="$Shipping.zipcode" readonly>
+                                            <div class="submitBtn">
+                                                <a onclick="execDaumPostcode()" class="myButton" id="postcode_btn">우편번호 찾기</a>
+                                            </div>
+                                            <input type="text" class="address1" id="addr1" name="address1" value="$Shipping.address1" readonly>
+                                            <input type="text" class="address2" id="addr2" name="address2" value="$Shipping.address2" >
+                                        </div>
+
+                                    </td>
+                                    <!-- 우편번호 팝업 확인 -->
+                                </tr>
+
+                                <!-- <tr>
+                                    <th class="tableTitle">피부타입</th>
+                                    <td class="SkinType">
+                                        #if($User.skinType == 0)
+                                        <div class="TP1">
+                                        <input type="radio" class="checkbox" name="skin" id="skin1" value="0" checked>
+                                        <label for="skin1" class="input-label first radio">건성</label>
+                                        </div>
+                                        <div class="TP2">
+                                        <input type="radio" class="checkbox" name="skin" id="skin2" value="1">
+                                        <label for="skin2" class="input-label radio">중성</label>
+                                        </div>
+                                        <div class="TP3">
+                                        <input type="radio" class="checkbox" name="skin" id="skin3" value="2">
+                                        <label for="skin3" class="input-label radio">지성</label>
+                                        </div>
+                                        <div class="TP4">
+                                        <input type="radio" class="checkbox" name="skin" id="skin4" value="3">
+                                        <label for="skin4" class="input-label radio">복합성</label>
+                                        </div>                                        
+                                        #elseif($User.skinType == 1)
+                                        <div class="TP1">
+                                        <input type="radio" class="checkbox" name="skin" id="skin1" value="0">
+                                        <label for="skin1" class="input-label first radio">건성</label>
+                                        </div>
+                                        <div class="TP2">
+                                        <input type="radio" class="checkbox" name="skin" id="skin2" value="1" checked>
+                                        <label for="skin2" class="input-label radio">중성</label>
+                                        </div>
+                                        <div class="TP3">
+                                        <input type="radio" class="checkbox" name="skin" id="skin3" value="2">
+                                        <label for="skin3" class="input-label radio">지성</label>
+                                        </div>
+                                        <div class="TP4">
+                                        <input type="radio" class="checkbox" name="skin" id="skin4" value="3">
+                                        <label for="skin4" class="input-label radio">복합성</label>
+                                        </div>
+                                        #elseif($User.skinType == 2)
+                                        <div class="TP1">
+                                        <input type="radio" class="checkbox" name="skin" id="skin1" value="0">
+                                        <label for="skin1" class="input-label first radio">건성</label>
+                                        </div>
+                                        <div class="TP2">
+                                        <input type="radio" class="checkbox" name="skin" id="skin2" value="1">
+                                        <label for="skin2" class="input-label radio">중성</label>
+                                        </div>
+                                        <div class="TP3">
+                                        <input type="radio" class="checkbox" name="skin" id="skin3" value="2" checked>
+                                        <label for="skin3" class="input-label radio">지성</label>
+                                        </div>
+                                        <div class="TP4">
+                                        <input type="radio" class="checkbox" name="skin" id="skin4" value="3">
+                                        <label for="skin4" class="input-label radio">복합성</label>
+                                        </div>
+                                        #elseif($User.skinType == 3)
+                                        <div class="TP1">
+                                        <input type="radio" class="checkbox" name="skin" id="skin1" value="0">
+                                        <label for="skin1" class="input-label first radio">건성</label>
+                                        </div>
+                                        <div class="TP2">
+                                        <input type="radio" class="checkbox" name="skin" id="skin2" value="1">
+                                        <label for="skin2" class="input-label radio">중성</label>
+                                        </div>
+                                        <div class="TP3">
+                                        <input type="radio" class="checkbox" name="skin" id="skin3" value="2">
+                                        <label for="skin3" class="input-label radio">지성</label>
+                                        </div>
+                                        <div class="TP4">
+                                        <input type="radio" class="checkbox" name="skin" id="skin4" value="3" checked>
+                                        <label for="skin4" class="input-label radio">복합성</label>
+                                        </div>
+                                        #end
+                                    </td>
+                                </tr> -->
+                                <input type="hidden" name="skin" value="0">
+
+                                <tr>
+                                    <th class="tableTitle">마케팅 수신동의</th>
+                                    <td class="agreeSMS">
+                                       <div class="SMScheck">
+                                        <input type="checkbox" class="checkbox" name="smsagree" id="marketing1" value="$!{$User.smsAgree}" #if($User.smsAgree == 'Y') checked #end>
+                                        <label for="marketing1" class="input-label first radio">SMS</label>
+                                       </div>
+                                       
+                                       <div class="EMAILcheck">
+                                        <input type="checkbox" class="checkbox" name="emailaaree" id="marketing2" value="$!{User.emailAgree}" #if($User.emailAgree == 'Y') checked #end>
+                                        <label for="marketing2" class="input-label radio">이메일</label>
+                                       </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="tableTitle">SNS 계정연결</th>
+                                    <td class="connectsns">
+                                    <div class="SNS_logins">
+                                        <div class="naver_connect_wBal">
+                                        #if($User.naver || $User.joinType == 'N')
+                                            <a href="#" id="nLogout" onclick="logout('N');">
+                                            <span class="logout_naver nLogout"></span>
+                                            </a>
+                                        #elseif(!$User.naver)
+                                            <a href="#" id="nLogin" onclick="snsLogin('N', 'U');">
+                                            <span class="sprite naver2 nLogin"></span>
+                                            </a>
+                                        #end
+                                        </div>
+                                        <div class="fb_connect_wBal">
+                                        #if($User.facebook || $User.joinType == 'F')
+                                            <a href="#" id="fLogout" onclick="logout('F');">
+                                            <span class="logout_facebook fLogout" ></span>
+                                            </a>
+                                        #elseif(!$User.facebook)
+                                            <a href="#" id="fLogin" onclick="snsLogin('F', 'U');">
+                                            <span class="sprite facebook2 fLogin" ></span>
+                                            </a>
+                                        #end
+                                         </div>
+                                         
+                                        <div class="ka_connect_wBal">
+                                        #if($User.kakao || $User.joinType == 'K')
+                                            <a href="#" id="kLogout" onclick="logout('K');">
+                                            <span class="logout_kakao kLogout" ></span>
+                                            </a>
+                                        #elseif(!$User.kakao)
+                                            <a href="#" id="kLogin" onclick="snsLogin('K', 'U');">
+                                            <span class="sprite kakaotalk2 kLogin" ></span>
+                                            </a>
+                                        #end
+                                        </div>
+                                                                          
+                                    </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="tableTitle">회원탈퇴</th>
+                                    <td class="signOff_B"><input type="button" name="leave" id="leave" value="탈퇴하기" onclick="location.href='/member/leaveAgree'"></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" class="Done_btn">
+                                        <input type="hidden" id="sns_id" name="sns_id" value="">
+                                        <input type="hidden" id="sns_type" name="sns_type" value="">
+                                        <div class="update_Btn">
+                                            <button type="submit" id="updateBtn" name="updateBtn" value="변경완료">개인정보 수정</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+
+
+                        </table>
+
+                    </form>
+
+                </div>
+                <form id="snsUpdate" method="post" action="/sns/login">
+                    <input type="hidden" name="login" id="login">
+                    <input type="hidden" name="type" id="type">
+                </form>
+	  
+      <!-- <script>
+      window.fbAsyncInit = function() {
+          //SDK loaded, initialize it
+      	  FB.init({
+    		  appId : /* '232664117179969' */'1918524211727467', // 앱 ID
+    		  status : true,         // 로그인 상태를 확인
+    		  cookie : true,          // 쿠키허용
+    		  xfbml : true          // parse XFBML
+    	  });
+          
+    	  FB.Event.subscribe('auth.login', function(response) {
+				if (response.status === 'connected') {
+		        	FB.api('/me', function(user) {
+		            	if (user) {
+		            		if($("#act").val() == "U") {
+			            		$("#login").val(user.id);
+								$("#type").val("F");
+								$("#snslogin").submit();
+		            		} else {
+		            			snsCallback(user.id, 'F');
+		            		}
+		            	}
+		        	});
+		    	}
+         });
+
+      	 FB.Event.subscribe('auth.logout', function(response) {
+
+            FB.login();
+        });
+    } 
+    </script> -->
+
+                
+
+            </div>
+            <!--rightContents-->
+            #parse("/myPage/mypage_mobile_menu.vm")
+            
+        </div>
+    </div>
+    <!--myPageWrap-->
 
 </div>
 
 
 <script>
-function address() {
-	window.open('/addressPop', 'address', 'left=500, top=100, width=409, height=433, scrollbars=0, toolbar=0, location=no');
-}
+
 </script>
 
 <!-- kakao api start -->
@@ -485,7 +775,40 @@ function address() {
     function formChk() {
     	if($('#ps1, #ps2').hasClass('on') || ($('#ps_1').val() == '' && $('#ps_2').val() == '')) {
     		alert('변경완료');
-    		document.privacyFrm.submit();
+    		
+    		var name = $("#name").val();
+    				var phone = $("#phone").val();
+    				var zipcode = $("#zipc").val();
+    				var address1 = $("#addr1").val();
+    				var address2 = $("#addr2").val();
+
+    				var formData = new FormData();
+
+    				formData.append("name", name);
+    				formData.append("phone", phone);
+    				formData.append("zipcode", zipcode);
+    				formData.append("address1", address1);
+    				formData.append("address2", address2);
+
+    				$.ajax({
+    					type: "POST",
+    					url: "/my/privacy/addressOk",
+    					data: formData,
+    		    		dataType: "text",
+    		    		contentType: false,
+    		    		processData: false,
+    		    		success: function(formData) {
+    		    			$("#myModal").modal('hide');
+    		    			$("#zipc").val(zipcode);
+    		    			$("#addr1").val(address1);
+    		    			$("#addr2").val(address2);
+    		    		},
+    		    		error:function(request,status,error) {
+    		        		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		    		},
+    				});
+    		
+    		$('#privacyFrm').submit();
     		return true;
     	} else {
     		alert('입력사항을 확인 해주세요.')
@@ -527,92 +850,51 @@ function address() {
 </script> -->
 
 <script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-    function sample4_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+    function execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ''; // 최종 주소 변수
+	                var extraAddr = ''; // 조합형 주소 변수
 
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-                if(fullRoadAddr !== ''){
-                    fullRoadAddr += extraRoadAddr;
-                }
+	                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    fullAddr = data.roadAddress;
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('address1').value = fullRoadAddr;
-                document.getElementById('address2').value = null;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    fullAddr = data.jibunAddress;
+	                }
 
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    //예상되는 도로명 주소에 조합형 주소를 추가한다.
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+	                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    //법정동명이 있을 경우 추가한다.
+	                    if(data.bname !== ''){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있을 경우 추가한다.
+	                    if(data.buildingName !== ''){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+	                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+	                }
 
-                    document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-
-                } else {
-                    document.getElementById('guide').innerHTML = '';
-                }
-            }
-        }).open();
-    }
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                
+	                $("#zipc").val(data.zonecode);
+	                $('#addr1').val(fullAddr);
+	                
+	                // 커서를 상세주소 필드로 이동한다.
+	                $('#addr2').focus();
+	                $('#addr2').attr('placeholder', '상세 주소를 입력해 주세요.');
+	            }
+	        }).open();
+	    }
 </script>
 <script>
-
-    $(function() {
-    	$('#addressOk').on('click', function(e) {
-    		e.preventDefault;
-    		var name = $("#name").val();
-    		var phone = $("#phone").val();
-    		var zipcode = $("#zipcode").val();
-    		var address1 = $("#address1").val();
-    		var address2 = $("#address2").val();
-
-    		var formData = new FormData();
-
-    		formData.append("name", name);
-    		formData.append("phone", phone);
-    		formData.append("zipcode", zipcode);
-    		formData.append("address1", address1);
-    		formData.append("address2", address2);
-
-    		$.ajax({
-    			type: "POST",
-    			url: "/my/privacy/addressOk",
-    			data: formData,
-    		    dataType: "text",
-    		    contentType: false,
-    		    processData: false,
-    		    success: function(formData) {
-    		    	$("#myModal").modal('hide');
-    		    	$("#zipc").val(zipcode);
-    		    	$("#addr1").val(address1);
-    		    	$("#addr2").val(address2);
-    		    },
-    		    error:function(request,status,error) {
-    		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    		    },
-    		});
-    	});
-    });
     
     /* sns api */
     function snsCallback(id, type) {
@@ -623,8 +905,8 @@ function address() {
     		    contentType: false,
     		    processData: false,
     		    success: function(data) {
-    		    	alert("연동 완료!");
-    			    window.location.reload();
+    		    	alert("Naver 계정이 연동 되었습니다.");
+    			    location.reload();
     			    $('#nLogin').hide();
     			    $('#nLogout').show();
     		    },
@@ -639,8 +921,8 @@ function address() {
     		    contentType: false,
     		    processData: false,
     		    success: function(data) {
-    		    	alert("연동 완료!");
-    			    window.location.reload();
+    		    	alert("Facebook 계정이 연동 되었습니다.");
+    			    location.reload();
     			    $('#fLogin').hide();
     			    $('#fLogout').show();
     		    },
@@ -655,8 +937,8 @@ function address() {
 	    		    contentType: false,
 	    		    processData: false,
 	    		    success: function(data) {
-	    		    	alert("연동 완료!");
-	    			    window.location.reload();
+	    		    	alert("Kakao 계정이 연동 되었습니다.");
+	    			    location.reload();
 	    			    $('#kLogin').hide();
 	    			    $('#kLogout').show();
 	    		    },
@@ -667,6 +949,9 @@ function address() {
     	}
     }
 </script>
+
+
+            #parse("/myPage/mobile_menu_script.vm")
 
 
 

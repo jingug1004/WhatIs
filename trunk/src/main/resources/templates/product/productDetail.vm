@@ -2,6 +2,24 @@
 <link type="text/css" href="/css/product/productCommon.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/css/deal_add.css">
 
+    <!-- 모바일 버전 css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/mobile/productDetail_css.css">   
+    <!-- 모바일 버전 css -->
+<style>
+	.price {
+		font-weight: bold;
+	}
+	.productPrice {
+		float: right;
+		font-weight: bold;
+		text-align: right;
+	}
+	.productCount {
+		float: left;
+	}
+</style>
+
 <!-- tab -->
 <link type="text/css" href="/css/product/tab.css" rel="stylesheet">
 
@@ -11,8 +29,12 @@
 <script src="/js/jquery.number.min.js" type="text/javascript"></script>
 <script src="/js/scrollspy/scrollspy.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://pay.naver.com/customer/js/naverPayButton.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- 네이버페이  -->
 <script type="text/javascript" >
+//var IMP = window.IMP; // 생략가능
+	IMP.init('$!{iamport}'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	
 //<![CDATA[ 
 	function checkOption(selectBox, nonSelectedIndex, optionName) {     
 		if (selectBox.selectedIndex == nonSelectedIndex) {         
@@ -39,12 +61,19 @@
 		return false; 
 	} 
  
-	function buy_nc() {   
+	function buy_nc() {  
+		#if(!$!login)
+    		alert("로그인 하신 후 옵션을 선택해주세요.");
+    		window.location.href="/login";
+    		return;
+    	#end
+    	
 		if ( $('.orders li').length == 0 ) {
 			alert("상품 옵션을 선택해 주세요.");         
 			return false;     
 		} 
 			
+		
 		var formData = $("#ReadingInfoSelectForm").serialize();
         $.ajax({
             type: 'post',
@@ -53,17 +82,51 @@
             processData: false,
             data: formData,
             success: function (data) {
-            	$("#ORDER_ID").val(data);
-            	$("#naverOrderForm").submit();
+            	console.log(data);
+        		payment(data);
             },
 
             error: function (data, textStatus, errorThrown) {
             }
         });
-        
-	   return false; 
+	   return true; 
 	} 
  	
+	function payment(payment) {
+		var payMethod = $("#pay_type").val();
+		IMP.request_pay({
+			pg : 'naverco',
+		    pay_method : 'card',
+		    merchant_uid : payment.payment.merchantUid,
+		    name : payment.payment.name,
+		    amount : payment.payment.totalPayment,
+		    buyer_email : payment.payment.buyer_email,
+		    buyer_name : payment.payment.buyer_name,
+		    buyer_tel : payment.payment.buyer_tel,
+		    buyer_addr : payment.payment.buyer_addr,
+		    buyer_postcode : payment.payment.buyer_postcode,
+		    naverProducts : payment.npList
+		}, function(rsp) {
+			console.log(rsp);
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+
+		        $("#payment_id").val(payment.paymentId);
+		        $("#merc_id").val(rsp.merchant_uid);
+		        $("#imp_id").val(rsp.imp_uid);
+		        $('#complete').submit();
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        alert(msg);
+		    }
+		});
+	}
+	
 	function wishlist_nc(url) {     
 		// 네이버페이로 찜 정보를 등록하는 가맹점 페이지 팝업 창 생성.     
 		// 해당 페이지에서 찜 정보 등록 후 네이버페이 찜 페이지로 이동.     
@@ -116,8 +179,8 @@
                 #set($lv4=true)
                 #set($lv3P=$prodCtg.category.menuParent)
                 #end
+                
                 #foreach($Category in $category)
-
                 #if($prodCtg.category.menuParent == $Category.lv2_id || $lv3P == $Category.lv3_id)
                 <p><a href="/categoryDetail?parent=0&menu_id=$Category.lv2_id&sort=1">$Category.lv2</a></p>
                 #set($parentCtg=$Category.lv2_id)
@@ -189,8 +252,12 @@
             </div>
             <!-- //descImage -->
 
-
             <div class="descInformation" data-product-maxBuyLimit="0">
+            
+            <div id="productName_top" class="inmobile">
+                [${choiceDetailProduct.product.brand.brandName}] ${choiceDetailProduct.product.prodName}
+            </div>
+            
                 <div class="infoPrice">
                     <dl>
                         <dt class="descripe_tit">판매가</dt>
@@ -203,7 +270,7 @@
                         <dt class="descripe_tit">할인판매가</dt>
                         <dd class="discountRate">
                             <strong class="numTxt nuNumber">
-                                $number.format(${choiceDetailProduct.product.salePrice}) 원
+                                $number.format($choiceDetailProduct.product.salePrice) 원
                                 <span class="nuNumber rateNum">
                                     ${choiceDetailProduct.product.sale} <span class="percentage_symbol">%</span>
                                 </span>
@@ -212,6 +279,17 @@
                     </dl>
                     #end
                 </div>
+                
+                <div class="discount_ment">
+                    #if($choiceDetailProduct.product.autoSale == 20)
+                    	<p class="CouponEx">쿠폰 자동적용 20% 추가 할인가&nbsp;&nbsp;&nbsp;<span class="price">$number.format($math.sub($choiceDetailProduct.product.salePrice, $math.mul($choiceDetailProduct.product.salePrice, 0.20)))원</span>  <span class="small_percent"></span></p>
+                    #elseif($choiceDetailProduct.product.autoSale == 10)
+                    	<p class="CouponEx">쿠폰 자동적용 10% 추가 할인가&nbsp;&nbsp;&nbsp;<span class="price">$number.format($math.sub($choiceDetailProduct.product.salePrice, $math.mul($choiceDetailProduct.product.salePrice, 0.10)))원</span>  <span class="small_percent"></span></p>
+                    #else
+                    #end
+                
+                </div>
+                
                 <div class="infoAdditional">
                     <dl class="brandName_product">
                         <dt class="descripe_tit">브랜드</dt>
@@ -221,17 +299,16 @@
                             </span>
                         </dd>
                     </dl>
-                    #foreach($proItem in $choiceDetailProduct.productItem)
+                    
                     #if($foreach.index == 0)
                     <dl class="brandMade_product">
                         <dt class="descripe_tit">제조국</dt>
                         <dd class="compnayName">
                             <span>
-                                ${proItem.info8}
+                                ${pi.info8}
                             </span>
                         </dd>
                     </dl>
-                    #end
                     #end
 
                     <dl class="infoAdditionalInner">
@@ -281,19 +358,44 @@
                 </div>
 
                 <div class="descInfoOption">
-                    <dl class="infoItemOption ">
+                    <!-- <dl class="infoItemOption ">
                         <dt class="descripe_tit" style=" padding-top: 3px;">옵션</dt>
                         <dd class="singleItem itemOptionBox fir" id="plusBasket">
                             <select class="choiceItem">
                                 <option value="" selected="selected">상품을 선택해주세요.</option>
                                 #foreach($item in $choiceDetailProduct.productItem)
-                                <option value="$item.itemId|$item.price|$item.maxItemCnt|$item.itemName">
-                                    $!{item.itemName} / 남은 수량 $!{item.itemCnt}
+                                <option value="$item.itemId|$item.price|$item.maxItemCnt|$item.itemName|$item.itemCnt">
+                                    <div class="productCount">$!{item.itemName} / 남은 수량 $number.format($!{item.itemCnt})개</div><div class="productPrice">$number.format($choiceDetailProduct.product.salePrice)원</div>
                                 </option>
                                 #end
                             </select>
                         </dd>
-                    </dl>
+                    </dl> -->
+                    
+                    <dl class="infoItemOption ">
+                        <dt class="descripe_tit" style=" padding-top: 3px;">옵션</dt>
+                        <dd class="singleItem itemOptionBox fir" id="plusBasket">
+                            <p class="ChooseOPT">상품을 선택해 주세요.<span class="grayArrow">a</span></p>
+                            <div class="selectListOPT">
+                              <div class="selectList_scorll"> 
+                                <ul class="product_option_list">
+                                    #foreach($item in $choiceDetailProduct.productItem)
+                                        <li data-index="$item.itemId|$item.price|$item.maxItemCnt|$item.itemName|$item.itemCnt" class="each_option_list_product">
+                                            <span class="listOFproductOpt">
+                                                <span class="NameOfOPT">$!{item.itemName}</span>
+                                                <span class="QuantityOPT">/ 남은 수량 $number.format($!{item.itemCnt})개</span>
+                                            </span>
+                                            <span class="PriceOfOPT">$number.format($item.price)원</span>
+                                        </li>
+                                        #end
+                                </ul>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>    
+                    
+                    
+                    
                     <form action="" method="post" id="ReadingInfoSelectForm">
                     	<input type="hidden" name="prodName" value="[${choiceDetailProduct.product.brand.brandName}] ${choiceDetailProduct.product.prodName}"/>
                     	<input type="hidden" name="prodId" value="${choiceDetailProduct.product.productId}"/>
@@ -301,7 +403,8 @@
                     	<input type="hidden" name="deliveryPrice" value="${choiceDetailProduct.product.productDelivery.deliveryPrice}"/>
                     	<input type="hidden" name="thumbUrl" value="$!{choiceDetailProduct.product.thumbUrl}"/>
                     	<input type="hidden" name="prodDesc" value="$!{choiceDetailProduct.product.prodDesc}"/>
-                    	#if(${choiceDetailProduct.product.sale} != 0)
+                    	<input type="hidden" name="prodSeller" value="${choiceDetailProduct.product.seller.userId}"/>
+                    	#if(${choiceDetailProduct.product.sale} == 0)
                     	<input type="hidden" name="prodPrice" value="$!{choiceDetailProduct.product.price}"/>
                     	#else
                     	<input type="hidden" name="prodPrice" value="$!{choiceDetailProduct.product.salePrice}"/>
@@ -333,7 +436,7 @@
                         <form name="cart" method="post"></form>
 
                         <span class="infoBtnCell purchaseBlock" data-test="true">
-                            <button type="submit" class="btnDeal btnBal purchaseBtn">
+                            <button type="submit" class="btnDeal btnBal purchaseBtn" onclick="redirect($choiceDetailProduct.product.productId)">
                                 <span class="btnTxt btnTxtPurchase">즉시구매</span>
                             </button>
                         </span>
@@ -415,31 +518,28 @@
         </ul>
         <div class="view-box">
             <ul class="list-wrap is-selected" id="product-01">
-                #foreach($item in $showMain.mainMenu)
-                #if($item.mid == 3)
-                #foreach($item2 in $item.mainMenuItem)
+                #foreach($item2 in $popularI)
                 <li>
                     <div id="productDetail_Item_List" class="productDetailItemWrap">
                         <div class="productDealContents">
                             <ul class="dealList">
                                 <li class="segment_product_item">
                                     <div class="overBorder">
-                                        <a href="/detail?product_id=${item2.product.productId}&sort=1">
+                                        <a href="/detail?product_id=${item2.productId}&sort=1">
                                             <div class="dealThumb">
                                                 <div class="overBack"></div>
-                                                <img src="//sumcrimage.cafe24.com/$!{item2.product.thumbUrl}" style="min-width: auto; height: auto;" />
+                                                <img src="//sumcrimage.cafe24.com/$!{item2.thumbUrl}" style="min-width: auto; height: auto;" />
                                             </div>
 
                                             <div class="dealBody">
                                                 <div class="dealhead">
-                                                    <span class="title" id="product_title_text">$!{item2.product.brand.brandName} / $!{item2.product.prodName}</span>
+                                                    <span class="title" id="product_title_text">$!{item2.brand.brandName} / $!{item2.prodName}</span>
                                                 </div>
 
                                                 <div class="dealPrice">
 
-
                                                     <p class="price fL">
-                                                        <span class="price_value">$number.format($!{item2.product.salePrice})</span>
+                                                        <span class="price_value">$number.format($!{item2.salePrice})</span>
                                                         <span class="unit">원</span>
                                                         <!--<span class="tilde">&sim;</span>-->
                                                     </p>
@@ -454,8 +554,6 @@
                         </div>
                     </div>
                 </li>
-                #end
-                #end
                 #end
             </ul>
             <ul class="list-wrap" id="product-02">
@@ -500,7 +598,7 @@
                 #end
             </ul>
             <ul class="list-wrap" id="product-03">
-                #foreach($Brand in $brand)
+                #foreach($Brand in $brand2)
                 <li>
                     <div id="productDetail_Item_List" class="productDetailItemWrap">
                         <div class="productDealContents">
@@ -597,11 +695,10 @@
                     <h5 class="tit_review">고객리뷰</h5>
                     <div class="reviewTitleBtn">
                         #if($login)
-                        <button class="inquiryBtn" type="button" ga-event="view,1:1문의" onclick="/my/qna">1:1 문의하기</button>
+                        <button class="inquiryBtn" type="button" ga-event="view,1:1문의" onclick="javascript:goQna();">1:1 문의하기</button>
                         #else
-                        <a href="javascript:openLogin();">
-                            <button class="inquiryBtn" type="button" ga-event="view,1:1문의" onclick="javascript:needLogin();">1:1 문의하기</button>
-                            #end
+                        <button class="inquiryBtn" type="button" ga-event="view,1:1문의" onclick="javascript:needLogin();">1:1 문의하기</button>
+                        #end
                     </div>
                     <p class="fL">고객리뷰는 구매 후기를 나누는 공간입니다. 결제 및 배송 관련 상품 문의는 1:1문의를 이용해주시면 빠르게 처리해드리겠습니다.</p>                   
                     <!--<button class="reviewBtn" type="button">리뷰쓰기</button>-->
@@ -619,107 +716,107 @@
                             <div class="Contents_review">
                                 #if($Rev.star == 0.5)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/0.5.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/0.5.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 1)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 1.5)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.5.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.5.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 2)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 2.5)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.5.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.5.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 3)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 3.5)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.5.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.5.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 4)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 4.5)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/0.5.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/0.5.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #elseif($Rev.star == 5)
                                 <div id="given_score">
-                                    <span class="star_reivew">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                        <img src="/img/review/1.png">
-                                    </span>
+                                	<span class="star_reivew">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                		<img src="/img/review/1.png" width="20" height="20">
+                                	</span>
                                 </div>
                                 #end
-
-                                <div id="user_id"><span class="user_name">$Rev.user.name</span><span class="date_reivew">$date.format('yyyy-MM-dd HH:mm:ss', $Rev.regDate)</span></div>
+                                
+                                <div id="user_id"><span class="user_name">$Rev.user.name</span><span class="date_reivew">$date.format('yyyy-MM-dd', $Rev.regDate)</span></div>
                                 <div id="written"><span>$Rev.content</span></div>
                                 <!-- <div id="photo_upload"><img src="#" /></div> -->
                             </div>
@@ -818,8 +915,7 @@
                     </table>
                     #end
         </div>
-        <!-- E : 상품안내 -->
-    </div>
+
     <div id="content_Delivery" class="contentsDetail">
         <div class="tableBox">
             <h3 class="tbHead">배송 정보 안내</h3>
@@ -895,8 +991,10 @@
             </table>
         </div>
     </div>
+        <!-- E : 상품안내 -->
+    </div>
 
-    <!--     <div id="dealSimpleOption" class="bottom">
+     <div id="dealSimpleOption" class="bottom">
              <section>
                  <div class="simpleOptionInner">
                      <div class="simpleOptionContent">
@@ -961,7 +1059,10 @@
                      </button>
                  </div>
              </section>
-         </div> -->
+         </div>
+
+
+
 </div><!-- // dealContents -->
 </div>
 </div>
@@ -975,7 +1076,7 @@
         <span class="close" id="cartClose"></span>
     </div>
     <div class="popupContents">
-        <p class="subTitle tI">상품이 장바구니에 담겼습니다</p>
+        <p class="subTitle">상품이 장바구니에 담겼습니다</p>
         <div class="cartList">
             <p class="dealTitle">
                 [${choiceDetailProduct.product.brand.brandName}] ${choiceDetailProduct.product.prodName}
@@ -990,7 +1091,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- //container -->
 
@@ -1055,6 +1155,8 @@ var spy = new ScrollSpy('#meneTab', {
 function wish(frm, p_id) {
 	#if(!$!login)
 		alert("로그인이 필요합니다.");
+    		
+    	window.location.href="/login";
 		return;
 	#end
 	$.ajax ({
@@ -1083,6 +1185,8 @@ function wishOverlap() {
     $(".purchaseBtn").on("click", function (event) {
     	#if(!$!login)
     		alert("로그인 하신 후 옵션을 선택해주세요.");
+    	
+    		window.location.href="/login";
     		return;
     	#end
         var formData = $("#ReadingInfoSelectForm").serialize();
@@ -1120,6 +1224,8 @@ function wishOverlap() {
     $(".submitBs").on("click", function () {
     	#if(!$!login)
     		alert("로그인 하신 후 옵션을 선택해주세요.");
+    		
+    		window.location.href="/login";
     		return;
     	#end
 
@@ -1162,24 +1268,42 @@ function wishOverlap() {
     var totalPrice2 = 0;
 
     $(document).ready(function () {
-        $('.choiceItem').on("change", function (event) {
+    	$('.ChooseOPT').on('click', function() {
+    		
+    		if ($('.selectListOPT').css('display') == 'none') {
+    			$('.selectListOPT').css('display', 'block');
+    		} else {
+    			$('.selectListOPT').css('display', 'none');
+    		}
+    		
+    		/* $(document).mouseup(function(e) {
+    			var container = $('.selectListOPT');
+    			if (container.has(e.target).length === 0)
+    				$('.selectListOPT').css('display', 'none');
+    		}); */
+    		
+    		
+        	$('.each_option_list_product').on("click", function (event) {
+				if($(this).attr("data-index") == "") {
+					return;
+				}
 
-
-			if($(this).val() == "") {
-				return;
-			}
-
-            var productCode = $(this).val();
+            var productCode = $(this).attr("data-index");
             var productText = productCode.split("|")[3];
 
             var itemId = (productCode.split("|")[0]);
             var productPrice = (productCode.split("|")[1]);
             var maxItemCnt = productCode.split("|")[2];
+            var itemCnt = productCode.split("|")[4];
             var num = 1;
             var multiplePrice = productPrice * num;
             totalPrice += multiplePrice;
+            
+            if (itemCnt == 0) {
+            	alert('품절된 상품입니다.');
+            }
 
-            if (checkDupl(itemId)) {
+            if (checkDupl(itemId) && itemCnt != 0) {
                 var orderHtml = '<span class="productOptionName">';
                 orderHtml  += productText;
                 orderHtml  += '</span>';
@@ -1188,17 +1312,21 @@ function wishOverlap() {
 
                 orderHtml += '		<input id ="putinQty" class="upDown' + itemId + '" type="text" name="upDown[' + itemId + ']" value="1" readonly="readonly">';
                 orderHtml += '		</input>';
+
+                orderHtml += '		<button type="button" onclick="increaseQuantity(' + itemId + ',' + maxItemCnt + ',' + productPrice + ',' + itemCnt + ');" class="increaseQuantity" value="' + itemId + '"></button>';
                 orderHtml += '		<button type="button" onclick="decreaseQuantity(' + itemId + ',' + productPrice + ');" class="decreaseQuantity" value="' + itemId + '"></button> ';
-                orderHtml += '		<button type="button" onclick="increaseQuantity(' + itemId + ',' + maxItemCnt + ',' + productPrice + ');" class="increaseQuantity" value="' + itemId + '"></button>';
+
                 orderHtml += '</span>';
                 orderHtml += '<input type="hidden" name="items[' + itemId + '].price" value="' + productPrice + '" /> ';
                 orderHtml += '<span class="sum_Price_each sum' + itemId + '"  name="getSum" id="sum' + itemId +'">' + multiplePrice + '</span><span class="Price_KR_dollar">원</span>';
                 orderHtml += '<input type="button" class="orderRemoveButton" value="취소" />';
 
-            } else{
-            	$(".choiceItem").val("").prop("selected", "selected");
-                return;
+            } else {
+            	$(".ChooseOPT").val("").prop("selected", "selected");
+            	$('.selectListOPT').css('display', 'none');
+            	return;
             }
+            $('.selectListOPT').css('display', 'none');
 
             var liEl = $('<li/>').html(orderHtml).appendTo('.orders');
 
@@ -1206,22 +1334,30 @@ function wishOverlap() {
                 liEl.remove();
                 sumBasket(itemId, productPrice, num);
                 event.preventDefault();
+                $('.selectListOPT').css('display', 'none');
 
             });
 
             sumBasket(itemId, productPrice, num);
             event.preventDefault();
-            $(".choiceItem").val("").prop("selected", "selected");
+            $(".ChooseOPT").val("").prop("selected", "selected");
         });
     });
+    	});
 
-    function increaseQuantity(itemId, maxItemCnt, productPrice) {
+    function increaseQuantity(itemId, maxItemCnt, productPrice, itemCnt) {
         var stat = $('.upDown' + itemId).val();
         var num = parseInt(stat, 10);
-
-        if (num > maxItemCnt - 1) {
-            alert(maxItemCnt + '회 최대 구매 수량입니다.');
-            return;
+        if(maxItemCnt -1 > itemCnt) {
+        	if (num >= itemCnt) {
+        		 alert(itemCnt + '회 최대 구매 수량입니다.');
+	            return;
+        	}
+        } else {
+	        if (num > maxItemCnt - 1) {
+	            alert(maxItemCnt + '회 최대 구매 수량입니다.');
+	            return;
+	        }
         }
         num++;
         $('.upDown' + itemId).val(num);
@@ -1243,13 +1379,18 @@ function wishOverlap() {
     //    상품 단가의 구입 개수를 곱한 부분합
     function sumBasket(itemId, productPrice, num) {
         var toSum = productPrice * num;
+        console.log(productPrice);
+        console.log(num);
+        console.log(toSum);
         $('.sum' + itemId).text($.number(toSum));
         var totalSum = 0;
         $('span[name=getSum]').each(function () {
             totalSum += parseInt(unNumberFormat($(this).text()));
+            totalSum2 = totalSum/2;
         });
-        $('.cartItem').html("<span id=\"total_txt\">총 상품금액 : </span><span id=\"SumProductP\"> " + $.number(totalSum) + "</span><span id=\"KR_won\">원</span>");
-        $("#TOTAL_PRICE").val(totalSum);
+        $('.cartItem').html("<span id=\"total_txt\">총 상품금액 : </span><span id=\"SumProductP\"> " + $.number(totalSum2) + "</span><span id=\"KR_won\">원</span>");
+        console.log(totalSum2);
+        $("#TOTAL_PRICE").val(totalSum2);
     }
 
 	//콤마제거
@@ -1279,6 +1420,7 @@ function wishOverlap() {
 
 
 ## ----- 컨텐츠 고정바 & 하단 간편옵션 -----
+
 <script>
     function contentsFixedElement() {
         var $contentsNav = $('.dealTabNav');
@@ -1303,13 +1445,13 @@ function wishOverlap() {
         } else {
             $('.balgeureTab').removeClass('fixed');
             $('#dealSimpleOption').addClass('bottom');
-            //$simpleOption.hide()
-            ;
+            //$simpleOption.hide();
         }
     }
 
     contentsFixedElement();
 </script>
+
 ## ----- 컨텐츠 고정바 & 하단 간편옵션 -----
 
 

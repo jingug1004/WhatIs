@@ -1,4 +1,4 @@
-package net.balgre.service;
+package net.balgre.domain;
 
 import java.io.BufferedReader;
 import java.io.IOException;

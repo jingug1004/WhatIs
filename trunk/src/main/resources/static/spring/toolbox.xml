@@ -31,10 +31,10 @@
      	<class>org.apache.velocity.tools.generic.ConversionTool</class>
 	 </tool>
 	 <tool>
-	    <key>list</key>
-	    <scope>application</scope>
-	    <class>org.apache.velocity.tools.generic.ListTool</class>
-	</tool>
+     	<key>list</key>
+     	<scope>application</scope>
+     	<class>org.apache.velocity.tools.generic.ListTool</class>
+	 </tool>
 </toolbox>
 
 

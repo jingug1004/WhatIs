@@ -1,7 +1,7 @@
 div.topBanner {
     position: relative
 }
-
+ 
 div.topBanner a img {
     width: 1080px;
     margin: auto;
@@ -266,6 +266,15 @@ div#header_v2 .gnbTop ul.gnbTopRight .navi {
     color: #555;
     float: left
 }
+
+div#header_v2 .gnbTop ul.gnbTopRight .navi.loginpage span,
+div#header_v2 .gnbTop ul.gnbTopRight .navi.logoutBtn span{
+	border: 1px solid #ff7391;
+    padding: 0 6px;
+    border-radius: 3px;
+}
+
+
 
 div#header_v2 .gnbTop ul.gnbTopRight .arrow {
     display: block;
@@ -749,7 +758,7 @@ div#header_v2 .mainMenu {
     font-size: 14px;
     text-align: center;
     font-weight: bold;
-    font-family: '�굹�닎怨좊뵓', NanumGothic, '�룍��', Dotum, AppleSDGothic, AppleGothic, '援대┝', Gulim, sans-serif
+    font-family: '나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
 }
 
 div#header_v2 .mainMenu .newIcon {
@@ -811,17 +820,7 @@ div#header_v2 .mainMenu.on, div#header_v2 .mainMenu:hover {
     color: #ff7391
 }
 
-div#header_v2 .fixCategory {
-    position: absolute;
-    top: 42px;
-    padding: 15px 0 20px 15px;
-    width: 159px;
-    height: 444px;
-    border-top: 1px solid #8b8b8b;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 0
-}
+
 
 div#header_v2 .fixCategory a {
     display: block;
@@ -849,7 +848,6 @@ div#header_v2 .fixCategory .bar {
 }
 
 div#header_v2 .fixCategory:hover {
-    border-top: 1px solid #e0e0e0;
     background: #f9f9f9
 }
 
@@ -865,43 +863,6 @@ div#header_v2 .fixCategory:hover a:hover {
     color: #ff7391
 }
 
-div#header_v2 .fixCategory_side {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 174px;
-    width: 205px;
-    font-size: 12px
-}
-
-div#header_v2 .fixCategory_side a {
-    color: #555;
-    padding-left: 0
-}
-
-div#header_v2 .fixCategory_side li {
-    padding-top: 6px
-}
-
-div#header_v2 .fixCategory_side_inner {
-    padding: 30px 0 0 30px;
-    width: 170px;
-    height: 450px;
-    background: #fff
-}
-
-div#header_v2 .fix_li:hover .fixCategory_side {
-    display: block
-}
-
-div#header_v2 .lnbOver {
-    display: none;
-    position: absolute;
-    top: 42px;
-    width: 1080px;
-    border: 1px solid #e1e1e1;
-    font-size: 13px
-}
 
 div#header_v2 .lnbOver .theme {
     height: 480px
@@ -1617,13 +1578,11 @@ p.noResultTitle {
 }
 
 
-
 /* �떊�긽�뭹 由ъ뒪�듃 �럹�씠吏�  */
 
-.NewProductList_page_TopBanner{
-	margin: -7px 0 7px;
+#pc_Ver.NewProductList_page_TopBanner{
+	margin: 15px 0 7px ;
 }
-
 
 .deal_type_vertical_square_amount_col_3 .balgeurebox-deal-image {
     width: 100%;
@@ -1854,7 +1813,7 @@ p.noResultTitle {
     /*opacity: .1;*/ }
 
 .deal_type_vertical_square_amount_col_3:hover .balgeurebox-deal-image {
-    opacity: .8; }
+    /* opacity: .8;  */}
 
 .deal_type_vertical_square_amount_col_3 .balgeurebox-deal-sell-stop {
     position: absolute;
@@ -1932,8 +1891,8 @@ p.noResultTitle {
 
 /* 踰좎뒪�듃 �긽�뭹 由ъ뒪�듃 */
 
-.BestProductList_TopBanner_img{
-	margin: -7px 0 7px;
+.BestProductList_TopBanner{
+	margin: 15px 0 7px;
 }
 
 
@@ -2144,7 +2103,7 @@ top: 65px;
     overflow: visible; }
 
 .layout-structure-content .lnbBoxWrap{
-	margin-bottom:20px;
+	margin-bottom: 4px;
 }
 
 
@@ -2413,5 +2372,45 @@ input[type="text"]::-ms-clear {
 }
 
 
-
 /**   Right-side Quick MENU css e**/
+
+
+
+
+/***  badgde   csss   ***/
+
+.badge_discount{
+	position: absolute;
+    /* top: 9px; */
+    background: #ff7391;
+    left: 0px;
+    padding: 8px;
+    color: #fff;
+    z-index: 2;
+    line-height: 17px;
+    text-align: center;
+    font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+}
+
+.badge_discount .discountCoupon{
+	width: 64px;
+}
+
+.badge_discount .discountCoupon .howmuchD{
+	font-weight: 700;
+    font-size: 23px;
+    letter-spacing: -2px;
+}
+
+
+/**  Mobile version  **/
+
+@media only screen and (min-width: 768px) {
+	#mobile_ver{
+		display:none;
+	}
+}
+
+
+
+

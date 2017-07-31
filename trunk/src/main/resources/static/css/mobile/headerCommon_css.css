@@ -1,0 +1,551 @@
+@media only screen and (max-width: 767px) {
+    
+    #balgeure_header{
+        display: none;
+    }
+    
+    #footer{display:none !important;}
+    
+    a{
+         font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    }
+    
+/**  Top banner css  Start  **/
+    
+    #wrap .Topbanner_Top {
+        max-width: 767px !important;
+        height: auto;
+        min-width: 320px;
+    }
+
+    .Topbanner_Top .row{
+        width:100% !important;
+    }
+
+    .Topbanner_Top .row .image_one{
+        margin: 0 auto;
+        padding: 2px 14px;
+    }
+
+    .Topbanner_Top .row img{
+        width:100%;
+    }
+
+/**  Top banner css  End  **/
+
+
+
+
+    /**  모바일 헤더   css   Start   **/
+
+    .mobile_balgeureHeader{
+        position: relative;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        height: 85px;
+    }
+
+    .mobileHeader{
+        width: 100%;
+        z-index: 1004;
+        position: relative;
+        will-change: transform;
+        transition: transform .3s linear;
+    }
+
+    .mobile_balgeureHeader #headerBar * {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    
+    .mobileHeader .header-top {
+        position: relative;
+        height: 28px;
+        font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+        padding: 10px 55px 7px 168px;
+    }
+
+    .mobileHeader .header-top .header-logo{
+        position: absolute;
+        left: 49px;
+        top: 0;
+        width: 110px;
+        height: 47px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .mobileHeader .header-logo-image{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mobileHeader .header-aside-block{
+        position: absolute;
+        display: block;
+        top: 0;
+        width: 45px;
+        height: 24px;
+        margin: 0;
+        padding: 11px 0 10px 0;
+        overflow: hidden;
+        text-align: center;
+        left: 0;
+    }
+
+    .mobileHeader .aside-block-icon{
+        display: block;
+        width: 24px;
+        height: 24px;
+        margin: 0 auto;
+        text-indent: -9999em;
+        overflow: hidden;
+        background: url(/img/header/header_icons.png) no-repeat -2px -499px;
+    }
+
+    .mobileHeader .header-search{
+        position: relative;
+        height: 30px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .mobileHeader .header-search .searchBar-inputBox{
+        height: 25px !important;
+        border-bottom: 2px solid #ff7391 !important;
+        width: 100% !important;
+    }
+
+    .mobileHeader .header-search .searchBar-inputBox-input{
+        width: 85% !important;
+        height: 25px !important;
+    }
+
+    .mobileHeader .header-search .searchBar-inputBox-submit{
+        height: 23px !important;
+        background-position: -193px -36px !important;
+    }
+
+    .mobileHeader .navigation_mobile{
+        box-sizing: content-box;
+        position: relative;
+        height: 40px;
+        background: #fff;
+        overflow: hidden;
+    }
+
+    .mobileHeader .navigation_mobile .navigation-head{
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .navigation_mobile #topMenuWrapper{
+        position: relative;
+        height: 39px;
+        overflow: visible;
+        border-bottom: 1px solid #e9e9e9;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .navigation_mobile #topMenuWrapper .navigation-list{
+        position: relative;
+        display: table;
+        height: 39px;
+        min-width: 609px;
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+        white-space: nowrap;
+        background: #fff;
+        border-bottom: 1px solid #e9e9e9;
+    }
+
+    .navigation_mobile .navigation-list .navigation-list-block{
+        display: table-cell;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .navigation_mobile .navigation-list .navigation-list-item{
+        position: relative;
+        display: inline-block;
+        width: auto;
+        margin: 0;
+        padding: 12px 11px 10px 11px;
+        color: #8a8a8a;
+        font-size: 14px;
+        line-height: 17px;
+        font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    }
+
+    /**  모바일 헤더   css   End     **/
+
+
+     
+    /**  모바일 Side Menu  css   Start   **/
+
+    #slide-menu.mobile_gnb{
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 99999;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+
+    .mobile_gnb .common_pd{
+        padding-left: 13px;
+        border-bottom: 1px solid #e9e9e9;
+    }
+
+    .mobile_gnb .fL{
+        float: left;
+    }
+
+    .mobile_gnb .login{
+        display: block;
+        padding-top: 14px;
+        height: 34px;
+        color: #0f0f0f;
+    }
+
+    .mobile_gnb .loginBottom{
+        display: block;
+        padding-top: 15px;
+        height: 34px;
+        color: #0d0d0d;
+        border-bottom: 1px solid #e9e9e9;
+    }
+      
+    .mobile_gnb .loginBottom .tip{
+        position: relative;
+        top: -1px;
+        display: inline-block;
+        height: 16px;
+        margin-right: 5px;
+        padding: 3px 7px 1px 8px;
+        overflow: hidden;
+        background: #ff7391;
+        color: #fff;
+        font-size: 11px;
+        font-family: '나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+        font-weight: normal;
+        line-height: 1.3;
+        text-align: center;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+    }
+
+    .mobile_gnb .loginBottom .textColor{
+        color: #ff7391;
+        font-size: 13px;
+    }
+    
+    .mobile_gnb .loginBottom .logintxt{
+        font-size: 13px;
+    }
+    
+    .mobile_gnb .loginBottom .text_welcome{
+        padding-left: 3px;
+        font-size: 13px;
+    }    
+
+    .mobile_gnb .my_menu{
+        border-bottom: 1px solid #e9e9e9;
+        background: #fff;
+    }
+
+    .mobile_gnb .my_menu a{
+        display: block;
+        float: left;
+        width: 33.3%;
+        height: 64px;
+        color: #0f0f0f;
+        text-align: center;
+    }
+
+    .mobile_gnb .my_menu span{
+        display: block;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .mobile_gnb .my_menu .m_menuIcon{
+        margin: 10px auto 4px;
+        width: 25px;
+        height: 25px;
+        background: url(/img/header/header_icons.png) no-repeat;
+    }
+
+    .mobile_gnb .my_menu .m_menuIcon.login_B{
+        background-position: -73px -109px;
+    }
+
+    .mobile_gnb .my_menu .cartList{
+        border-left: 1px solid #e9e9e9;
+        border-right: 1px solid #e9e9e9;
+    }        
+        
+    .mobile_gnb .my_menu .wishList{    
+        width: 32.7%  !important;
+    }
+
+    .mobile_gnb .my_menu .m_menuIcon.cart{
+        background-position: -74px -36px;
+    }
+    
+    .mobile_gnb .my_menu .m_menuIcon.wishlist{
+        background-position: -72px -73px;
+        width: 28px;
+    }
+
+    .mobile_gnb .gnb-menu{
+        position: relative;
+        margin-bottom: -1px;
+    }
+
+    .mobile_gnb .gnb-menu-block{
+        border-bottom: 1px solid #e9e9e9;
+    }
+
+    .mobile_gnb .menuTitle{
+        padding-top: 8px;
+        padding-bottom: 6px;
+        border-top: 4px solid #eee;
+        border-bottom: 1px solid #e9e9e9;
+        background: #f9f9fa;
+        color: #0f0f0f;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.3;
+    }
+
+    .mobile_gnb ul.gnb_menu {
+        margin: 0 10px;
+        padding: 5px 0 5px 4px;
+        background: #fff;
+    }
+
+    .mobile_gnb .oF{
+        overflow: hidden;
+    }
+
+    .mobile_gnb ul.gnb_menu li{
+        float: left;
+        width: 50%;
+    }
+
+    .mobile_gnb ul.gnb_menu a{
+        display: block;
+        padding: 5px 0;
+        font-size: 12px;
+        color: #161616;
+        overflow: hidden;
+        font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    }
+
+    .mobile_gnb .appDown{
+        background: #fff;
+    }
+
+    .mobile_gnb .appDown li{
+        border-bottom: 1px solid #e9e9e9;
+    }
+
+    .mobile_gnb .appDown a{
+        position: relative;
+        display: block;
+        height: 44px;
+    }
+
+    .mobile_gnb .appDown .appIcon{
+        display: block;
+        margin: 8px 9px 0 14px;
+        width: 29px;
+        height: 29px;
+        background:url('/img/header/appicon_bal.png') no-repeat 0px 0px;
+        background-size: 29px auto;
+    }
+
+    .mobile_gnb .appDown .gnbName{
+        color: #0d0d0d;
+        margin-top: 15px;
+    }
+
+    .mobile_gnb .appDown .gnbName{
+        font-size: 13px;
+        vertical-align: 2px;
+        line-height: 16px;
+    }
+
+    .mobile_gnb .appDown .boxText{
+        color: #ff7391;
+        padding-right:3px;
+    }
+
+    .mobile_gnb .my_menu.my_bottom a{
+        display: block;
+        float: left;
+        width: 49.8%;
+        height: 64px;
+        color: #0f0f0f;
+        text-align: center;
+    }
+
+    .mobile_gnb .my_menu.my_bottom .appstoreLink{
+        border-left: 1px solid #e9e9e9;
+    }
+
+    .mobile_gnb .my_menu .my_menuIcon.android_link{
+        margin: 10px auto 4px;
+        width: 25px;
+        height: 25px;
+        background: url(/img/header/appDown_icon.png) no-repeat;
+        background-position: 0px -29px;
+        background-size:25px auto;
+    }
+
+    .mobile_gnb .my_menu .my_menuIcon.appstore_link{
+        margin: 10px auto 4px;
+        width: 25px;
+        height: 25px;
+        background: url(/img/header/appDown_icon.png) no-repeat;
+        background-position:0px 0px;
+        background-size:25px auto;
+    }
+
+    .mobile_gnb .csCall{
+        padding: 13px;
+        background: #f0f0f0;
+    }
+
+    .mobile_gnb .csCall dt{
+        font-size: 13px;
+        color: #555;
+    }
+
+    .mobile_gnb .csCall dd{
+        font-size: 11px;
+        color: #8f8f8f;
+    }
+
+    .mobile_gnb .csCall a{
+        display: block;
+        padding-top: 6px;
+        margin-top: 10px;
+        width: 66px;
+        height: 25px;
+        background: #ff7391;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        text-align: center;
+        float:right;
+    }
+
+    .xButton button.square{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0;
+        border: 0;
+        width: 45px;
+        height: 45px;
+        background: url(/img/header/sideclose.png) center center no-repeat;
+        background-size: 45px auto;
+        z-index: 99999;
+    }
+
+
+    /**  모바일 Side Menu  css   End     **/
+
+    
+
+    
+    
+    
+    
+/**  Header css  Start  **/
+
+    #balgeure_header #header_v2{
+        padding: 0 10px;
+    }
+    
+    #header_v2 .gnbTop{
+        width: 100% !important;
+    }
+
+    #header_v2 .fixCategory{
+        display: none !important;
+    }
+
+/**  Header css  End   **/
+
+
+/**  Slider css  Start  **/
+
+    #pc_Ver {
+        display: none;
+    }
+
+    #mobile_ver .bxslider{
+        background: #fff;
+        min-width: 320px !important;
+        min-height: 170px !important;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    #mobile_ver .bxslider img {
+        min-height: 170px !important;
+        min-width: 320px !important;
+        width:100%;
+        margin: 0 auto;
+    }
+
+    #mobile_ver .bx-wrapper {
+        background: #fff;
+        max-width: 767px;
+        min-width: 320px !important;
+        min-height: 170px !important;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    #mobile_ver .bx-viewport {
+        /*fix other elements on the page moving (on Chrome)*/
+        -webkit-transform: translatez(0);
+        min-height: 170px !important;
+        height: auto;
+    }
+
+/**  Slider css  End   **/
+
+}
+
+@media only screen and (max-width: 375px) {
+	.navigation_mobile .navigation-list .navigation-list-item{
+     	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+        font-size: 13px !important;
+	}
+}

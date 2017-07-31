@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>발그레 : 싸게샀다 발그레에서 ~</title>
 </head>
-<body style="background:#f0f0f0;">
+<body>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
@@ -19,6 +19,12 @@
     <script src="/js/placeholders.jquery.js"></script>
 
     <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
+    
+            <!-- 모바일 버전 css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/mobile/member_css.css" rel="stylesheet" type="text/css">
+    <!-- 모바일 버전 css -->	
+    
     
     
     <script type="text/javascript">
@@ -109,16 +115,14 @@
                             </div>
 
                             <div class="basic_inputForm useremail">
-                                <table id="user_email">
-                                    <tr>
-                                        <td id="typingEmail">
+                                
+                                        <div id="typingEmail">
                                             <label for="email" class="joinFormlabel-email">
                                                 <span class="joinForm_input_email_tit">아이디(이메일)</span>
                                                 <input class="form-control" id="email" type="text" name="email" value="" placeholder="아이디(이메일)">
                                             </label>
-                                        </td>
-                                        <td id="select_whichEmail">
-                                            <div class="select_box right">
+                                        
+                                            
                                                 <select id="email_add" name="email_add">
                                                     <option class="email_option" value="">직접입력</option>
                                                     <option class="email_option">naver.com</option>
@@ -135,10 +139,9 @@
                                                     <option class="email_option">gmail.com</option>
                                                     <option class="email_option">hanmir.com</option>
                                                 </select>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                            
+                                        </div>
+                                   
                             </div>
                             <!-- <div class="basic_inputForm userbirth">
                                 <select name=year id="birth_year"

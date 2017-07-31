@@ -13,7 +13,7 @@
 		html, body {
 			margin: 0px;
 			padding: 0px;
-			font-family:NanumGothic,'³ª´®°íµñ',ng,sans-serif;
+			font-family:NanumGothic,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',ng,sans-serif;
 			font-size: 12px;
 			line-height: 18px;
 			background: #ffffff;
@@ -50,7 +50,7 @@
 			text-decoration: none;
 			outline: none;
 		}
-		/*»ó´Ü ¸ÞÀÎ ¾È³»»çÇ×*/
+		/*ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È³ï¿½ï¿½ï¿½ï¿½ï¿½*/
 		.main_title{
 			margin: 0 0 8px 0;
 			display: inline-block;
@@ -70,7 +70,7 @@
 		}
 
 
-		/*±¸¸Å ¸ñ·Ï*/
+		/*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
 		.contents{
 			background:#f0f0f0;
 			padding:0 0 8px 0;

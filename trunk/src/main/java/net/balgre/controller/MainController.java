@@ -60,7 +60,7 @@ public class MainController {
         List<ProductTimeSale> timeSale = productService.timeSaleList2();
         
         List<ProductTimeSale> randomList = new ArrayList<ProductTimeSale>();
-   
+        
         Calendar c1 = Calendar.getInstance();
         
         for (int i=0; i<timeSale.size(); i++) {

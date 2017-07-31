@@ -1,0 +1,855 @@
+#parse ("/main/header.vm")
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/payment.css">
+
+    <!-- 모바일 버전 css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="/css/mobile/orderPayment_css.css">
+    <!-- 모바일 버전 css -->	
+
+
+
+
+<!-- container -->
+<div id="scroll-wrapper">
+    <div class="container_order">
+        <div class="order_page_header">
+            <h2 class="bigtitle_order_page">발그레 상품 주문/결제</h2>
+            <span class="under_header_txt">배송 / 결제 정보를 정확히 입력해 주세요.</span>
+        </div>
+
+        <div id="Leftside_orderpage">
+        <div class="will_buying_product_list">
+            <div class="buying_list_detail_txt">
+                <h2>주문 상세내역</h2>
+            </div>
+            <div class="page-header bordertop delivery_product_lits">
+
+                <table class="table table-condensed">
+                    <tr>
+                        <td class="table_header" colspan="2" style="width:80%">상품 / 옵션정보</td>
+                        <td class="table_header" style="width:20%">주문금액</td>
+                    </tr>
+                    #foreach( $ordProd in $orderTotal.orderProduct)
+                    #foreach( $ordItem in $ordProd.orderItem )
+                    <tr>
+                        <td class="product_img_choice">
+                            <img src="$!{imgHost}$!{ordProd.thumbnail}" style="width:70px;" />
+                        </td>
+                        <td class="choice_productList">
+                            <div class="orderProduct_detail">
+                                <span id="product_name">[$!{ordProd.brandName}]$!{ordProd.productName}</span><br />
+                                <span id="product_option_name">$!{ordItem.itemName}</span><span class="no_many">$!{ordItem.itemCount}</span>개</br>
+                                <span class="delivery_fee">배송비 : </span><span class="howmuch_">$number.format($!{ordItem.delivery})</span>원
+                            </div>
+                        </td>
+                        <td class="Product_Price_td"><span id="one_product_price">$number.format($!{ordItem.price})</span>원</td>
+                    </tr>
+                    #end
+                    #end
+                </table>
+
+            </div>
+        </div>
+
+        <div class="insert_address_formBox">
+            <div class="wrapper" id="formgroup">
+                <div class="page-header delivery_personal_info" onclick="delivery_data()">
+                    <h1 class="main_color_text personal_info">배송지 정보</h1>
+                </div>
+                <div id="container" style="display: inline-block;" class="table table-condensed">
+                    <ul class="tabs">
+                        #if ($shipping.size() == 0)
+                        <li rel="ziptab3" style="width:100%">
+                            <p>
+                                <span style="margin-right: 5px;">신규입력</span>
+                            </p>
+                        </li>
+                        #elseif($shipping.size() > 0)
+                        #if ($shipping.size() == 1)
+                        <li class="active" rel="ziptab1" style="width:50%">
+                            #else
+                        <li class="active ziptab1" rel="ziptab1" style="width:33.33333%">
+                            #end
+                            <p id="ziptab1_color">
+                                <span style="margin-right: 5px;">기본배송지</span>
+                            </p>
+                        </li>
+                        #if ($shipping.size() > 1)
+                        <li class="ziptab2" rel="ziptab2" style="width:33.33333%">
+                            <p id="ziptab2_color">
+                                <span style="margin-right: 5px;">최근배송지</span>
+                            </p>
+                        </li>
+                        #end
+                        #if ($shipping.size() == 1)
+                        <li rel="ziptab3" style="width:50%">
+                            #else
+                        <li class="ziptab3" rel="ziptab3" style="width:33.33333%">
+                            #end
+                            <p id="ziptab3_color">
+                                <span style="margin-right: 5px;">신규입력</span>
+                            </p>
+                        </li>
+                        #end
+
+                    </ul>
+                    <div class="tab_container">
+                        #if ($shipping.size() > 0)
+                        <div id="ziptab1" class="tab_content ziptabcon">
+                            <div  class="field_adress">
+                                <p class="orderpage_info receiver_name"><span> - 받는 사람 : $!shipping.get(0).name</span></p>
+                                <p class="orderpage_info receiver_phone"><span> - 연락받을 번호 : $!shipping.get(0).phone</span></p>
+                                <p class="orderpage_info receiver_address"><span> - 배송지 : $!shipping.get(0).address1 $!shipping.get(0).address2</span></p>
+                            </div>
+                        </div>
+                        <!-- #tab1 -->
+                        #if ($shipping.size() > 1)
+                        <div id="ziptab2" class="tab_content ziptabcon">
+                            <div class="field_adress">
+                                <p class="orderpage_info receiver_name"><span> - 받는 사람 : $!shipping.get(1).name</span></p>
+                                <p class="orderpage_info receiver_phone"><span> - 연락받을 번호 : $!shipping.get(1).phone</span></p>
+                                <p class="orderpage_info receiver_address"><span> - 배송지 : $!shipping.get(1).address1 $!shipping.get(0).address2</span></p>
+                            </div>
+                        </div>
+                        #end
+                        #end
+                        <!-- #tab2 -->
+                        #if($shipping.size() >= 0)
+                        <div id="ziptab3" class="tab_content ziptabcon">
+                            <div class="field_adress">
+                                <table class="basicInfo oF" data-bind="foreach:addressList">
+                                    <tr>
+                                        <td id="head_txt"><span class="title">- 받는 분</span></td>
+                                        <td><input type="text" id="deliName" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="head_txt"><span class="title">- 연락처</span></td>
+                                        <td><input type="text" id="deliPhone" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' onblur='removeChar(event)' style='ime-mode:disabled;'></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="head_txt"><span class="title">- 배송 주소</span></td>
+                                        <td>
+                                            <div class="input_Address_box">
+                                                <input type="text" id="deliZip" readonly>
+                                                <button id="postcode_btn" onclick="execDaumPostcode()">우편번호찾기</button>
+                                            </div>
+                                            <div class="restOfAddress">
+                                                <input type="text" id="deliAddr1" />
+                                                <input type="text" id="deliAddr2" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        #end
+                        <!-- #tab3 -->
+                    </div>
+                    <div id="write_msg">
+                        <label for="deliRequest">- 배송시 요청사항 선택하기</label>
+                        <div class="deliresquest-msg-option">
+                            <div id="select-msg-about-deli">
+                                <select class="delivery_msg" id="target">
+                                    <option value="">배송요청사항을 선택해 주세요</option>
+                                    <option value="방문전 연락주세요">방문전 연락주세요</option>
+                                    <option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
+                                    <option value="부재시 연락주세요">부재시 연락주세요</option>
+                                </select>
+                            </div>
+                            <div id="selected-option-delimsg">
+                                <input type="text" id="memo" class="delivery_msg_rest" placeholder="요청사항을 입력해 주세요" />
+                            </div>
+                        </div>
+
+                        <p class="notice">※ 부정확한 정보 및 분실로 인한 재발송은 불가능하며 상품이 반송될 경우 왕복 배송비는 고객부담입니다.</p>
+                    </div>
+                </div>
+                <!-- .tab_container -->
+            </div>
+            </div>
+
+</div>
+
+        <div class="final_part_to_pay Rightside_orderpage">
+            <div class="finalPay_box">
+
+                <div class="option_and_payment">
+                    <h1>최종 결제정보</h1>
+                </div>
+
+                <div id="Coupon_Point_selectBox">
+
+                    <div class="select_coupon_and_point">
+                        <h1 class="main_color_text">쿠폰/포인트 할인</h1>
+                        <div id="container" style="display: inline-block;" class="table table-condensed">
+                            <ul class="tabs">
+                                <li class="active tab1" rel="tab1">
+                                    <p id="tab1_color">
+                                    	<span style="margin-right: 5px;">자동 적용 쿠폰</span>
+                                    </p>
+                                </li>
+                                <li class="tab2" rel="tab2">
+                                    <p id="tab2_color">
+                                        <span style="margin-right: 5px;">내 포인트</span>
+                                        <span>$number.format(${myPoint})P</span>
+                                    </p>
+                                </li>
+                            </ul>
+                            <div class="tab_container">
+                                <div id="tab1" class="tab_content tabcon">
+                                    <ul>
+                                        <li>
+                                            <span>자동 할인 금액</span>
+                                        	<span style="float:right" class="autoPrice">원</span>
+                                        	<span style="float:right" id="autoPrice" class="autoPrice">$number.format($math.sub($!{orderTotal.totalPrice}, $!{orderTotal.salePrice}))</span>
+                                        	<span style="float:right" class="autoPrice">-&nbsp;</span><br>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- #tab1 -->
+
+                                <div id="tab2" class="tab_content tabcon">
+                                    <ul>
+                                        <li>
+                                            <span>사용 가능 포인트</span>
+                                            <span style="float:right">원</span>
+                                            <span style="float:right" id="mypoint">$number.format(${maxPoint})</span>
+                                        </li>
+                                        <li class="able_to_use_point" style="border:0">
+                                            <span>사용할 포인트</span>
+                                            <span class="unit">P</span><input type="text" min="0" max="${maxPoint}" value="0" id="usepoint" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- #tab2 -->
+                            </div>
+                            <!-- .tab_container -->
+                        </div>
+                        <div class="page-header use-doubleCoupon">
+                            <h1 class="main_color_text">중복쿠폰 할인</h1>
+                        </div>
+                        <div style="padding: 0 15px;background:#ffffff">
+                            <select id="select_doublecoupon">
+                                <option value="">중복할인쿠폰을 선택해 주세요</option>
+                                #foreach( $cp in $overlap )
+                                <option value="$foreach.index">
+                                    $!{cp.coupon.cpName}
+                                    #if($cp.coupon.minimum>0)
+                                    ($!{cp.coupon.minimum}원 이상 구매시)
+                                    #end
+                                </option>
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                                           <div id="SelectPayment">
+
+                <div class="HowToPay">
+
+                    <div class="page-header bordertop delivery_account_info">
+                        <h1 class="main_color_text">결제수단 / 결제</h1>
+                    </div>
+                    <form id="form1" name="ini" accept-charset="euc-kr" method="post" action="">
+                        <table>
+                            <tr>
+                                <td style="padding: 0 15px; border-bottom: none;">
+                                    <select name="paymethod" id="pay_type" style="border:0;width:100%; height:40px; line-height:40px;">
+                                        <option value="card">신용카드</option>
+                                        <option value="samsung">삼성페이</option>
+                                        <option value="trans">실시간계좌이체</option>
+                                        <option value="vbank">가상계좌</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <table id="vbank_cancel_table" style="display:none; padding:8px 0;border:0px;">
+                            <tr>
+                                <td style="padding:8px 15px 18px 15px;">
+                                    <p style="padding-left:3px;line-height:15px">
+                                        <span style="color:red">환불 시 입금받을 본인 명의의 계좌를 적어주세요.</span>
+                                    </p>
+                                    <p style="padding-left:3px;line-height:15px">
+                                        <span>(환불은 은행영업일 기준 3일이내 처리됩니다.)</span>
+                                    </p>
+                                    <p style="padding-left:3px; padding-top:8px;">
+                                        <span>예금주 : </span><span style="font-weight:700;">$!{username}</span>
+                                    </p>
+                                    <div class="select_bank_info">
+                                        <div id="option-of-bank-name">
+                                            <select name="vbank_cancel" id="vbank_cancel">
+                                                <option value="03">기업은행</option>
+                                                <option value="05">외환은행</option>
+                                                <option value="11">농협중앙회</option>
+                                                <option value="23">SC제일은행</option>
+                                                <option value="32">부산은행</option>
+                                                <option value="37">전북은행</option>
+                                                <option value="53">한국씨티은행</option>
+                                                <option value="81">하나은행</option>
+                                                <option value="04">국민은행</option>
+                                                <option value="07">수협중앙회</option>
+                                                <option value="20">우리은행</option>
+                                                <option value="31">대구은행</option>
+                                                <option value="34">광주은행</option>
+                                                <option value="39">경남은행</option>
+                                                <option value="71">우체국</option>
+                                                <option value="88">신한(조흥)은행</option>
+                                                <option value="D1">동양종합금융증권</option>
+                                                <option value="D3">미래에셋증권</option>
+                                                <option value="D5">우리투자증권</option>
+                                                <option value="D7">HMC투자증권</option>
+                                                <option value="D9">대신증권</option>
+                                                <option value="DB">굿모닝신한증권</option>
+                                                <option value="DD">유진투자증권</option>
+                                                <option value="DF">신영증권</option>
+                                                <option value="D2">현대증권</option>
+                                                <option value="D4">한국투자증권</option>
+                                                <option value="D6">하이투자증권</option>
+                                                <option value="D8">SK증권</option>
+                                                <option value="DA">하나대투증권</option>
+                                                <option value="DC">동부증권</option>
+                                                <option value="DE">메리츠증권</option>
+                                            </select>
+                                        </div>
+                                        <div id="typing-of-account-number">
+                                            <input id="refund_holder" type="tel" placeholder="계좌번호" />
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+
+</div>
+                
+
+                <div id="choiceOFpayment">
+
+                    <div class="final_All_Price">
+                        <div class="page-header">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <span>총 상품금액</span><span class="count_product">($!{orderTotal.totalCount} 개)</span>
+                                        <span style="float:right">원</span>
+                                        <span style="float:right">$number.format($!{orderTotal.totalPrice})</span><br>
+                                        <span>할인금액</span>
+                                        <span style="float:right">원</span>
+                                        <span id="sale_price2" style="float:right">0</span><br>
+                                        <span>배송비</span>
+                                        <span style="float:right">원</span>
+                                        <span id="delivery_price" style="float:right">$number.format($!{orderTotal.totalDelivery})</span><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="final_result-price">총 결제금액</span>
+                                        <span class="color_red" style="float:right">원</span>
+                                        <span class="color_red" id="total_price" style="; float:right" name="price" style="">
+                                            $number.format($math.add($!{orderTotal.salePrice}, $!{orderTotal.totalDelivery}))
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="finalPay_agree">
+
+                                            <div id="description">
+                                                <label>결제서비스 약관에 동의합니다.</label><br>
+                                                <label>배송을 위한 개인정보제공 및 위탁에 동의합니다.</label>
+                                            </div>
+                                            <div id="agree-ck-button">
+                                                     <label>
+                                                        <input type="checkbox" name="checkbox" id="checkbox"><span class="Cbox">동의</span>
+                                                    </label>
+                                            </div>
+
+                                    </div>
+                        <div class="main_color_btn" id="payment">결제하기</div>
+                    </div>
+
+                </div>
+
+            </div>            
+        </div>
+
+        </div>
+    </div>
+
+<form id="complete" method="post" action="/payment/complete">
+    <input type="hidden" id="payment_id" name="payment_id" />
+    <input type="hidden" id="imp_id" name="imp_id" />
+    <input type="hidden" id="merc_id" name="merchant_id" />
+</form>
+
+
+<script>
+	$(function() {
+			var salePrice = $('#autoPrice').text();
+			$('#sale_price2').text(salePrice);
+	});
+</script>
+
+
+<script type="text/javascript">
+	Date.prototype.format = function(f) {
+	    if (!this.valueOf()) return " ";
+
+	    var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+	    var d = this;
+
+	    return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+	        switch ($1) {
+	            case "yyyy": return d.getFullYear();
+	            case "yy": return (d.getFullYear() % 1000).zf(2);
+	            case "MM": return (d.getMonth() + 1).zf(2);
+	            case "dd": return d.getDate().zf(2);
+	            case "E": return weekName[d.getDay()];
+	            case "HH": return d.getHours().zf(2);
+	            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+	            case "mm": return d.getMinutes().zf(2);
+	            case "ss": return d.getSeconds().zf(2);
+	            case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+	            default: return $1;
+	        }
+	    });
+	};
+
+	String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+	Number.prototype.zf = function(len){return this.toString().zf(len);};
+
+
+		var tab = 1;
+		var ziptab = 0;
+		var overlap = [];
+		var coupon = [];
+		#if ($shipping.size() == 0)
+			ziptab = 2;
+		#end
+		#foreach( $var in $overlap )
+			overlap.push({"cpId":"$var.coupon.cpId","price":"$var.coupon.price","saleType":"$var.coupon.saleType","maximum":"$var.coupon.maximum","minimum":"$var.coupon.minimum"});
+		#end
+
+		#foreach( $var in $coupon )
+			coupon.push({"cpId":"$var.orderCpId","price":"$var.maxDis"});
+		#end
+
+		$(document).ready(function() {
+			var IMP = window.IMP; // 생략가능
+			IMP.init("$!{iamport}"); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+
+			// 쿠폰/포인트 할인 TAB
+			$(".ziptabcon").hide();
+		    $(".ziptabcon:first").show();
+		    $(".tabcon").hide();
+		    $(".tabcon:first").show();
+
+	        $("#tab1_color").css({"background-color": "#ff7391", "color": "#fff"});
+		    $("#tab2_color").css({"background-color": "#fff", "color": "#555"});
+		    
+	        $(".tab2").css({"background-color": "#fff", "color": "#555"});
+	        $(".tab1").css({"background-color": "#ff7391", "color": "#fff"});		    
+
+	        $("#ziptab1_color").css({"background-color": "#ff7391", "color": "#fff"});
+		    $("#ziptab3_color").css({"background-color": "#fff", "color": "#555"});
+	        $("#ziptab2_color").css({"background-color": "#fff", "color": "#555"});
+	        
+	        $(".ziptab1").css({"background-color": "#ff7391", "color": "#fff"});
+		    $(".ziptab3").css({"background-color": "#fff", "color": "#555"});
+	        $(".ziptab2").css({"background-color": "#fff", "color": "#555"});
+
+	        $( "#target" ).change(function() {
+	            var text = $( "#target option:selected").val();
+	            $("#memo").val(text);
+	        });
+
+		    $("ul.tabs li").click(function () {
+
+		        var tabType = $(this).attr("rel");
+		        if(tabType == 'tab1') {
+		        	$(".tabcon").hide();
+		        	$("#tab1_color").css({"background-color": "#ff7391", "color": "#fff"});
+			        $("#tab2_color").css({"background-color": "#fff", "color": "#555"});
+			        $(".tab2").css({"background-color": "#fff", "color": "#555"});
+			        $(".tab1").css({"background-color": "#ff7391", "color": "#fff"});
+			        tab = 1;
+			        if(overlapIdx !== "") {
+				overlapCp(overlapIdx);
+			} else {
+			    			var salePrice = $('#autoPrice').text();
+			$('#sale_price2').text(salePrice);
+			}
+		        } else if(tabType == 'tab2') {
+		        	$(".tabcon").hide();
+		        	$("#tab1_color").css({"background-color": "#fff", "color": "#555"});
+			        $("#tab2_color").css({"background-color": "#ff7391", "color": "#fff"});
+			        $(".tab1").css({"background-color": "#fff", "color": "#555"});
+			        $(".tab2").css({"background-color": "#ff7391", "color": "#fff"});
+			        tab = 0;
+			        changePoint();
+			       
+		        } else if(tabType == 'ziptab1') {
+		        	$(".ziptabcon").hide();
+		        	$("#ziptab3_color").css({"background-color": "#fff", "color": "#555"});
+			        $("#ziptab2_color").css({"background-color": "#fff", "color": "#555"});
+			        $("#ziptab1_color").css({"background-color": "#ff7391", "color": "#fff"});
+		        	$(".ziptab3").css({"background-color": "#fff", "color": "#555"});
+			        $(".ziptab2").css({"background-color": "#fff", "color": "#555"});
+			        $(".ziptab1").css({"background-color": "#ff7391", "color": "#fff"});
+			        ziptab = 0;
+		        } else if(tabType == 'ziptab2') {
+		        	$(".ziptabcon").hide();
+		        	$("#ziptab3_color").css({"background-color": "#fff", "color": "#555"});
+			        $("#ziptab1_color").css({"background-color": "#fff", "color": "#555"});
+			        $("#ziptab2_color").css({"background-color": "#ff7391", "color": "#fff"});
+		        	$(".ziptab3").css({"background-color": "#fff", "color": "#555"});
+			        $(".ziptab1").css({"background-color": "#fff", "color": "#555"});
+			        $(".ziptab2").css({"background-color": "#ff7391", "color": "#fff"});
+			        ziptab = 1;
+		        } else if(tabType == 'ziptab3') {
+		        	$(".ziptabcon").hide();
+		        	$("#ziptab2_color").css({"background-color": "#fff", "color": "#555"});
+			        $("#ziptab1_color").css({"background-color": "#fff", "color": "#555"});
+			        $("#ziptab3_color").css({"background-color": "#ff7391", "color": "#fff"});
+		        	$(".ziptab2").css({"background-color": "#fff", "color": "#555"});
+			        $(".ziptab1").css({"background-color": "#fff", "color": "#555"});
+			        $(".ziptab3").css({"background-color": "#ff7391", "color": "#fff"});
+			        ziptab = 2;
+		        }
+		        $("#" + tabType).fadeIn();
+		    });
+		    // 쿠폰/포인트 할인 TAB END
+
+		    // 결제 수단
+		    if($( "#pay_type" ).val() == "vbank"){
+		        $("#vbank_cancel_table").css("display","");
+		    }
+		    $( "#pay_type" ).change(function() {
+		        if($(this).val()== "vbank"){
+		            $("#vbank_cancel_table").css("display","");
+		        }else{
+		            $("#vbank_cancel_table").css("display","none");
+		        }
+		    });
+		    $( "#pay_type" ).change(function() {
+		        if($(this).val()== "vbank"){
+		            $("#vbank_cancel_table").css("display","");
+		        }else{
+		            $("#vbank_cancel_table").css("display","none");
+		        }
+		    });
+
+
+		    $("#select_doublecoupon").change(function() {
+		    	overlapIdx = $(this).val();
+		    	overlapCp($(this).val());
+		    });
+		    $("#usepoint").bind("change paste keyup", function() {
+		    	if($(this).val() == '') {
+		    		$(this).val("0");
+		    	} else {
+		    		var po = Number($(this).val());
+
+		    		if(po > Number("${maxPoint}")) {
+		    			$(this).val("${maxPoint}");
+		    		} else {
+		    			$(this).val(po);
+		    		}
+		    	}
+		    	changePoint();
+	    	});
+		    $('#usepoint').keypress(function (event) {
+		    	if (event.which && (event.which <= 47 || event.which >= 58) && event.which != 8) {
+		    		event.preventDefault();
+		    	}
+		    });
+			$('#payment').click(function() {
+				var obj = {};
+				if(ziptab == 0) {
+					#if ($shipping.size() > 0)
+						obj.name="$!shipping.get(0).name";
+						obj.phone="$!shipping.get(0).phone";
+						obj.zipcode="$!shipping.get(0).zipcode";
+						obj.address1="$!shipping.get(0).address1";
+						obj.address2="$!shipping.get(0).address2";
+					#end
+				} else if(ziptab == 1) {
+					#if ($shipping.size() > 1)
+						obj.name="$!shipping.get(1).name";
+						obj.phone="$!shipping.get(1).phone";
+						obj.zipcode="$!shipping.get(1).zipcode";
+						obj.address1="$!shipping.get(1).address1";
+						obj.address2="$!shipping.get(1).address2";
+					#end
+				} else {
+					var name = $("#deliName").val();
+					var phone = $("#deliPhone").val();
+					var add1 = $("#deliAddr1").val();
+					var add2 = $("#deliAddr2").val();
+					if(name==""){
+			 			alert('배송지 정보를 입력해 주세요');
+			    		return;
+			  		}else if(phone==""){
+						alert('배송지 정보를 입력해 주세요');
+			    		return;
+			  		}else if(add1==""){
+						alert('배송지 정보를 입력해 주세요');
+			    		return;
+			  		}else if(add2==""){
+					  	alert('배송지 정보를 입력해 주세요');
+				    	return;
+				  	}
+					obj.name=name;
+					obj.phone=phone;
+					obj.zipcode=$("#deliZip").val();
+					obj.address1=add1;
+					obj.address2=add2;
+				}
+
+				obj.memo=$("#memo").val();
+
+
+				var checkbox = $("#checkbox").is(":checked");
+				if(!checkbox) {
+					alert("결제서비스 이용약관에 동의해 주세요.");
+					return;
+				}
+
+				if($("#pay_type").val()=="vbank"){
+				   if($("#refund_holder").val()==""){
+					   alert('환불계좌를 입력해 주세요');
+				        return;
+				   }else if ($("#refund_holder").val().length < 8){
+					   alert('환불계좌를 정확히 입력해 주세요');
+				        return;
+				   }
+				}
+// 여기부터 작업
+				var total = Number(unNumberFormat($("#total_price").text()));
+				obj.totalPayment = total;
+				obj.orderId = "$!{orderTotal.orderId}";
+		      	if(tab === 0) {
+		      		obj.orderCpId=0;
+		      		obj.usePoint=pointDis;
+		      	} else if(tab === 1) {
+
+		      		obj.usePoint=0;
+		      	}
+
+		      	if(overlapIdx !== "") {
+		      		obj.overlapCpId=overlap[overlapIdx].cpId;
+		      	}
+		      	obj.overlapCpDis=overlapCpDis;
+
+		      	obj.refund_holder="$!{username}";
+		      	obj.refund_account=$("#refund_holder").val();
+		      	obj.refund_bank=$("#vbank_cancel").val();
+		      	console.log(obj);
+
+		      	$.ajax({
+		    		url: "/payment/order_valid",
+					contentType: "application/json",
+		    		data: JSON.stringify(obj),
+		    		dataType : 'json',
+		    		type: 'POST',
+		    		success: function(result){
+		    			console.log(result);
+		    			if(result.resultCode == 200) {
+		    				payment(result.payment);
+		    			} else {
+		    			}
+
+	    			},
+	    			error: function(e){
+	    			}
+	    		});
+			});
+		});
+		function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+				return;
+			else
+				return false;
+		}
+
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) {
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+				return;
+			}else {
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+			}
+		}
+
+		var overlapIdx = "";
+		var pointDis = 0;
+		var overlapCpDis = 0;
+		
+
+
+		function overlapCp(idx) {
+			var total = Number("$!{orderTotal.totalPrice}");
+			var autoPrice = Number(unNumberFormat($("#autoPrice").text()));
+			var dis = 0;
+			overlapCpDis = 0;
+			console.log(tab);
+			if(tab === 0) {
+				total = total - pointDis;
+				dis = pointDis;
+			} else if(tab === 1) {
+				total = Number("$orderTotal.salePrice");
+				dis = autoPrice;
+			}
+			if(idx != "") {
+				if(overlap[idx].saleType == 0) {
+					overlapCpDis = Math.floor(Number(total * (overlap[idx].price/100)));
+					if(overlapCpDis > Number(overlap[idx].maximum) && Number(overlap[idx].maximum) != 0) {
+						overlapCpDis = Number(overlap[idx].maximum);
+					}
+				} else {
+					overlapCpDis = overlap[idx].price;
+				}
+			} else {
+				overlapCpDis = 0;
+			}
+			dis = Number(dis) + Number(overlapCpDis);
+			$("#sale_price2").text(numberFormat(String(dis)));
+			totalPrice();
+		}
+
+		function changePoint() {
+			var total = Number("$!{orderTotal.totalPrice}");
+			pointDis = $("#usepoint").val();
+			if(overlapIdx !== "") {
+				overlapCp(overlapIdx);
+			} else {
+				$("#sale_price2").text(numberFormat(pointDis));
+				totalPrice();
+			}
+
+		}
+
+		function totalPrice() {
+			var totalPrice = Number("$!{orderTotal.totalPrice}");
+			var salePrice = Number(unNumberFormat($("#sale_price2").text()));
+			var delivery = Number("$!{orderTotal.totalDelivery}");
+			var total = (totalPrice + delivery) - salePrice;
+
+			$("#total_price").text(numberFormat(String(total)));
+		}
+
+		//콤마찍기
+		function numberFormat(num) {
+			var pattern = /(-?[0-9]+)([0-9]{3})/;
+			while(pattern.test(num)) {
+				num = num.replace(pattern,"$1,$2");
+			}
+			return num;
+		}
+		//콤마제거
+		function unNumberFormat(num) {
+			return (num.replace(/\,/g,""));
+		}
+
+		function payment(payment) {
+			var payMethod = $("#pay_type").val();
+			var escrow = false;
+			if(payMethod != 'card' && payMethod != 'samsung') {
+				escrow = true;
+			}
+			IMP.request_pay({
+				pg : 'html5_inicis',
+			    pay_method : payMethod,
+			    merchant_uid : payment.merchantUid,
+			    name : payment.name,
+			    amount : payment.totalPayment,
+			    buyer_email : payment.buyer_email,
+			    buyer_name : payment.buyer_name,
+			    buyer_tel : payment.buyer_tel,
+			    buyer_addr : payment.buyer_addr,
+			    buyer_postcode : payment.buyer_postcode,
+			    escrow:escrow,
+			    vbank_due: new Date(Date.parse(new Date()) + 1 * 1000 * 60 * 60 * 24).format('yyyyMMddHHmm')
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+
+			        $("#payment_id").val(payment.paymentId);
+			        $("#merc_id").val(rsp.merchant_uid);
+			        $("#imp_id").val(rsp.imp_uid);
+			        $('#complete').submit();
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        alert(msg);
+			    }
+			});
+		}
+
+
+</script>
+
+<script>
+	    function execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ''; // 최종 주소 변수
+	                var extraAddr = ''; // 조합형 주소 변수
+
+	                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    fullAddr = data.roadAddress;
+
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    fullAddr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    //법정동명이 있을 경우 추가한다.
+	                    if(data.bname !== ''){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있을 경우 추가한다.
+	                    if(data.buildingName !== ''){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+	                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                $("#deliZip").val(data.zonecode);
+	                $('#deliAddr1').val(fullAddr);
+	                // 커서를 상세주소 필드로 이동한다.
+	                $('#deliAddr2').focus();
+	            }
+	        }).open();
+	    }
+</script>
+
+
+
+#parse("/main/footer.vm")

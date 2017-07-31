@@ -47,19 +47,15 @@ public class PaymentController {
             itemList.add(paymentOrder);
             
         }
-        
-        System.out.println(itemList);
 
         return paymentService.initOrder(login.getToken(), itemList);
 
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.GET)
-    public void buy(HttpSession session, @RequestParam("q") String order_id, Model model, String token) {
+    public String buy(HttpSession session, @RequestParam("q") String order_id, Model model, String token) {
         LoginDTO02 login = (LoginDTO02) session.getAttribute("login");
         if (login != null) {
-        	
-        	System.out.println(order_id);
         	
             OrderResponse orderResponse = paymentService.getPayment(login.getToken(), order_id);
             model.addAttribute("imgHost", BalgreConstants.IMAGE_HOST);
@@ -74,7 +70,13 @@ public class PaymentController {
             model.addAttribute("overlap_count", orderResponse.getOverlap_cp().size());
             model.addAttribute("shipping", orderResponse.getShipping());    // 주소목록
         }
+        String deviceType = (String) session.getAttribute("deviceType");
+        if(deviceType.equals("mobile")) {
+        	return "/payment/m_order";
+        }
+        return "/payment/order";
     }
+    
 
 
     @RequestMapping(value = "/order_valid", method = RequestMethod.POST)

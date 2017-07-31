@@ -32,6 +32,7 @@
     </div>
     <div class="notice_area">
         <h3 class="tit">공지사항</h3>
+        <a class="more_detail" href="/notice?page=0"><span id="more_detail">더보기</span></a>
     </div>
     <div class="callcenter_area">
         <ul>

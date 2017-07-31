@@ -1,18 +1,17 @@
 package net.balgre.network;
 
-import com.google.gson.Gson;
+import java.io.IOException;
+import java.util.List;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import net.balgre.BalgreConstants;
 import net.balgre.domain.PagePlan;
 import net.balgre.domain.Plan;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.io.IOException;
 
 public class PlanRetroImpl {
 
@@ -25,14 +24,14 @@ public class PlanRetroImpl {
 
 
     /*plan list by minho*/
-    public PagePlan planList2(int page) {
+    public List<Plan> planList2() {
 
-        Call<PagePlan> call = this.planRetro.planList(page);
+        Call<List<Plan>> call = this.planRetro.planList();
 
         try {
-            Response<PagePlan> response = call.execute();
+            Response<List<Plan>> response = call.execute();
             if (response.isSuccessful()) {
-
+            	System.out.println(response.body());
                 return response.body();
             }
         } catch (IOException e) {

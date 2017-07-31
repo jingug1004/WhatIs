@@ -8,11 +8,7 @@
                 <div class="quickmenu_right" id="quickmenu_right">
 
         <div class="banner_first">
-            <div class="banner_first_images mySlides">
-                <a href="/event?eid=33">
-                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
-                </a>
-            </div>
+            
 
             <div class="banner_first_images mySlides">
                 <a href="/event?eid=34">
@@ -30,12 +26,15 @@
                     <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
                 </a>
             </div>
-
+            
+            
             <div class="banner_second_images">
-                <a href="/event?eid=32">
-                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
+                <a href="/sns/appDown">
+                    <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
                 </a>
             </div>
+            
+            
             <div class="banner_second_page">
                 <button class="prev2" onclick="plusdivs(-1)">이전</button>
                 <button class="next2" onclick="plusdivs(1)">다음</button>

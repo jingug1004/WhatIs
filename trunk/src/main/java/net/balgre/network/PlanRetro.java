@@ -1,19 +1,19 @@
 package net.balgre.network;
 
+import java.util.List;
+
 import net.balgre.domain.PagePlan;
 import net.balgre.domain.Plan;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
 public interface PlanRetro {
 
     /*plan list by minho*/
-    @GET("/api/plan/{page}")
-    Call<PagePlan> planList (
-            @Path("page") int page
+    @GET("/api/plan/web")
+    Call<List<Plan>> planList (
     );
 
     /*plan detail by minho*/

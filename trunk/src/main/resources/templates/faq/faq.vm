@@ -34,7 +34,7 @@
         <label for="tab5">환불/반품/교환</label>
         <label for="tab6">포인트/쿠폰</label>
 
-        <div class="tab1_content">
+        <div class="tab1_content content">
             <div class="qna">
                 <div class="qna_haed">
                     <p>자주 찾는 질문 TOP 10</p>
@@ -207,7 +207,7 @@
             </div>
         </div>
 
-        <div class="tab2_content">
+        <div class="tab2_content content">
             <div class="qna">
                 <div class="qna_haed">
 
@@ -412,7 +412,7 @@
             </div>
         </div>
 
-        <div class="tab3_content">
+        <div class="tab3_content content">
             <div class="qna">
                 <div class="qna_haed">
 
@@ -729,7 +729,7 @@
             </div>
         </div>
 
-        <div class="tab4_content">
+        <div class="tab4_content content">
             <div class="qna">
                 <div class="qna_haed">
 
@@ -1029,7 +1029,7 @@
             </div>
         </div>
 
-        <div class="tab5_content">
+        <div class="tab5_content content">
             <div class="qna">
                 <div class="qna_haed">
 
@@ -1239,7 +1239,7 @@
             </div>
         </div>
 
-        <div class="tab6_content">
+        <div class="tab6_content content">
             <div class="qna">
                 <div class="qna_haed">
 
@@ -1564,17 +1564,17 @@
 <script>
 	$(function() {
 		$('#keyword').keyup(function() {
-			var k = $(this).val();
+			var $k = $(this).val();
             $(".qna_container>div").hide();
-			var temp = $(".qna_container>div:contains('" + k + "')");
+			var temp = $(".qna_container>div:contains('" + $k + "')");
 			$(temp).show();
             var text = $(temp).children().siblings('div');
             var text2 = (temp).text();
-            if (k != "") {
+            if ($k != "") {
                 text.slideDown();
-                $("p").find(k).css("color","red");
-                /*$("p").addClass('animated infinite flash');*/
-            } else if (k == ""){
+           		
+                $(this).parents('.faqPage_Header').siblings('#css_tabs').children('.content').children('.qna').children('.qna_container').children('.qna_list').children('.answer').children('div').children('p').text().find($k).css("color","red");
+            } else if ($k == ""){
                 $('.qna_list_title a').parents('.qna_list').siblings().children('.qna_list_title').siblings('.answer').slideUp();
             }
 		});

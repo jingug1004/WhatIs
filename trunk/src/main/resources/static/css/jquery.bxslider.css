@@ -7,11 +7,10 @@
   padding: 0;
   *zoom: 1;
   -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  
-  
+  touch-action: pan-y;   
   }
-.bx-wrapper img {
+
+#pc_Ver .bx-wrapper img {
   max-width: 100%;
   display: block;
   min-height: 510px !important;
@@ -25,7 +24,7 @@
 ul.bxslider {
   list-style: none;
 }
-.bx-viewport {
+#pc_Ver .bx-viewport {
   /*fix other elements on the page moving (on Chrome)*/
   -webkit-transform: translatez(0);
   min-height: 510px !important;
@@ -35,7 +34,7 @@ ul.bxslider {
 }
 /** THEME
 ===================================*/
-.bx-wrapper {
+#pc_Ver .bx-wrapper {
   background: #fff;
   max-width: 100%;
   min-width: 1080px !important;

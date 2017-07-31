@@ -2,6 +2,7 @@
 <html xmlns:fb="//ogp.me/ns/fb#">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="*" http-equiv="Access-Control-Allow-Origin">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta content="text/javascript" http-equiv="Content-Script-Type">
@@ -18,41 +19,16 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="/webjars/jquery-validation/1.16.0/jquery.validate.min.js"></script>
     <script src="//connect.facebook.net/ko_KR/all.js"></script>
-    <script>
-		window.fbAsyncInit = function() {
-		  		FB.init({
-			  		appId : '1918524211727467',
-			  		status : true,         // 로그인 상태를 확인
-			  		cookie : true,          // 쿠키허용
-			  		xfbml : true          // parse XFBML
-		  		});
-//pphxuudgke_1498718335@tfbnw.net
-//sumcr2016
-			FB.Event.subscribe('auth.login', function(response) {
-				if (response.status === 'connected') {
-		        	FB.api('/me', function(user) {
-		            	if (user) {
-		            		alert(user);
-		            		console.log(user);
-		            		/* $("#login").val(user.id);
-							$("#type").val("F");
-							$("#snslogin").submit(); */
-							
-		            	}
-		        	});
-		    	}
-	  		});
 
-			FB.Event.subscribe('auth.logout', function(response) {
-				FB.login();
-	  		});
-		}
-    </script>
-
+    <!-- 모바일 버전 css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/mobile/loginCommon.css">   
+    <!-- 모바일 버전 css -->	
 
 </head>
 
 <body style="background-color:#f0f0f0;">
+	
     <div class="layout-structure-content" id="layout-structure-content">
         <div class="login_window_inner">
             <div class="login_window_box">
@@ -82,7 +58,11 @@
                                 </label>
                             </div>
                         </div>
-
+                        #if (!$link)
+                        <input type="hidden" name="link" id="link" value="">
+						#else
+						<input type="hidden" name="link" id="link" value="$link">
+						#end
                         <div id="typingBox_submitBTN">
                             <div id="checkBox_login">
                                 <label class="checkbox_on_loginform" for="userCookie">
@@ -95,12 +75,12 @@
                             </div>
                         </div>
 
-                        
                         <!-- <div class="label_info_txt">
                             <label id="errormsg_ID" class="error" for="username" style="color:#fb4580;"></label>
                             <label id="errormsg_PW" class="error" for="password" style="color:#fb4580;"></label>
                             <span id="msg_loginFail"></span>
                         </div> -->
+                        
                     </form>
                     <div class="Find_id_and_pw_register">
                         <div class="btntxt_links">
@@ -112,26 +92,23 @@
                                 <span class="lookingForTxt finding-pw">비밀번호 찾기</span>
                             </a>
                             <span class="right-side-bar">|</span>
-                            <a href="/mailJoinAgree" class="search-email-and-password join_balgeure_register">
+                            <a href="/howToJoin" class="search-email-and-password join_balgeure_register">
                                 <span class="lookingForTxt joining-site">회원가입</span>
                             </a>
                         </div>
 
                     </div>
                     
-                            <div class="snslogin_buttons">
-                            
+                        <div class="snslogin_buttons">
                             <div class="text_of_snslogin">
                             <p class="text_snslogin_tit">SNS 계정으로 간편하게 로그인하세요.</p>
                             </div>
-                            
-
                             <div class="simple-sns-login-method">
                                 <ul class="simple-login-SNS">
                                     <li class="simple-login-SNS-list" id="naverLogin" style="cursor:pointer;" onclick="snsLogin('N');">
                                         <img src="/img/login/naver_65.png"></a>
                                     </li>
-
+                                    
                                     <li class="simple-login-SNS-list" id="facebookLogin" style="cursor:pointer;" onclick="snsLogin('F');">
                                         <img src="/img/login/facebook_65.png"></span>
                                     </li>
@@ -142,20 +119,104 @@
 
                                 </ul>
                             </div>
-
                         </div>
                     
                 </div>
             </div>
         </div>
+        
         <script>
-    (function(d){
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/ko_KR/all.js";
-        ref.parentNode.insertBefore(js, ref);
-      }(document));
+    
+    
+//pphxuudgke_1498718335@tfbnw.net
+//sumcr2016
+function getUserData() {
+    /* FB.api('/me', function(response) {
+        document.getElementById('response').innerHTML = 'Hello ' + response.name;
+        console.log(response);
+    }); */
+    FB.api('/me', {fields: 'name,email,gender,birthday'}, function(response) {
+        
+        var mail = response.email;
+    	var login = response.id;
+		var type = "F";
+		var name = response.name;
+
+		var formData = new FormData();
+
+		formData.append("login", login);
+		formData.append("type", type);
+
+		$.ajax({
+			type: "post",
+			url: "/sns/login",
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function(res) {
+			    console.log(res);
+			    if (res == "success") {
+			    	location.href="$link";
+			    } else {
+			    	location.href="/snsJoinAgree?Type="+type+"&Email="+mail+"&NickName="+name+"&sns_id="+login;
+			    }
+			},
+			error: function(request,status,error) {
+			    alert('아이디 또는 비밀번호를 확인해 주세요.');
+			},
+	    });
+    });
+    
+}
+  
+window.fbAsyncInit = function() {
+    //SDK loaded, initialize it
+    FB.init({
+        appId      : '774053909386228',  /* '1918524211727467', */
+        cookie     : false,  // enable cookies to allow the server to access
+        status : true,         // 로그인 상태를 확인
+        xfbml      : true,  // parse social plugins on this page
+    });
+  
+    //check user session and refresh it
+    
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //user is authorized
+            //document.getElementById('loginBtn').style.display = 'none';
+            FB.logout();
+            
+        } else {
+            FB.logout();
+        }
+    });
+    
+};
+  
+//load the JavaScript SDK
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.com/ko_KR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+  
+//add event listener to login button
+document.getElementById('facebookLogin').addEventListener('click', function() {
+    //do the login
+    FB.login(function(response) {
+        if (response.authResponse) {
+            getUserData();
+        }
+    }, {scope: 'email,public_profile,user_birthday',
+        return_scopes: true});
+}, false);
+
+    </script>
+        
+        <script>
+
 
      $(document).ready(function () {
      	Kakao.init('71fb3c875e19ee24c57124b06f983a1a');
@@ -166,6 +227,9 @@
     			},
     			password : {
     				required : true
+    			},
+    			link : {
+    				required : false
     			}
     		},
     		messages: {
@@ -182,7 +246,7 @@
 
 		 	       var login = $("#username").val();
 			       var type = $("#password").val();
-
+				   
 			       var formData = new FormData();
 
 			       formData.append("login", login);
@@ -196,9 +260,11 @@
 			    		  processData: false,
 			    		  success: function(data) {
 			    			   if (data == 'success') {
-			    		           location.href="/main";
-			    			   } else {
+			    		           location.href="$link";
+			    			   } else if(data == 'failed') {
 			    				   $("#msg_loginFail").text("아이디 또는 비밀번호를 확인해 주세요.").show();
+			    			   } else {
+			    				   location.href=link;
 			    			   }
 			    		   },
 			    		   error: function(request,status,error) {
@@ -206,7 +272,8 @@
 			    		   },
 			       });
 
-}
+    }
+	
     function findId() {
     	window.open('/goFindId', 'idPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
     }
@@ -228,8 +295,6 @@
 			FB.getLoginStatus(function(response) {
 				if(response.status == 'connected' || response.status == 'not_authorized') {
 					FB.logout();
-				} else {
-					FB.login();
 				}
 			});
 			//FB.logout();
@@ -257,9 +322,10 @@
 			var NickName = returnValue.nickname;
 			var Email = returnValue.email;
 			var status = returnValue.status;
+			
 			if(returnValue.status == '200') {
 				alert("반갑습니다." + NickName+"님");
-				location.href="/main";
+				location.href="$link";
 			} else {
 				location.href="/snsJoinAgree?Type="+Type+"&NickName="+NickName+"&Email="+Email+"&sns_id="+Id;
 			}
@@ -275,9 +341,4 @@
 		}, 2000); // 2000ms(2초)가 경과하면 이 함수가 실행됩니다.
 	}
         </script>
-
-
-
-
-</body>
 </html>

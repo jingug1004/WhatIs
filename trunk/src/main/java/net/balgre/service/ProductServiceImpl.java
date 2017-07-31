@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import net.balgre.domain.BestResponse;
 import net.balgre.domain.CategoryResponse;
+import net.balgre.domain.CategoryResponse2;
+import net.balgre.domain.PageBrand;
 import net.balgre.domain.PageProduct;
 import net.balgre.domain.Product;
 import net.balgre.domain.ProductResponse;
@@ -133,6 +135,28 @@ public class ProductServiceImpl implements ProductService {
 		
 		RelationResponse res = PRI.relationProduct2(product_id);
 		
+		return res;
+	}
+
+	@Override
+	public CategoryResponse2 categoryList22() throws Exception {
+		// TODO Auto-generated method stub
+		
+		ProductRetroImpl PRI = new ProductRetroImpl();
+		
+		CategoryResponse2 res = PRI.categoryList2();
+		
+		return res;
+	}
+
+	@Override
+	public PageBrand brandList2(int page, long brand_id, int sort) {
+		// TODO Auto-generated method stub
+		
+		ProductRetroImpl PRI = new ProductRetroImpl();
+		
+		PageBrand res = PRI.brandList(page, brand_id, sort);
+
 		return res;
 	}
 	

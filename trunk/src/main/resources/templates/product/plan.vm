@@ -7,14 +7,7 @@
 
 
     <div class="quickmenu_right" id="quickmenu_right">
-
-        <div class="banner_first">
-            <div class="banner_first_images mySlides">
-                <a href="/event?eid=33">
-                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
-                </a>
-            </div>
-
+ <div class="banner_first">
             <div class="banner_first_images mySlides">
                 <a href="/event?eid=34">
                     <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
@@ -29,12 +22,6 @@
             <div class="banner_second_images">
                 <a href="/event?eid=30">
                     <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
-                </a>
-            </div>
-
-            <div class="banner_second_images">
-                <a href="/event?eid=32">
-                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
                 </a>
             </div>
             
@@ -59,45 +46,27 @@
 
 
     <div class="banners_of_eventDetails">
-        <div class="TopbannerOfevent">
-            <img src="/img/eventPage/eventPage_image1.png">
-        </div>
-        <div class="Btns_of_eventDetail">
-            <table class="menu_event">
-                <tr>
-                    <td class="btnLinks">
-                        <a href="/plan/detail?pid=4"><span>언니만 아는 완전 꿀템</span></a>
-                    </td>
-                    <td class="btnLinks">
-                        <a href="/plan/detail?pid=8"><span>야생피부를 잠재우는 응급 홈케어</span></a>
-                    </td>
-                    <td class="btnLinks">
-                        <a href="/detail?product_id=254"><span>발그레 홈쇼핑 오직 발그레 진짜 이 가격!</span></a>
-                    </td>
-                </tr>                
-            </table>
-        </div>
-        
+       
         
         <div class="img_of_eventDetail">
             <div id="imageBannerOne">
-                <a href="/plan/detail?pid=4"><img src="/img/eventPage/eventPage_image2.png"></a>
+                <a href="/plan/detail?pid=12"><img src="/img/eventPage/eventPage_image2.png"></a>
 
             </div>
             <div id="imageBannertwo">
-                <a href="/plan/detail?pid=8"><img src="/img/eventPage/eventPage_image3.png"></a>
+                <a href="/plan/detail?pid=11"><img src="/img/eventPage/eventPage_image3.png"></a>
 
-            </div>
+            <!-- </div>
             <div id="imageBannerThree">
                 <a href="/detail?product_id=254&sort=1"><img src="/img/eventPage/eventPage_image4.png"></a>
 
-            </div>
+            </div> -->
         </div>
     </div>
 
 </div>
 
-
+</div>
 
 <script>
 var myIndex = 0;

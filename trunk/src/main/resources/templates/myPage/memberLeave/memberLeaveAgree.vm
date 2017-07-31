@@ -9,7 +9,7 @@
 <!-- container -->
 <div id="container" class="mA ">
 
-    <div class="myPageWrap">
+    <div class="myPageWrap" id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -168,6 +168,86 @@
     </div>
     <!--myPageWrap-->
 
+  <div class="myPageWrap" id="mobile_Ver">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">회원탈퇴</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="mypageRightContents_m">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub leaveMEM"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+                <p class="userTitle">탈퇴 전 유의사항을 확인해주세요.</p>
+                <form action="/member/leave" name="agreeForm" method="post" onsubmit="return checkAgreement();">
+                    <div class="Notice_leave">
+                        <ul>
+                            <li class="notice_read">
+                                <p class="title">회원탈퇴 시 안내</p>
+                                <p class="text_read">
+                                    회원탈퇴 시 모든 정보와 주문내역이 삭제됩니다.(2번 참조)<br>
+                                    잔여 발그레 포인트는 탈퇴 시 소멸되며 환불되지 않습니다. 연락처는 중복가입을 방지하기 위해 시스템상 암호화 처리되어 사용됩니다.
+                                    단, 상법 및 전자상거래 등에서의 소비자보호에 관한 법률 등 관련 법령에 의해 거래관련 권리 의무 관계의 확인등을 이유로 일정기간 보유하여야
+                                    할 필요가 있을 경우에는 정해진 기간동안 보유 후 파기합니다.
+                                </p>
+                            </li>
+                            <li class="notice_read">
+                                <p class="title">주문 관련 안내</p>
+                                <p class="text_read">
+                                    진행중인 주문건이 남아있는 경우에는 탈퇴처리가 불가합니다. 배송이 완료된 후 탈퇴하실 수 있습니다.
+                                    회원탈퇴 시 구매기록이 모두 삭제됩니다.
+                                </p>
+                            </li>
+
+                            <li class="notice_read">
+                                <p class="title">회원탈퇴 시 안내</p>
+                                <p class="text_read">
+                                    회원탈퇴 처리가 완료되면 동일한 회원 정보로는 6개월 이후에 재가입이 가능함을 유의바랍니다.
+                                </p>
+                            </li>
+                        </ul>
+
+                        <div class="Last_agree">
+                            <p class="txt">* 위 모든 사항을 확인하였으며, 동의합니다.&nbsp;&nbsp;<input type="checkbox" id="check" /></p>
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="write_reason">
+                        <textarea rows="12" cols="122" id="reason" name="reason" placeholder=" 지금까지 발그레를 이용해주셔서 감사합니다. 탈퇴하시는 사유를 적어주시면 운영에 참고하도록 하겠습니다."></textarea>
+                    </div>
+
+                    <div class="ASK_question">
+                        <p class="footerPhone">고객센터: <span>070.7703.0859</span></p>
+                        <p class="footerMail">메일문의: <span>sumcreative@naver.com</span></p>
+                    </div>
+
+                    <div class="button">
+                        <input type="submit" class="myButton" value="탈퇴하기">
+                    </div>
+                </form>
+            </div>
+            <!--rightContents-->
+            
+            #parse ("/myPage/mypage_mobile_menu.vm")
+            
+        </div>
+    </div>
+    <!--myPageWrap-->
+
 
 </div>
 <!-- //container -->
@@ -185,5 +265,6 @@
         });
 </script>
 
+            #parse ("/myPage/mobile_menu_script.vm")
 
 #parse("/main/footer.vm")

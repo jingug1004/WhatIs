@@ -5,7 +5,7 @@
 
 <div id="container" class="mA ">
 
-    <div class="myPageWrap">
+    <div class="myPageWrap" id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -117,9 +117,8 @@
 
                 <div class="myReview">
                     <div class="able_wrt_review">
-                        #if($res2.size == 0)
-                        <div>
-                            <p class="list_none;">작성 가능한 리뷰가 없습니다.</p>
+                        #if($list.size($res2) == 0)
+                            <p class="list_none">작성 가능한 리뷰가 없습니다.</p>
                         </div>
                         #else
 
@@ -153,21 +152,98 @@
                                 #end
                                 #end
                         #end
-
                     </div>
-
                 </div>
-
             </div>
             <!--rightContents-->
         </div>
     </div>
     <!--myPageWrap-->
 
+    <div class="myPageWrap" id="mobile_Ver">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">나의 리뷰등록 / 관리</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+           <div class="mypageRightContents_m">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub myreview"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+
+                <p class="myreviewTitle">
+                    <span class="titleImg tI fL">작성 가능한 리뷰</span>
+                </p>
+
+<div class="myReview">
+    <div class="able_wrt_review">
+        #if($res2.size == 0)
+        <div>
+            <p class="list_none">작성 가능한 리뷰가 없습니다.</p>
+        </div>
+        #else
+
+        #foreach($pReview in $res2)
+        #foreach($pReview2 in $pReview.reviewWaitItem)
+        <table class="able_review_list">
+            <thead>
+                <tr>
+                    <th>목록</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="product_img">
+                        <div class="image_product">
+                            <img src="http://sumcrimage.cafe24.com/$pReview.product.thumbUrl" alt="$pReview.product.prodName" />
+                            </div>
+
+                    <div class="product_info">
+                        <p class="P_name">[$pReview.product.brand.brandName] $pReview.product.prodName</p>
+                        <p class="P_option">$pReview2.paymentItem.itemName</p>
+                        <p class="P_date">$date.format("yyyy-MM-dd", $math.add($pReview.payDate, $math.mul($date.month, 6)))</p>
+                    </div>
+                    <div class="wrt_btn">
+                        <input type="button" value="리뷰쓰기" class="write_btn">
+                    </div>
+                        </td>
+                </tr>
+
+            </tbody>
+        </table>
+        #end
+        #end
+        #end
+
+    </div>
+
+</div>
+
+            </div>
+            <!--rightContents-->
+                    #parse("/mypage/mypage_mobile_menu.vm")
+            
+            
+        </div>
+    </div>
+    <!--myPageWrap-->
 
 </div>
 <!-- //container -->
 
-
+#parse("/mypage/mobile_menu_script.vm")
 
 #parse("/main/footer.vm")

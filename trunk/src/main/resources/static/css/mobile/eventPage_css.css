@@ -1,0 +1,46 @@
+@media only screen and (max-width: 767px) {
+	
+
+    .balgeure_eventPage{
+        margin-top:0 !important;
+    }
+
+    .balgeure_eventPage .eventPage_tit, .balgeure_eventPage .filter-category{
+        display :none;
+    }
+	
+    
+    
+    /**  event page  css   Start   **/
+
+    .balgeure_eventPage #wrapper_1 #scroller{
+        width: 100% !important;
+    }
+    
+    #wrapper_1 #scroller .event_banners{
+        float: none !important;
+        margin: 8px 0 0 0 !important;
+        width: 100% !important;
+    }
+    
+    /**  event page  css  End  **/
+
+
+    /**  plan page  css   Start   **/
+
+    .event_layout-structure-content{
+        width: 100% !important;
+    }
+
+    .banners_of_eventDetails img{
+        width : 100%;
+    }
+    
+    .img_of_eventDetail #imageBannerOne, .img_of_eventDetail #imageBannertwo, .img_of_eventDetail #imageBannerThree{
+        margin-top: 8px !important;
+    }
+    
+    /**  plan page  css  End  **/
+    
+    
+}

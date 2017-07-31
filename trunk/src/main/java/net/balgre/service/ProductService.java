@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.balgre.domain.BestResponse;
 import net.balgre.domain.CategoryResponse;
+import net.balgre.domain.CategoryResponse2;
+import net.balgre.domain.PageBrand;
 import net.balgre.domain.PageProduct;
 import net.balgre.domain.Product;
 import net.balgre.domain.ProductResponse;
@@ -20,6 +22,7 @@ public interface ProductService {
 
     public ProductResponse productDetailGET(long product_id1) throws Exception;
     
+    public CategoryResponse2 categoryList22() throws Exception;
     
     /*time sale list by minho*/
     public List<ProductTimeSale> timeSaleList2();
@@ -41,5 +44,8 @@ public interface ProductService {
     
     /*relation response by minho*/
     public RelationResponse relationProduct(long product_id);
+    
+    /*brand list by minho*/
+    public PageBrand brandList2(int page, long brand_id, int sort);
 
 }

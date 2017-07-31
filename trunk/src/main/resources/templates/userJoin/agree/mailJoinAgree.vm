@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>발그레 : 싸게샀다 발그레에서 ~</title>
+    
+            <!-- 모바일 버전 css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/mobile/member_css.css" rel="stylesheet" type="text/css">
+    <!-- 모바일 버전 css -->	
+    
+    
 </head>
-<body style="background:#f0f0f0;">
+<body>
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -61,7 +68,6 @@
     </script>
 
 
-    <div id="scroll-wrapper">
 
         <div class="container_join">
             <div class="layout-content">

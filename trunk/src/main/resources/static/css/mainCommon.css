@@ -1,4 +1,14 @@
 
+.badge_discount{
+	position: absolute;
+    /* top: 9px; */
+    background: #ff7391;
+    left: 0px;
+    padding: 8px;
+    color: #fff;
+    line-height: 17px;
+}
+ 
 .Topbanner_Top{
 	position:relative;
 	min-width:1000px;
@@ -13,6 +23,7 @@
     margin: 0 auto;
 }
 
+/***
 .Topbanner_Top .row .image_one, .Topbanner_Top .row .image_two, .Topbanner_Top .row .image_three{
 	float:left;
 }
@@ -97,6 +108,13 @@ div#header_v2 .gnbTop ul.gnbTopRight .navi {
     height: 27px;
     color: #555;
     float: left
+}
+
+div#header_v2 .gnbTop ul.gnbTopRight .navi.loginpage span,
+div#header_v2 .gnbTop ul.gnbTopRight .navi.logoutBtn span{
+	border: 1px solid #ff7391;
+    padding: 0 6px;
+    border-radius: 3px;
 }
 
 div#header_v2 .gnbTop ul.gnbTopRight .gnbTopRight_bar {
@@ -549,7 +567,7 @@ div#header_v2 div.gnbOuter {
 
 div#header_v2 div.newGnb {
     position: relative;
-    width: 1080px;
+    width: 1080px
 }
 
 div#header_v2 div.newGnb .gnbUl {
@@ -561,6 +579,13 @@ div#header_v2 div.newGnb .newGnbTab {
     float: left
 }
 
+div#header_v2 .arrow {
+    display: block;
+    width: 7px;
+    height: 4px;
+    margin: 9px 0 0 5px;
+}
+
 div#header_v2 .mainMenu {
     position: relative;
     display: block;
@@ -570,8 +595,7 @@ div#header_v2 .mainMenu {
     font-size: 14px;
     text-align: center;
     font-weight: bold;
-    font-family: 나눔고딕, NanumGothic, 돋움, Dotum, AppleSDGothic, AppleGothic, 굴림, Gulim, sans-serif;
-    line-height: 20px;
+    font-family: '나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif
 }
 
 div#header_v2 .brand.over .lnbOver {
@@ -1099,6 +1123,14 @@ div.homeMainBannerWrap .mA {
 	float: left;
 }
 
+.img_of_banner #secondImage, .img_of_banner #thirdImage{
+	padding-left: 8px;
+}
+
+.img_of_banner #thirdImage{
+	display: inline-block;
+}
+
 /** 메인페이지 기획전 배너 css e  **/
 
 /** 상품 정렬 관련 css Start **/
@@ -1425,9 +1457,10 @@ div#header_v2 .lnbClose {
 
 
 html, body {
+	
     width: 100%;
-    height: 100%;
-    letter-spacing: -1px
+    height: 100%;    
+    letter-spacing: -1px;
 }
 
 body, input, textarea, select, button, table {
@@ -2258,6 +2291,7 @@ div.newDealContents .dealFoot .go_to_wishlist_ZZim .zzimCheck{
     line-height: 200px;
     vertical-align: middle;
     cursor: pointer;
+    text-indent: -999em;
 }
 
 div.newDealContents .dealFoot .go_to_wishlist_ZZim .zzimCheck2{
@@ -2268,6 +2302,7 @@ div.newDealContents .dealFoot .go_to_wishlist_ZZim .zzimCheck2{
     background: url("/img/balgeure_icons.png") -138px -6px;
     line-height: 200px;
     vertical-align: middle;
+    text-indent: -999em;
     cursor: pointer;
 }
 
@@ -2883,12 +2918,12 @@ a.btn-layerClose:hover {
 /** 메인페이지 중간 배너 css  **/
 
 .Fullwidth_banner_middle{
-	width: 2000px;
+	width: 1903px;
 	background-color:#61b6f8;
 	margin-top: 450px !important;
 	position:absolute;
 	height:354px;
-	left: -459px;
+	left: -412px;
 }
 
 .Fullwidth_banner_middle .middle_banner_image{
@@ -2907,4 +2942,28 @@ a.btn-layerClose:hover {
 	padding-top:29px;
 	padding-right: 15px;
 	float:right;
+}
+
+
+
+    #container .realtimeBestItemWrap.popluaritem{
+        margin-top: 859px;
+    }
+
+    #container .realtimeBestItemWrap.otherlistitem{
+        margin-top: 835px;
+    }
+
+    
+
+
+
+@media only screen and (min-width: 768px) {
+	#mobile_ver{
+		display:none;
+	}
+	
+	.mobile_balgeureHeader, .mobile_gnb{
+		display:none;
+	}
 }

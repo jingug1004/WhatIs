@@ -1,0 +1,69 @@
+@media only screen and (max-width: 767px) {
+	
+    body{
+        width:100%;
+        margin:0 auto;
+        padding:0;
+        max-width: 767px;
+    }
+
+	#layout-structure-content{
+        width: 100% !important;
+        padding: 0px !important;
+    }
+    
+    
+    /**  Login page  css   Start   **/
+
+    #layout-structure-content .login_window_inner{
+        width: 100% !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+    }
+
+    #layout-structure-content .login_window_inner .login_window_box{
+        padding:40px;
+    }
+        
+    .login_window_inner .login_window_box .login-title-txt{
+        display: none;
+    }
+
+    .login_window_inner .login_window_box .login_form_onPage{
+        width: 100% !important;
+    }
+
+    .Login_balgeure_form .balgeure_ID, .Login_balgeure_form .balgeure_PW{
+        width: 95% !important;
+    }
+
+    #typingBox_submitBTN #button_login .loginBtn{
+        width: 100% !important;
+    }
+
+    /**  Login page Prodcut list css   End   **/
+    
+    .btn-close{
+        display:none;
+    }
+
+    .insert_form_Box{
+        padding: 0 !important;
+    }
+
+    #search_balgeure_id{
+        margin: 30px;
+    }
+
+    .find_popUp_txt{
+        text-align: center;
+    }
+
+    .insert_form_Box .footer{
+        margin: 30px;
+    }
+
+
+/**  Login css  End  **/
+
+}

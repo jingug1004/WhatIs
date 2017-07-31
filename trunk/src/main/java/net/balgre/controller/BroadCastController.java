@@ -48,17 +48,25 @@ public class BroadCastController {
 	@RequestMapping(value = "/broadCast", method = RequestMethod.GET)
 	public String broadCastInformation(Model model, HttpSession session) throws Exception {
 		
+		String menuCheck = "5";
+		
 		LoginDTO02 login = (LoginDTO02)session.getAttribute("login");
     	if (login != null) {
     		model.addAttribute("Wish", wishService.wishList2(login.getToken()));
+    		model.addAttribute("menuCheck", menuCheck);
     	}
     	
 		HomeShoppingResponse res = broadCastService.broadCastInformation2();
 		List<HomeShopping> res2 = res.getNextHShop();
 		model.addAttribute("info", res);
 		model.addAttribute("best", productService.bestResponseGET());
+		model.addAttribute("menuCheck", menuCheck);
 		
-		return "broadCast/broadCast";
+		String deviceType = (String) session.getAttribute("deviceType");
+        if(deviceType.equals("mobile")) {
+        	return "/broadCast/m_broadCast";
+        }
+        return "/broadCast/broadCast";
 	}
 	
 }

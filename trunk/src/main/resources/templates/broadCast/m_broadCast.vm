@@ -1,0 +1,526 @@
+#parse ("/main/header.vm")
+<!-- slider -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/js/jquery.bxslider.min.js"></script>
+<link href="/css/jquery.bxslider.css" rel="stylesheet" />
+<link href="/css/broadCast/broadCast.css" rel="stylesheet" />
+
+<style>
+    .today {
+        color: #fb4580;
+        font-weight: 600;
+    }
+    .broadCastImg {
+    	width: 220px;
+    	height: 220px;
+    }
+    .balgeurebox-deal-image {
+    	width: 220px;
+    	height: 220px;
+    }
+    
+    .dl {
+   position: relative;
+}
+.dt {
+   height: 30px;
+   float: left;
+   width: 50px;
+   z-index: 9;
+   position: relative;
+}
+.dd {
+   position: absolute;
+   padding-top: 30px;
+   background-color: #f3f3f3;
+   width: 150px;
+   height: 200px;
+}
+.hidden {
+   display: none;
+}
+</style>
+
+
+
+<div class="brodcast_contanier">
+
+
+    <div class="quickmenu_right" id="quickmenu_right">
+
+        <div class="banner_first">
+           
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=34">
+                    <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
+                </a>
+            </div>
+            <div class="banner_first_page">
+                <button class="prev1" onclick="plusDivs(-1)">이전</button>
+                <button class="next1" onclick="plusDivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="banner_second">
+            <div class="banner_second_images">
+                <a href="/event?eid=30">
+                    <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
+                </a>
+            </div>
+           
+            <div class="banner_second_images">
+                <a href="/sns/appDown">
+                    <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
+                </a>
+            </div>
+            
+            <div class="banner_second_page">
+                <button class="prev2" onclick="plusdivs(-1)">이전</button>
+                <button class="next2" onclick="plusdivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="Topbutton">
+            <a href="#wrap" class="goTobtn"><img src="/img/right_side/topbutton.png"></a>
+        </div>
+    </div>
+
+
+    <div class="videoplay_area">
+        		<div class="playing_area">
+            
+            
+
+            <div class="videoplayBox">
+                <div class="livetit">
+                    <span>방송중</span>
+                </div>
+                <div class="player_area" id="m1_video">
+                    <iframe src='http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=01143251169E42DEAD67B7FCDD3E2B00FB88&outKey=V1231528e5b0d714a31ac7283a3b8d27a1a05d05cf718193e92a47283a3b8d27a1a05&controlBarMovable=true&jsCallable=true&isAutoPlay=true&skinName=tvcast_white' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='320' HEIGHT='180' allowfullscreen></iframe>
+                </div>
+                <div class="playing_product">
+                    <div id="broadcastItem_List" class="broadcastItemWrap">
+                    <a href="/detail?product_id=320"><p><center>방송중인 상품 구매하기</center></p></a>
+                        <div class="castContents">
+                            <span class="B_product_list" style="display:none;"></span>
+                            <ul class="dealList">
+                                <li class="segment_product_item">
+                                    <!-- <div class="overBorder">
+                                        <a href="/detail?product_id=$info.hshop.product.productId">
+                                            <div class="dealThumb">
+                                                <div class="overBack"></div>
+                                                <img src="//sumcrimage.cafe24.com/$info.hshop.product.thumbUrl" class="broadCastImg">
+                                            </div>
+
+                                            <div class="dealBody">
+                                                <div class="dealhead">
+                                                    <span class="title" id="product_title_text">$info.hshop.product.brand.brandName / $info.hshop.product.prodName</span>
+                                                </div>
+
+                                                <div class="dealPrice">
+                                                    <div class="discount">
+                                                        최대 할인율 표기
+                                                        #if($info.hshop.product.price != $info.hshop.product.salePrice)
+                                                        <span class="percent">$info.hshop.product.sale</span><span class="unit">%</span>
+                                                        
+                                                        #end
+                                                    </div>
+
+                                                    <div class="dealPrice_right">
+                                                        #if($info.hshop.product.price != $info.hshop.product.salePrice)
+                                                        <div class="PfL">$number.format($info.hshop.product.price)<span class="unit">원</span></div>
+                                                        #end
+                                                        <p class="price">
+                                                            <span class="price_value">$number.format($info.hshop.product.salePrice)</span>
+                                                            <span class="unit">원</span>
+                                                            <span class="tilde">&sim;</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                #if($info.hshop.product.reviewCount == 0)
+                                                <span class="amount fL"></span>
+                                                #else
+                                                <span class="amount fL">$info.hshop.product.reviewCount점</span>
+                                                #end
+                                            </div>dealBody
+                                            <div class="dealFoot">
+                                            <a class="GoBtn" href="/detail?product_id=$info.hshop.product.productId">구매하기</a>
+                                            </div>
+                                        </a>
+                                    </div> -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="otherProgram">
+            <div class="otherVideo_tit">
+                <span>방송 정보</span>
+            </div>
+            <div class="othervideo_product">
+            
+            		#foreach($Best in $best.productList)
+                        #if($Best.productId == 320)
+                        <ul class="dealList">
+                            <li class="segment_product_item">
+                                <div class="overBorder">
+                                    <a href="/detail?product_id=$Best.productId&sort=1">
+                                        <div class="dealThumb">
+                                            <div class="overBack"></div>
+                                            <img class="balgeurebox-deal-image"
+                                                 src="//sumcrimage.cafe24.com/$Best.thumbUrl"
+                                                 alt="$!{Best.prodName}" />
+                                        </div>
+
+                                        <div class="dealBody">
+                                            <div class="dealhead">
+                          <!--                  ##set($endTime = $next.startDate)
+                                                ##if(86400000 > $endTime)
+                                                <input type="hidden" class="endTimer" value="$next.startDate">
+                                                방송시작일 :  <span class="balgeurebox-deal-time-count" id="complete" name="complete"></span><br>-->
+                                                
+                                                <span class="thum_icon"><img src="/img/clock_broad.png"></span><span class="small_title_thum">&nbsp;</span>
+                                                <span class="title" id="product_title_text">$Best.brand.brandName / $Best.prodName</span>
+                                            </div>
+
+                                            <div class="dealPrice">
+                                                <div class="discount">
+                                                    <!--최대 할인율 표기-->
+                                                    #if($Best.price != $Best.salePrice)
+                                                    <span class="percent">
+                                                        $Best.sale
+                                                    </span>
+                                                    <span class="unit">%</span>
+                                                    #end
+                                                </div>
+
+                                                <div class="dealPrice_right">
+                                                    #if($Best.price != $Best.salePrice)
+                                                    <del class="PfL">$Best.price<span class="unit">원</span></del>
+                                                    #end
+                                                    <p class="Finalprice">
+                                                        <span class="price_value">$number.format($Best.salePrice)</span>
+                                                        <span class="unit">원</span>
+                                                        <!--<span class="tilde">&sim;</span>-->
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                               <div class="dealFoot">
+                                <div class="delivery_option_show">
+                                    #if($Best.productDelivery.freeDelivery == -1)
+                                    <span class="delivery-free">배송 $number.format($Best.productDelivery.deliveryPrice)원</span>
+                                    #elseif($Best.productDelivery.freeDelivery == 0)
+                                    <span class="delivery-shipping">무료배송</span>
+                                    #elseif($Best.Delivery.freeDelivery > 3000)
+                                    <span class="delivery-limitfree">조건부 무료배송</span>
+                                    #end
+                                </div>
+
+                                #set($flag = false)
+                                <!-- flag변수의 기본 값은 false -->
+                                #foreach($wish in $Wish.wishList)
+                                #if($Best.productId == $wish.product.productId)
+                                <!-- 현재 뿌려진 상품의 id와 wish list에 있는 상품 id가 같을 때 -->
+                                <!-- 변수 flag의 값은 true로 바뀌고 foreach break -->
+                                #set($flag = true)
+                                <!-- flag변수 true -->
+                                #break
+                                #end
+                                #end
+                                <div class="zzim_wishlist">
+                                    #if($flag)
+                                    <div class="go_to_wishlist_ZZim">
+                                        <span class="zzimCheck2" name="product_id" value="$Best.productId" title="찜하기" onclick="wish(this, '$Best.productId');">찜</span>
+                                    </div>
+                                    #else
+                                    <div class="go_to_wishlist_ZZim">
+                                        <span class="zzimCheck" name="product_id" value="$Best.productId" title="찜하기" onclick="wish(this, '$Best.productId');">찜</span>
+                                    </div>
+                                    #end
+                                </div>
+                            </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        #end
+                    #end
+            
+            
+        
+                	#foreach($next in $best.productList)
+                	#if($Best.productId == 272)
+                        <ul class="dealList">
+                            <li class="segment_product_item">
+                                <div class="overBorder">
+                                    <a href="/detail?product_id=$next.productId&sort=1">
+                                        <div class="dealThumb">
+                                            <div class="overBack"></div>
+                                            <img class="balgeurebox-deal-image"
+                                                 src="//sumcrimage.cafe24.com/$next.thumbUrl"
+                                                 alt="$!{res.product.prodName}" />
+                                        </div>
+
+                                        <div class="dealBody">
+                                            <div class="dealhead">
+                          <!--                  ##set($endTime = $next.startDate)
+                                                ##if(86400000 > $endTime)
+                                                <input type="hidden" class="endTimer" value="$next.startDate">
+                                                방송시작일 :  <span class="balgeurebox-deal-time-count" id="complete" name="complete"></span><br>-->
+                                                
+                                                <span class="thum_icon"><img src="/img/clock_broad.png"></span><span class="small_title_thum">5월 20일 화요일 오후 10:00</span>
+                                                <span class="title" id="product_title_text">$next.product.brand.brandName / $next.product.prodName</span>
+                                            </div>
+
+                                            <div class="dealPrice">
+                                                <div class="discount">
+                                                    <!--최대 할인율 표기-->
+                                                    #if($next.product.price != $next.product.salePrice)
+                                                    <span class="percent">
+                                                        $next.product.sale
+                                                    </span>
+                                                    <span class="unit">%</span>
+                                                    #end
+                                                </div>
+
+                                                <div class="dealPrice_right">
+                                                    #if($next.product.price != $next.product.salePrice)
+                                                    <del class="PfL">$next.product.price<span class="unit">원</span></del>
+                                                    #end
+                                                    <p class="Finalprice">
+                                                        <span class="price_value">$number.format($next.product.salePrice)</span>
+                                                        <span class="unit">원</span>
+                                                        <!--<span class="tilde">&sim;</span>-->
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                               <div class="dealFoot">
+                                <div class="delivery_option_show">
+                                    #if($next.product.productDelivery.freeDelivery == -1)
+                                    <span class="delivery-free">배송 $number.format($next.product.productDelivery.deliveryPrice)원</span>
+                                    #elseif($next.product.productDelivery.freeDelivery == 0)
+                                    <span class="delivery-shipping">무료배송</span>
+                                    #elseif($next.product.Delivery.freeDelivery > 3000)
+                                    <span class="delivery-limitfree">조건부 무료배송</span>
+                                    #end
+                                </div>
+
+                                #set($flag = false)
+                                <!-- flag변수의 기본 값은 false -->
+                                #foreach($wish in $Wish.wishList)
+                                #if($next.product.productId == $wish.product.productId)
+                                <!-- 현재 뿌려진 상품의 id와 wish list에 있는 상품 id가 같을 때 -->
+                                <!-- 변수 flag의 값은 true로 바뀌고 foreach break -->
+                                #set($flag = true)
+                                <!-- flag변수 true -->
+                                #break
+                                #end
+                                #end
+                                <div class="zzim_wishlist">
+                                    #if($flag)
+                                    <div class="go_to_wishlist_ZZim">
+                                        <span class="zzimCheck2" name="product_id" value="$res.product.productId" title="찜하기" onclick="wish(this, '$next.product.productId');">찜</span>
+                                    </div>
+                                    #else
+                                    <div class="go_to_wishlist_ZZim">
+                                        <span class="zzimCheck" name="product_id" value="$res.product.productId" title="찜하기" onclick="wish(this, '$next.product.productId');">찜</span>
+                                    </div>
+                                    #end
+                                </div>
+                            </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    #end
+                    #end
+                    </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+
+
+
+<script>
+	$(function() {
+		$('.slider1').bxSlider({
+		    slideWidth: 135,
+		    minSlides: 2,
+		    maxSlides: 7,
+		    slideMargin: 10
+		});
+	});
+</script>
+
+<script>
+        $('.endTimer').each(function() {
+        	var endTimer = Math.floor($(this).val());
+        // CountDownTimer(월/일/년 시간 (오전/오후),뿌려줄 아이디 이름);
+            CountDownTimer(endTimer, $(this).next()) //18년 1월 1일까지 남은 시간
+        });
+
+        function CountDownTimer(dt, id){
+            //dt는 끝나는 날짜
+            var end = new Date(dt),
+            //시간 계산 할때 편하게 하기위한 변수
+            _second = 1000,
+            _minute = _second * 60,
+            _hour = _minute * 60,
+            _day = _hour * 24,
+            //종료 날짜가 현제 날짜 보다 작으면 안되게 하기 위해 임의로 준 변수
+            timer;
+            //실제 계산을 하는 함수 시작
+            function showRemaining() {
+                //현제 날짜,시간 데이터 세팅
+                var now = new Date(),
+                //종료날짜에서 시작날짜를 빼기
+                distance = end - now;
+                //종료날짜에서 시작 날짜를 뺏을때 0보다 작으면
+                if (distance < 0) {
+                    //카운터 세는걸 중지
+                    clearInterval(timer);
+                    id.html('마감');
+                    return;
+                }
+                // 날짜 계산
+                var days = Math.floor(distance / _day),
+                    hours = Math.floor((distance % _day) / _hour),
+                    minutes = Math.floor((distance % _hour) / _minute),
+                    seconds = Math.floor((distance % _minute) / _second);
+                //뿌려주기
+                id.html(days+'일 '+hours+'시간 '+minutes+'분 '+seconds+'초');
+                id.css('fontcolor','red');
+            }
+            //카운터를 1초마다 계산 실행 하게함
+            timer = setInterval(showRemaining, 1000);
+        }
+</script>
+
+<script>
+function wish(frm, p_id) {
+	
+	$.ajax ({
+		type: "POST",
+		url: "/wish/add?product_id="+p_id,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if (data.resultCode == "200") {
+				alert("해당 상품이 찜 목록에 추가 되었습니다.");
+				$(frm).css('background','url("/img/balgeure_icons.png") -144px -6px');
+				getHeaderInfo();
+			} else {
+				alert("찜하기는 로그인 후 사용 가능합니다.");
+			}
+		},
+		error: function(request, status, error) {
+			alert("관리자에게 문의 하시기 바랍니다.");
+		}
+	});
+}
+
+function wishOverlap() {
+	alert("이미 찜한 상품입니다.");
+}
+</script>
+
+
+
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("banner_first_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000); // Change image every 3 seconds
+}
+
+</script>
+
+<script>
+var slideIndex = 1;
+showdivs2(slideIndex);
+
+function plusdivs(n) {
+  showdivs2(slideIndex += n);
+}
+
+
+function showdivs2(n) {
+	  var i;
+	  var x = document.getElementsByClassName("banner_second_images");
+	  if (n > x.length) {slideIndex = 1}
+	  if (n < 1) {slideIndex = x.length}
+	  for (i = 0; i < x.length; i++) {
+	     x[i].style.display = "none";
+	  }
+	  x[slideIndex-1].style.display = "block";
+	}
+
+</script>
+
+
+<script>
+var myIndex = 0;
+carousel2();
+
+function carousel2() {
+    var i;
+    var x = document.getElementsByClassName("banner_second_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel2, 2000); // Change image every 2 seconds
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var defY = 256;
+	console.log($(document).scrollTop());
+	if($(document).scrollTop() > 0) {
+		defY = $(document).scrollTop() + 64	;
+	}
+ /* quick menu */
+ $(".quickmenu_right").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
+ $(window).scroll(function(){
+	 if ($(document).scrollTop() < 400) {
+  		$(".quickmenu_right").stop().animate( { "top": 256 +"px" }, 0 );
+	 } else {
+  		$(".quickmenu_right").stop().animate( { "top": $(document).scrollTop() + 64 + "px" }, 0 );
+	 }
+ });
+});
+
+</script>
+
+<script type="text/javascript">
+   var $menuEle = $('dt'); // 탭메뉴를 변수에 지정
+   $menuEle. click(function() { // 탭메뉴 클릭 이벤트
+      $('dd').addClass('hidden');
+      $(this).next().removeClass('hidden');
+   })
+</script>
+
+#parse ("/main/footer.vm")

@@ -1,7 +1,6 @@
 package net.balgre.network;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -9,6 +8,8 @@ import com.google.gson.GsonBuilder;
 
 import net.balgre.domain.BestResponse;
 import net.balgre.domain.CategoryResponse;
+import net.balgre.domain.CategoryResponse2;
+import net.balgre.domain.PageBrand;
 import net.balgre.domain.PageProduct;
 import net.balgre.domain.Product;
 import net.balgre.domain.ProductResponse;
@@ -53,6 +54,20 @@ public class ProductRetroImpl {
         }
         return null;
     }
+    
+    
+    public CategoryResponse2 categoryList2() {
+    	Call<CategoryResponse2> call = this.productRetro.categoryList2();
+    	try {
+    		Response<CategoryResponse2> response = call.execute();
+    		if (response.isSuccessful()) {
+    			return response.body();
+    		}
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    	return null;
+    }
 
     public ProductResponse detailGET(long product_id3) {
         Call<ProductResponse> call = this.productRetro.detailGET(product_id3);
@@ -67,10 +82,10 @@ public class ProductRetroImpl {
         return null;
     }
 
-    public HashMap<String, Object> listPageGET(int page3, long brand_id3, int sort3) {
-        Call<HashMap<String, Object>> call = this.productRetro.listPageGET(page3, brand_id3, sort3);
+    public PageBrand brandList(int page, long brand_id, int sort) {
+        Call<PageBrand> call = this.productRetro.brandList(page, brand_id, sort);
         try {
-            Response<HashMap<String, Object>> response = call.execute();
+            Response<PageBrand> response = call.execute();
             if (response.isSuccessful()) {
                 return response.body();
             }

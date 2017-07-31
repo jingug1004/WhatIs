@@ -20,41 +20,35 @@
     }
     
     .dl {
-   position: relative;
-}
-.dt {
-   height: 30px;
-   float: left;
-   width: 50px;
-   z-index: 9;
-   position: relative;
-}
-.dd {
-   position: absolute;
-   padding-top: 30px;
-   background-color: #f3f3f3;
-   width: 150px;
-   height: 200px;
-}
-.hidden {
-   display: none;
-}
+    	position: relative;
+	}
+	
+	.dt {
+    	height: 30px;
+    	float: left;
+    	width: 50px;
+    	z-index: 9;
+    	position: relative;
+	}
+	.dd {
+    	position: absolute;
+    	padding-top: 30px;
+    	background-color: #f3f3f3;
+    	width: 150px;
+    	height: 200px;
+	}
+	.hidden {
+   		display: none;
+	}
 </style>
 
 
 
 <div class="brodcast_contanier">
-
-
     <div class="quickmenu_right" id="quickmenu_right">
 
         <div class="banner_first">
-            <div class="banner_first_images mySlides">
-                <a href="/event?eid=33">
-                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
-                </a>
-            </div>
-
+           
             <div class="banner_first_images mySlides">
                 <a href="/event?eid=34">
                     <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
@@ -71,13 +65,7 @@
                     <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
                 </a>
             </div>
-
-            <div class="banner_second_images">
-                <a href="/event?eid=32">
-                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
-                </a>
-            </div>
-            
+           
             <div class="banner_second_images">
                 <a href="/sns/appDown">
                     <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
@@ -104,12 +92,13 @@
                 <div class="livetit">
                     <span>방송중</span>
                 </div>
-                <div class="player_area">
-                    <iframe src='http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=90FE363627B4F8A3AD653F2502A29A1BCA63&outKey=V1225209f7f355fcb0265a26d7f39fd5efbc17413c9b3a6adafd8a26d7f39fd5efbc1&controlBarMovable=true&jsCallable=true&isAutoPlay=true&skinName=tvcast_white' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='707' HEIGHT='398' allowfullscreen></iframe>
+                <div class="player_area" id="pc_video">                
+                    <iframe src='http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=01143251169E42DEAD67B7FCDD3E2B00FB88&outKey=V1231528e5b0d714a31ac7283a3b8d27a1a05d05cf718193e92a47283a3b8d27a1a05&controlBarMovable=true&jsCallable=true&isAutoPlay=true&skinName=tvcast_white' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='707' HEIGHT='398' allowfullscreen></iframe>
                 </div>
+
                 <div class="playing_product">
                     <div id="broadcastItem_List" class="broadcastItemWrap">
-                    <a href="detail?product_id=272&sort=1"><p><center>방송중인 상품 구매하기</center></p></a>
+                    <a href="/detail?product_id=320"><p><center>방송중인 상품 구매하기</center></p></a>
                         <div class="castContents">
                             <span class="B_product_list" style="display:none;"></span>
                             <ul class="dealList">
@@ -131,7 +120,6 @@
                                                         최대 할인율 표기
                                                         #if($info.hshop.product.price != $info.hshop.product.salePrice)
                                                         <span class="percent">$info.hshop.product.sale</span><span class="unit">%</span>
-                                                        
                                                         #end
                                                     </div>
 
@@ -171,7 +159,7 @@
             <div class="othervideo_product">
             
             		#foreach($Best in $best.productList)
-                        #if($Best.productId == 254 || $Best.productId == 272)
+                        #if($Best.productId == 320)
                         <ul class="dealList">
                             <li class="segment_product_item">
                                 <div class="overBorder">
@@ -239,6 +227,7 @@
                                 #break
                                 #end
                                 #end
+                                </a>
                                 <div class="zzim_wishlist">
                                     #if($flag)
                                     <div class="go_to_wishlist_ZZim">
@@ -251,7 +240,6 @@
                                     #end
                                 </div>
                             </div>
-                                    </a>
                                 </div>
                             </li>
                         </ul>

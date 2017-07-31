@@ -1,0 +1,128 @@
+@media only screen and (max-width: 767px) {
+
+	body{
+	   background: #fff !important;
+	}
+
+    /**  회원가입 page  css   Start   **/
+
+    .container_join {
+        padding: 30px !important;
+        background:#fff;
+    }
+
+    .container_join .layout-content {
+        width: 100% !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+    }
+
+    .container_join .layout-content .balgeure_join_location{
+        width: 100% !important;
+        min-width: 320px;
+    }
+    
+    .choose_join_balgeure .welcome_msg_balgeure{
+        font-size: 13px !important;
+    }
+
+    .layout-content .balgeure_join_location .join-step-navi{
+        padding-left: 8%;
+    }
+
+    .choose_join_balgeure .joinUS_byChannel{
+        width: 100% !important;
+        min-width: 320px;
+    }
+
+    .joinUS_byChannel .joinUS_byChannel-list a{
+        width: 92% !important;
+        padding: 8px 10px !important;
+        text-align: center;
+    }
+
+    .joinUS_byChannel-list .JoinBySNS{
+        margin-right: 20px !important;
+    }
+    
+    /**  회원가입 page  css    End   **/
+
+
+
+    /**  email 회원가입 page  css   Start   **/
+
+
+    .Mustcheckbox .table td{
+        font-size: 12px !important;
+    }
+
+    .marketingCheck span{
+        font-size: 12px;
+        vertical-align: 2px;
+    }
+
+    .agreeNsubmit .main_color_btn{
+        width: 100% !important;
+    }
+
+    .register_part_one .username input, .register_part_one .confirmpassword input, .register_part_one .userpassword input  {
+        width: 92% !important;
+    }
+
+    .register_part_one .useremail #user_email{
+        width: 100% !important;
+    }
+
+    #typingEmail input{
+        width: 182px !important;
+    }
+
+    #select_whichEmail{
+        text-align: right;
+    }
+    
+    #email_add{
+        width: 39%  !important;
+        border-radius: 0px;
+    }
+
+    #phone, #phone_check_true {
+        width: 70% !important;
+    }
+
+    #phone_check_btn, #phone_checkOK_btn{
+        border-radius: 0px;
+        right: 8px !important;
+    }
+
+    .recommend_friendCODE .inputBOX_code input{
+        width: 92% !important;
+    }
+
+    /**  email 회원가입 page  css    End   **/
+}
+
+
+
+/**  회원가입 page  css   Start   **/
+
+@media only screen and (max-width: 375px) {
+    .layout-content .balgeure_join_location .location_tit {
+        font-size: 12px !important;
+    }
+    
+    .Mustcheckbox .table td{
+        font-size: 11px !important;
+    }
+    
+    .marketingCheck span{
+        font-size: 11px;
+    }
+
+    #email_add {
+        width: 33% !important;
+        height: 34px;
+    }
+
+}
+ /**  회원가입 page  css    End   **/

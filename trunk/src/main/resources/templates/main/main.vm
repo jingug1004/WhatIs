@@ -1,5 +1,7 @@
 #parse("/main/header.vm")
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/mobile/mainCommon.css">
+<link rel="stylesheet" type="text/css" href="/css/product/productCommon.css">
 
 <style>
     div#header_v2 {
@@ -30,58 +32,114 @@
 <link href="/css/jquery.bxslider.css" rel="stylesheet" />
 
 
+<style>
+	.bxslider {
+		display: none;
+	}
+</style>
+
 <script>
-	$(function() {
-		$('.bxslider').bxSlider ({
-  			auto: true,
-  			autoControls: true
+	$(document).ready(function() {
+		$(".bxslider").show().bxSlider ({
+			auto: true,
+			autoControls: true
 		});
 	});
 </script>
 
+<div id="pc_Ver">
 <ul class="bxslider">
     <li style="background-color:#3a4760">
-        <img src="/img/main/mainBanner01.png" />
+        <a href="/product/search?search=땡큐파머"><img src="/img/main/mainBanner01.png" /></a>
     </li>
     <li style="background-color:#6cc5db">
-        <img src="/img/main/mainBanner02.png" />
+        <a href="/detail?product_id=124&sort=1"><img src="/img/main/mainBanner02.png" /></a>
     </li>
     <li style="background-color:#ffa48b">
-        <img src="/img/main/mainBanner03.png" />
+        <a href="product/search?search=뷰솔"><img src="/img/main/mainBanner03.png" /></a>
     </li>
     <li style="background-color:#f4f4f4">
-        <img src="/img/main/mainBanner04.png" />
+        <a href="/product/search?search=퓨어젠"><img src="/img/main/mainBanner04.png" /></a>
     </li>
     <li style="background-color:#ff6a9a">
-        <img src="/img/main/mainBanner05.png" />
+        <a href="detail?product_id=217&sort=1"><img src="/img/main/mainBanner05.png" /></a>
     </li>
     <li style="background-color:#f5f5f6">
-        <img src="/img/main/mainBanner06.png" />
+        <a href="product/search?search=프라이빗21"><img src="/img/main/mainBanner06.png" /></a>
+    </li>
+    <li style="background-color:#2a2a31">
+        <a href="/detail?product_id=301&sort=1"><img src="/img/main/mainBanner07.png" /></a>
+    </li>
+    <li style="background-color:#ffc6f3">
+        <a href="detail?product_id=292"><img src="/img/main/mainBanner08.png" /></a>
+    </li>
+    <li style="background-color:#ffeae5">
+        <a href="detail?product_id=315"><img src="/img/main/mainBanner09.png" /></a>
+    </li>
+    <li style="background-color:#ffdbe3">
+        <a href="detail?product_id=320"><img src="/img/main/mainBanner10.png" /></a>
+    </li>
+    <li style="background-color:#ade3ff">
+        <a href="detail?product_id=330"><img src="/img/main/mainBanner11.png" /></a>
     </li>
 </ul>
 
-<div id="bx-pager" style="display: none;">
+</div>
+
+<div id="mobile_ver">
+<ul class="bxslider">
+    <li style="background-color:#3a4760">
+        <a href="/product/search?search=땡큐파머"><img src="/img/main/mainBanner01.png" /></a>
+    </li>
+    <li style="background-color:#6cc5db">
+        <a href="/detail?product_id=124&sort=1"><img src="/img/main/mainBanner02.png" /></a>
+    </li>
+    <li style="background-color:#ffa48b">
+        <a href="product/search?search=뷰솔"><img src="/img/main/mainBanner03.png" /></a>
+    </li>
+    <li style="background-color:#f4f4f4">
+        <a href="/product/search?search=퓨어젠"><img src="/img/main/mainBanner04.png" /></a>
+    </li>
+    <li style="background-color:#ff6a9a">
+        <a href="detail?product_id=217&sort=1"><img src="/img/main/mainBanner05.png" /></a>
+    </li>
+    <li style="background-color:#f5f5f6">
+        <a href="product/search?search=프라이빗21"><img src="/img/main/mainBanner06.png" /></a>
+    </li>
+    <li style="background-color:#2a2a31">
+        <a href="/detail?product_id=301&sort=1"><img src="/img/main/mainBanner07.png" /></a>
+    </li>
+    <li style="background-color:#ffc6f3">
+        <a href="detail?product_id=292"><img src="/img/main/mainBanner08.png" /></a>
+    </li>
+    <li style="background-color:#ffeae5">
+        <a href="detail?product_id=315"><img src="/img/main/mainBanner09.png" /></a>
+    </li>
+    <li style="background-color:#ffdbe3">
+        <a href="detail?product_id=320"><img src="/img/main/mainBanner10.png" /></a>
+    </li>
+    <li style="background-color:#ade3ff">
+        <a href="detail?product_id=330"><img src="/img/main/mainBanner11.png" /></a>
+    </li>
+</ul>
+
+</div>
+
+<!-- <div id="bx-pager" style="display: none;">
     <a data-slide-index="0" href=""><img src="/img/main/bullet_png.png" /></a>
     <a data-slide-index="1" href=""><img src="/img/main/bullet_png.png" /></a>
     <a data-slide-index="2" href=""><img src="/img/main/bullet_png.png" /></a>
     <a data-slide-index="3" href=""><img src="/img/main/bullet_png.png" /></a>
     <a data-slide-index="4" href=""><img src="/img/main/bullet_png.png" /></a>
     <a data-slide-index="5" href=""><img src="/img/main/bullet_png.png" /></a>
-</div>
+</div> -->
 
 
 
 <div id="container" class="mA blageureHome" style="margin-top: 26px;">
 
     <div class="quickmenu_right" id="quickmenu_right">
-
         <div class="banner_first">
-            <div class="banner_first_images mySlides">
-                <a href="/event?eid=33">
-                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
-                </a>
-            </div>
-
             <div class="banner_first_images mySlides">
                 <a href="/event?eid=34">
                     <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
@@ -96,12 +154,6 @@
             <div class="banner_second_images">
                 <a href="/event?eid=30">
                     <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
-                </a>
-            </div>
-
-            <div class="banner_second_images">
-                <a href="/event?eid=32">
-                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
                 </a>
             </div>
 
@@ -181,25 +233,28 @@
 
     <div class="BannerOfEvent">
         <div class="BannerTitle">
-            <span>기획전</span>
+            <span>이벤트</span>
         </div>
         <div class="img_of_banner">
-            <div id="firstImage">
-                <a href="/plan/detail?pid=8"><img src="/img/main/eventBanner1.png" /></a>
+            <div id="firstImage">                
+                <a href="/detail?product_id=270"><img src="/img/main/eventBanner6.png" /></a>
             </div>
             <div id="secondImage">
-                <a href="/plan/detail?pid=4"><img src="/img/main/eventBanner2.png" /></a>
+                <a href="/detail?product_id=320"><img src="/img/main/eventBanner5.png" /></a>
             </div>
             <div id="thirdImage">
-                <a href="/detail?product_id=254"><img src="/img/main/eventBanner3.png" /></a>
+                <a href="/detail?product_id=367"><img src="/img/main/eventBanner4.png" /></a>
             </div>
         </div>
     </div>
 
     <div id="realtime_bestItem_List" class="realtimeBestItemWrap">
         <div class="newDealContents">
+            <div class="list_title_">
             <span class="main_product_list">우주최저가</span>
             <a href="/bg/timeSale"><span class="moreView">더보기</span></a>
+            </div>
+            
 
             #foreach($item in $Res)
             #if($!item.product.stopSelling == 0 && $!item.product.timeSale == 0)
@@ -212,6 +267,12 @@
                         <a href="/detail?product_id=${item.product.productId}">
                             <div class="dealThumb">
                                 <div class="overBack"></div>
+                                #if($item.product.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$item.product.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                             	#else
+                                #end
                                 <img src="//sumcrimage.cafe24.com/$!{item.product.thumbUrl}" style="min-width: auto; height: auto;" />
                             </div>
 
@@ -261,7 +322,7 @@
                                 <span class="amount fL">$!{item.product.reviewStar}점</span>
                                 #end
                             </div><!--dealBody-->
-
+						</a>
                             <div class="dealFoot">
                                 <div class="delivery_option_show">
                                     #if($item.product.productDelivery.freeDelivery == -1)
@@ -296,7 +357,6 @@
                                     #end
                                 </div>
                             </div>
-                        </a>
                     </div>
                 </li>
             </ul>
@@ -314,7 +374,7 @@
         <div id="blank_place">
         </div>
             <div id="banner_image_product2">
-                <a href="detail?product_id=243&sort=1"><img src="/img/main/middle_banner_02.png" /></a>
+                <a href="/detail?product_id=251"><img src="/img/main/middle_banner_02.png" /></a>
             </div>
             <div id="banner_image_product1">
                 <a href="detail?product_id=186&sort=1"><img src="/img/main/middle_banner_01.png" /></a>
@@ -325,10 +385,13 @@
 
     <!-- 기획전 배너  e -->
 
-    <div id="realtime_bestItem_List" class="realtimeBestItemWrap" style="margin-top: 859px;">
+    <div id="realtime_bestItem_List" class="realtimeBestItemWrap popluaritem" >
         <div class="newDealContents">
+        <div class="list_title_">
             <span class="main_product_list">실시간 인기템</span>
             <a href="/bestProduct"><span class="moreView">더보기</span></a>
+            </div>
+            
             #foreach($item2 in $best)
             <ul class="dealList">
                 <li class="segment_product_item">
@@ -336,6 +399,12 @@
                         <a href="/detail?product_id=${item2.productId}&sort=1">
                             <div class="dealThumb">
                                 <div class="overBack"></div>
+                                #if($item2.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$item2.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                             	#else
+                                #end
                                 <img src="//sumcrimage.cafe24.com/$!{item2.thumbUrl}" style="min-width: auto; height: auto;" />
                             </div>
 
@@ -372,7 +441,7 @@
                                 <span class="amount fL">${item2.reviewStar}점</span>
                                 #end
                             </div><!--dealBody-->
-
+						</a>
                             <div class="dealFoot">
                                 <div class="delivery_option_show">
                                     #if($item2.productDelivery.freeDelivery == -1)
@@ -407,7 +476,6 @@
                                     #end
                                 </div>
                             </div>
-                        </a>
                     </div>
                 </li>
             </ul>
@@ -418,10 +486,13 @@
 
 
     #foreach($item in $showMain.mainMenu)
-    <div id="realtime_bestItem_List" class="realtimeBestItemWrap" style="margin-top: 835px;">
+    <div id="realtime_bestItem_List" class="realtimeBestItemWrap otherlistitem">
         <div class="newDealContents">
-            #if($item.mid != 3)
-            <span class="main_product_list">${item.name}</span>
+        
+            #if($item.mid == 5)
+             <div class="list_title_">
+                    <span class="main_product_list">${item.name}</span>
+            </div>            
             #foreach($item2 in $item.mainMenuItem)
             <ul class="dealList">
                 <li class="segment_product_item">
@@ -429,6 +500,12 @@
                     <a href="/detail?product_id=${item2.product.productId}">
 
                         <div class="dealThumb">
+                        #if($item2.product.autoSale > 0)
+                            <div class="badge_discount">
+                                <span class="discountCoupon"><span class="howmuchD">$item2.product.autoSale%</span><br>쿠폰<br>추가할인</span>
+                            </div>
+                        #else
+                        #end
                             <img src="//sumcrimage.cafe24.com/$!{item2.product.thumbUrl}" style="min-width: auto; height: auto;" />
                         </div>
 
@@ -465,6 +542,7 @@
                             <span class="amount fL">${item2.product.reviewStar}점</span>
                             #end
                         </div>
+                    </a>
                         <!--dealBody-->
                         #set($flag = false)
                         <!-- flag변수의 기본 값은 false -->
@@ -501,7 +579,6 @@
                                 #end
                             </div>
                         </div>
-                    </a>
                 </li>
             </ul>
             #end
@@ -528,6 +605,9 @@ function wish(frm, p_id) {
 				getHeaderInfo();
 			} else {
 				alert("찜하기는 로그인 후 사용 가능합니다.");
+				
+				window.location.href="/login";
+    			return;
 			}
 		},
 		error: function(request, status, error) {

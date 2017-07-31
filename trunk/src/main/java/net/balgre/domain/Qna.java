@@ -15,7 +15,7 @@ public class Qna {
     private String qnaClass2; // (string, optional): 문의분류2 ,
     private List qnaPhoto; // (Array[QnaPhoto], optional): 문의 이미지 ,
     private String regDate; // (string, optional): 문의날짜 ,
-    private Date replyDate; // (string, optional): 답변달짜 ,
+    private String replyDate; // (string, optional): 답변달짜 ,
     private String replyYn; // (string, optional): 답변여부 ,
     private String reply_content; // (string, optional): 답글내용 ,
     private String subject; // (string, optional): 제목 ,

@@ -1,0 +1,15 @@
+@media only screen and (max-width: 767px) {
+	
+	.container_complete{
+	    width: 100% !important;
+	}
+	
+	.complete_page .purchase_information{
+	    width: width: 96% !important;
+	}
+	
+	.bottom_info, .bottom_btn{
+	    width: width: 96% !important;
+	}
+	
+}

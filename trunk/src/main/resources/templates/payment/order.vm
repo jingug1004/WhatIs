@@ -5,6 +5,13 @@
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/payment.css">
 
+    <!-- 모바일 버전 css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="/css/mobile/orderPayment_css.css">
+    <!-- 모바일 버전 css -->	
+
+
+
 
 <!-- container -->
 <div id="scroll-wrapper">
@@ -29,10 +36,10 @@
                     #foreach( $ordProd in $orderTotal.orderProduct)
                     #foreach( $ordItem in $ordProd.orderItem )
                     <tr>
-                        <td width="50">
+                        <td  class="product_img_choice" width="50">
                             <img src="$!{imgHost}$!{ordProd.thumbnail}" style="width:100px;" />
                         </td>
-                        <td>
+                        <td class="choice_productList">
                             <div class="orderProduct_detail">
                                 <span id="product_name">[$!{ordProd.brandName}]$!{ordProd.productName}</span><br />
                                 <span id="product_option_name">$!{ordItem.itemName}</span><span class="no_many">$!{ordItem.itemCount}</span>개</br>
@@ -258,6 +265,7 @@
                                         <option value="samsung">삼성페이</option>
                                         <option value="trans">실시간계좌이체</option>
                                         <option value="vbank">가상계좌</option>
+                                        <option value="phone">휴대폰 결제</option>
                                     </select>
                                 </td>
                             </tr>
@@ -348,7 +356,7 @@
                                         <span class="final_result-price">총 결제금액</span>
                                         <span class="color_red" style="float:right">원</span>
                                         <span class="color_red" id="total_price" style="; float:right" name="price" style="">
-                                            $number.format($math.add($!{orderTotal.totalPrice}, $!{orderTotal.totalDelivery}))
+                                            $number.format($math.add($!{orderTotal.salePrice}, $!{orderTotal.totalDelivery}))
                                         </span>
                                     </td>
                                 </tr>
@@ -761,7 +769,7 @@
 		function payment(payment) {
 			var payMethod = $("#pay_type").val();
 			var escrow = false;
-			if(payMethod != 'card' && payMethod != 'samsung') {
+			if(payMethod != 'card' && payMethod != 'samsung' && payMethod != 'phone') {
 				escrow = true;
 			}
 			IMP.request_pay({
@@ -845,19 +853,21 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	var defY = 290;
-	if($(document).scrollTop() > 0) {
-		defY = $(document).scrollTop() - 150	;
-	}
- /* quick menu */
- $(".Rightside_orderpage").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
- $(window).scroll(function(){
-	 if ($(document).scrollTop() < 300) {
-  		$(".Rightside_orderpage").stop().animate( { "top": 290 +"px" }, 0 );
-	 } else {
-  		$(".Rightside_orderpage").stop().animate( { "top": $(document).scrollTop() + -150 + "px" }, 0 );
-	 }
- });
+	#if($!{deviceType} != 'mobile') 
+		var defY = 290;
+		if($(document).scrollTop() > 0) {
+			defY = $(document).scrollTop() - 150	;
+		}
+	 /* quick menu */
+	 $(".Rightside_orderpage").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
+	 $(window).scroll(function(){
+		 if ($(document).scrollTop() < 300) {
+	  		$(".Rightside_orderpage").stop().animate( { "top": 290 +"px" }, 0 );
+		 } else {
+	  		$(".Rightside_orderpage").stop().animate( { "top": $(document).scrollTop() + -150 + "px" }, 0 );
+		 }
+	 });
+ 	#end
 });
 </script>
 

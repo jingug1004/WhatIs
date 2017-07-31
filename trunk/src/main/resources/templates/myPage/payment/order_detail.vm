@@ -142,6 +142,8 @@
 						계좌이체
 					#elseif("$!order.paymethod"=="vbank")
 						가상계좌
+				    #elseif("$!order.paymentod"=="phone")
+				    	휴대폰 결제
 					#else
 						포인트 결제
 					#end
@@ -212,10 +214,10 @@
 			<tr>
 				<td colspan="2">
 					#if("$!order.status"=="ready")
-						<p class="delivery_btn" onclick="order_delete()">주문 취소</p>
+						<p class="delivery_btn" onclick="orderDelete()">주문 취소</p>
 					#else
 						#if($order.cancelStatus)
-							<p class="delivery_btn" onclick="order_delete()">주문 취소</p>
+							<p class="delivery_btn" onclick="orderDelete()">주문 취소</p>
 						#end
 					#end
 				</td>
@@ -256,8 +258,31 @@
  	    location.href=url;
 	}
 	
-	function order_delete(){
-		//console.log("<?echo $decoded2[$num]->paymentId?>");
+	function orderDelete(){
+		
+		confirm('선택하신 주문내역을 취소 하시겠습니까?');
+		
+		var payment_id = "$paymentId";
+		console.log(payment_id)
+		
+		var formData = new FormData();
+
+    	formData.append("payment_id", payment_id);
+
+    		$.ajax({
+    			type: "POST",
+    			url: "/my/order_cancel",
+    			data: formData,
+    		    contentType: false,
+    		    processData: false,
+    		    success: function(res) {
+    		    	alert
+    		    },
+    		    error:function(request,status,error) {
+    		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		    },
+    		});
+		
 	}
 	
 	function isNumeric(s) {

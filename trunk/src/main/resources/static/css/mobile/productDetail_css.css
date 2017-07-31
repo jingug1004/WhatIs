@@ -1,0 +1,234 @@
+@media only screen and (max-width: 767px) {
+	
+	body{
+        width:100%;
+        margin:0 auto;
+        padding:0;
+        max-width: 767px;   
+    }
+
+	#wrap #container{
+        width: 100% !important;
+        padding: 0px !important;             
+        background:#fff !important;
+    }	
+	
+    .balgeure_product_name, .slide-v{
+        display:none;
+    }
+    
+
+    #container .lnb{
+        background: #fff;
+    }
+
+
+    
+    /**  Detail css  Start  **/
+
+    #container .lnb{
+        padding: 0 0 20px 0 !important;
+    }
+
+    #container .dealDescription{
+         margin: 0 !important;
+         width: 100%;
+         padding: 0 !important; 
+    }
+
+    #container .dealDescription .descImage{
+        width: 100%;
+        float: none;
+        left: 0;
+        margin: 0;
+        height: auto;
+        border: none;
+    }
+
+    .dealDescription .descImage .descImageBig{
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 auto;
+    }
+
+    .dealDescription .descInformation{
+        float:none !important;
+        right:0 !important;
+    }
+
+    .dealDescription .descInformation .inmobile{
+        font-size: 16px;
+        color: #000;
+        font-weight: 600;
+        padding: 0 8px;
+        line-height: 22px;
+        font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+    }
+
+    .infoPrice dl, .infoAdditional dl, .descInfoOption dl{
+        width: 100% !important;
+    }
+
+    .nuNumber.rateNum{
+        right: 0px !important;
+    }
+
+    .descripe_tit{
+        padding-bottom: 6px;
+    }
+
+    .choiceItem{
+        width: 98% !important;
+    }
+    
+    .dealContents{
+        margin-top: 15px !important;
+    }
+
+    .balgeureTab .tabItem{
+        width: 23% !important;
+        font-size: 11px !important;
+        font-weight: 500 !important;
+        min-width:80px !important;
+    }
+
+    .dealContents .fixed{
+        width: 100% !important;
+        min-width: 320px !important;
+    }
+
+    .dealContents .fixed ul{
+        width: 100% !important;
+    }
+
+    .balgeureTab #ProductDelivery.tabItem{
+        width: 30% !important;
+    }
+
+    .contentsDetail{
+        width: 100% !important;
+        padding: 20px 0 !important;
+    }
+
+    .contentsDetail .information th{
+        font-size: 11px !important;
+        padding: 8px !important;
+    }
+
+    .contentsDetail .information td{
+        font-size: 12px;
+        padding: 8px !important;
+    }
+
+    .tableBox{
+        width: 100% !important;
+    }
+
+    .tableBox table th{
+        font-size: 11px !important;
+        padding: 8px !important;
+    }
+
+    .tableBox table td{
+        font-size: 12px !important;
+        padding: 8px !important;
+    }
+
+
+    /**  Detail css  End  **/
+
+
+/**  옵션  Select 부분   **/
+
+#plusBasket.singleItem.itemOptionBox{
+	position: relative;
+    cursor: pointer;
+    height: 17px;
+    padding: 4px 10px;
+    font-size: 12px;
+    display: inline-block;
+    width: 90%;
+    border-radius: 3px;
+    border: 1px solid #000;	
+}
+
+#plusBasket .selectListOPT{
+	position: absolute;
+    display: none;
+    top: 26px;
+    padding: 7px 8px;
+    max-height: 338px;
+    overflow: auto;    
+    top: 26px;
+    left: 0;
+    height: auto;
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    width: 99%;
+    height: 300px;
+    z-index: 3;
+}
+
+#plusBasket .ChooseOPT .grayArrow{
+	display: block;
+    position: absolute;
+    right: 5px !important;
+    margin-top: -5px !important;
+    background: url(/img/balgeure_icons.png) no-repeat -815px -107px;
+    width: 13px;
+    height: 11px;
+    text-indent: -999px;
+}
+
+.selectListOPT .selectList_scorll{
+	position: relative;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow: auto;
+}
+
+.selectListOPT .selectList_scorll ul {
+    position: relative;
+    padding: 3px 0;
+}
+
+.selectListOPT .selectList_scorll li {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 4px 15px 2px 15px;
+    color: #555;
+    cursor: pointer;
+}
+
+.selectListOPT .selectList_scorll li:hover{
+	background: rgba(255, 115, 145, 0.2);
+}
+
+
+.each_option_list_product .listOFproductOpt{
+	width: 75%;
+    display: block;
+    overflow: hidden;
+}
+
+.each_option_list_product .listOFproductOpt .QuantityOPT{
+	padding-left: 3px;
+}
+
+.each_option_list_product .PriceOfOPT{
+	position: absolute;
+    right: 15px;
+    top: 50%;
+    display: block;
+    width: 22%;
+    height: 18px;
+    margin-top: -8px;
+    font-weight: bold;
+    text-align: right;
+}
+
+}

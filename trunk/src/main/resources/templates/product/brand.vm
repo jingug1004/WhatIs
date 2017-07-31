@@ -1,0 +1,597 @@
+#parse("/main/header.vm")
+
+<link type="text/css" href="/css/product/productCommon.css" rel="stylesheet" />
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .content_img {
+        width: 100%;
+        height: 400px;
+    }
+
+    .plan_titlep_div {
+        display: inline;
+        width: 150px;
+        height: 10px;
+        margin: 0 auto;
+    }
+
+    .balgeure_plan {
+        width: 900px;
+        height: 100px;
+        background: red;
+        font-size: 12px;
+        color: black;
+        margin: 0 auto;
+    }  
+
+    .and {
+    }
+</style>
+
+#set($category = $!request.getSession().getAttribute("categoryList"))
+#set($brand = $!request.getSession().getAttribute("brandList"))
+#set($category2 = $!request.getSession().getAttribute("categoryList2"))
+
+<div class="layout-structure-content">
+
+    <div class="quickmenu_right" id="quickmenu_right">
+ <div class="banner_first">
+            <div class="banner_first_images mySlides">
+                <a href="/event?eid=34">
+                    <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
+                </a>
+            </div>
+            <div class="banner_first_page">
+                <button class="prev1" onclick="plusDivs(-1)">이전</button>
+                <button class="next1" onclick="plusDivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="banner_second">
+            <div class="banner_second_images">
+                <a href="/event?eid=30">
+                    <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
+                </a>
+            </div>
+
+            <div class="banner_second_images">
+                <a href="/sns/appDown">
+                    <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
+                </a>
+            </div>
+            
+            <div class="banner_second_page">
+                <button class="prev2" onclick="plusdivs(-1)">이전</button>
+                <button class="next2" onclick="plusdivs(1)">다음</button>
+            </div>
+        </div>
+        <div class="Topbutton">
+            <a href="#wrap" class="goTobtn"><img src="/img/right_side/topbutton.png"></a>
+        </div>
+    </div>
+
+    
+    <div class="lnb">
+        <div class="lnbBoxWrap">
+            <a href="/" class="fL homeLink">
+                <span class="homeIcon"><img src="/img/myPage/home-icon.png"></span>
+            </a>
+            <div class="subdivide fL"></div>
+
+            <div class="select fL">
+                <a href="/brandAll?search="><p>브랜드관</p></a>
+                <span class="grayArrow"></span>
+            </div>
+            <!-- E : select-->
+            <div class="subdivide fL"></div>
+            <!-- E : 하위 카테고리 기호 categoryId2-->
+            <div class="select fL">
+						#if(!$brand_id)
+                		<p>선택하세요</p>
+                		#else
+                		<p><a href="/brandList?brand_id=$brand_id"></a>$brandName</p>
+                		#end
+                <span class="grayArrow"></span>
+                <div class="option">
+                    #foreach($mapEntry in $brand.entrySet())
+                		#foreach($mapValue in $mapEntry.value)
+                    	<ul>
+                        	<li class="fir">
+                            	<a href="/brandList?brand_id=$number.format($mapValue.brandId)">$mapValue.brandName</a>
+                        	</li>
+                    	</ul>
+                    	#end
+                    #end
+
+                </div>
+                <!-- E : 하위 카테고리 기호-->
+            </div>
+        </div>
+        <!--lnb-->
+        <!-- S: 상품 목록 -->
+        <div class="exhibit best-moreover" id="Pc_Ver">
+            <ul class="balgeurebox-deal-list balgeurebox-deal-list-line-amount-3">
+            	#if($brandAll)
+                #foreach($Brand in $brandAll)
+                <li class="balgeurebox-deal-wrapper segment_product_item">
+                    <div class="balgeurebox-deal deal_type_vertical_square_amount_col_3">
+                        <div class="balgeurebox-deal-info">
+                            <a href="/detail?product_id=${Brand.productId}">
+                                <div class="balgeurebox-deal-image-wrap">
+                                #if($Brand.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$Brand.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                            	#else
+                            	#end
+                                    <img class="balgeurebox-deal-image"
+                                         src="//sumcrimage.cafe24.com/$!{Brand.thumbUrl}"
+                                         alt="$!{Brand.prodName}" />
+                                </div>
+
+                                <div class="dealBody">
+                                    <div class="dealhead">
+                                        <span class="small_title_thum">&nbsp;</span>
+                                        <span class="balgeurebox-deal-name-main">
+                                            $!{Brand.brand.brandName}
+                                            / $!{Brand.prodName}
+                                        </span>
+                                    </div>
+                                    <div class="dealPrice">
+                                        <div class="balgeurebox-deal-price-wrap">
+                                            <!--할인율 표기-->
+                                            #if(${Brand.price} != ${Brand.salePrice})
+                                            <div class="percent">
+                                                $!{Brand.sale}
+                                            </div>
+                                            <div class="balgeurebox-deal-price-unit">%</div>
+                                            #end
+                                        </div>
+
+                                        <div class="product_Ori_Price">
+
+                                            #if(${Brand.price} != ${Brand.salePrice})
+                                            <del class="fL">$!{Brand.price}<span class="balgeurebox-deal-price-unit">원</span></del>
+                                            #end
+                                            <p class="balgeurebox-deal-price-result">
+                                                <span class="price_value">$number.format($!{Brand.salePrice})</span>
+                                                <span class="unit">원</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    #if($Brand.reviewCount == 0)
+                                    <span class="balgeurebox-deal-review-count-value"></span>
+                                    #else
+                                    <span class="balgeurebox-deal-review-count-value">$!{Brand.reviewStar}점</span>
+                                    #end
+                                </div>
+
+                                <!--dealBody-->
+
+                                <div class="dealFoot">
+                                    <div class="delivery_option_show">
+                                        #if($!{Brand.productDelivery.freeDelivery} == -1)
+                                        <span class="balgeurebox-deal-delivery-shipping">
+                                            배송 $number.format($!{Brand.productDelivery.deliveryPrice})
+                                            원
+                                        </span>
+                                        #elseif($!{Brand.productDelivery.freeDelivery} == 0)
+                                        <span class="balgeurebox-deal-delivery-free">무료 배송</span>
+                                        #elseif($!{Brand.productDelivery.freeDelivery} > 3000)
+                                        <span class="balgeurebox-deal-delivery-limitfree">
+                                            조건부 무료배송
+                                        </span>
+                                        #end
+                                    </div>
+
+                                    #set($flag = false)
+                                    <!-- flag변수의 기본 값은 false -->
+                                    #foreach($wish in $Wish.wishList)
+                                    #if($Brand.productId == $wish.product.productId)
+                                    <!-- 현재 뿌려진 상품의 id와 wish list에 있는 상품 id가 같을 때 -->
+                                    <!-- 변수 flag의 값은 true로 바뀌고 foreach break -->
+                                    #set($flag = true)
+                                    <!-- flag변수 true -->
+                                    #break
+                                    #end
+                                    #end
+                                    </a>
+                                    <div class="zzim_wishlist">
+                                        #if($flag)
+
+                                        <div class="go_to_wishlist_ZZim">
+                                            <span class="zzimCheck2" name="product_id" value="${Brand.productId}" title="찜하기" onclick="wishOverlap();"></span>
+                                        </div>
+                                        #else
+                                        <div class="go_to_wishlist_ZZim">
+                                            <span class="zzimCheck" name="product_id" value="${Brand.product.productId}" title="찜하기" onclick="wish(this, '${Brand.productId}');"></span>
+                                        </div>
+                                        #end
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </li>
+                #end
+                #else
+                #foreach($Brand2 in $Brand.content)
+                <li class="balgeurebox-deal-wrapper segment_product_item">
+                    <div class="balgeurebox-deal deal_type_vertical_square_amount_col_3">
+                        <div class="balgeurebox-deal-info">
+                            <a href="/detail?product_id=${Brand2.productId}">
+                                <div class="balgeurebox-deal-image-wrap">
+                                #if($Brand2.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$Brand2.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                            	#else
+                           		#end
+                                    <img class="balgeurebox-deal-image"
+                                         src="//sumcrimage.cafe24.com/$!{Brand2.thumbUrl}"
+                                         alt="$!{Brand2.prodName}" />
+                                </div>
+
+                                <div class="dealBody">
+                                    <div class="dealhead">
+                                        <span class="small_title_thum">&nbsp;</span>
+                                        <span class="balgeurebox-deal-name-main">
+                                            $!{Brand2.brand.brandName}
+                                            / $!{Brand2.prodName}
+                                        </span>
+                                    </div>
+                                    <div class="dealPrice">
+                                        <div class="balgeurebox-deal-price-wrap">
+                                            <!--할인율 표기-->
+                                            #if(${Brand2.price} != ${Brand2.salePrice})
+                                            <div class="percent">
+                                                $!{Brand2.sale}
+                                            </div>
+                                            <div class="balgeurebox-deal-price-unit">%</div>
+                                            #end
+                                        </div>
+
+                                        <div class="product_Ori_Price">
+
+                                            #if(${Brand2.price} != ${Brand2.salePrice})
+                                            <del class="fL">$!{Brand2.price}<span class="balgeurebox-deal-price-unit">원</span></del>
+                                            #end
+                                            <p class="balgeurebox-deal-price-result">
+                                                <span class="price_value">$number.format($!{Brand2.salePrice})</span>
+                                                <span class="unit">원</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    #if($Brand2.reviewCount == 0)
+                                    <span class="balgeurebox-deal-review-count-value"></span>
+                                    #else
+                                    <span class="balgeurebox-deal-review-count-value">$!{Brand2.reviewStar}점</span>
+                                    #end
+                                </div>
+
+                                <!--dealBody-->
+
+                                <div class="dealFoot">
+                                    <div class="delivery_option_show">
+                                        #if($!{Brand2.productDelivery.freeDelivery} == -1)
+                                        <span class="balgeurebox-deal-delivery-shipping">
+                                            배송 $number.format($!{Brand2.productDelivery.deliveryPrice})
+                                            원
+                                        </span>
+                                        #elseif($!{Brand2.productDelivery.freeDelivery} == 0)
+                                        <span class="balgeurebox-deal-delivery-free">무료 배송</span>
+                                        #elseif($!{Brand2.productDelivery.freeDelivery} > 3000)
+                                        <span class="balgeurebox-deal-delivery-limitfree">
+                                            조건부 무료배송
+                                        </span>
+                                        #end
+                                    </div>
+
+                                    #set($flag = false)
+                                    <!-- flag변수의 기본 값은 false -->
+                                    #foreach($wish in $Wish.wishList)
+                                    #if($Brand2.productId == $wish.product.productId)
+                                    <!-- 현재 뿌려진 상품의 id와 wish list에 있는 상품 id가 같을 때 -->
+                                    <!-- 변수 flag의 값은 true로 바뀌고 foreach break -->
+                                    #set($flag = true)
+                                    <!-- flag변수 true -->
+                                    #break
+                                    #end
+                                    #end
+                                    </a>
+                                    <div class="zzim_wishlist">
+                                        #if($flag)
+                                        <div class="go_to_wishlist_ZZim">
+                                            <span class="zzimCheck2" name="product_id" value="${Brand2.product.productId}" title="찜하기" onclick="wishOverlap();"></span>
+                                        </div>
+                                        #else
+                                        <div class="go_to_wishlist_ZZim">
+                                            <span class="zzimCheck" name="product_id" value="${Brand2.product.productId}" title="찜하기" onclick="wish(this, '${Brand2.productId}');"></span>
+                                        </div>
+                                        #end
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </li>
+                #end
+                #end
+            </ul>
+        </div><!-- end: exhibit-moreover -->
+        <!-- E: 상품목록 -->
+        
+       <div class="exhibit best-moreover newlist" id="mobile_ver">
+        <ul class="balgeurebox-deal-list balgeurebox-deal-list-line-amount-3">
+                #if($brandAll)
+                #foreach($Brand in $brandAll)
+            <li class="balgeurebox-deal-wrapper segment_product_item">
+                <div class="balgeurebox-deal deal_type_vertical_square_amount_col_3">
+                          <a href="/detail?product_id=${Brand.productId}">
+                                <div class="balgeurebox-deal-image-wrap">
+                            	#if($Brand.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$Brand.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                            	#else
+                            	#end
+                                    <img class="balgeurebox-deal-image"
+                                         src="//sumcrimage.cafe24.com/$!{Brand.thumbUrl}"
+                                         alt="$!{Brand.prodName}" />
+                                </div>
+                            <div class="dealBody">
+                                <div class="dealhead">
+                                    <span class="small_title_thum">&nbsp;</span>
+                                    <span class="balgeurebox-deal-name-main">
+                                             $!{Brand.brand.brandName}
+                                            / $!{Brand.prodName}
+                                        </span>
+                                </div>
+
+                                <div class="dealPrice">
+                                    <div class="balgeurebox-deal-price-wrap">
+                                            <!--할인율 표기-->
+                                             #if(${Brand.price} != ${Brand.salePrice})
+                                            <div class="percent">
+                                                $!{Brand.sale}
+                                            </div>
+                                            <div class="balgeurebox-deal-price-unit">%</div>
+                                            #end
+                                        </div>
+
+                                        <div class="product_Ori_Price">
+
+                                            #if(${Brand.price} != ${Brand.salePrice})
+                                            <del class="fL">$!{Brand.price}<span class="balgeurebox-deal-price-unit">원</span></del>
+                                            #end
+                                            <p class="balgeurebox-deal-price-result">
+                                                <span class="price_value">$number.format($!{Brand.salePrice})</span>
+                                                <span class="unit">원</span>
+                                            </p>
+                                        </div>
+                                </div>
+                                
+                                <div class="delivery_option_show">
+                                        #if($!{Brand.productDelivery.freeDelivery} == -1)
+                                        <span class="balgeurebox-deal-delivery-shipping">
+                                            배송 $number.format($!{Brand.productDelivery.deliveryPrice})
+                                            원
+                                        </span>
+                                        #elseif($!{Brand.productDelivery.freeDelivery} == 0)
+                                        <span class="balgeurebox-deal-delivery-free">무료 배송</span>
+                                        #elseif($!{Brand.productDelivery.freeDelivery} > 3000)
+                                        <span class="balgeurebox-deal-delivery-limitfree">
+                                            조건부 무료배송
+                                        </span>
+                                        #end
+                                    </div>
+                                
+                                #if($Brand.reviewCount == 0)
+                                    <span class="balgeurebox-deal-review-count-value"></span>
+                                    #else
+                                    <span class="balgeurebox-deal-review-count-value">$!{Brand.reviewStar}점</span>
+                                    #end
+                                </div>
+                            
+                         </a>
+
+                </div>
+            </li>
+                #end
+                #else
+                #foreach($Brand2 in $Brand.content)
+                <li class="balgeurebox-deal-wrapper segment_product_item">
+                <div class="balgeurebox-deal deal_type_vertical_square_amount_col_3">
+
+                        <a href="/detail?product_id=${Brand2.productId}">
+                                <div class="balgeurebox-deal-image-wrap">
+                                    <img class="balgeurebox-deal-image"
+                                         src="//sumcrimage.cafe24.com/$!{Brand2.thumbUrl}"
+                                         alt="$!{Brand2.prodName}" />
+                            </div>
+                            <div class="dealBody">
+                                <div class="dealhead">
+                                    <span class="small_title_thum">&nbsp;</span>
+                                    <span class="balgeurebox-deal-name-main">
+                                             $!{Brand2.brand.brandName}
+                                            / $!{Brand2.prodName}
+                                        </span>
+                                </div>
+
+                                <div class="dealPrice">
+                                    <div class="balgeurebox-deal-price-wrap">
+                                            <!--할인율 표기-->
+                                             #if(${Brand2.price} != ${Brand2.salePrice})
+                                            <div class="percent">
+                                                $!{Brand2.sale}
+                                            </div>
+                                            <div class="balgeurebox-deal-price-unit">%</div>
+                                            #end
+                                        </div>
+
+                                        <div class="product_Ori_Price">
+
+                                            #if(${Brand2.price} != ${Brand2.salePrice})
+                                            <del class="fL">$!{Brand2.price}<span class="balgeurebox-deal-price-unit">원</span></del>
+                                            #end
+                                            <p class="balgeurebox-deal-price-result">
+                                                <span class="price_value">$number.format($!{Brand2.salePrice})</span>
+                                                <span class="unit">원</span>
+                                            </p>
+                                        </div>
+                                </div>
+                                
+                                <div class="delivery_option_show">
+                                        #if($!{Brand2.productDelivery.freeDelivery} == -1)
+                                        <span class="balgeurebox-deal-delivery-shipping">
+                                            배송 $number.format($!{Brand2.productDelivery.deliveryPrice})
+                                            원
+                                        </span>
+                                        #elseif($!{Brand2.productDelivery.freeDelivery} == 0)
+                                        <span class="balgeurebox-deal-delivery-free">무료 배송</span>
+                                        #elseif($!{Brand2.productDelivery.freeDelivery} > 3000)
+                                        <span class="balgeurebox-deal-delivery-limitfree">
+                                            조건부 무료배송
+                                        </span>
+                                        #end
+                                    </div>
+                                
+                                #if($Brand2.reviewCount == 0)
+                                    <span class="balgeurebox-deal-review-count-value"></span>
+                                    #else
+                                    <span class="balgeurebox-deal-review-count-value">$!{Brand2.reviewStar}점</span>
+                                    #end
+                                </div>
+                            
+                         </a>
+
+                </div>
+            </li>
+                           #end
+                            #end
+        </ul>
+    </div><!-- end: exhibit-moreover -->
+        
+    </div><!-- end: layout-structure-content-->
+    </div>
+    <!-- //container -->
+
+    <script src="//code.jquery.com/jquery-3.1.1.js"></script>
+
+    <script>
+function wish(frm, p_id) {
+
+	$.ajax ({
+		type: "POST",
+		url: "/wish/add?product_id="+p_id,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if (data.resultCode == "200") {
+				alert("해당 상품이 찜 목록에 추가 되었습니다.");
+				$(frm).css('background','url("/img/balgeure_icons.png") -144px -6px');
+				getHeaderInfo();
+			} else {
+				alert("찜하기는 로그인 후 사용 가능합니다.");
+				
+				window.location.href="/login";
+    			return;
+			}
+		},
+		error: function(request, status, error) {
+			alert("관리자에게 문의 하시기 바랍니다.");
+		}
+	});
+}
+
+function wishOverlap() {
+	alert('이미 찜한 상품입니다.');
+}
+    </script>
+    
+    
+    
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("banner_first_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000); // Change image every 3 seconds
+}
+
+</script>
+
+<script>
+var slideIndex = 1;
+showdivs2(slideIndex);
+
+function plusdivs(n) {
+  showdivs2(slideIndex += n);
+}
+
+
+function showdivs2(n) {
+	  var i;
+	  var x = document.getElementsByClassName("banner_second_images");
+	  if (n > x.length) {slideIndex = 1}
+	  if (n < 1) {slideIndex = x.length}
+	  for (i = 0; i < x.length; i++) {
+	     x[i].style.display = "none";
+	  }
+	  x[slideIndex-1].style.display = "block";
+	}
+
+</script>
+
+
+<script>
+var myIndex = 0;
+carousel2();
+
+function carousel2() {
+    var i;
+    var x = document.getElementsByClassName("banner_second_images");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel2, 2000); // Change image every 2 seconds
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var defY = 18;
+	console.log($(document).scrollTop());
+	if($(document).scrollTop() > 0) {
+		defY = $(document).scrollTop() - 201	;
+	}
+ /* quick menu */
+ $(".quickmenu_right").animate( { "top": defY +"px" }, 100 ); // 빼도 된다.
+ $(window).scroll(function(){
+	 if ($(document).scrollTop() < 400) {
+  		$(".quickmenu_right").stop().animate( { "top": 18 +"px" }, 0 );
+	 } else {
+  		$(".quickmenu_right").stop().animate( { "top": $(document).scrollTop() + -201 + "px" }, 0 );
+	 }
+ });
+});
+
+</script>
+
+    #parse("/main/footer.vm")

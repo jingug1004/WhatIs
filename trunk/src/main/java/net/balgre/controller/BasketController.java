@@ -33,6 +33,13 @@ public class BasketController {
         model.addAttribute("basketList", basketService.basketList(login.getToken()));
         model.addAttribute("isDev", isDev);
         model.addAttribute("np_order", BalgreConstants.NAVER_PAY_ORDER);
+        model.addAttribute("iamport", BalgreConstants.IAMPORT_CODE);
+        
+        String deviceType = (String) session.getAttribute("deviceType");
+        System.out.println(deviceType);
+        if(deviceType.equals("mobile")) {
+        	return "/basket/m_cart";
+        }
         return "/basket/cart";
 
     }

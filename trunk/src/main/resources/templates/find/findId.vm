@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>발그레 - 아이디 찾기</title>
-
+    <!-- 모바일 버전 css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/mobile/loginCommon.css">   
+    <!-- 모바일 버전 css -->
 <link href="/css/find/find_id_pw.css" rel="stylesheet" type="text/css">
 </head>
 <body>

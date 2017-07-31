@@ -1,0 +1,93 @@
+<div class="myPageMenu_m">
+    <ul class="myPageSubMenu">
+
+        <li class="dropsub">
+            <a href="#none" class="menu1 on"><span class="Left_B">주문현황</span></a>
+            <ul class="depth Down_sub" id="menu1">
+                <li class="">
+                    <a href="/my/order" ga-event="마이페이지,마이페이지_주문배송">
+                        주문/배송현황
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropsub">
+            <a href="#none" class="menu2 on"><span class="Left_B">쇼핑통장</span></a>
+            <ul class="depth Down_sub" id="menu2">
+                <li class="">
+                    <a href="/my/coupon" ga-event="마이페이지,마이페이지_발그레쿠폰">
+                        쿠폰
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/my/point?page=0" ga-event="마이페이지,마이페이지_발그레포인트">
+                        포인트
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropsub">
+            <a href="#none" class="menu3 on"><span class="Left_B">관심상품</span></a>
+            <ul class="depth Down_sub" id="menu3">
+                <li class="">
+                    <a href="/my/wishList?page=1" ga-event="마이페이지,마이페이지_위시리스트">
+                        찜리스트
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropsub">
+            <a href="#none" class="menu4 on">
+                <span class="Left_B">나의 리뷰</span>
+            </a>
+            <ul class="depth Down_sub" id="menu4">
+                <li class="">
+                    <a href="/myReview" ga-event="마이페이지,마이페이지_위시리스트">
+                        리뷰등록/관리
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="dropsub">
+            <a href="#none" class="menu5 on"><span class="Left_B">1:1문의</span></a>
+            <ul class="depth Down_sub" id="menu5">
+                <li class="">
+                    <a href="/my/qna" ga-event="마이페이지,마이페이지_1:1문의">
+                        1:1문의하기
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/my/qnaList" ga-event="마이페이지,마이페이지_1:1답변">
+                        1:1답변보기
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="dropsub">
+            <a href="#none" class="menu6 on"><span class="Left_B">개인 정보</span></a>
+            <ul class="depth Down_sub" id="menu6">
+                <li class="">
+                    <a href="/my/privacy" ga-event="마이페이지,마이페이지_개인정보수정">
+                        개인 정보 수정
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/member/leaveAgree" ga-event="마이페이지,마이페이지_회원탈퇴">
+                        회원탈퇴
+                        <span class="link_arrow">></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

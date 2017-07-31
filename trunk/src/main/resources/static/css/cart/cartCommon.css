@@ -437,26 +437,21 @@ div.cartWrap input[type="checkbox"] {
 
 .cartHeaderRow .col1 {
     width: 37px;
-    min-width: 37px;
 }
 .cartHeaderRow .col2 {
     width: 86px;
-    min-width: 86px;
 }
 .cartHeaderRow .col3 {
     width: 584px;
-    min-width: 584px;
 }
 .cartHeaderRow .col4 {
     width: 138px;
-    min-width: 138px;
 }
 .cartHeaderRow .col5 {
     width: 139px;
-    min-width: 139px;
 }
 
-.cartList {
+#ReadingBasketSelectForm .cartList {
     width: 1080px;
     font-size: 13px;
     border-bottom: 1px solid #e0e0e0;
@@ -3392,4 +3387,8 @@ div.lnb:after {
     clear: both;
 }
 
-
+@media only screen and (min-width: 768px) {
+	#moversion_Cart{
+        display:none;
+	}
+}

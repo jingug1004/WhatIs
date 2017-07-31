@@ -1,111 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
 
 <link type="text/css" href="/css/faq/faq.css" rel="stylesheet" />
 
+#parse("/main/header.vm")
 
-<style>
-    .wrap {
-        width: 1050px;
-        height: auto;
-        border: 1px solid;
-    }
-    .header {
-        width: 1050px;
-        height: 200px;
-        border-bottom: 1px solid;
-    }
-    .contents {
-        width: 1050px;
-        height: 700px;
-    }
-    .content {
-        width: 1050px;
-        height: 500px;
-        border-bottom: 1px solid;
-    }
-    .content_title {
-        width: 1050px;
-        height: 25px;
-        border-bottom: 1px solid;
-        
-    }
-    .content_subject {
-        width: 1050px;
-        height: 25px;
-        border-bottom: 1px solid;
-    }
-    .footer {
-        width: 1050px;
-        height: 200px;
-    }
-    .no {
-        float: left;
-        text-align: center;
-        width: 99px;
-        height: 25px;
-        border-right: 1px solid;
-    }
-    .no_body {
-        float: left;
-        text-align: center;
-        width: 99px;
-        height: 25px;
-        border-right: 1px solid;
-    }
-    .subject {
-        float: left;
-        text-align: center;
-        width: 549px;
-        height: 25px;
-        border-right: 1px solid;
-    }
-    .subject_body {
-        float: left;
-        text-align: center;
-        width: 549px;
-        height: 25px;
-        border-right: 1px solid;
-    }
-    .id {
-        float: left;
-        text-align: center;
-        width: 249px;
-        height: 25px;
-        border-right: 1px solid;
-    }
-    .id_body {
-        float: left;
-        text-align: center;
-        width: 249px;
-        height: 25px;
-        border-right: 1px solid;
-    }
-    .regDate {
-        float: left;
-        text-align: center;
-        width: 150px;
-        height: 25px;
-    }
-    .regDate_body {
-        float: left;
-        text-align: center;
-        width: 150px;
-        height: 25px;
-    }
-</style>
 
-</head>
-<body>
-    <div class="wrap">
-        <div class="header">
-
+    <div class="wrap noticelist_contents">
+        <div class="noticelistPage_Header">
+            <h1>공지사항</h1>
         </div>
-        <div class="contents">
+        <div class="noticetablecontents">
             <table class="notice_list">
                 <tr>
                     <th class="notice_sub no">번호</th>
@@ -119,7 +22,7 @@
                     <td class="fixed_list no_body">$foreach.count</td>
                     <td class="fixed_list subject_body">
                         <a href="/noticeDetail?notice_id=$noticeTop.id">
-                            <span>$noticeTop.subject</span>
+                            <span class="titOfNotice">$noticeTop.subject</span>
                         </a>
                     </td>
                     <td class="fixed_list id_body">관리자</td>
@@ -132,7 +35,7 @@
                     <td class="no_body">$foreach.count</td>
                     <td class="subject_body">
                         <a href="/noticeDetail?notice_id=$Notice.noticeList.id">
-                            <span>$Notice.noticeList.subject</span>
+                            <span class="titOfNotice">$Notice.noticeList.subject</span>
                         </a>
                     </td>
                     <td class="id_body">관리자</td>
@@ -141,10 +44,8 @@
                 </tr>
                 #end
             </table>
-            <div class="footer">
-
-            </div>
         </div>
     </div>
-</body>
-</html>
+    <!-- //container -->
+#parse("/main/footer.vm") 
+

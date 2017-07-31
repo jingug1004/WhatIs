@@ -37,8 +37,12 @@ public class EventController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String eventDetail(Model model, @RequestParam("eid") Long eid) {
+		
+		String menuCheck = "8";
+		
 		model.addAttribute("event", eventService.eventDetail(eid));
 		model.addAttribute("imgHost", BalgreConstants.IMAGE_HOST);
+		model.addAttribute("menuCheck", menuCheck);
 		
 		return "/event/detail";
 	}
@@ -49,8 +53,12 @@ public class EventController {
 	 */
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void eventList(Model model) {
+		
+		String menuCheck = "8";
+		
 		model.addAttribute("event", eventService.eventList());
 		model.addAttribute("imgHost", BalgreConstants.IMAGE_HOST);
+		model.addAttribute("menuCheck", menuCheck);
 	}
 	
 	

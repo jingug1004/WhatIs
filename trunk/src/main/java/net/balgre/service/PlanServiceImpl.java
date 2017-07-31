@@ -1,5 +1,7 @@
 package net.balgre.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import net.balgre.domain.PagePlan;
@@ -11,12 +13,12 @@ public class PlanServiceImpl implements PlanService {
 
 	/*plan list by minho*/
 	@Override
-	public PagePlan planList2(int page) {
+	public List<Plan> planList2() {
 		// TODO Auto-generated method stub
 		
 		PlanRetroImpl PRI = new PlanRetroImpl();
 		
-		PagePlan res = PRI.planList2(page);
+		List<Plan> res = PRI.planList2();
 		
 		return res;
 

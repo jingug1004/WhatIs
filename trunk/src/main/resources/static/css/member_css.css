@@ -1,4 +1,8 @@
 
+body{
+	background : #f0f0f0;
+}
+
 article, aside, figure, figure img,
 figcaption, hgroup, footer, header, 
 nav, section, video, object {display:block;}
@@ -863,10 +867,15 @@ padding: 10px !important;
 }
 
 .useremail #typingEmail input{
-	width: 215px;
+	width: 219px;
 }
 
-#select_whichEmail #email_add{
+#typingEmail .joinFormlabel-email {
+	float: left;
+    margin-right: 4px;
+}
+
+#email_add{
 	width:150px;
 	padding:8.5px 0;
 	border: 1px solid #ccc;
@@ -927,5 +936,7 @@ padding: 10px !important;
 
 
 /**  회원가입 페이지 정보입력 css e  **/
+
+
 
 

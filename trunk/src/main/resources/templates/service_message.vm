@@ -21,7 +21,7 @@
     }
 
     .balgeure_logo h1 img{
-        width:100%;
+        width:80%;
         margin: 0 auto;
     }
 
@@ -33,7 +33,7 @@
         font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
         color: #222222;
         line-height: 52px;
-        font-size: 26px;
+        font-size: 20px;
         text-align: center;
     }
 
@@ -42,7 +42,7 @@
     }
 
     .error_message .Thankyou{
-        font-size: 40px;
+        font-size: 32px;
     }
 </style>
 

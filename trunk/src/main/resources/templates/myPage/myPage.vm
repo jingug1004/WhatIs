@@ -7,9 +7,9 @@
 
 
 <!-- container -->
-<div id="container" class="mA ">
+<div id="container" class="mA">
 
-    <div class="myPageWrap">
+    <div class="myPageWrap" id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -128,7 +128,7 @@
                             <td class="pText center">$user.email</td>
                             <td rowspan="2">
                                 <a class="pText" href="/my/order"
-                                   ga-event="마이페이지,마이페이지홈_최근주문상품">0</a> 개
+                                   ga-event="마이페이지,마이페이지홈_최근주문상품">$order.size()</a> 개
                             </td>
                             <td rowspan="2">
                                 <a class="pText" id="point" href="/my/point?page=0"
@@ -212,7 +212,82 @@
             <!--rightContents-->
         </div>
     </div>
-    <!--myPageWrap-->
+    <!--myPageWrap  _  pc-->
+
+
+    <div class="myPageWrap" id="mobile_Ver">
+
+    <!-- location -->
+    <div class="navigation_on_Top">
+        <span class="localNavi">
+            <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+        </span>
+        <span>&gt;</span>
+        <span class="on">마이페이지</span>
+    </div>
+
+    <div class="myPageLeft_Right">
+        <div class="mypageRightContents_m">
+            <div class="rightContentsTop">
+                <h4 class="fL">
+                    <span class="sub main"></span>
+                </h4>
+
+            </div>
+            <!--E : rightContentsTop-->
+            <p class="userTitle">
+                <span class="myMiniIcon fL"></span><strong>$user.name</strong>님 반갑습니다!
+            </p>
+
+            <div class="mypageid myaccount">
+                계정정보
+                <span class="pText center">$user.email</span>
+                <span class="spaceBar mypage">|</span>
+                <span class="recommendCode">
+                    <a href="#" class="copyCode" title="추천코드 복사하기" onclick="copyIdentifyCode('$user.myCode');">
+                        추천코드 : <strong>$user.myCode</strong>
+                    </a>
+                </span>
+            </div>
+
+
+            <table class="userInfo" cellspacing="0" cellpadding="0">
+                <caption>사용자 정보</caption>
+                <thead>
+                    <tr>                        
+                        <th class="th_padding">최근주문 상품</th>
+                        <th class="th_padding">발그레 포인트</th>
+                        <th class="th_padding">발그레 쿠폰</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>                        
+                        <td class="myblageure_data order">
+                            <a class="pText" href="/my/order"
+                               ga-event="마이페이지,마이페이지홈_최근주문상품">$order.size()</a> 개
+                        </td>
+                        <td class="myblageure_data point">
+                            <a class="pText" id="point" href="/my/point?page=0"
+                               ga-event="마이페이지,마이페이지홈_포인트">$point.totalPoint</a> P
+                        </td>
+                        <td class="myblageure_data coupon">
+                            <a class="pText" href="/my/coupon"
+                               ga-event="마이페이지,마이페이지홈_쿠폰">$Coupon</a> 개
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="myMainNotice">
+                <li>친구를 추천하고 5,000P 혜택 받으세요</li>
+                <li>최근주문상품은 최근 일주일 동안의 주문건을 제공합니다.</li>
+            </ul>
+        </div>
+        <!--rightContents-->
+        #parse("/mypage/mypage_mobile_menu.vm")
+
+    </div>
+</div>
+<!--myPageWrap-->
 
 
 </div>
@@ -264,6 +339,9 @@ var copyIdentifyCode = function(code) {
     prompt("Ctrl+C를 눌러 복사하세요.", code);
 };
 </script>
+
+
+#parse("/mypage/mobile_menu_script.vm")
 
 
 #parse("/main/footer.vm")

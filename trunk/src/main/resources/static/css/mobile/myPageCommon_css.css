@@ -1,0 +1,761 @@
+@media only screen and (max-width: 767px) {
+
+	
+	body{
+    	font-family:'나눔고딕', NanumGothicBold, NanumGothic, '돋움', Dotum, AppleSDGothic, AppleGothic, '굴림', Gulim, sans-serif;
+	}
+
+    /***    mypage menu     css     Start    ***/
+
+    .myPageLeft_Right{
+        margin-bottom: 0 !important;
+    }
+
+    .myPageMenu_m ul li a{
+        border-bottom: 1px solid #dbdbdb;
+        padding: 9px 0 0 12px;
+        height: 19px;
+        color: #666;
+        display: block;
+    }
+
+    .myPageMenu_m li a.on{
+        background-color: #eee;
+    }
+
+    .myPageMenu_m li a .Left_B{
+        display: block;
+        background: url(/img/myPage/mypage_sidemenu.png) no-repeat left top;
+        height: 0;
+        padding-top: 12px;
+        text-indent: -9999em;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .myPageMenu_m li a.menu1.on .Left_B{
+        background-position: -4px 0;
+    }
+
+    .myPageMenu_m li a.menu2.on .Left_B{
+        background-position: -4px -20px;
+    }
+
+    .myPageMenu_m li a.menu3.on .Left_B{
+        background-position: -4px -40px;
+    }
+    
+    .myPageMenu_m li a.menu4.on .Left_B{
+        background-position: -1px -60px;
+    }
+
+    .myPageMenu_m li a.menu5.on .Left_B{
+        background-position: -5px -80px;
+    }
+
+    .myPageMenu_m li a.menu6.on .Left_B{
+        background-position: -4px -100px;
+    }
+
+    .myPageMenu_m .dropsub ul{
+        display: none ;    
+    }
+        
+    .dropsubmenu_one{
+        display: block !important;
+        border-top: 1px solid #ebebeb;
+        padding: 6px 0 7px 0;
+        background: #fff;        
+    }
+    
+    .myPageMenu_m .dropsubmenu_one li{
+        background: #fff;        
+    }
+
+    .myPageMenu_m ul.depth a{
+        display: block;
+        padding: 4px 0 0 20px;
+        border-bottom: none;
+        font-size: 12px;
+        font-weight: normal;
+        height: 25px;
+        border: 0 none;
+    }
+    
+    .myPageMenu_m .depth .link_arrow{
+        float: right;
+        padding-right: 5%;
+        background: url(/img/mobile/mypage_mobile.png) no-repeat 0px 5px;
+        background-size: 7px auto;
+        width: 12px;
+        height: 18px;
+        text-indent: -9999em;
+    }
+    
+    /***    mypage menu     css     End    ***/
+
+
+
+    /***    mypage Index     css     Start    ***/
+    
+    #container #mobile_Ver.myPageWrap {
+        width: 100% !important;
+    }
+
+    #mobile_Ver .navigation_on_Top {
+        margin: -8px 0 8px !important;
+        padding: 0 0 0 5px;
+    }
+    
+    #mobile_Ver .mypageRightContents_m{
+        background: #fff;
+        padding: 0 8px 9px;
+    }
+    
+    .mypageRightContents_m .main {
+        width: 89px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat 0 -190px;
+    } 
+
+    #mobile_Ver .userTitle{
+        padding-top: 8px !important;
+        font-size: 14px !important;
+    }
+
+    #mobile_Ver .mypageRightContents_m .mypageid.myaccount {
+        padding: 15px 0 6px 5px;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    #mobile_Ver .mypageRightContents_m .mypageid.myaccount .pText {
+        padding: 0 12px;
+    }
+
+    #mobile_Ver .mypageRightContents_m .mypageid.myaccount .recommendCode {
+        padding: 0 12px;
+    }
+
+    #mobile_Ver .mypageRightContents_m .mypageid.myaccount .recommendCode  strong{
+        letter-spacing: 0.2px;
+    }
+
+    #mobile_Ver table.userInfo{
+        width: 100% !important;
+        font-size: 12px;
+    }
+
+    #mobile_Ver table.userInfo th, .myPageWrap table.userInfo td{
+        padding: 0 !important;
+    }
+
+    #mobile_Ver  .myMainNotice{
+        font-size: 12px;
+        margin-bottom: 0 !important;
+        -webkit-padding-start: 15px;
+    }
+
+    /***    mypage Index     css     End    ***/
+
+
+    
+    /***    mypage order     css     Start    ***/
+    
+    .mypageRightContents_m h4 span.sub{
+        height: 20px;
+        display: block;
+    }
+
+    .mypageRightContents_m .rightContentsTop{
+        overflow: hidden;
+        padding-top: 8px;
+        margin-bottom: 5px;
+    }
+
+    .mypageRightContents_m .order{
+        width: 130px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat 0 -227px;
+    }
+    
+    #mobile_Ver  .myMainNotice.order{
+        padding: 5px 0 10px;
+    }
+        
+    .order_purchaseList{
+        margin-top: 15px;
+    }
+
+    .tabAll{
+        width: 100%;
+        display: inline-block;
+    }
+
+    .mypageRightContents_m .tabAll .productDate_purchase{
+        background: #f0f0f0;
+        padding: 8px 5px;
+    }
+    
+    .mypageRightContents_m .tabAll .productDate_purchase .order_date{
+        font-size: 13px !important;
+        font-weight: 500;
+    }
+
+    .mypageRightContents_m .tabAll .productDate_purchase .goDetail_order{
+        float: right;
+        padding: 2px 5px !important;
+        margin-top: -2px;
+        width: 100px !important;
+    }
+
+    .mypageRightContents_m .tabAll .productName_purchase{
+        padding: 8px 5px;
+        background: #f8f8f8;
+        border: 1px solid #f0f0f0;
+    }
+
+    .mypageRightContents_m .tabAll .productName_purchase h2{
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .mypageRightContents_m .tabAll .productName_purchase .ellipsis{
+        font-size: 13px;
+        padding: 0 0 0 8px;
+    }
+    
+    
+    .deliveryTitle, .deliveryImg{
+        display: none;
+    }
+
+
+    /***    mypage order     css     End    ***/
+    
+    
+    
+    
+    /***    mypage coupon     css     Start    ***/
+    
+    .mypageRightContents_m h4{
+        display: inline;
+        text-indent: -9999px;
+    }
+        
+    .mypageRightContents_m h4 span.sub{
+        height: 20px;
+        display: block;
+    }
+    
+    .mypageRightContents_m .coupon{
+        width: 97px;
+        background: url(/img/myPage/tit_mypage.png) 0 -269px;
+    }
+    
+    .mypageRightContents_m .couponTitle .titleImg{
+        width: 75px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -97px -272px;
+    }
+
+    .mypageRightContents_m .myCoupon{
+        width: 96% !important;
+        padding: 0 !important;
+        margin: 33px auto 30px !important;
+    }
+
+    .mypageRightContents_m .myCoupon .couponInsertForm{
+        width: 100%;
+        padding-bottom: 15px;
+    }
+
+    .mypageRightContents_m .myCoupon .couponInsertForm form{
+        text-align: center;
+    }
+
+    .mypageRightContents_m .myCoupon .couponInsertForm p{
+        font-size: 13px;
+        padding: 10px 5px;
+    }
+
+    .mypageRightContents_m .couponInsertForm input[type=text]{
+        width: 95%;
+        font-size: 12px !important;
+        margin-top: 0 !important;
+    }
+
+    .couponInsertBtn{
+        font-size: 12px !important;
+    }
+    
+    .mypageRightContents_m .couponList .couponTable{
+        width: 100%;
+    }
+
+    .mypageRightContents_m .couponList .couponTable th{
+        font-size: 13px;
+        text-align: center;
+        border-top: 1px solid #e9e9e9;
+        border-bottom: 1px solid #e9e9e9;
+        background-color: #fcfcfc;
+        font-weight: 500;
+        padding: 10px;
+    }
+    
+    .mypageRightContents_m .couponList .couponTable .date_tit{
+        width: 24%;
+    }
+    
+    .mypageRightContents_m .couponList .couponTable td{
+        font-size: 12px;
+        border-bottom: 1px solid #e9e9e9;
+        padding: 10px 3px;
+    }    
+    
+    .mypageRightContents_m .couponList .couponTable .useDate {
+        border-right:1px solid #e9e9e9;
+    }
+ 
+    .mypageRightContents_m .couponList .couponTable .useDate .reg,
+    .mypageRightContents_m .couponList .couponTable .useDate .end2 {
+        letter-spacing: 0.05px;
+    }
+ 
+    .mypageRightContents_m .coupon_infoTitle .titleImg{
+        width: 73px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -246px -272px;
+    }
+    
+    .mypageRightContents_m .coupon_borderTop .myMainNotice{
+        padding: 35px 0 15px 8px;
+    }
+    
+    .coupon_borderTop{
+        margin-top: 15px !important;
+        padding-top: 15px !important;
+    }
+
+
+    /***    mypage coupon     css     End    ***/
+    
+    
+    
+    /***    mypage point     css     Start    ***/
+    
+    .mypageRightContents_m .point{
+        width: 109px;
+        background: url(/img/myPage/tit_mypage.png) 0 -305px;
+    }
+    
+    .mypageRightContents_m .myPointTitle .titleImg {
+        width: 83px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -119px -305px;
+    }
+    
+    .mypageRightContents_m .myPointTitle .title_desTxt {
+        margin-left: 15px;
+        display: inline-block;
+        font-size: 12px;
+    }
+    
+    .mypageRightContents_m .myPointList .titleImg{
+        width: 100px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -195px -305px;
+    }
+        
+    .AllmyPoint{
+        margin: 8px 0 0 15px !important;
+    }
+        
+    .AllmyPoint .MyPoint{
+        width: 96% !important;
+    }
+    
+    .AllmyPoint .MyPoint .deletePointSoon{
+        border-top: none !important;
+    }
+    
+    .mypageRightContents_m .myPointList {
+        margin-top: 20px;
+    }
+    
+    .mypageRightContents_m .myPointList .title_desTxt {
+        margin-left: 15px;
+        display: inline-block;
+        font-size: 12px;
+    }
+    
+    .mypageRightContents_m .pointList .pointTable{
+        width: 100%;
+    }
+    
+    .mypageRightContents_m .pointList .pointTable th{
+        font-size: 12px;
+        padding: 10px 0;
+        text-align: center;
+        border-top: 1px solid #e9e9e9;
+        border-bottom: 1px solid #e9e9e9;
+        background-color: #fcfcfc;
+        font-weight: 500;
+    }
+    
+    .mypageRightContents_m .pointList .pointTable .last{
+        width: 23%;
+    }
+    
+    .mypageRightContents_m .pointList .pointTable td {
+        font-size: 12px;
+        height: 43px;
+        border-bottom: 1px solid #e9e9e9;
+    }
+    
+    .mypageRightContents_m .pointList .pointTable .pointNote{
+        padding-left: 15px;
+    }
+    
+    .mypageRightContents_m .pointList .pointTable .pagingNum {
+        border-bottom: none;
+    }
+    
+    .mypageRightContents_m .pointList .pointTable .paging .ul{
+        text-align: center;
+    }
+    
+    .mypageRightContents_m .pointTable .paging .ul .li {
+        display: inline;
+        vertical-align: middle;
+    }
+    
+    .mypageRightContents_m .point_infoTitle .titleImg {
+        width: 100px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -299px -305px;
+    }
+ 
+     .mypageRightContents_m .point_borderTop .myMainNotice{
+        padding: 22px 0 15px 8px;
+    }
+ 
+     .point_borderTop {
+        margin-top: 15px !important;
+        padding-top: 15px !important;
+    }
+ 
+ 
+    /***    mypage point     css     End    ***/
+    
+ 
+ 
+    
+    /***    mypage wishlist     css     Start    ***/    
+    
+    
+    .mypageRightContents_m .wishlist {
+        width: 75px;
+        background: url(/img/myPage/tit_mypage.png) -0px -342px;
+    }
+    
+    .mypageRightContents_m .wishTable{
+        width: 100%;
+    }
+    
+    .mypageRightContents_m .wishTable  .last{
+        width: 22%;
+        text-align: center;
+    }
+    
+    .mypageRightContents_m .wishTable th {
+        background-color: #fcfcfc;
+        text-align: center; 
+        font-weight: 600;
+        font-size: 13px;
+        padding: 10px;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .mypageRightContents_m .wishTable td{
+        border-bottom: 1px solid #eaeaea;    
+    }
+    
+    
+    .mypageRightContents_m .wishTable .product_img {
+        padding-left: 15px;
+        font-size: 12px;
+        vertical-align: middle;
+        font-weight: 600;
+    } 
+    
+    .mypageRightContents_m .wishTable .product_img .image_Product {
+        float: left;
+        margin-right: 10px;
+    }
+    
+    .mypageRightContents_m .wishTable .product_img .image_Product img{
+        width: 80px;
+        height: 80px;
+    }
+    
+    .mypageRightContents_m .wishTable .product_img .Name_Brand {
+        margin-top: 9%;
+    }
+    
+    .mypageRightContents_m .wishTable .last .removePiece {
+       padding: 5px 9px;
+       border: 0;
+       background-color: #ff7391;
+       color: #fff;
+       font-size: 12px;
+       letter-spacing: -1px;
+       cursor: pointer;
+    }
+    
+    
+    /***    mypage wishlist     css     End    ***/    
+    
+    
+     
+    
+    /***    mypage review     css     Start    ***/    
+    
+    .mypageRightContents_m .myreview {
+        width: 122px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -0px -395px;
+    }
+   
+    .mypageRightContents_m .myreviewTitle .titleImg {
+        width: 125px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -136px -395px;
+        margin-bottom: 20px;
+    }
+    
+    .able_wrt_review .able_review_list {
+        width: 100% !important;
+    }
+    
+    .able_review_list th{
+        font-size: 13px;
+        padding: 10px;
+    }
+    
+    .able_review_list td{
+        padding: 3px !important;
+    }
+   
+    .mypageRightContents_m .myReview{
+        margin-bottom: 35px;
+    }  
+   
+    .myReview .able_review_list .product_img {
+        padding: 5px !important;
+        width: 100% !important;
+    }
+    
+    .myReview .able_review_list .product_img .image_product{
+        display: inline-block;
+        vertical-align: top;
+    }
+        
+    .myReview .able_review_list .product_img img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .myReview .able_review_list .product_info_m {
+        font-size: 12px !important;
+        display: inline-block;
+    }
+        
+    .myReview .able_review_list .wrt_btn{
+        width: 100% !important;
+        text-align: right;
+        padding-top: 5px;
+    }
+    
+    .myReview .able_review_list .write_btn {
+        height: 29px !important;
+        border: 2px solid #ff7391 !important;
+        padding: 4px 8px !important;
+        font-size: 12px !important;
+    }
+    
+    /***    mypage review     css     End    ***/    
+    
+        
+ 
+    
+    /***    mypage privacy     css     Start    ***/    
+    
+    .mypageRightContents_m .privacy {
+        width: 115px;
+        background: url(/img/myPage/tit_mypage.png) 0 -510px;
+    }
+    
+    .privacyTable{
+        width: 100% !important;
+        margin-left :0px !important;
+    }
+    
+    .privacyTable td{    
+        padding-left: 9px !important;
+    }
+    
+    .privacyTable .tableTitle{
+        font-size: 11px !important;
+        padding: 15px 8px !important;
+        width: 21%;
+    }
+    
+    .privacyTable .NameCode .UserID, .privacyTable .NameCode .friedMyCode{    
+        margin-left :0px !important;
+    }
+    
+    .privacyTable .password_box input{
+        width: 90% !important;
+    }
+
+    .privacyTable .MyAdress .insertBox .address1{
+        width: 94% !important;   
+    }
+        
+    .privacyTable .MyAdress .insertBox .address2{
+        width: 94% !important;   
+    }
+        
+    .Done_btn .update_Btn{
+        padding: 15px 0 !important;  
+    }   
+        
+    
+    /***    mypage privacy     css     End    ***/    
+    
+    
+    
+    
+    
+    /***    mypage 1:1 question    css    Start     ***/    
+    
+    .mypageRightContents_m .inquiry {
+        width: 64px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat 0 -443px;
+    }
+    
+    .mypageRightContents_m p{
+        font-size: 12px !important;
+    }
+    
+    .FormBox {
+        width: 100% !important;
+        margin-top: 30px;
+    }
+    
+    .FormBox table {
+        width: 100% !important;
+    }
+    
+    .FormBox table th{
+        width: 22% !important;
+    }
+    
+    .FormBox table th, .FormBox table td{
+        font-size: 12px !important;
+    }
+    
+    .inquiryUser input{
+        width: 94% !important;
+    }
+    
+    #qnaClass1{
+        width: 94% !important;    
+    }
+    
+    .inquiryContents input, .inquiryContents textarea{
+        width: 94% !important;     
+    }
+    
+    .inquiryContents.FormBox {
+        padding-bottom: 44px;    
+    }
+    
+    .SendEmailBtn{
+        font-size: 12px;
+        margin-top: -30px !important;  
+        margin-bottom: 14px !important;  
+    }
+    
+    .mypageRightContents_m .answerQ {
+        width: 68px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat 2px -475px;
+    }  
+    
+    .answerList, .qna_list{
+        width: 100% !important;
+    }
+    
+    .qna_haed .tit_answ, .qna_list_title .answerslist_tits{
+        width: 70% !important;
+    }
+    
+    .qna_haed .condi_answ, .qna_list_title .answerslist_condi{
+        width: 30% !important;
+    }
+    
+    .qna_list{
+        margin-left: 0 !important;
+    }
+    
+    .askList div{
+        padding: 0 !important;
+    }
+    
+    /***    mypage 1:1 question     css     End    ***/    
+    
+    
+    
+    
+    
+    /***    mypage leave     css     Start    ***/    
+    
+    .mypageRightContents_m .leaveMEM {
+        width: 122px;
+        background: url(/img/myPage/tit_mypage.png) no-repeat -0px -619px;
+    }
+    
+    .mypageRightContents_m .Notice_leave {
+        padding-left: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .mypageRightContents_m .Notice_leave .notice_read {
+       list-style-type: decimal;
+       padding-bottom: 8px;
+       font-size: 13px;
+       font-weight: 500;
+    }
+    
+    .write_reason{
+        padding-top: 15px;
+    }
+    
+    .write_reason textarea {
+        width: 100%;
+    }
+    
+    .ASK_question{
+        width: 90% !important;
+    }
+    
+    .button .myButton{
+        height: 35px;
+        width: 90px;
+        border: 2px solid #ff7391;
+        text-align: center;
+        font-size: 13px;
+    }
+    
+    
+    
+    /***    mypage leave     css     End    ***/    
+    
+    
+    
+    
+
+}

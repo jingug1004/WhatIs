@@ -43,7 +43,7 @@
 <div id="container" class="mA ">
 
 
-    <div class="myPageWrap">
+    <div class="myPageWrap" id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -103,8 +103,7 @@
                         </a>
                         <ul class="depth">
                             <li class="">
-                                <a href="/myReview"
-                                   ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
+                                <a href="/myReview" ga-event="마이페이지,마이페이지_위시리스트">리뷰등록/관리</a>
                             </li>
                         </ul>
                     </li>
@@ -193,7 +192,7 @@
                                             </span>
                                         </div>                                        
                                     </td>
-                                    <td class="price"><b class="price2">$number.format($wishList.product.price)</b></td>
+                                    <td class="price"><b class="price2">$number.format($wishList.product.salePrice)</b></td>
                                     <td class="deliveryprice">
                                         #if($!wishList.product.productDelivery.freeDelivery == 0)
                                         <p class="d_Text">무료배송</p>
@@ -212,9 +211,118 @@
                             #end
                         </tbody>
                     </table>                
-                    
-                    
                                 <div id="paging"></div>    
+                </div>
+            </div>
+            
+
+            
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1.12.0/jquery.min.js"></script>
+			<script type="text/javascript" src="/js/paging/jquery.paging.js"></script>
+			<script type="text/javascript">
+            	var totalCount = $totalCnt;
+            	// 상품의 총 갯수(list.size)
+            	
+            	var pageCount = totalCount/10;
+            	// 페이지 개수(페이지당 10개의 상품 출력)
+            	
+            	if (totalCount/10 > 1) {
+            		// 상품의 갯수 / 10 이 1보다 클 경우, (즉 상품이 10개 보다 많을 경우 페이지를 1 늘린다.)
+              	  pageCount++;
+            	}
+            	var block = pageCount/10;
+            	// 한 화면에 출력 될 페이지(링크)의 개수
+            	
+            	if (pageCount%10 != 0) {
+                	block++;
+            	}
+            
+				$('#paging').paging({
+					current:1,max:pageCount,
+					onclick:function(e,page){
+					}
+				});
+			</script>
+            
+            <!--rightContents-->
+        </div>
+    </div>
+    <!--myPageWrap-->
+
+   <div class="myPageWrap" id="mobile_Ver">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <span><a href="/my/index">마이페이지</a></span>
+            <span>&gt;</span>
+            <span class="on">찜리스트</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+        
+        <div class="mypageRightContents_m">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub wishlist"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+                <p class="mywishTitle">
+                    <span class="title_txt"></span>
+                    <input type="hidden" id="totalCnt" value="$totalCnt">
+                </p>
+                
+                <div class="wish_tabAll">
+                  
+                  
+<table class="wishTable mA" cellpadding="0" cellspacing="0"
+       summary="찜리스트">
+    <caption>찜리스트</caption>
+
+    <!-- <input type="button" class="checkDelete" value="선택삭제"> -->
+    <thead>
+        <tr>            
+            <th>상품명</th>
+            <th class="last">관리</th>
+        </tr>
+    </thead>
+    <tbody>
+        #foreach($wishList in $WishList)
+        <form method="post" action="/my/wishDelete" onSubmit="return form_submit()">
+            <tr>
+                
+                <td class="product_img">
+                    <div class="image_Product">
+                        <a href="/detail?product_id=${wishList.product.productId}&sort=1">
+                            <img class="image" src="//sumcrimage.cafe24.com/$!{wishList.product.thumbUrl}" alt="상품 이미지">
+                        </a>
+                    </div>
+                    <div class="Name_Brand">
+                        <span class="NP">
+                            <a href="/detail?product_id=${wishList.product.productId}&sort=1">
+                                $wishList.product.prodName
+                            </a>
+                        </span>
+                    </div>
+                </td>                
+                <td class="last">
+                    <input type="hidden" name="wish_id" id="wish_id" value="${wishList.wishId}">
+                    <input type="submit" class="delBtn removePiece" name="removePiece" value="삭제하기">
+                </td>
+            </tr>
+        </form>
+        #end
+    </tbody>
+</table>
+
+                  
+                    
                 </div>
             </div>
             
@@ -243,6 +351,9 @@
 				});
 			</script>
             
+            
+#parse("/myPage/mypage_mobile_menu.vm")
+            
             <!--rightContents-->
         </div>
     </div>
@@ -252,6 +363,9 @@
 </div>
 <!-- //container -->
 
+
+
+#parse("/myPage/mobile_menu_script.vm")
 
 <script type="text/javascript">
     $(function() {
@@ -350,8 +464,6 @@ function form_submit() {
 	window.open('/goWait', 'waitPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
 } */
 </script>
-
-
 
 
 

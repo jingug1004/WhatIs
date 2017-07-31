@@ -5,7 +5,7 @@
 
 <div id="container" class="mA ">
 
-    <div class="myPageWrap">
+    <div class="myPageWrap" id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -226,6 +226,142 @@
     </div>
     <!--myPageWrap-->
 
+<div class="myPageWrap" id="mobile_Ver">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">발그레 쿠폰</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+             <div class="mypageRightContents_m">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub coupon"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+
+                <p class="couponTitle">
+                    <span class="titleImg tI fL">쿠폰등록</span>
+                </p>
+
+                <div class="myCoupon">
+                    <div class="couponInsertForm">
+                        <form action="/my/couponInsert" name="/my/couponInsert" method="post">
+                            <p><strong>발급받은 쿠폰번호</strong>는 등록 후에 결제에 적용이 됩니다.</p>
+                            <input type="text" size="42" id="c_id" name="c_id" placeholder="쿠폰번호를 입력한 후 쿠폰등록 버튼을 눌러주세요.">
+                            <input type="submit" class="couponInsertBtn" id="couponInsertBtn" value="쿠폰등록" />
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="myCouponList">
+                    <span class="titleImg tI fL">보유내역</span>
+                </div>
+
+
+
+                <div class="couponList">
+
+<table class="couponTable mA" cellpadding="0" cellspacing="0"
+       summary="보유쿠폰 내역">
+    <caption>보유쿠폰 상세내역</caption>
+    <thead>
+        <tr>
+            <th class="date_tit">사용기간</th>
+            <th>쿠폰 내용</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        #foreach($couponUser in $CouponUser)
+        <tr>
+            <td class="useDate">
+                <input type="hidden" class="regDate" value="$couponUser.regDate">
+                <input type="hidden" class="endDate" value="$couponUser.endDate">
+                <p><span class="reg"></span><br> ~ <span class="end2"></span></p>
+            </td>
+
+            <td class="couponNote">
+                <div class="coupon_what">
+                    <p class="NameCoupon">$couponUser.coupon.cpName</p>
+
+                    #if($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 0)
+                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price% 할인</p>
+
+                    #elseif($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 0)
+                    <p>전제품 사용 / couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price% 할인</p>
+
+                    #elseif($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 1)
+                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price원 할인</p>
+
+                    #elseif($!couponUser.coupon.cpType == 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 1)
+                    <p>전제품 사용 / couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price원 할인</p>
+
+                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 0)
+                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price% 할인</p>
+
+                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 0)
+                    <p>전제품 사용 / couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price% 할인</p>
+
+                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum == 0 && $!couponUser.coupon.saleType == 1)
+                    <p>전제품 사용 / 구매금액 제한 없음 / 최대$couponUser.coupon.price원 할인</p>
+
+                    #elseif($!couponUser.coupon.cpType != 4 && $!couponUser.coupon.minimum != 0 && $!couponUser.coupon.saleType == 1)
+                    <p>전제품 사용 / $couponUser.coupon.minimum원 이상 구매 시 / 최대$couponUser.coupon.price원 할인</p>
+                    #end
+                    
+                    <p class="tillDate">발급일로부터 $couponUser.coupon.endAfter일간 사용가능</p>
+                    #set($useYn = "N")
+                </div>
+                <div class="coupon_YN">
+                    #if($!useYn == $!couponUser.useYn)
+                    <p>사용가능</p>
+                    #else
+                    <p>사용불가능</p>
+                    #end
+                </div>
+            </td>            
+        </tr>
+        #end
+    </tbody>
+
+</table>
+                </div>
+
+                <div class="coupon_borderTop">
+                    <p class="coupon_infoTitle">
+                        <span class="titleImg tI fL">쿠폰안내</span>
+                    </p>
+
+                    <ul class="myMainNotice">
+                        <li>쿠폰에 따라 사용조건 및 사용기한이 다르오니 유의 바랍니다.</li>
+                        <li>일반쿠폰은 일반쿠폰과 중복 사용이 불가능 합니다.</li>
+                        <li>중복쿠폰은 일반쿠폰과 중복 사용이 가능하며, 중복쿠폰과는 중복이 불가능 합니다.</li>
+                        <li>쿠폰 적용은 배송비가 포함되지 않은 제품 총 금액에서 적용됩니다.</li>
+                        <li>사용 및 기간이 만료된 쿠폰은 7일간 보관 후 안내없이 임의로 삭제됩니다.</li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--rightContents-->
+            
+                    #parse("/myPage/mypage_mobile_menu.vm")
+            
+        </div>
+    </div>
+    <!--myPageWrap-->
+
 
 </div>
 <!-- //container -->
@@ -276,5 +412,7 @@
 	window.open('/goWait', 'waitPopup', 'left=580, top=270, width=700, height=400, scrollbars=no, toolbar=no, location=no');
 } */
 </script>
+
+#parse("/myPage/mobile_menu_script.vm")
 
 #parse("/main/footer.vm")

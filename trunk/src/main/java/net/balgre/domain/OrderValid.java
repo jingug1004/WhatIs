@@ -20,4 +20,5 @@ public class OrderValid {
 	private String refund_holder;
 	private String refund_bank;	
 	private String refund_account;
+	private String os = "W";
 }

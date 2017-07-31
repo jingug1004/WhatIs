@@ -16,7 +16,7 @@
 
 <div id="container" class="mA ">
 
-  <div class="myPageWrap">
+  <div class="myPageWrap"  id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -234,7 +234,128 @@
         </div>
     </div>
     <!--myPageWrap-->
+    
+    
+ <div class="myPageWrap" id="mobile_Ver">
 
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <span><a href="/my/index">마이페이지</a></span>
+            <span>&gt;</span>
+            <span class="on">주문/배송 현황</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+            <div class="mypageRightContents_m">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub order"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+                <p class="orderTitle">
+                    <span class="orderPage fL"></span>
+                </p>
+
+                <ul class="myMainNotice order_notice">
+                    <li>자세한 정보는 상세정보를 클릭해주세요.</li>
+                    <li>최근 6개월 목록만 제공합니다.</li>
+                </ul>
+                <div class="order_purchaseList">
+                    <span class="titleImg tI fL">배송/주문 조회</span>
+                </div>
+
+                <div class="tabAll">
+                    <!--주문내역 리스트 0개 일때 -->
+        #if($order.size() == 0)
+        <div class="no_purchase">
+            <div class="empty last fW">최근 주문 내역이 없습니다.</div>
+        </div>
+        #end
+
+        <!--주문내역 리스트 테이블 -->
+        #if($order.size() > 0)
+        #foreach($ord in $order)
+        <div class="purchaseList_">
+            <div class="productDate_purchase">
+                <span class="order_date">$date.format('yyyy-MM-dd', $!{ord.regDate})</span>
+                <button class="goDetail_order" onclick="orderdetail('$!{ord.paymentId}')">주문내역 상세보기</button>
+            </div>
+
+            <div class="productName_purchase">
+                #foreach($pi in $ord.paymentItem)
+                #if($foreach.index == 0)
+                <h2>[$!{pi.itemId.product.brand.brandName}] $!{pi.prodName}</h2>
+                #elseif($!{pi.prodName} != $!{ord.paymentItem.get($math.sub($foreach.index,1)).prodName})
+                <h2>[$!{pi.itemId.product.brand.brandName}] $!{pi.prodName}</h2>
+                #end
+                <p class='ellipsis'>$!{pi.itemName}/$!{pi.orderCount}개</p>
+                #end
+            </div>
+        </div>
+        #end
+        #end
+                </div>
+
+                <p class="deliveryTitle tI">배송상태 안내</p>
+
+                <div class="deliveryImg">
+                    <ul>
+                        <li>
+                            <span class="img i1"></span>
+                            <dl>
+                                <dt>주문완료</dt>
+                                <dd>주문이<br>완료되었습니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i2"></span>
+                            <dl>
+                                <dt>결제완료<span class="fw">(입금완료)</span></dt>
+                                <dd>결제확인이<br>완료되었습니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i3"></span>
+                            <dl>
+                                <dt>배송준비중</dt>
+                                <dd>상품이 준비중이며<br>곧 발송될 예정입니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i4"></span>
+                            <dl>
+                                <dt>배송중</dt>
+                                <dd>주문하신 상품이<br>배송중입니다.</dd>
+                            </dl>
+                        </li>
+                        <li><span class="bar"></span></li>
+                        <li>
+                            <span class="img i5"></span>
+                            <dl>
+                                <dt>배송완료</dt>
+                                <dd>상품이 고객님께<br>도착했습니다.</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--rightContents-->
+            
+        #parse("/mypage/mypage_mobile_menu.vm")
+            
+        </div>
+    </div>
+    <!--myPageWrap-->
 
 </div>
 <!-- //container -->
@@ -250,7 +371,7 @@
 	}
 </script>
 
-
+#parse("/mypage/mobile_menu_script.vm")
 
 <script>
 /* function wait() {

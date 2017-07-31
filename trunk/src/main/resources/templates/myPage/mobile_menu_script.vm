@@ -1,0 +1,30 @@
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$("#mobile_Ver .menu1").click(function(){
+	    $("#menu1").toggleClass("dropsubmenu_one");
+	});
+
+	$("#mobile_Ver .menu2").click(function(){
+	    $("#menu2").toggleClass("dropsubmenu_one");
+	});
+
+	$("#mobile_Ver .menu3").click(function(){
+	    $("#menu3").toggleClass("dropsubmenu_one");
+	});
+
+	$("#mobile_Ver .menu4").click(function(){
+	    $("#menu4").toggleClass("dropsubmenu_one");
+	});
+
+	$("#mobile_Ver .menu5").click(function(){
+	    $("#menu5").toggleClass("dropsubmenu_one");
+	});
+
+	$("#mobile_Ver .menu6").click(function(){
+	    $("#menu6").toggleClass("dropsubmenu_one");
+	});
+
+});
+</script>

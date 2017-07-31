@@ -90,12 +90,20 @@
                     </div>
                 </div>
             </div>
-
-              
-                
+            
+            <input type="hidden" id="Type" value="$type">
+    		<input type="hidden" id="sns_id" name="sns_id" value="$sns_id">
+            <input type="hidden" id="nickName" value="$nickName">
+            <input type="hidden" id="email" value="$email">
             <div class="check_agree_balgeure">
                             <div class="SNSaccount_info">
-                    <div class="sns_account"><span class="user_name">테스트</span> 님, <span class="sns_color naver">naver</span> 계정으로 회원가입을 시작합니다.</div>
+                    #if($type == 'N')
+                    <div class="sns_account"><span class="user_name">$nickName</span> 님, <span class="sns_color naver">Naver</span> 계정으로 회원가입을 시작합니다.</div>
+                    #elseif($type == 'K')
+                    <div class="sns_account"><span class="user_name">$nickName</span> 님, <span class="sns_color naver">Kakao</span> 계정으로 회원가입을 시작합니다.</div>
+                    #elseif($type == 'F')
+                    <div class="sns_account"><span class="user_name">$nickName</span> 님, <span class="sns_color naver">FaceBook</span> 계정으로 회원가입을 시작합니다.</div>
+                    #end
                 </div>
             
                 <div class="checkboxFORall">
@@ -111,19 +119,16 @@
                         <table class="table table-condensed">
 
                             <tr>
-                                <td class="mustCheckbox">
-                                    <input type="checkbox" id="agree1" class="checkbox ab  inside_box">
-                                    <label for="agree1" class="input-label first radio inside_box"></label>
+                                <td class="mustCheckbox snsagree_chk">
+                                <label for="agree1" class="input-label first radio inside_box">
+                                    <input type="checkbox" id="agree1" class="checkbox ab inside_box">
+                                    </label>
                                 </td>
 
-                                                                    <td>발그레 이용약관</td>
+                                <td>발그레 이용약관</td>
                                     <td class="lable rightpadding" onclick="rule(1)" id="rule_view1">내용보기</td>
-                                </tr>
-                                <tr onclick="rule_hidden(1)" id="rule_hidden1" style="display:none">
-                                    <td></td>
-                                    <td style="color: #fff;">발그레 이용약관</tdstyle="color:>
-                                    <td class="lable rightpadding">내용보기</td>
-                                </tr>
+                                    <td class="lable rightpadding" onclick="rule_hidden(1)" id="rule_hidden1" style="display:none">내용닫기</td>
+                            </tr>
                                 <tr class="rulecontents rule1" style="display:none">
                                     <td colspan="3" class="contents_intro">
                                         <div class="scroll_reading">
@@ -293,18 +298,15 @@
 
 
                                 <tr>
-                                    <td class="mustCheckbox">
+                                    <td class="mustCheckbox snsagree_chk">
+                                     <label for="agree2" class="input-label first radio inside_box">
                                         <input type="checkbox" id="agree2" class="checkbox ab  inside_box">
-                                        <label for="agree2" class="input-label first radio inside_box"></label>
+                                       </label>
                                     </td>
 
                                     <td>개인정보 수집및 이용 동의</td>
                                     <td class="lable rightpadding" onclick="rule(2)" id="rule_view2">내용보기</td>
-                                </tr>
-                                <tr onclick="rule_hidden(2)" id="rule_hidden2" style="display:none">
-                                    <td></td>
-                                    <td style="color: #fff;">개인정보 수집및 이용 동의</td>
-                                    <td class="lable rightpadding">내용보기</td>
+                                    <td class="lable rightpadding" onclick="rule_hidden(2)" id="rule_hidden2" style="display:none">내용닫기</td>
                                 </tr>
                                 <tr class="rulecontents rule2" style="display:none">
                                     <td colspan="3" class="contents_intro">
@@ -402,18 +404,15 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="mustCheckbox">
+                                    <td class="mustCheckbox snsagree_chk">
+                                    <label for="agree3" class="input-label first radio inside_box">
                                         <input type="checkbox" id="agree3" class="checkbox ab  inside_box">
-                                        <label for="agree3" class="input-label first radio inside_box"></label>
+                                        </label>
                                     </td>
 
                                     <td>개인정보 제3자(판매자)제공 동의</td>
                                     <td class="lable rightpadding" onclick="rule(3)" id="rule_view3">내용보기</td>
-                                </tr>
-                                <tr onclick="rule_hidden(3)" id="rule_hidden3" style="display:none">
-                                    <td></td>
-                                    <td style="color: #fff;">개인정보 제3자(판매자)제공 동의</td>
-                                    <td style="border-bottom: 0px;" class="lable rightpadding">내용보기</td>
+                                    <td class="lable rightpadding" onclick="rule_hidden(3)" id="rule_hidden3" style="display:none">내용닫기</td>
                                 </tr>
                                 <tr class="rulecontents rule3" style="display:none">
                                     <td class="contents_intro" colspan="3">
@@ -446,6 +445,29 @@
                     </div>
                 </div>
 
+				<div class="AgreeFormBox">
+                    <h1 class="formbox_tit">부가정보 (선택)</h1>
+                </div>
+                <div class="marketingCheck">
+                    <div class="SMSyesORno">
+                    <label for="smsAgree" class="input-label first radio inside_box">
+                        <input type="checkbox" class="checkbox ab inside_box" name="smsAgree" id="smsAgree" value="Y">
+                        <span>SMS 마케팅 수신동의</span>
+                        </label>
+                    </div>
+                    <div class="EMAILyesORno">
+                    <label for="emailAgree" class="input-label radio inside_box">
+                        <input type="checkbox" class="checkbox ab inside_box" name="emailAgree" id="emailAgree" value="Y">
+                        <span>이메일 마케팅 수신동의</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="register_txt_ex">
+                    <ul class="Notice_MARK">
+                        <li class="list_ex">마케팅 수신 동의 시 발그레만의 특별한 혜택을 받아보실 수 있습니다.</li>
+                        <li class="list_ex">할인 쿠폰 및 특가 상품 이벤트 정보를 다양하게 즐기시기 바랍니다.</li>
+                    </ul>
+                </div>
 
             </div>
             <div class="agreeNsubmit">
@@ -455,7 +477,6 @@
             </div>
         </div>
     </div>
-    <input type="hidden" id="sns_id" name="sns_id" value="">
 
 
 
@@ -463,19 +484,36 @@
     <script src="//code.jquery.com/jquery-1.11.0.js"></script>
     <script>
     /* agree check */
-	$(function() {
+    $(function() {
 		$('#registGo').on('click', function() {
 			if ($('#agree1').is(':checked') && $('#agree2').is(':checked') && $('#agree3').is(':checked')) {
-				if ($('#smsAgree').is(':checked') && $('#emailAgree').is(':checked'))
-				var sms = $('#smsAgree').val();
-				var email = $('#emailAgree').val();
-			    window.location.href="/mailRegist?param1="+sms+"&param2="+email;
-			    } else if ($('#smsAgree').is(':checked') && $('#emailAgree').is(':checked') == false)
-			    	var sms = $('#smsAgree').val();
-
-		    } else {
+				if ($('#smsAgree').is(':checked') && $('#emailAgree').is(':checked')) {
+					var Type = $('#Type').val();
+					var nickName = $('#nickName').val();
+					var email = $('#email').val();
+					var sns_id = $('#sns_id').val();
+			    	window.location.href="/snsJoinForm?smsAgree=Y&emailAgree=Y"+"&Type="+Type+"&nickName="+nickName+"&email="+email+"&sns_id="+sns_id;
+			    } else if ($('#smsAgree').is(':checked') && $('#emailAgree').is(':checked') == false) {
+			    	var Type = $('#Type').val();
+			    	var nickName = $('#nickName').val();
+			    	var email = $('#email').val();
+			    	var sns_id = $('#sns_id').val();
+					window.location.href="/snsJoinForm?smsAgree=Y&emailAgree=&Type="+Type+"&nickName="+nickName+"&email="+email+"&sns_id="+sns_id;
+			    } else if ($('#smsAgree').is(':checked') == false && $('#emailAgree').is(':checked')) {
+			    	var Type = $('#Type').val();
+			    	var nickName = $('#nickName').val();
+			    	var email = $('#email').val();
+			    	var sns_id = $('#sns_id').val();
+			        window.location.href="/snsJoinForm?smsAgree=&emailAgree=Y&Type="+Type+"&nickName="+nickName+"&email="+email+"&sns_id="+sns_id;
+			    } else {
+			    	var Type = $('#Type').val();
+					var nickName = $('#nickName').val();
+					var email = $('#email').val();
+					var sns_id = $('#sns_id').val();
+			    	window.location.href="/snsJoinForm?smsAgree=&emailAgree=&Type="+Type+"&nickName="+nickName+"&email="+email+"&sns_id="+sns_id;
+			    }
+		    } else
 			    alert('회원가입 필수 약관에 동의해주세요.');
-		    }
 	    });
 	});
     </script>
@@ -511,6 +549,8 @@
     	$(".rulecontents").css('display','none');
 	}
     </script>
+    
+   
 
 </body>
 </html>

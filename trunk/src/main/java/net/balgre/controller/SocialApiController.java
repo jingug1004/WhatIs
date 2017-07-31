@@ -51,7 +51,8 @@ public class SocialApiController {
 	@CrossOrigin
 	@RequestMapping(value="/naver/login", method=RequestMethod.GET)
 	public String naverLogin(HttpServletRequest request) {
-		String redirectUrl = java.net.URLEncoder.encode(BalgreConstants.NAVER_LOGIN_REDIRECT_URL);
+		String uri = request.getScheme() + "://" +   request.getServerName();
+		String redirectUrl = java.net.URLEncoder.encode(uri+BalgreConstants.NAVER_LOGIN_REDIRECT_URL);
 		String state = generateState();
 		// token random string produce
 
@@ -72,7 +73,6 @@ public class SocialApiController {
 
 			LoginDTO loginDto = new LoginDTO();
 			loginDto.setUsername(userData.getResponse().getId());
-			System.out.println(userData.getResponse().getId());
 			loginDto.setPassword(type);
 			LoginDTO02 loginDto02 = service.login(loginDto);
 			
@@ -96,15 +96,17 @@ public class SocialApiController {
 	}
 
 	@RequestMapping(value = "/kakao/login", method = RequestMethod.GET)
-	public String oauth() {
-		String url = "https://kauth.kakao.com/oauth/authorize?client_id="+BalgreConstants.KAKO_API_KEY+"&redirect_uri="+BalgreConstants.KAKAO_REDIRECT_URL+"&response_type=code";
+	public String oauth(HttpServletRequest request) {
+		String uri = request.getScheme() + "://" +   request.getServerName();
+		String url = "https://kauth.kakao.com/oauth/authorize?client_id="+BalgreConstants.KAKO_API_KEY+"&redirect_uri="+uri+BalgreConstants.KAKAO_REDIRECT_URL+"&response_type=code";
 		return "redirect:"+url;
 	}
 
 	@RequestMapping(value = "/kakao/auth", method = RequestMethod.GET)
 	public String auth(@RequestParam("code") String code, Model model, HttpServletRequest request, HttpSession session) throws Exception {
 		KakaoClient client = new KakaoClient(BalgreConstants.KAKO_API_KEY);
-		AccessToken token = client.getAuth("authorization_code", BalgreConstants.KAKAO_REDIRECT_URL, code);
+		String uri = request.getScheme() + "://" +   request.getServerName();
+		AccessToken token = client.getAuth("authorization_code", uri+BalgreConstants.KAKAO_REDIRECT_URL, code);
 
 		UserData userData = client.getUserData(token.getAccess_token());
 

@@ -189,6 +189,7 @@ p {
 	font-size: 15px;
     font-weight: 500;
     margin-bottom: 5px;
+    display: inline-block;
 }
 
 .search_formBox input{
@@ -258,6 +259,13 @@ p {
 	margin: 40px 0;
 }
 
+.cs_contents .notice_area .more_detail{
+	float: right;
+	cursor:pointer;
+	font-size: 12px;
+	font-weight: 500;
+}
+
 .cs_contents .callcenter_area{
 	border: 6px solid #e0e0e0;
     padding: 30px;
@@ -302,9 +310,81 @@ p {
 /** 고객센터 page CSS e  **/
 
 
-/** 공지사항   page CSS s  **/
+/** 공지사항  list   page CSS s  **/
+
+.noticelist_contents{
+	width: 1080px;
+	height: auto;
+	margin:0 auto;
+}
+
+.noticelistPage_Header{
+	margin: 22px 0;
+}
+
+.noticelistPage_Header h1 {
+	font-size: 20px;
+    font-weight: 600;
+    line-height: 40px;
+    font-family: 나눔고딕, NanumGothic, 돋움, Dotum, AppleSDGothic, AppleGothic, 굴림, Gulim, sans-serif;
+}
+.noticetablecontents .notice_list{
+	width:100%;
+}
+
+.notice_list .notice_sub{
+	border: 1px solid #b5b5b5;
+	border-left: none;
+	background: #f0f0f0;
+	font-size: 13px;
+	font-weight: 600;
+	text-align: center;
+	padding: 9px 20px;
+}
+
+.notice_list .notice_sub.no {
+	border-left:1px solid #b5b5b5 !important;
+	width: 8%;
+}
+
+.notice_list .notice_sub.id {
+	width: 15%;
+}
+
+.notice_list .notice_sub.regDate {
+	width: 15%;
+}
+
+.notice_list .notice_sub.viewct {
+	width: 10%;
+}
+    .no_body {
+
+        text-align: center;
+
+        border-right: 1px solid;
+    }
+
+    .subject_body {
+
+        text-align: center;
+
+        border-right: 1px solid;
+    }
+
+    .id_body {
+
+        text-align: center;
+
+        border-right: 1px solid;
+    }
+
+    .regDate_body {
+
+        text-align: center;
 
 
+    }
 
 
-/** 공지사항   page CSS e  **/
+/** 공지사항  list   page CSS e  **/

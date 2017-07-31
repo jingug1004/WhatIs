@@ -43,5 +43,5 @@ public class Product {
     private String thumbUrl;
     private Integer timeSale;
     private Integer viewCount;
-
+    private Integer autoSale;
 }

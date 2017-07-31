@@ -22,6 +22,7 @@ public class SearchController {
 		
 		model.addAttribute("Res", searchService.search2(search));
 		model.addAttribute("search", search);
+		
 		return "/search/search";
 	}
 

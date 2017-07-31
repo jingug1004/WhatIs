@@ -171,8 +171,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         .addPathPatterns("/sns/login")
         .excludePathPatterns();
         
-        registry.addInterceptor(loginInter)
-        .addPathPatterns("/naverpay/buy")
+        registry.addInterceptor(authInter)
+        .addPathPatterns("/naverpay/*")
         .excludePathPatterns();
 //        registry.addInterceptor(authInter)
 //                .addPathPatterns("/plan")

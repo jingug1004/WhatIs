@@ -7,7 +7,7 @@
 
 <div id="container" class="mA ">
 
-    <div class="myPageWrap">
+    <div class="myPageWrap" id="Pc_Ver">
 
         <!-- location -->
         <div class="navigation_on_Top">
@@ -229,6 +229,139 @@
     </div>
     <!--myPageWrap-->
 
+    <div class="myPageWrap" id="mobile_Ver">
+
+        <!-- location -->
+        <div class="navigation_on_Top">
+            <span class="localNavi">
+                <a class="home" href="/"><img src="/img/myPage/home-icon.png"></a>
+            </span>
+            <span>&gt;</span>
+            <a class="to_mypage" href="/my/index"><span>마이페이지</span></a>
+            <span>&gt;</span>
+            <span class="on">발그레 포인트</span>
+        </div>
+
+        <div class="myPageLeft_Right">
+    <div class="mypageRightContents_m">
+                <div class="rightContentsTop">
+                    <h4 class="fL">
+                        <span class="sub point"></span>
+                    </h4>
+
+                </div>
+                <!--E : rightContentsTop-->
+
+
+                <p class="myPointTitle">
+                    <span class="titleImg tI fL">내 포인트</span><span class="title_desTxt">결제 시 현금처럼 사용할 수 있는 발그레 포인트입니다.</span>
+                </p>
+
+                <div class="AllmyPoint">
+                    <table class="MyPoint">
+                        <tbody>
+                            <tr>
+                                <td class="ableToUse">
+                                    <div class="header_cts_left">
+                                        <span class="table_tit">사용 가능 포인트</span>
+                                        <span class="NumPoint"><span class="point1">$number.format($MyPoint.myPoint)</span> p</span>
+                                    </div>
+                                </td>
+                                 </tr>
+                                 <tr>
+                                <td class="deletePointSoon">
+                                    <div class="header_cts_right">
+                                        <span class="table_tit">소멸 예정 포인트</span>
+                                        <!-- 나중에 필히 수정해야 됨. // by minho -->
+                                        <span class="NumPoint"><span id="point2">0</span> p</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="myPointList">
+                    <span class="titleImg tI fL">포인트내역</span><span class="title_desTxt">포인트 적립일로부터 6개월 후 자동 소멸됩니다.</span>
+                </div>
+
+
+                <div class="pointList">
+
+                    <div class="pointListTitle" style="display: none;">
+                        <input type="hidden" class="regDate" value="$couponUser.regDate">
+                        <input type="hidden" class="endDate" value="$couponUser.endDate">
+                        <p><span class="reg"></span> ~ <span class="end2"></span><p>
+                    </div>
+
+    
+<table class="pointTable mA" cellpadding="0" cellspacing="0"
+       summary="포인트 내역">
+    <caption>포인트 상세내역</caption>
+    <thead>
+        <tr>
+            <th>포인트 내용</th>
+            <th class="last">금액</th>
+        </tr>
+    </thead>
+    <tbody>
+        #foreach($point in $Pages)
+        <tr>
+            <td class="pointNote">
+                <input type="hidden" class="date" value="$point.regDate">
+                <p id="datePoint"></p>
+                <p id="desc_point">$point.note</p>
+            </td>
+
+            <td class="add_minus">
+                <span class="detailsTxt"><span id="point3">$number.format($point.point)</span> P 적립</span>
+            </td>
+        </tr>
+        #end
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="pagingNum" colspan="2">
+                <div class="paging">
+                    <ul class="ul">
+                        #foreach($Pages in [0..$MyPoint.pointList.totalPages])
+                        <li class="li"><a href="point?page=$Pages">$Pages</a></li>
+                        #end
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+    
+                </div>
+
+
+
+                <div class="point_borderTop">
+                    <p class="point_infoTitle">
+                        <span class="titleImg tI fL">포인트 안내</span>
+                    </p>
+
+                    <ul class="myMainNotice">
+                        <li>발그레 포인트는 결제 시에 구매 금액의 20%를 사용 가능합니다.</li>
+                        <li>구매 금액의 1%가 적립되며, 구매한 상품의 수령이 완료된 후 지급됩니다.</li>
+                        <li>상품 구매 후 포토리뷰 작성 시 500포인트 적립, 일반리뷰 작성 시 200포인트가 적립됩니다. (리뷰 작성 포인트는 작성일로부터 7일 후 적립)</li>
+                        <li>포인트는 일반쿠폰과 중복 사용이 불가하며, 중복쿠폰과는 함께 사용이 가능합니다.</li>
+                        <li>일부 기획 상품에는 적용이 불가할 수 있습니다.</li>
+                        <li>적립된 포인트는 적립일로부터 6개월 후 자동 소멸되며, 소멸되는 해당 월 1일에 DM으로 소멸 안내를 드립니다.</li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--rightContents-->
+            
+            #parse("/mypage/mypage_mobile_menu.vm")
+        </div>
+    </div>
+    <!--myPageWrap-->
+
 
 </div>
 <!-- //container -->
@@ -255,5 +388,6 @@ $(function() {
     });
 </script>
 
+#parse("/mypage/mobile_menu_script.vm")
 
 #parse("/main/footer.vm")

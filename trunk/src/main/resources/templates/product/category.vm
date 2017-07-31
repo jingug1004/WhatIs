@@ -1,6 +1,6 @@
 #parse("/main/header.vm")
 
-<link type="text/css" href="/css/product/productCommon.css?v=1747Fr" rel="stylesheet" />
+<link type="text/css" href="/css/product/productCommon.css" rel="stylesheet" />
 <style>
     * {
         margin: 0;
@@ -28,13 +28,7 @@
         margin: 0 auto;
     }
 
-    .on {
-        text-decoration: none;
-        color: black;
-        text-align: center;
-        font-size: 12px;
-        line-height: 100px;
-    }
+    
 
     .and {
     }
@@ -46,14 +40,7 @@
 
 
     <div class="quickmenu_right" id="quickmenu_right">
-
-        <div class="banner_first">
-            <div class="banner_first_images mySlides">
-                <a href="/event?eid=33">
-                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
-                </a>
-            </div>
-
+ <div class="banner_first">
             <div class="banner_first_images mySlides">
                 <a href="/event?eid=34">
                     <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
@@ -71,12 +58,6 @@
                 </a>
             </div>
 
-            <div class="banner_second_images">
-                <a href="/event?eid=32">
-                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
-                </a>
-            </div>
-            
             <div class="banner_second_images">
                 <a href="/sns/appDown">
                     <img src="/img/right_side/rightside_banner2.png" alt="발그레 앱 다운로드">
@@ -157,7 +138,7 @@
         </div>
         <!--lnb-->
         <!-- S: 상품 목록 -->
-        <div class="exhibit best-moreover">
+        <div class="exhibit best-moreover" id="Pc_Ver">
             <ul class="balgeurebox-deal-list balgeurebox-deal-list-line-amount-3">
                 #foreach($Category in $categor.content)
                 <li class="balgeurebox-deal-wrapper segment_product_item">
@@ -165,6 +146,14 @@
                         <div class="balgeurebox-deal-info">
                             <a href="/detail?product_id=${Category.product.productId}">
                                 <div class="balgeurebox-deal-image-wrap">
+                                
+                                #if($Category.product.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$Category.product.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                            	#else
+                            	#end
+                            	
                                     <img class="balgeurebox-deal-image"
                                          src="//sumcrimage.cafe24.com/$!{Category.product.thumbUrl}"
                                          alt="$!{Category.product.prodName}" />
@@ -178,6 +167,7 @@
                                             / $!{Category.product.prodName}
                                         </span>
                                     </div>
+                                    
                                     <div class="dealPrice">
                                         <div class="balgeurebox-deal-price-wrap">
                                             <!--할인율 표기-->
@@ -206,7 +196,7 @@
                                     <span class="balgeurebox-deal-review-count-value">$!{Category.product.reviewStar}점</span>
                                     #end
                                 </div>
-
+								</a>
                                 <!--dealBody-->
 
                                 <div class="dealFoot">
@@ -256,6 +246,93 @@
             </ul>
         </div><!-- end: exhibit-moreover -->
         <!-- E: 상품목록 -->
+        
+       <div class="exhibit best-moreover newlist" id="mobile_ver">
+        <ul class="balgeurebox-deal-list balgeurebox-deal-list-line-amount-3">
+            #foreach($Category in $categor.content)
+            <li class="balgeurebox-deal-wrapper segment_product_item">
+                <div class="balgeurebox-deal deal_type_vertical_square_amount_col_3">
+
+                        <a href="/detail?product_id=${Category.product.productId}">
+                                <div class="balgeurebox-deal-image-wrap">
+                                #if($Category.product.autoSale > 0)
+                            	<div class="badge_discount">
+                                    <span class="discountCoupon"><span class="howmuchD">$Category.product.autoSale%</span><br>쿠폰<br>추가할인</span>
+                                </div>
+                            	#else
+                            	#end                                    
+                                    <img class="balgeurebox-deal-image"
+                                         src="//sumcrimage.cafe24.com/$!{Category.product.thumbUrl}"
+                                         alt="$!{Category.product.prodName}" />
+                                         
+                                         <div class="badge_discount">
+                                        <span class="discountCoupon"><span class="howmuchD">10%</span>결제 자동적용</span>
+                                    </div>
+                            </div>
+                            <div class="dealBody">
+                                <div class="dealhead">
+                                    <span class="small_title_thum">&nbsp;</span>
+                                    <span class="balgeurebox-deal-name-main">
+                                            $!{Category.product.brand.brandName}
+                                            / $!{Category.product.prodName}
+                                        </span>
+                                </div>
+
+                                <div class="dealPrice">
+                                    <div class="balgeurebox-deal-price-wrap">
+                                            <!--할인율 표기-->
+                                            #if(${Category.product.price} != ${Category.product.salePrice})
+                                            <div class="percent">
+                                                $!{Category.product.sale}
+                                            </div>
+                                            <div class="balgeurebox-deal-price-unit">%</div>
+                                            #end
+                                        </div>
+
+                                        <div class="product_Ori_Price">
+
+                                            #if(${Category.product.price} != ${Category.product.salePrice})
+                                            <del class="fL">$!{Category.product.price}<span class="balgeurebox-deal-price-unit">원</span></del>
+                                            #end
+                                            <p class="balgeurebox-deal-price-result">
+                                                <span class="price_value">$number.format($!{Category.product.salePrice})</span>
+                                                <span class="unit">원</span>
+                                            </p>
+                                        </div>                                        
+                                </div>
+                                
+                                        
+                                
+                                <div class="delivery_option_show">
+                                        #if($!{Category.product.productDelivery.freeDelivery} == -1)
+                                        <span class="balgeurebox-deal-delivery-shipping">
+                                            배송 $number.format($!{Category.product.productDelivery.deliveryPrice})
+                                            원
+                                        </span>
+                                        #elseif($!{Category.product.productDelivery.freeDelivery} == 0)
+                                        <span class="balgeurebox-deal-delivery-free">무료 배송</span>
+                                        #elseif($!{Category.product.productDelivery.freeDelivery} > 3000)
+                                        <span class="balgeurebox-deal-delivery-limitfree">
+                                            조건부 무료배송
+                                        </span>
+                                        #end
+                                    </div>
+                                
+                                #if($Category.product.reviewCount == 0)
+                                    <span class="balgeurebox-deal-review-count-value"></span>
+                                    #else
+                                    <span class="balgeurebox-deal-review-count-value">$!{Category.product.reviewStar}점</span>
+                                    #end
+                                </div>
+                            
+                         </a>
+
+                </div>
+            </li><!-- e: balgeurebox-deal-wrapper -->
+            #end
+        </ul>
+    </div><!-- end: exhibit-moreover -->
+        
     </div><!-- end: layout-structure-content-->
     </div>
     <!-- //container -->
@@ -277,6 +354,9 @@ function wish(frm, p_id) {
 				getHeaderInfo();
 			} else {
 				alert("찜하기는 로그인 후 사용 가능합니다.");
+				
+				window.location.href="/login";
+    			return;
 			}
 		},
 		error: function(request, status, error) {

@@ -1,0 +1,698 @@
+#parse("/main/header.vm")
+    <meta charset="utf-8"/>
+
+    <script src="/js/jquery.number.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/css/mainCommon.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/cart/cartCommon.css" media="screen"/>
+    
+
+	<script type="text/javascript" src="http://pay.naver.com/customer/js/naverPayButton.js" charset="UTF-8"></script> 
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<!-- 네이버페이  -->
+	<script type="text/javascript" >
+	IMP.init('$!{iamport}'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	//<![CDATA[ 
+		function buy_nc(url) { 
+			var basketIds = [];
+			$('input:checkbox[name="basketChk"]:checked').each(function() {
+				$('input[name=chk' + this.value + ']').each(function() {
+					basketIds.push(this.value);
+				});
+	    	});
+    	
+    		if(basketIds.length == 0) {
+    			alert("구매할 상품을 체크 해 주세요."); 
+    			return false;
+    		}
+				
+			var formData = $("#ReadingBasketSelectForm").serialize();
+	        $.ajax({
+	            type: 'post',
+	            url: '/naverpay/basket',
+	            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+	            processData: false,
+	            data: formData,
+	            success: function (data) {
+	            	payment(data);
+	            },
+	
+	            error: function (data, textStatus, errorThrown) {
+	            }
+	        });
+	        
+		   return false; 
+		} 
+		
+		function payment(payment) {
+			var payMethod = $("#pay_type").val();
+			IMP.request_pay({
+				pg : 'naverco',
+			    pay_method : 'card',
+			    merchant_uid : payment.payment.merchantUid,
+			    name : payment.payment.name,
+			    amount : payment.payment.totalPayment,
+			    buyer_email : payment.payment.buyer_email,
+			    buyer_name : payment.payment.buyer_name,
+			    buyer_tel : payment.payment.buyer_tel,
+			    buyer_addr : payment.payment.buyer_addr,
+			    buyer_postcode : payment.payment.buyer_postcode,
+			    naverProducts : payment.npList
+			}, function(rsp) {
+				console.log(rsp);
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+	
+			        $("#payment_id").val(payment.paymentId);
+			        $("#merc_id").val(rsp.merchant_uid);
+			        $("#imp_id").val(rsp.imp_uid);
+			        $('#complete').submit();
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        alert(msg);
+			    }
+			});
+		}
+		
+		function wishlist_nc(url) {     
+			var basketIds = [];
+			$('input:checkbox[name="basketChk"]:checked').each(function() {
+				$('input[name=chk' + this.value + ']').each(function() {
+					basketIds.push(this.value);
+				});
+	    	});
+    	
+    		if(basketIds.length == 0) {
+    			alert("찜할 상품을 체크 해 주세요."); 
+    			return false;
+    		}
+			// 네이버페이로 찜 정보를 등록하는 가맹점 페이지 팝업 창 생성.     
+			// 해당 페이지에서 찜 정보 등록 후 네이버페이 찜 페이지로 이동.     
+			     
+			var formData = $("#ReadingBasketSelectForm").serialize();
+	        $.ajax({
+	            type: 'post',
+	            url: '/naverpay/basket_wish',
+	            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+	            processData: false,
+	            data: formData,
+	            success: function (data) {
+	            	var param = "";
+	            	if(data.length > 0) {
+						for(i=0; i<data.length; i++) {
+							param += "&ITEM_ID="+data[i];
+						}	            		
+	            	}
+	            	console.log(data.length);
+	            	console.log(data.toString());
+	            	console.log(param);
+	            	window.open("https://test-pay.naver.com/customer/wishlistPopup.nhn?SHOP_ID=balgeure"+param,"","scrollbars=yes,width=400,height=267");
+	            	//$("#ORDER_ID").val(data);
+	            	//$("#naverOrderForm").submit();
+	            },
+	
+	            error: function (data, textStatus, errorThrown) {
+	            }
+	        });
+	        
+			return false; 
+		}
+	//]]>
+	</script> 
+<div class="cartPage">
+
+<div class="cartWrap">
+    <div class="CartPage_tit"><span class="BIG">장바구니</span> <span class="keepText">장바구니에 담긴 상품은 최대 30일까지 보관됩니다.</span></div>
+        <div class="cartItemList">
+           <div class="headerTable_cart">
+            <table class="cartListHeader">
+                <tr class="cartHeaderRow">
+                    <td class="header_col1">
+                        <input type="checkbox" id="allCheck" checked="checked">
+                    </td>
+                    <td class="header_col2">상품정보</td>
+                </tr>
+            </table>
+          </div>
+
+            <!-- ko with: bundleVM -->
+            <!-- ko if: Bundles().length  -->
+
+            <form method="post" id="ReadingBasketSelectForm">
+				<div id="dataProd" style="display:none;">
+				</div>
+                <table class="cartList bundles" cellspacing="0" cellpadding="0" summary="장바구니 목록" >
+                <caption>발그레배송 장바구니 상품 리스트</caption>
+                <input type="hidden" id="np_total_prod" name="np_total_prod" value="$!{basketList.basketList.total_price}"/>
+                <input type="hidden" id="np_total_delivery" name="np_total_delivery" value="$!{basketList.basketList.total_delivery}"/>
+                <tbody class="wrap" id="cardInfo">
+                <!-- ko foreach: Bundles() -->
+                    #foreach($seller in $basketList.basketList.appBasketSeller)
+                    	#foreach($prod in $seller.basketProduct)
+                    		<tr>
+	                            <td class="check">
+	                            	#if($prod.itemCheck == 0)
+	                                	<input type="checkbox" name="basketChk" value="${prod.product.productId}" onchange="prodChecked(this);"/>
+	                                #else
+	                                	<input type="checkbox" name="basketChk" value="${prod.product.productId}" checked="checked" onchange="prodChecked(this);"/>
+	                                	<!-- NC INFO -->
+	                                	<input type="hidden" name="np_prodId[]" value="${prod.product.productId}"/>
+	                                	<input type="hidden" name="np_productName_${prod.product.productId}" value="[${seller.brand.brandName}] ${prod.product.prodName}"/>
+	                                	<input type="hidden" name="np_thumbUrl_${prod.product.productId}" value="$!{prod.product.thumbUrl}"/>
+                    					<input type="hidden" name="np_prodDesc_${prod.product.productId}" value="$!{prod.product.prodDesc}"/>
+                    					<input type="hidden" name="np_freeDelivery_${prod.product.productId}" value="${prod.product.productDelivery.freeDelivery}"/>
+                    					<input type="hidden" name="np_deliveryPrice_${prod.product.productId}" value="${prod.product.productDelivery.deliveryPrice}"/>
+                    					<input type="hidden" name="np_seller_${prod.product.productId}" value="${prod.product.seller.userId}"/>
+	                                #end
+	                            </td>
+	                            <td class="itemInfo">
+                                        <div class="product_img">
+	                                    <a href="/detail?product_id=$math.toInteger(${prod.product.productId})&sort=1">
+	                                        <img src="//sumcrimage.cafe24.com/${prod.product.thumbUrl}">
+	                                    </a>
+	                                    </div>
+	                                    <div class="product_NameOpt">
+	                                    <p class="productName fW">
+	                                        <a data-bind="attr:{href: productUrl}"><!--ko text: productTitle-->
+	                                            [${seller.brand.brandName}] ${prod.product.prodName}
+	                                            <!--/ko--></a>
+	                                    </p>
+	                                    </div>
+	                              </td>
+	                              </tr>
+	                              <tr>
+	                                    <td class="productOpt" colspan="2">
+	                                    	<table class="OPT_Product" cellpadding="0" cellspacing="0">
+
+	                                            #foreach($item in $prod.basketProductItem)
+												<tbody id="tbody">
+	                                                <tr>
+	                                                    <th class="optionTitle">
+	                                                    	<input type="hidden" name="chk${prod.product.productId}" value="$!{item.shoppingBasket.basketId}"/>
+	                                                    	<input type="hidden" name="chkItems${prod.product.productId}" value="$item.shoppingBasket.productItem.itemId"/>
+	                                                    	#if($prod.itemCheck == 1)
+	                                                    		<input type="hidden" name="np_items[${prod.product.productId}]" value="$item.shoppingBasket.productItem.itemId"/>
+	                                                    		<input type="hidden" name="np_itemName$item.shoppingBasket.productItem.itemId" value="$item.shoppingBasket.productItem.itemName"/>
+	                                                    		<input type="hidden" name="np_itemPrice$item.shoppingBasket.productItem.itemId" value="${item.shoppingBasket.productItem.price}"/>
+	                                                    	#end
+	                                                        <span class="mark_O">+</span>
+	                                                        <span class="name_opt">${item.shoppingBasket.productItem.itemName}</span>
+	                                                        <strong class="deal-item-type-title"></strong>
+	                                                    </th>
+	                                                    <td class="selectPrice each">
+	                                                    	<input type="hidden" name="items[]" value="${item.shoppingBasket.productItem.price}"/>
+	                                                        <span>$number.format(${item.shoppingBasket.productItem.price})</span> 원
+	                                                    </td>
+	                                                    <td class="option_cnt">
+                                                        	#set($itemCnt=$item.shoppingBasket.productItem.maxItemCnt)
+                                                        	#if($item.shoppingBasket.productItem.maxItemCnt > $item.shoppingBasket.productItem.itemCnt)
+                                                        		#set($itemCnt=$item.shoppingBasket.productItem.itemCnt)
+                                                        	#end
+	                                                        <select class="basketItemCnt" name="upDown[$item.shoppingBasket.productItem.itemId]" onchange="basketUpdate(this,'$!{item.shoppingBasket.basketId}');">
+	                                                            #foreach($i in [1..$itemCnt])
+	                                                                <option class="basketItemCntChoice" value="$i"
+	                                                                    #if($i == $number.format(${item.shoppingBasket.itemCount}))
+	                                                                        selected="selected" 
+	                                                                    #end>$i</option>
+	                                                            #end
+	                                                        </select>
+	                                                    </td>
+	                                                    <td class="select_PPrice">
+	                                                    <span>$number.format(${item.price})</span> 원
+	                                                    </td>
+	                                                    <td class="delete">
+	                                                        <a href="javascript:deleteBasket('${item.shoppingBasket.basketId}')" type="button" id="removeBtn">
+	                                                            	삭제
+	                                                        </a>
+	                                                    </td>
+	                                                </tr>
+	
+	                                                <!-- /ko -->
+	                                                </tbody>
+	                                            #end
+	                                        </table>
+	                                    </td>
+	                                    </tr>
+	                                <tr>
+	                                
+	                            <td class="product_DeliPrice" colspan="2">
+	                             
+	                            
+	                            <div class="deliveryprice">
+	                            <span class="paydeliv">배송비 :</span>
+                            	 	#if(${prod.viewFreeDelivery} == 0)
+                            	 		<span class="free_delivery">무료배송</span>
+                            	 	#elseif(${prod.viewFreeDelivery} == -1)
+                            	 		<span class="pay_delivery">유료배송</span><br/>
+                                		<span class="unit">$number.format(${prod.viewDeliveryPrice}) 원</span>
+                            	 	#else
+                            	 		#if(${prod.viewFreeDelivery} > $prod.totalPrice)
+		                                	<span class="limit_delivery">$number.format(${prod.viewFreeDelivery}) 원 이상 무료배송</span><br>
+		                                	<span class="limit unit">$number.format(${prod.viewDeliveryPrice}) 원</span>
+		                                #else
+		                                	<span class="free_delivery">무료배송</span>
+		                                #end
+                            	 	#end
+                            	 </div>  
+                            	 <div class="finalprice">                            
+	                           <span class="payprice">총 상품가격 :</span>
+	                            <span class="unit">
+		                                $number.format($prod.totalPrice)
+		                            </span>원	                            
+	                            </div>
+                            	 </td>                          	 	
+                            	 
+                            	 
+                            </tr>
+                    	#end
+                    #end
+                <!-- /ko -->
+                </tbody>
+                </table>
+            </form>
+			
+			
+			
+			<form action="$!{np_order}" method="post" id="naverOrderForm">
+            	<input type="hidden" id="ORDER_ID" name="ORDER_ID"/> 
+            	<input type="hidden" name="SHOP_ID" value="balgeure"/> 
+            	<input type="hidden" id="TOTAL_PRICE" name="TOTAL_PRICE"/>
+            </form>
+            <p class="choice fL">
+            <a href="javascript:selectDelete()">
+            <button class="delBtn bottom fL" type="button">선택삭제</button>
+            </a>            
+        </div>
+    </div>
+
+    <div class="cB">
+        <div class="priceWrap v1 fL">            
+                   <div class="Total_P_price">
+                    	<span class="priceText">총 상품금액</span>
+                        <span id="total_prod" class="unit">$number.format($!{basketList.basketList.total_price})</span> 원
+                    </div>
+                    <div class="Total_deliveryCharge">
+                        <span class="plusBig"></span>
+                    	<span class="priceText">배송비</span>
+                    	<span id="total_delivery" class="unit">$number.format($!{basketList.basketList.total_delivery})</span>원</td>
+                    	</div>
+                    <div class="totalPrice last">
+                        <span class="equalBig"></span>
+                    	<span class="priceText">결제 예정금액</span>
+                        <span class="unit" id="total_price">$number.format($math.add($!{basketList.basketList.total_price}, $!{basketList.basketList.total_delivery}))</span> 원
+                    </div>
+        </div>
+    </div>
+
+    <div class="btnWrap mA cB">
+        <button type="button" id="prevBasket">쇼핑 계속하기</button>
+        <button type="button" id="directBasket"></button>
+      	#if($!{isDev}==1)
+	        <script type="text/javascript" >
+			//<![CDATA[     
+			      naver.NaverPayButton.apply({         
+			   	  BUTTON_KEY: "7A90A1E2-B7C3-4CCF-8354-D33187B5586D", // 페이에서 제공받은 버튼 인증 키 입력        
+			   	  TYPE: "A", // 버튼 모음 종류 설정        
+			   	  COLOR: 1, // 버튼 모음의 색 설정          
+			   	  COUNT: 2, // 버튼 개수 설정. 구매하기 버튼만 있으면 1, 찜하기 버튼도 있으면 2를 입력.          
+			   	  ENABLE: "Y", // 품절 등의 이유로 버튼 모음을 비활성화할 때에는 "N" 입력
+			   	  BUY_BUTTON_HANDLER: buy_nc,
+			   	  WISHLIST_BUTTON_HANDLER:wishlist_nc, // 찜하기 버튼 이벤트 Handler 함수 등록 
+			   	  "":""     
+			    }); 
+			 //]]>
+			 </script>
+		 #end
+    </div>
+
+</div>
+
+<script>
+	var StringBuffer = function() {
+	    this.buffer = new Array();
+	};
+	StringBuffer.prototype.append = function(str) {
+	    this.buffer[this.buffer.length] = str;
+	};
+	StringBuffer.prototype.toString = function() {
+	    return this.buffer.join("");
+	};
+
+	$(document).ready(function () {
+		//$(".basketItemCnt")
+		getBasketList();
+		//basketChecked();
+	});
+	
+	function getBasketList() {
+		$.ajax({
+            type: 'get',
+            url: '/getBasketList',
+            contentType: false,
+            processData: false,
+            data: null,
+            success: function (result) {
+            	initBasket(result);
+            },
+            error: function (result) {
+                alert("에러! " + result);
+            }
+        })
+	}
+	
+	function initBasket(data) {
+		var basketHtml = new StringBuffer();		
+		var basketList = data.basketList;
+		
+		$("#total_prod").text($.number(basketList.total_price));
+		$("#total_delivery").text($.number(basketList.total_delivery));
+		$("#total_price").text($.number(basketList.total_price+basketList.total_delivery));
+		console.log(basketList.total_price);
+		$("#np_total_prod").val(basketList.total_price);
+		$("#np_total_delivery").val(basketList.total_delivery);
+		$("#TOTAL_PRICE").val(basketList.total_price+basketList.total_delivery);
+		
+		for (var i in data.basketList.appBasketSeller) {
+			var seller = data.basketList.appBasketSeller[i];
+			for (var j in seller.basketProduct) {
+				var prod = seller.basketProduct[j];
+				basketHtml.append('<tr>');
+				basketHtml.append('<td class="check">');
+				if(prod.itemCheck == 1) {
+					basketHtml.append('<input type="checkbox" name="basketChk" value="' + prod.product.productId + '"  checked="checked" onchange="prodChecked(this);"/>');
+					basketHtml.append('<input type="hidden" name="np_prodId[]" value="' + prod.product.productId + '"/>');
+	                basketHtml.append('<input type="hidden" name="np_productName_' + prod.product.productId + '" value="[' + seller.brand.brandName + ']' + prod.product.prodName + '"/>');
+	                basketHtml.append('<input type="hidden" name="np_thumbUrl_' + prod.product.productId + '" value="' + prod.product.thumbUrl + '"/>');
+                    basketHtml.append('<input type="hidden" name="np_prodDesc_' + prod.product.productId + '" value="' + prod.product.prodDesc + '"/>');
+                    if(prod.product.sale == 0) {
+                    	basketHtml.append('<input type="hidden" name="np_prodPrice_' + prod.product.productId + '" value="' + prod.product.price + '"/>');
+                    } else {
+                    	basketHtml.append('<input type="hidden" name="np_prodPrice_' + prod.product.productId + '" value="' + prod.product.salePrice + '"/>');
+                    }
+                    basketHtml.append('<input type="hidden" name="np_freeDelivery_' + prod.product.productId + '" value="' + prod.product.productDelivery.freeDelivery + '"/>');
+                    basketHtml.append('<input type="hidden" name="np_deliveryPrice_' + prod.product.productId + '" value="' + prod.product.productDelivery.deliveryPrice + '"/>');
+                    basketHtml.append('<input type="hidden" name="np_seller_' + prod.product.productId + '" value="' + prod.product.seller.userId + '"/>');
+				} else {
+					basketHtml.append('<input type="checkbox" name="basketChk" value="' + prod.product.productId + '" onchange="prodChecked(this);"/>');
+				}
+				basketHtml.append('</td>');
+				basketHtml.append('<td class="itemInfo">');
+				basketHtml.append('<div class="product_img">');
+				basketHtml.append('<a href="/detail?product_id=' + prod.product.productId + '&sort=1">');
+				basketHtml.append('<img src="//sumcrimage.cafe24.com/' + prod.product.thumbUrl + '">');
+				basketHtml.append('</a>');
+				basketHtml.append('</div>');
+                basketHtml.append('<div class="product_NameOpt">');
+                basketHtml.append('<p class="productName fW">');
+                basketHtml.append('<a>');
+                basketHtml.append('[' + seller.brand.brandName + '] ' + prod.product.prodName);
+                basketHtml.append('</a>');
+                basketHtml.append('</p>');
+                basketHtml.append('</div>');
+                basketHtml.append('</td>');
+                basketHtml.append('</tr>');
+                basketHtml.append('<tr>');
+                basketHtml.append('<td class="productOpt" colspan="2">');
+          		basketHtml.append('<table class="OPT_Product" cellpadding="0" cellspacing="0">');
+                for (var k in prod.basketProductItem) {
+                	var item = prod.basketProductItem[k];
+                	basketHtml.append('<tbody id="tbody">');
+                    basketHtml.append('<tr>');
+                    basketHtml.append('<th class="optionTitle">');
+                    basketHtml.append('<input type="hidden" name="chkItems' + prod.product.productId + '" value="' + item.shoppingBasket.productItem.itemId + '"/>');
+                    basketHtml.append('<input type="hidden" name="chk' + prod.product.productId + '" value="' + item.shoppingBasket.basketId + '"/>');
+                   	if(prod.itemCheck == 1) {
+                   		basketHtml.append('<input type="hidden" name="np_items' + prod.product.productId + '" value="' + item.shoppingBasket.productItem.itemId + '"/>');
+                   		basketHtml.append('<input type="hidden" name="np_itemName' + item.shoppingBasket.productItem.itemId + '" value="' + item.shoppingBasket.productItem.itemName + '"/>');
+                    	basketHtml.append('<input type="hidden" name="np_itemPrice' + item.shoppingBasket.productItem.itemId + '" value="' + item.shoppingBasket.productItem.price + '"/>');
+                   	}
+                    basketHtml.append('<span class="mark_O">+</span>');
+                    basketHtml.append('<span class="name_opt"> ' + item.shoppingBasket.productItem.itemName +'</span>');
+                    basketHtml.append('<strong class="deal-item-type-title"></strong>');
+                    basketHtml.append('</th>');
+                    basketHtml.append('<td class="selectPrice each">');
+                    basketHtml.append('<span>' + $.number(item.shoppingBasket.productItem.price) + '</span> 원');
+                    basketHtml.append('</td>');
+                    basketHtml.append('<td class="option_cnt">');
+                    var itemCnt = item.shoppingBasket.productItem.maxItemCnt;
+                   
+                    if(item.shoppingBasket.productItem.maxItemCnt >  item.shoppingBasket.productItem.itemCnt) {
+                    	itemCnt = item.shoppingBasket.productItem.itemCnt;
+                    }
+                    basketHtml.append('<select class="basketItemCnt" name="upDown[' + item.shoppingBasket.productItem.itemId + ']" onchange="basketUpdate(this,' + item.shoppingBasket.basketId + ');">');
+                    for(var n=1; n <= itemCnt; n++) {
+                    	basketHtml.append('<option class="basketItemCntChoice" value="' + n + '"');
+                    	if(n == item.shoppingBasket.itemCount) {
+                    		basketHtml.append(' selected="selected">' + n + '</option>');	
+                    	} else {
+                    		basketHtml.append('">' + n + '</option>');
+                    	}
+                    }
+                    basketHtml.append('</select>');
+                    basketHtml.append('</td>');
+                    basketHtml.append('<td class="select_PPrice">');
+                    basketHtml.append('<span>' + $.number(item.price) + '</span> 원');
+                    basketHtml.append('</td>');
+                    basketHtml.append('<td class="delete">');
+					basketHtml.append('<a href="javascript:deleteBasket(' + item.shoppingBasket.basketId + ')" type="button" id="removeBtn">');
+					basketHtml.append('삭제');
+					basketHtml.append('</a>');
+                    basketHtml.append('</td>');
+					basketHtml.append('</tr>');
+					basketHtml.append('</tbody>');
+                }
+				basketHtml.append('</table>');
+		        basketHtml.append('</td>');
+		     	basketHtml.append('</tr>');
+		     	basketHtml.append('<tr>');
+		     	basketHtml.append('<td class="product_DeliPrice" colspan="2">');			 	
+			 	basketHtml.append('<div class="deliveryprice">');
+			 	basketHtml.append('<span class="paydeliv">배송비 :</span>');	
+			 	if(prod.viewFreeDelivery == 0) {
+			 		basketHtml.append('<span class="free_delivery">무료배송</span>');	
+			 	} else if(prod.viewFreeDelivery == -1) {
+			 		basketHtml.append('<span class="pay_delivery">유료배송</span><br/>');
+		    		basketHtml.append('<span class="unit">' + $.number(prod.viewDeliveryPrice) + ' 원</span>');	
+			 	} else {
+					if(prod.viewFreeDelivery > prod.totalPrice) {
+						basketHtml.append('<span class="limit_delivery">' + $.number(prod.viewFreeDelivery) + ' 원 이상 무료배송</span><br>');
+		      			basketHtml.append('<span class="limit unit">' + $.number(prod.viewDeliveryPrice) + ' 원</span>');			
+					} else {
+						basketHtml.append('<span class="free_delivery">무료배송</span>');		
+					}
+			 	}
+				basketHtml.append('</div>');
+				basketHtml.append('<div class="finalprice">');
+				basketHtml.append('<span class="payprice">총 상품가격 :</span>');	
+			 	basketHtml.append('<span class="unit">');
+			    basketHtml.append($.number(prod.totalPrice));
+		  		basketHtml.append('</span> 원');
+			 	basketHtml.append('</div>');
+				basketHtml.append('</td>');
+				basketHtml.append('</tr>');
+			}
+	    }
+	
+		$("#cardInfo").html(basketHtml.toString());
+		
+		var str = "";
+		$('input:checkbox[name="basketChk"]:checked').each(function() {
+			$('input[name=chkItems' + this.value + ']').each(function() {
+				str += '<input type="hidden" name="items[]" value="' + this.value + '"/>';
+			});
+	   	});
+		
+		$("#dataProd").html(str);
+
+	}
+	
+	function prodChecked(obj) {
+		var basketIds = [];
+		$('input[name=chk' + $(obj).val() + ']').each(function() {
+			basketIds.push($(this).val());
+		});
+		var checked = 0;
+		if($(obj).prop('checked')) {
+			checked = 1;
+		}
+		if($('input:checkbox[name="basketChk"]:checked').length == $('input:checkbox[name="basketChk"]').length) {
+			$("#allCheck").prop("checked", 'checked');
+		} else {
+			$("#allCheck").prop("checked", '');
+		}
+		if(basketIds.length > 0) {
+    		 $.ajax({
+                 type: 'post',
+                 url: '/basketUpdateChk?checked=' + checked + '&basketId='+basketIds,
+                 contentType: false,
+                 processData: false,
+                 data: null,
+                 success: function (result) {
+                     initBasket(result);
+                 },
+                 error: function (result) {
+                     alert("에러! " + result);
+                 }
+             });
+    	 }
+	}
+	
+	function basketChecked() {
+		var checked = 0;
+		if($("#allCheck").prop("checked")) {
+			checked = 1;
+		}
+		
+		var basketIds = [];    	
+    	$('input:checkbox[name="basketChk"]').each(function() {
+			$('input[name=chk' + this.value + ']').each(function() {
+				basketIds.push(this.value);
+			});
+    	});
+    	
+    	if(basketIds.length > 0) {
+    		 $.ajax({
+                 type: 'post',
+                 url: '/basketUpdateChk?checked=' + checked + '&basketId='+basketIds,
+                 contentType: false,
+                 processData: false,
+                 data: null,
+                 success: function (result) {
+                     initBasket(result);
+                 },
+                 error: function (result) {
+                     alert("에러! " + result);
+                 }
+             });
+    	 }
+	}
+	
+    function deleteBasket(basketId) {
+        var data = "basketId=" + basketId;
+        $.ajax({
+            type: 'post',
+            url: '/basketDelete?' + data,
+            contentType: false,
+            processData: false,
+            data: null,
+            success: function (result) {
+                alert("상품을 삭제하였습니다.");
+                initBasket(result);
+            },
+            error: function (result) {
+                alert("에러! " + result);
+            }
+        })
+    };
+
+    function selectDelete() {
+		var basketIds = [];    	
+    	 $('input:checkbox[name="basketChk"]:checked').each(function() {
+			$('input[name=chk' + this.value + ']').each(function() {
+				basketIds.push(this.value);
+			});
+    	 });
+    	 if(basketIds.length > 0) {
+    		 $.ajax({
+                 type: 'post',
+                 url: '/basketDelete?basketId='+basketIds,
+                 contentType: false,
+                 processData: false,
+                 data: null,
+                 success: function (result) {
+                     alert("선택한 상품을 삭제하였습니다.")
+                     initBasket(result);
+                 },
+                 error: function (result) {
+                     alert("에러! " + result);
+                 }
+             });
+    	 }
+    }
+
+    function basketUpdate(obj, basketId) {
+        var formData = new FormData();
+        formData.append("basketId", basketId);
+        formData.append("itemCount", $(obj).val());
+        $.ajax({
+            type: 'post',
+            url: '/basketUpdate',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+            	initBasket(data);
+            }, error: function (data) {
+                alert("오류가 발생 하였습니다. 잠시 후 다시 시도해주세요.");
+            }
+        });
+    }
+
+    ## ------ 상품 상세 페이지에서 마지막 결제하기 시작 -----
+    $("#directBasket").on("click", function (event) {
+        var formData = $("#ReadingBasketSelectForm").serialize();
+        console.log(formData);
+        if($('input:checkbox[name="basketChk"]:checked').length > 0) {
+        	$.ajax({
+                type: 'post',
+                url: '/payment/order',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    if (data) {
+                        window.location.href = "/payment/order?q=" + data;
+                    }
+                },
+                error: function (data, textStatus, errorThrown) {
+                	console.log(data);
+                	console.log(textStatus);
+                    alert("로그인 하신 후 옵션을 선택해주세요.");
+                }
+            });
+        } else {
+			alert("구매 상품을 체크 해 주세요.");        	
+        }
+    });
+    ## ------ 상품 상세 페이지에서 마지막 결제하기 끝 -----
+
+    ## ------ 상품 상세 페이지에서 쇼핑하기 시작 -----
+    $("#prevBasket").on("click", function (event) {
+        history.back();
+//        history.go(-1);
+//        history.forward();
+    });
+    ## ------ 상품 상세 페이지에서 쇼핑하기 끝 -----
+
+</script>
+
+
+
+## 장바구니 체크박스 전체 클릭
+<script>
+    $(function () {
+        //전체선택 체크박스 클릭
+        $("#allCheck").click(function () {
+            //만약 전체 선택 체크박스가 체크된상태일경우
+            if ($("#allCheck").prop("checked")) {
+                //해당화면에 전체 checkbox들을 체크해준다
+                $("input[type=checkbox]").prop("checked", true);
+                // 전체선택 체크박스가 해제된 경우
+            } else {
+                //해당화면에 모든 checkbox들의 체크를해제시킨다.
+                $("input[type=checkbox]").prop("checked", false);
+            }
+            basketChecked();
+        })
+    })
+</script>
+
+
+
+
+    #parse("/main/footer.vm")
+

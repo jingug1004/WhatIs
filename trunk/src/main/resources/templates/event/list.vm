@@ -13,12 +13,7 @@
     <div class="quickmenu_right" id="quickmenu_right">
 
         <div class="banner_first">
-            <div class="banner_first_images mySlides">
-                <a href="/event?eid=33">
-                    <img src="/img/right_side/rightside_banner1.png" alt="홈쇼핑 2종 특가할인 9900원">
-                </a>
-            </div>
-
+            
             <div class="banner_first_images mySlides">
                 <a href="/event?eid=34">
                     <img src="/img/right_side/rightside_banner3.png" alt="Flalia 단독쿠폰 10%">
@@ -33,12 +28,6 @@
             <div class="banner_second_images">
                 <a href="/event?eid=30">
                     <img src="/img/right_side/rightside_banner4.png" alt="20%쿠폰발급">
-                </a>
-            </div>
-
-            <div class="banner_second_images">
-                <a href="/event?eid=32">
-                    <img src="/img/right_side/rightside_banner5.png" alt="신규가입 선물">
                 </a>
             </div>
             
@@ -63,7 +52,7 @@
 		<div id="wrapper_1">
 			<div id="scroller">
 			<div class="eventPage_tit">
-			<h3 class="title-promotion">발그레 이벤트 / 쿠폰</h3>
+			<h3 class="title-promotion">발그레 이벤트 / 혜택</h3>
 			</div>
 			<div class="filter-category">
 							</div>
@@ -91,6 +80,7 @@
 			if(etype == 0) {
 				location.href = "/event/att_info";			
 			} else if(etype == 1) {
+				location.href = "/brandList?brand_id=" + tid;
 			} else if(etype == 2) {
 				location.href = "/detail?product_id=" + tid;
 			} else if(etype == 3) {
